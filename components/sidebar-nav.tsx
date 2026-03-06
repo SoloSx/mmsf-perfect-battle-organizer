@@ -114,7 +114,7 @@ export function SidebarNav() {
   return (
     <aside
       className={cn(
-        "border-b border-white/10 bg-[linear-gradient(180deg,rgba(35,12,76,0.44),rgba(14,10,52,0.3))] px-4 py-4 backdrop-blur-xl transition-[width,padding] duration-300 md:sticky md:top-0 md:h-dvh md:border-b-0 md:border-r",
+        "relative z-20 border-b border-white/10 bg-[linear-gradient(180deg,rgba(35,12,76,0.44),rgba(14,10,52,0.3))] px-4 py-4 backdrop-blur-xl transition-[width,padding] duration-300 md:sticky md:top-0 md:h-dvh md:border-b-0 md:border-r",
         isSidebarOpen ? "md:w-72 md:px-6 md:py-6" : "md:w-24 md:px-4 md:py-6",
       )}
     >
