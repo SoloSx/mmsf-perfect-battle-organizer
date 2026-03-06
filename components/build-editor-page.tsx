@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
@@ -43,6 +43,7 @@ const BROTHER_KIND_OPTIONS: { value: BrotherKind; label: string }[] = [
   { value: "real", label: "リアル" },
   { value: "event", label: "限定配信/イベント" },
 ];
+const EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v1";
 
 function cloneBuild(build: BuildRecord) {
   return JSON.parse(JSON.stringify(build)) as BuildRecord;
@@ -100,6 +101,52 @@ function buildEditorHref(game: GameId, version: VersionId, buildId?: string | nu
   }
 
   return `/editor?${params.toString()}`;
+}
+
+function buildEditorDraftStorageKey(buildId: string | null, requestedGame: string | null, requestedVersion: string | null) {
+  if (buildId) {
+    return `${EDITOR_DRAFT_STORAGE_KEY_PREFIX}/build/${buildId}`;
+  }
+
+  const { game, version } = resolveRequestedGameVersion(requestedGame, requestedVersion);
+  return `${EDITOR_DRAFT_STORAGE_KEY_PREFIX}/new/${game}/${version}`;
+}
+
+function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
+  if (!rawDraft) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(rawDraft) as Partial<BuildRecord>;
+
+    return {
+      ...baseBuild,
+      ...parsed,
+      commonSections: {
+        ...baseBuild.commonSections,
+        ...(parsed.commonSections ?? {}),
+      },
+      gameSpecificSections: {
+        ...baseBuild.gameSpecificSections,
+        ...(parsed.gameSpecificSections ?? {}),
+        mmsf1: {
+          ...baseBuild.gameSpecificSections.mmsf1,
+          ...(parsed.gameSpecificSections?.mmsf1 ?? {}),
+        },
+        mmsf2: {
+          ...baseBuild.gameSpecificSections.mmsf2,
+          ...(parsed.gameSpecificSections?.mmsf2 ?? {}),
+        },
+        mmsf3: {
+          ...baseBuild.gameSpecificSections.mmsf3,
+          ...(parsed.gameSpecificSections?.mmsf3 ?? {}),
+        },
+      },
+    };
+  } catch {
+    return null;
+  }
 }
 
 function getGameSpecificSummary(build: BuildRecord) {
@@ -537,27 +584,63 @@ export function BuildEditorPage() {
   const buildId = searchParams.get("buildId");
   const requestedGame = searchParams.get("game");
   const requestedVersion = searchParams.get("version");
+  const draftStorageKey = useMemo(
+    () => buildEditorDraftStorageKey(buildId, requestedGame, requestedVersion),
+    [buildId, requestedGame, requestedVersion],
+  );
   const exportRef = useRef<HTMLDivElement>(null);
   const [draft, setDraft] = useState<BuildRecord | null>(null);
   const [status, setStatus] = useState("");
   const [isExporting, setIsExporting] = useState(false);
+
+  const persistDraftSnapshot = useEffectEvent(() => {
+    if (!draft) {
+      return;
+    }
+
+    window.localStorage.setItem(draftStorageKey, JSON.stringify(draft));
+  });
 
   useEffect(() => {
     if (!loaded) {
       return;
     }
 
+    let nextBuild: BuildRecord;
+
     if (buildId) {
       const existing = getBuildById(buildId);
-      setDraft(existing ? cloneBuild(existing) : createEmptyBuild());
+      nextBuild = existing ? cloneBuild(existing) : createEmptyBuild();
+    } else {
+      const nextSelection = resolveRequestedGameVersion(requestedGame, requestedVersion);
+      nextBuild = createEmptyBuild(nextSelection.game);
+      nextBuild.version = nextSelection.version;
+    }
+
+    const restoredDraft = restoreEditorDraft(nextBuild, window.localStorage.getItem(draftStorageKey));
+    setDraft(restoredDraft ?? nextBuild);
+
+    if (restoredDraft) {
+      setStatus("未保存の編集内容を復元しました。");
+    }
+  }, [buildId, createEmptyBuild, draftStorageKey, getBuildById, loaded, requestedGame, requestedVersion]);
+
+  useEffect(() => {
+    if (!loaded || !draft) {
       return;
     }
 
-    const nextSelection = resolveRequestedGameVersion(requestedGame, requestedVersion);
-    const nextBuild = createEmptyBuild(nextSelection.game);
-    nextBuild.version = nextSelection.version;
-    setDraft(nextBuild);
-  }, [buildId, createEmptyBuild, getBuildById, loaded, requestedGame, requestedVersion]);
+    persistDraftSnapshot();
+  }, [draft, loaded]);
+
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      persistDraftSnapshot();
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, []);
 
   const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0 }), [draft]);
 
@@ -641,6 +724,7 @@ export function BuildEditorPage() {
                 }
 
                 const saved = upsertBuild(draft);
+                window.localStorage.removeItem(draftStorageKey);
                 setDraft(saved);
                 setStatus("構築を保存しました。");
                 router.replace(buildEditorHref(saved.game, saved.version, saved.id));
@@ -683,6 +767,7 @@ export function BuildEditorPage() {
         </div>
 
         {status && <p className="mt-4 text-sm text-cyan-200/80">{status}</p>}
+        <p className="mt-3 text-xs text-white/45">この画面の入力内容はブラウザに一時保存されるため、保存前にリロードしても復元されます。</p>
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">

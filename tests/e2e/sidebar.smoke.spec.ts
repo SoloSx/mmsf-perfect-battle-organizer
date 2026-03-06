@@ -58,3 +58,15 @@ test("sidebar and primary navigation smoke", async ({ page }) => {
     page.getByRole("button", { name: "PNG 出力", exact: true }),
   ).toBeVisible();
 });
+
+test("editor draft survives reload before saving", async ({ page }) => {
+  await page.goto("/editor?game=mmsf2&version=shinobi");
+
+  const titleField = page.getByPlaceholder("構築名");
+  await titleField.fill("リロード復元テスト");
+
+  await page.reload();
+
+  await expect(page.getByPlaceholder("構築名")).toHaveValue("リロード復元テスト");
+  await expect(page.getByText("未保存の編集内容を復元しました。")).toBeVisible();
+});
