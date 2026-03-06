@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useEffectEvent, useId, useMemo, useRef, useState } from "react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import {
@@ -10,7 +9,6 @@ import {
   FilePlus2,
   Save,
   Sparkles,
-  WandSparkles,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
@@ -41,7 +39,6 @@ import type {
   BuildSourceEntry,
   CommonSections,
   GameId,
-  StrategyTemplate,
   VersionId,
 } from "@/lib/types";
 import { createId, uniqueStrings } from "@/lib/utils";
@@ -238,24 +235,6 @@ function validateBuild(build: BuildRecord) {
   }
 
   return { errors, totalCards };
-}
-
-function applyTemplateToBuild(build: BuildRecord, template: StrategyTemplate | undefined) {
-  if (!template) {
-    return build;
-  }
-
-  return {
-    ...build,
-    strategyTemplateId: template.id,
-    commonSections: {
-      ...build.commonSections,
-      strategyName: template.defaultValues.strategyName || build.commonSections.strategyName,
-      strategyNote: template.defaultValues.strategyNote || build.commonSections.strategyNote,
-      overview: template.defaultValues.overview || build.commonSections.overview,
-      tags: clampList([...(template.defaultValues.tags ?? []), ...build.commonSections.tags]),
-    },
-  };
 }
 
 function TagEditor({
@@ -600,7 +579,7 @@ function BrotherListEditor({
 }
 
 export function BuildEditorPage() {
-  const { createEmptyBuild, duplicateBuild, getBuildById, loaded, templates, upsertBuild } = useAppData();
+  const { createEmptyBuild, duplicateBuild, getBuildById, loaded, upsertBuild } = useAppData();
   const router = useRouter();
   const searchParams = useSearchParams();
   const buildId = searchParams.get("buildId");
@@ -701,7 +680,6 @@ export function BuildEditorPage() {
     ...MASTER_DATA.sourceTagsByGame[draft.game],
   ]);
   const whiteCardSetCards = getMmsf3WhiteCardSetCards(draft.gameSpecificSections.mmsf3.whiteCardSetId);
-  const selectedTemplate = templates.find((item) => item.id === draft.strategyTemplateId);
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
     setDraft((current) => (current ? { ...current, commonSections: { ...current.commonSections, [key]: value } } : current));
@@ -806,7 +784,7 @@ export function BuildEditorPage() {
           <div className="glass-panel">
             <div>
               <p className="text-sm font-semibold text-white">基本情報</p>
-              <p className="mt-1 text-sm text-white/60">構築名、作品、概要、タグ、戦法メモをまとめて編集します。</p>
+              <p className="mt-1 text-sm text-white/60">構築名、作品、概要、タグをまとめて編集します。</p>
             </div>
 
             <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr_0.45fr_0.45fr]">
@@ -853,17 +831,17 @@ export function BuildEditorPage() {
               </select>
             </div>
 
-            <div className="mt-4 grid gap-6 2xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+            <div className="mt-4 grid gap-6 2xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
               <div className="min-w-0">
                 <textarea
                   value={draft.commonSections.overview}
                   onChange={(event) => updateCommon("overview", event.target.value)}
-                  placeholder="構築全体の概要や狙い"
+                  placeholder="構築全体の概要、環境、狙い"
                   className="field-shell min-h-48 w-full"
                 />
               </div>
 
-              <div className="grid min-w-0 gap-6">
+              <div className="grid min-w-0 gap-4">
                 <TagEditor
                   label="構築タグ"
                   values={draft.commonSections.tags}
@@ -871,62 +849,12 @@ export function BuildEditorPage() {
                   suggestions={["対戦用", "大会想定", "速攻", "コントロール", "安定重視"]}
                   placeholder="タグ追加"
                 />
-
-                <div className="glass-panel-soft">
-                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                    <div>
-                      <p className="text-sm font-semibold text-white">戦法保存</p>
-                      <p className="text-sm text-white/60">テンプレートの適用と、構築固有の戦法メモをここで管理します。</p>
-                    </div>
-                    <div className="flex flex-wrap gap-3">
-                      <select
-                        value={draft.strategyTemplateId ?? ""}
-                        onChange={(event) =>
-                          setDraft((current) =>
-                            current ? { ...current, strategyTemplateId: event.target.value || null } : current,
-                          )
-                        }
-                        className="field-shell min-w-60"
-                      >
-                        <option value="">テンプレート未選択</option>
-                        {templates.map((template) => (
-                          <option key={template.id} value={template.id}>
-                            {template.name}
-                          </option>
-                        ))}
-                      </select>
-                      <button
-                        type="button"
-                        className="secondary-button"
-                        onClick={() => {
-                          setDraft((current) => (current ? applyTemplateToBuild(current, selectedTemplate) : current));
-                          setStatus("テンプレートを構築に適用しました。");
-                        }}
-                      >
-                        <WandSparkles className="mr-2 size-4" />
-                        適用
-                      </button>
-                      <Link href="/templates" className="secondary-button">
-                        テンプレ一覧へ
-                      </Link>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 grid gap-4 md:grid-cols-2">
-                    <input
-                      value={draft.commonSections.strategyName}
-                      onChange={(event) => updateCommon("strategyName", event.target.value)}
-                      placeholder="戦法名"
-                      className="field-shell"
-                    />
-                    <textarea
-                      value={draft.commonSections.strategyNote}
-                      onChange={(event) => updateCommon("strategyNote", event.target.value)}
-                      placeholder="立ち回りや狙い"
-                      className="field-shell min-h-28"
-                    />
-                  </div>
-                </div>
+                <input
+                  value={draft.commonSections.strategyName}
+                  onChange={(event) => updateCommon("strategyName", event.target.value)}
+                  placeholder="環境名"
+                  className="field-shell"
+                />
               </div>
             </div>
           </div>

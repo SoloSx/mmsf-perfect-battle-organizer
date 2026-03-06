@@ -45,7 +45,7 @@ const VERSION_DOT_COLORS: Record<VersionId, string> = {
 };
 
 export function HomePage() {
-  const { builds, templates, loaded } = useAppData();
+  const { builds, loaded } = useAppData();
 
   return (
     <AppShell>
@@ -67,8 +67,8 @@ export function HomePage() {
           <Link href="/builds" className="secondary-button">
             構築一覧を見る
           </Link>
-          <Link href="/templates" className="secondary-button">
-            戦法テンプレートを管理
+          <Link href="/builds" className="secondary-button">
+            JSONを入出力する
           </Link>
         </div>
       </section>
@@ -119,8 +119,8 @@ export function HomePage() {
               <p className="mt-2 text-sm text-white/70">保存済み構築</p>
             </div>
             <div className="glass-panel-soft">
-              <p className="text-4xl font-black text-white">{loaded ? templates.length : "--"}</p>
-              <p className="mt-2 text-sm text-white/70">戦法テンプレート</p>
+              <p className="text-lg font-semibold text-white">JSON バックアップ</p>
+              <p className="mt-2 text-sm leading-6 text-white/70">構築一覧からまとめて書き出し・読み込みできます。</p>
             </div>
           </div>
         </div>

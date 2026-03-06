@@ -137,7 +137,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Strategy</p>
                 <p className="mt-2 text-sm leading-6 text-white/80">
-                  {build.commonSections.strategyNote || "戦法メモはまだ入力されていません。"}
+                  {build.commonSections.overview || build.commonSections.strategyNote || "概要メモはまだ入力されていません。"}
                 </p>
               </div>
               <div className="flex flex-wrap gap-2">

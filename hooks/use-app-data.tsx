@@ -31,6 +31,7 @@ interface AppDataContextValue {
   loaded: boolean;
   createEmptyBuild: (game?: GameId) => BuildRecord;
   upsertBuild: (build: BuildRecord) => BuildRecord;
+  importBuilds: (builds: BuildRecord[]) => number;
   deleteBuild: (id: string) => void;
   duplicateBuild: (id: string) => BuildRecord | null;
   getBuildById: (id: string) => BuildRecord | undefined;
@@ -148,6 +149,8 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
     legacyWhiteCardsNote && !nextMmsf3Sections.rouletteNotes?.includes(legacyWhiteCardsNote)
       ? [nextMmsf3Sections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
       : (nextMmsf3Sections.rouletteNotes ?? "");
+  const normalizedOverview = build.commonSections?.overview || build.commonSections?.strategyNote || "";
+  const normalizedStrategyNote = build.commonSections?.strategyNote || build.commonSections?.overview || "";
 
   return {
     ...createBuild(build.game),
@@ -155,6 +158,8 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
     commonSections: {
       ...createDefaultCommonSections(),
       ...build.commonSections,
+      overview: normalizedOverview,
+      strategyNote: normalizedStrategyNote,
       cards: (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
       abilities: (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
     },
@@ -227,6 +232,26 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         });
 
         return next;
+      },
+      importBuilds: (incomingBuilds) => {
+        const normalizedIncoming = incomingBuilds.map((build) =>
+          normalizeBuild({
+            ...build,
+            id: build.id || createId(),
+            createdAt: build.createdAt || nowIso(),
+            updatedAt: build.updatedAt || nowIso(),
+          }),
+        );
+
+        setBuilds((current) => {
+          const merged = new Map(current.map((item) => [item.id, item] as const));
+          normalizedIncoming.forEach((build) => {
+            merged.set(build.id, build);
+          });
+          return Array.from(merged.values()).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
+        });
+
+        return normalizedIncoming.length;
       },
       deleteBuild: (id) => {
         setBuilds((current) => current.filter((item) => item.id !== id));

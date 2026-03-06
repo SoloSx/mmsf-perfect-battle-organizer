@@ -98,9 +98,9 @@ export function StrategyTemplatesPage() {
       <section className="glass-panel">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">Strategy Templates</p>
-            <h2 className="mt-3 text-4xl font-black text-white">戦法テンプレート</h2>
-            <p className="mt-2 text-sm text-white/70">再利用したい戦法メモやタグの初期値をここで管理します。</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">Saved Strategies</p>
+            <h2 className="mt-3 text-4xl font-black text-white">保存済み戦法一覧</h2>
+            <p className="mt-2 text-sm text-white/70">構築へ流用したい戦法メモやタグを、一覧で保存・編集します。</p>
           </div>
 
           <div className="flex flex-wrap gap-3">
@@ -113,7 +113,7 @@ export function StrategyTemplatesPage() {
                   templates,
                 };
                 downloadTextFile(
-                  `strategy-templates-${exportTimestamp}.json`,
+                  `saved-strategies-${exportTimestamp}.json`,
                   JSON.stringify(payload, null, 2),
                   "application/json;charset=utf-8",
                 );
@@ -153,12 +153,12 @@ export function StrategyTemplatesPage() {
               const normalizedImported = normalizeImportedTemplates(imported);
 
               if (normalizedImported.length === 0) {
-                setStatus("読み込めるテンプレートがありませんでした。");
+                setStatus("読み込める保存済み戦法がありませんでした。");
                 return;
               }
 
               const count = importTemplates(normalizedImported);
-              setStatus(`${count}件のテンプレートを読み込みました。`);
+              setStatus(`${count}件の保存済み戦法を読み込みました。`);
               setSelectedId(normalizedImported[0]?.id || "new");
             } catch {
               setStatus("JSON の読み込みに失敗しました。");
@@ -172,7 +172,7 @@ export function StrategyTemplatesPage() {
       <section className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
         <div className="glass-panel">
           <div className="flex items-center justify-between">
-            <h3 className="text-xl font-semibold text-white">テンプレート一覧</h3>
+            <h3 className="text-xl font-semibold text-white">保存済み戦法一覧</h3>
             <button
               type="button"
               className="secondary-button"
@@ -214,12 +214,12 @@ export function StrategyTemplatesPage() {
         </div>
 
         <div className="glass-panel">
-          <h3 className="text-xl font-semibold text-white">{selectedId === "new" ? "新規テンプレート" : "テンプレート編集"}</h3>
+          <h3 className="text-xl font-semibold text-white">{selectedId === "new" ? "戦法を保存" : "保存済み戦法を編集"}</h3>
           <div className="mt-5 grid gap-4">
             <input
               value={form.name}
               onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
-              placeholder="テンプレート名"
+              placeholder="保存する戦法名"
               className="field-shell"
             />
             <input
@@ -239,7 +239,7 @@ export function StrategyTemplatesPage() {
             <textarea
               value={form.notes}
               onChange={(event) => setForm((current) => ({ ...current, notes: event.target.value }))}
-              placeholder="テンプレートの説明"
+              placeholder="保存済み戦法の説明"
               className="field-shell min-h-32"
             />
 
@@ -252,7 +252,7 @@ export function StrategyTemplatesPage() {
                     defaultValues: { ...current.defaultValues, strategyName: event.target.value },
                   }))
                 }
-                placeholder="初期戦法名"
+                placeholder="戦法名"
                 className="field-shell"
               />
               <input
@@ -290,9 +290,9 @@ export function StrategyTemplatesPage() {
               <button
                 type="button"
                 className="primary-button"
-                onClick={() => {
-                  if (!form.name.trim()) {
-                    window.alert("テンプレート名を入力してください。");
+              onClick={() => {
+                if (!form.name.trim()) {
+                    window.alert("保存する戦法名を入力してください。");
                     return;
                   }
 
@@ -314,7 +314,7 @@ export function StrategyTemplatesPage() {
                   type="button"
                   className="secondary-button"
                   onClick={() => {
-                    if (window.confirm("このテンプレートを削除しますか？")) {
+                    if (window.confirm("この保存済み戦法を削除しますか？")) {
                       deleteTemplate(form.id);
                       setSelectedId("new");
                     }

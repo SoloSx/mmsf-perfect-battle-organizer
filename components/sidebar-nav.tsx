@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { BookOpenText, ChevronDown, ChevronRight, ChevronsLeft, ChevronsRight, FolderKanban, LayoutGrid } from "lucide-react";
+import { BookOpenText, ChevronDown, ChevronRight, ChevronsLeft, ChevronsRight, LayoutGrid } from "lucide-react";
 import { VERSION_LABELS } from "@/lib/rules";
 import type { GameId, VersionId } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -11,7 +11,6 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/", label: "はじめに", icon: BookOpenText },
   { href: "/builds", label: "構築一覧", icon: LayoutGrid },
-  { href: "/templates", label: "戦法テンプレート", icon: FolderKanban },
 ];
 
 const sidebarItemBaseClass =
