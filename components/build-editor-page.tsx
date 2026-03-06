@@ -853,7 +853,7 @@ export function BuildEditorPage() {
                 value={draft.commonSections.overview}
                 onChange={(event) => updateCommon("overview", event.target.value)}
                 placeholder="構築全体の概要や狙い"
-                className="field-shell min-h-28"
+                className="field-shell min-h-28 w-full"
               />
             </div>
           </div>
