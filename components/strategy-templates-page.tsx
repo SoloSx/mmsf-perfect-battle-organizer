@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { FileJson, Plus, Save, Trash2, Upload } from "lucide-react";
+import { FileJson, Import, Plus, Save, Trash2 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { useAppData } from "@/hooks/use-app-data";
 import type { StrategyTemplate } from "@/lib/types";
@@ -129,7 +129,7 @@ export function StrategyTemplatesPage() {
                 fileInputRef.current?.click();
               }}
             >
-              <Upload className="mr-2 size-4" />
+              <Import className="mr-2 size-4" />
               JSON 読み込み
             </button>
           </div>

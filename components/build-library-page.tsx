@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { Copy, FileJson, PencilLine, Trash2, Upload } from "lucide-react";
+import { Copy, Import, PencilLine, Trash2, Upload } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { useAppData } from "@/hooks/use-app-data";
 import { GAME_LABELS, VERSION_LABELS } from "@/lib/rules";
@@ -111,7 +111,7 @@ export function BuildLibraryPage() {
                 fileInputRef.current?.click();
               }}
             >
-              <Upload className="mr-2 size-4" />
+              <Import className="mr-2 size-4" />
               JSON 読み込み
             </button>
             <Link href="/editor" className="primary-button">
@@ -231,7 +231,7 @@ export function BuildLibraryPage() {
                       );
                     }}
                   >
-                    <FileJson className="mr-2 size-4" />
+                    <Upload className="mr-2 size-4" />
                     書き出し
                   </button>
                 </div>
