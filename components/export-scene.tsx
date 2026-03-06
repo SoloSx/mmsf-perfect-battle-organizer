@@ -6,6 +6,9 @@ import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
 
+const BATTLE_CARD_FRAME_CLASS =
+  "aspect-[4/3] overflow-hidden bg-white/8";
+
 function getSpecialNotes(build: BuildRecord) {
   switch (build.game) {
     case "mmsf1":
@@ -77,10 +80,25 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
 
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
-  const cardTiles = build.commonSections.cards
-    .filter((entry) => entry.name.trim())
-    .flatMap((entry) => Array.from({ length: Math.min(entry.quantity, 2) }, () => entry.name))
-    .slice(0, 16);
+  const cardTiles = build.commonSections.cards.reduce<string[]>((tiles, entry) => {
+    if (tiles.length >= 16) {
+      return tiles;
+    }
+
+    const name = entry.name.trim();
+    const quantity = Number.isFinite(entry.quantity) ? Math.max(0, Math.trunc(entry.quantity)) : 0;
+    const copiesToAdd = Math.min(quantity, 16 - tiles.length);
+
+    if (!name || copiesToAdd === 0) {
+      return tiles;
+    }
+
+    for (let index = 0; index < copiesToAdd; index += 1) {
+      tiles.push(name);
+    }
+
+    return tiles;
+  }, []);
   const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean).slice(0, 8);
   const brothers = build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
   const notes = [...MASTER_DATA.versionHighlights[build.version], ...getSpecialNotes(build)].slice(0, 6);
@@ -141,17 +159,17 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Battle Cards</h3>
               <span className="text-xs text-white/55">{cardTiles.length} tiles</span>
             </div>
-            <div className="grid grid-cols-8 gap-3">
+            <div className="grid grid-cols-8 gap-0">
               {cardTiles.length > 0 ? (
                 cardTiles.map((card, index) => {
                   const asset = findCardAssetByName(build.game, card, build.version);
                   return (
-                    <div key={`${card}-${index}`} className="overflow-hidden rounded-2xl border border-white/14 bg-white/8 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                    <div key={`${card}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
                       {asset ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={asset.localPath} alt={card} className="aspect-[1/1.42] h-full w-full object-cover" />
+                        <img src={asset.localPath} alt={card} className="h-full w-full object-cover" />
                       ) : (
-                        <div className="flex aspect-[1/1.42] items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                        <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
                           <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{card}</span>
                         </div>
                       )}

@@ -75,3 +75,40 @@ test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => 
   await firstCardInput.press("Enter");
   await expect(firstCardInput).toHaveValue("グランドウェーブ１");
 });
+
+test("mmsf3 export preview keeps full quantity and horizontal card art", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  await cardEditor.locator("input[placeholder='カード名']").first().fill("キャノン");
+  await cardEditor.locator("input[type='number']").first().fill("3");
+
+  const battleCardsSection = page
+    .locator("h3", { hasText: "Battle Cards" })
+    .locator("xpath=ancestor::section[1]");
+
+  await expect(battleCardsSection).toContainText("3 tiles");
+  await expect(battleCardsSection.locator("img")).toHaveCount(3);
+
+  const cardImages = battleCardsSection.locator("img");
+  const firstCardBox = await cardImages.first().boundingBox();
+  const secondCardBox = await cardImages.nth(1).boundingBox();
+  expect(firstCardBox).not.toBeNull();
+  expect(firstCardBox!.width).toBeGreaterThan(firstCardBox!.height);
+
+  expect(secondCardBox).not.toBeNull();
+  expect(Math.abs(secondCardBox!.x - (firstCardBox!.x + firstCardBox!.width))).toBeLessThan(1);
+
+  const firstCardRadius = await cardImages.first().evaluate((node) =>
+    window.getComputedStyle(node.parentElement as HTMLElement).borderTopLeftRadius,
+  );
+  expect(firstCardRadius).toBe("0px");
+});
