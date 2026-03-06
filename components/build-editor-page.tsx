@@ -337,7 +337,7 @@ function CardListEditor({
   const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
 
   return (
-    <div className="glass-panel-soft relative z-0 focus-within:z-20">
+    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
       <div className="flex items-center justify-between">
         <label className="text-sm font-semibold text-white">{title}</label>
         <div className="flex items-center gap-3 text-xs text-white/45">
@@ -349,7 +349,7 @@ function CardListEditor({
         {entries.map((entry) => (
           <div
             key={entry.id}
-            className={`relative z-0 grid gap-3 rounded-2xl border p-3 focus-within:z-10 ${
+            className={`relative z-0 grid gap-3 rounded-2xl border p-4 focus-within:z-10 ${
               allowRegularSelection
                 ? "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_88px_auto]"
                 : "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_auto]"
@@ -431,7 +431,7 @@ function SourceListEditor({
   const sourceListId = useId();
 
   return (
-    <div className="glass-panel-soft">
+    <div className="glass-panel-soft p-6">
       <label className="text-sm font-semibold text-white">{title}</label>
       <datalist id={nameListId}>
         {nameSuggestions.map((suggestion) => (
@@ -445,7 +445,7 @@ function SourceListEditor({
       </datalist>
       <div className="mt-4 space-y-3">
         {entries.map((entry) => (
-          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-3 md:grid-cols-[0.9fr_1.1fr_0.8fr_auto]">
+          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 md:grid-cols-[0.9fr_1.1fr_0.8fr_auto]">
             <input
               list={nameListId}
               value={entry.name}
@@ -501,7 +501,7 @@ function BrotherListEditor({
   const listId = useId();
 
   return (
-    <div className="glass-panel-soft">
+    <div className="glass-panel-soft p-6">
       <label className="text-sm font-semibold text-white">ブラザー情報</label>
       <datalist id={listId}>
         {suggestions.map((suggestion) => (
@@ -510,7 +510,7 @@ function BrotherListEditor({
       </datalist>
       <div className="mt-4 space-y-3">
         {entries.map((entry) => (
-          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-3 md:grid-cols-[1fr_180px_1fr_auto]">
+          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 md:grid-cols-[1fr_180px_1fr_auto]">
             <input
               list={listId}
               value={entry.name}
@@ -848,12 +848,6 @@ export function BuildEditorPage() {
                   onChange={(values) => updateCommon("tags", values)}
                   suggestions={["対戦用", "大会想定", "速攻", "コントロール", "安定重視"]}
                   placeholder="タグ追加"
-                />
-                <input
-                  value={draft.commonSections.strategyName}
-                  onChange={(event) => updateCommon("strategyName", event.target.value)}
-                  placeholder="環境名"
-                  className="field-shell"
                 />
               </div>
             </div>

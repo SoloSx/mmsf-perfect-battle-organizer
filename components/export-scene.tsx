@@ -129,7 +129,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/80">{GAME_LABELS[build.game]}</p>
               <h2 className="mt-3 text-4xl font-black tracking-tight">{VERSION_LABELS[build.version]}</h2>
               <p className="mt-3 text-sm leading-6 text-white/75">
-                {build.title || "名称未設定の構築"} {build.commonSections.strategyName ? `| ${build.commonSections.strategyName}` : ""}
+                {build.title || "名称未設定の構築"}
               </p>
             </div>
 

@@ -83,7 +83,6 @@ export function BuildLibraryPage() {
       const haystack = [
         build.title,
         build.commonSections.overview,
-        build.commonSections.strategyName,
         build.commonSections.strategyNote,
         ...build.commonSections.tags,
       ]
