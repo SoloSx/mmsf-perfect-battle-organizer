@@ -20,10 +20,10 @@
     "review:react-best-practices:report": "node scripts/review-react-best-practices.mjs",
     "manifest:cards": "node scripts/rebuild-asset-manifest.mjs",
     "ingest:cards": "node scripts/ingest-card-assets.mjs",
-    "snapshot:wily": "node scripts/snapshot-wily-pages.mjs",
-    "normalize:wily": "node scripts/normalize-wily-pages.mjs",
+    "snapshot:guide-pages": "node scripts/snapshot-guide-pages.mjs",
+    "build:guide-page-index": "node scripts/build-guide-page-index.mjs",
     "build:card-aliases": "node scripts/build-card-asset-aliases.mjs",
-    "build:wily-card-catalog": "node scripts/build-wily-card-catalog.mjs"
+    "build:guide-card-catalog": "node scripts/build-guide-card-catalog.mjs"
   },
   "dependencies": {
     "clsx": "2.1.1",

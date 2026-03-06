@@ -1,7 +1,7 @@
 {
   "pages": [
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei1__brother-band.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei1__brother-band.htm.html",
       "title": "流星のロックマン ブラザーバンド",
       "headings": [
         "ブラザーバンド",
@@ -11,7 +11,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei1__card.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei1__card.htm.html",
       "title": "流星のロックマン カードリスト",
       "headings": [
         "カードリスト",
@@ -24,7 +24,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei1__item.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei1__item.htm.html",
       "title": "流星のロックマン アイテム",
       "headings": [
         "アイテム",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei1__wave.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei1__wave.htm.html",
       "title": "流星のロックマン ウェーブロード",
       "headings": [
         "ウェーブロード",
@@ -46,7 +46,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei2__brother-band.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei2__brother-band.htm.html",
       "title": "流星のロックマン２ ブラザーバンド",
       "headings": [
         "ブラザーバンド",
@@ -62,7 +62,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei2__card.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei2__card.htm.html",
       "title": "流星のロックマン２ カードリスト",
       "headings": [
         "カードリスト",
@@ -76,7 +76,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei2__item.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei2__item.htm.html",
       "title": "流星のロックマン２ アイテム",
       "headings": [
         "アイテム",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei2__wave.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei2__wave.htm.html",
       "title": "流星のロックマン２ ウェーブロード",
       "headings": [
         "ウェーブロード",
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei3__brother-band.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei3__brother-band.htm.html",
       "title": "流星のロックマン３ ブラザーバンド",
       "headings": [
         "ブラザーバンド",
@@ -113,7 +113,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei3__card.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei3__card.htm.html",
       "title": "流星のロックマン３ カードリスト",
       "headings": [
         "カードリスト",
@@ -129,7 +129,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei3__item.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei3__item.htm.html",
       "title": "流星のロックマン３ アイテム",
       "headings": [
         "アイテム",
@@ -142,7 +142,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei3__noise-change.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei3__noise-change.htm.html",
       "title": "流星のロックマン３ ノイズチェンジ",
       "headings": [
         "ノイズチェンジ",
@@ -167,7 +167,7 @@
       ]
     },
     {
-      "file": "/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/scripts/raw/wily/__rockman__ryusei__ryusei3__wave.htm.html",
+      "file": "scripts/raw/guide-pages/__rockman__ryusei__ryusei3__wave.htm.html",
       "title": "流星のロックマン３ ウェーブロード",
       "headings": [
         "ウェーブロード",

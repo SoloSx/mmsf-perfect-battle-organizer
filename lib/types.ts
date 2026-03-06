@@ -155,7 +155,7 @@ export interface CardAssetAliasEntry {
   assetLocalPath: string;
 }
 
-export interface WilyCardCatalogEntry {
+export interface GuideCardCatalogEntry {
   game: GameId;
   section: string;
   number: number;

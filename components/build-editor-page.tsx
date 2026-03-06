@@ -24,7 +24,7 @@ import {
   isKnownMmsf3WhiteCardSet,
 } from "@/lib/mmsf3-roulette-options";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
-import { getCardSuggestions, getSourceSuggestions, sortCardSuggestions } from "@/lib/wily-card-catalog";
+import { getCardSuggestions, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,

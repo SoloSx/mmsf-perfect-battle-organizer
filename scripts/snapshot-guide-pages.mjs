@@ -3,7 +3,7 @@ import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 
 const projectRoot = new URL("..", import.meta.url).pathname;
-const rawDir = join(projectRoot, "scripts", "raw", "wily");
+const rawDir = join(projectRoot, "scripts", "raw", "guide-pages");
 
 const pages = [
   "http://wily.xrea.jp/rockman/ryusei/ryusei1/card.htm",

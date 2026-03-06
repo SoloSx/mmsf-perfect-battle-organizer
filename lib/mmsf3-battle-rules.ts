@@ -1,4 +1,4 @@
-import { getCardSection } from "@/lib/wily-card-catalog";
+import { getCardSection } from "@/lib/guide-card-catalog";
 import type { BuildCardEntry, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 

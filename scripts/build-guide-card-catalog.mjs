@@ -3,9 +3,9 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const projectRoot = new URL("..", import.meta.url).pathname;
-const rawDir = join(projectRoot, "scripts", "raw", "wily");
+const rawDir = join(projectRoot, "scripts", "raw", "guide-pages");
 const aliasFile = join(projectRoot, "data", "card-asset-aliases.json");
-const outFile = join(projectRoot, "data", "wily-card-catalog.json");
+const outFile = join(projectRoot, "data", "guide-card-catalog.json");
 
 const SECTION_ORDER = {
   mmsf1: ["standard", "mega", "giga", "bokutai", "folder"],
@@ -36,7 +36,7 @@ const VERSION_BY_COLOR = {
   },
 };
 
-function readWilyHtml(file) {
+function readGuideHtml(file) {
   const buffer = readFileSync(file);
   const asciiHead = buffer.toString("ascii", 0, Math.min(buffer.length, 512)).toLowerCase();
 
@@ -121,7 +121,7 @@ const aliases = JSON.parse(readFileSync(aliasFile, "utf8")).entries;
 const catalogEntries = [];
 
 for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
-  const html = readWilyHtml(file);
+  const html = readGuideHtml(file);
 
   for (const section of SECTION_ORDER[game]) {
     if (section === "folder") {
@@ -151,4 +151,4 @@ for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
 }
 
 writeFileSync(outFile, JSON.stringify({ entries: catalogEntries }, null, 2));
-console.log(`wily-card-catalog.json written with ${catalogEntries.length} entries`);
+console.log(`guide-card-catalog.json written with ${catalogEntries.length} entries`);

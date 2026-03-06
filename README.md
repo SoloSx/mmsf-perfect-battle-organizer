@@ -4,4 +4,4 @@
 
 ## Review
 
-React / Next.js の review baseline は `pnpm review:react-best-practices` です。詳細は [docs/react-best-practices-review.md](/Users/xsolo/dev/own_dev/mmsf-perfect-battle-organizer/docs/react-best-practices-review.md) を参照してください。
+React / Next.js の review baseline は `pnpm review:react-best-practices` です。詳細は [docs/react-best-practices-review.md](docs/react-best-practices-review.md) を参照してください。

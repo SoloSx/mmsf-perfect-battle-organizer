@@ -1,12 +1,12 @@
-import catalog from "@/data/wily-card-catalog.json";
+import catalog from "@/data/guide-card-catalog.json";
 import { getMmsf3CardDisplayOrder, getMmsf3CardSection, getMmsf3CardSuggestions } from "@/lib/mmsf3-card-master";
-import type { GameId, VersionId, WilyCardCatalogEntry } from "@/lib/types";
+import type { GameId, GuideCardCatalogEntry, VersionId } from "@/lib/types";
 import { normalizeToken, uniqueStrings } from "@/lib/utils";
 
-export const wilyCardCatalogEntries = catalog.entries as WilyCardCatalogEntry[];
-const sectionLookup = new Map<string, WilyCardCatalogEntry["section"]>();
+export const guideCardCatalogEntries = catalog.entries as GuideCardCatalogEntry[];
+const sectionLookup = new Map<string, GuideCardCatalogEntry["section"]>();
 
-for (const entry of wilyCardCatalogEntries) {
+for (const entry of guideCardCatalogEntries) {
   const versionKey = entry.version ?? "*";
   sectionLookup.set(`${entry.game}:${versionKey}:${normalizeToken(entry.name)}`, entry.section);
 }
@@ -30,7 +30,7 @@ function buildLookupTokens(name: string) {
   return [...tokens];
 }
 
-function matchesVersion(entry: WilyCardCatalogEntry, version?: VersionId) {
+function matchesVersion(entry: GuideCardCatalogEntry, version?: VersionId) {
   if (!entry.version || !version) {
     return true;
   }
@@ -71,7 +71,7 @@ export function getCardSuggestions(game: GameId, version?: VersionId) {
   return sortCardSuggestions(
     game,
     uniqueStrings(
-      wilyCardCatalogEntries
+      guideCardCatalogEntries
         .filter((entry) => entry.game === game && matchesVersion(entry, version))
         .map((entry) => entry.name),
     ),
@@ -81,7 +81,7 @@ export function getCardSuggestions(game: GameId, version?: VersionId) {
 export function getKnownCardSources(game: GameId, name: string, version?: VersionId) {
   const tokens = buildLookupTokens(name);
 
-  const matched = wilyCardCatalogEntries.filter(
+  const matched = guideCardCatalogEntries.filter(
     (entry) => entry.game === game && matchesVersion(entry, version) && tokens.includes(normalizeToken(entry.name)),
   );
 
@@ -90,7 +90,7 @@ export function getKnownCardSources(game: GameId, name: string, version?: Versio
 
 export function getSourceSuggestions(game: GameId, version?: VersionId) {
   return uniqueStrings(
-    wilyCardCatalogEntries
+    guideCardCatalogEntries
       .filter((entry) => entry.game === game && matchesVersion(entry, version))
       .flatMap((entry) => entry.details),
   ).sort((a, b) => a.localeCompare(b, "ja"));

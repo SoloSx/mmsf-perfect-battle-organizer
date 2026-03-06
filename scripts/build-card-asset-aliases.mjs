@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 
 const projectRoot = new URL("..", import.meta.url).pathname;
-const rawDir = join(projectRoot, "scripts", "raw", "wily");
+const rawDir = join(projectRoot, "scripts", "raw", "guide-pages");
 const manifestFile = join(projectRoot, "data", "asset-manifest.json");
 const outFile = join(projectRoot, "data", "card-asset-aliases.json");
 
@@ -53,7 +53,7 @@ const VERSION_BY_ASSET_SUFFIX = {
   },
 };
 
-function readWilyHtml(file) {
+function readGuideHtml(file) {
   const buffer = readFileSync(file);
   const asciiHead = buffer.toString("ascii", 0, Math.min(buffer.length, 512)).toLowerCase();
 
@@ -240,7 +240,7 @@ const assetIndex = buildAssetIndex(manifest.entries);
 const aliases = [];
 
 for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
-  const html = readWilyHtml(file);
+  const html = readGuideHtml(file);
   for (const section of SECTION_ORDER[game]) {
     if (section === "folder") {
       continue;
