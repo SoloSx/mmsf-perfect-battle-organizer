@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
+import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { useAppData } from "@/hooks/use-app-data";
 import {
   MMSF3_GIGA_CARD_LABELS,
@@ -346,29 +347,24 @@ function CardListEditor({
   onChange: (entries: BuildCardEntry[]) => void;
   suggestions: string[];
 }) {
-  const listId = useId();
   const total = entries.reduce((sum, entry) => sum + entry.quantity, 0);
 
   return (
-    <div className="glass-panel-soft">
+    <div className="glass-panel-soft relative z-0 focus-within:z-20">
       <div className="flex items-center justify-between">
         <label className="text-sm font-semibold text-white">{title}</label>
         <span className="text-xs text-white/45">合計 {total}</span>
       </div>
-      <datalist id={listId}>
-        {suggestions.map((suggestion) => (
-          <option key={suggestion} value={suggestion} />
-        ))}
-      </datalist>
       <div className="mt-4 space-y-3">
         {entries.map((entry) => (
-          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-3 md:grid-cols-[1fr_110px_1fr_auto]">
-            <input
-              list={listId}
+          <div
+            key={entry.id}
+            className="relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-3 focus-within:z-10 md:grid-cols-[1fr_110px_auto]"
+          >
+            <SearchableSuggestionInput
               value={entry.name}
-              onChange={(event) =>
-                onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: event.target.value } : item)))
-              }
+              onChange={(value) => onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
+              suggestions={suggestions}
               placeholder="カード名"
               className="field-shell"
             />
@@ -384,14 +380,6 @@ function CardListEditor({
                   ),
                 )
               }
-              className="field-shell"
-            />
-            <input
-              value={entry.notes}
-              onChange={(event) =>
-                onChange(entries.map((item) => (item.id === entry.id ? { ...item, notes: event.target.value } : item)))
-              }
-              placeholder="メモ"
               className="field-shell"
             />
             <button

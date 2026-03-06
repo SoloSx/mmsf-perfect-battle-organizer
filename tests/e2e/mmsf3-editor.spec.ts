@@ -43,15 +43,12 @@ test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => 
   await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
 
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
-  const listId = await firstCardInput.getAttribute("list");
+  await firstCardInput.click();
 
-  if (!listId) {
-    throw new Error("カード候補の datalist id を取得できませんでした。");
-  }
+  const listbox = cardEditor.getByRole("listbox");
+  await expect(listbox).toBeVisible();
 
-  const options = await page.locator(`datalist#${listId} option`).evaluateAll((nodes) =>
-    nodes.map((node) => node.getAttribute("value")).filter(Boolean),
-  );
+  const options = await listbox.getByRole("option").evaluateAll((nodes) => nodes.map((node) => node.textContent?.trim() ?? ""));
 
   expect(options.slice(0, 6)).toEqual([
     "キャノン",
@@ -65,4 +62,16 @@ test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => 
   expect(options).toContain("ブライブレイク");
   expect(options).toContain("ライトオブセイント");
   expect(options).not.toContain("ホワイトカード");
+
+  await firstCardInput.fill("レーダー");
+  await expect(listbox.getByRole("option", { name: "レーダーミサイル" })).toBeVisible();
+
+  await firstCardInput.press("ArrowDown");
+  await firstCardInput.press("Enter");
+  await expect(firstCardInput).toHaveValue("レーダーミサイル");
+
+  await firstCardInput.click();
+  await firstCardInput.press("ArrowDown");
+  await firstCardInput.press("Enter");
+  await expect(firstCardInput).toHaveValue("グランドウェーブ１");
 });

@@ -1,5 +1,6 @@
 import manifest from "@/data/asset-manifest.json";
 import aliases from "@/data/card-asset-aliases.json";
+import { getMmsf3CardAssetLocalPath } from "@/lib/mmsf3-card-master";
 import type { AssetManifestEntry, CardAssetAliasEntry, GameId, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 
@@ -26,6 +27,13 @@ function buildLookupTokens(name: string) {
 }
 
 export function findCardAssetByName(game: GameId, name: string, version?: VersionId) {
+  if (game === "mmsf3") {
+    const mmsf3AssetLocalPath = getMmsf3CardAssetLocalPath(name);
+    if (mmsf3AssetLocalPath) {
+      return assetManifestEntries.find((entry) => entry.localPath === mmsf3AssetLocalPath);
+    }
+  }
+
   for (const normalized of buildLookupTokens(name)) {
     const direct = assetManifestEntries.find((entry) => {
       if (entry.game !== game) {
