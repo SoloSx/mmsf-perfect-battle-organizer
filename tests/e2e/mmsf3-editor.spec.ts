@@ -112,3 +112,89 @@ test("mmsf3 export preview keeps full quantity and horizontal card art", async (
   );
   expect(firstCardRadius).toBe("0px");
 });
+
+test("mmsf3 export preview renders 30 battle cards in a 10x3 grid", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  await cardEditor.locator("input[placeholder='カード名']").first().fill("キャノン");
+  await cardEditor.locator("input[type='number']").first().fill("30");
+
+  const battleCardsSection = page
+    .locator("h3", { hasText: "Battle Cards" })
+    .locator("xpath=ancestor::section[1]");
+
+  await expect(battleCardsSection).toContainText("30 tiles");
+  await expect(battleCardsSection.locator("img")).toHaveCount(30);
+
+  const cardImages = battleCardsSection.locator("img");
+  const firstCardBox = await cardImages.first().boundingBox();
+  const tenthCardBox = await cardImages.nth(9).boundingBox();
+  const eleventhCardBox = await cardImages.nth(10).boundingBox();
+
+  expect(firstCardBox).not.toBeNull();
+  expect(tenthCardBox).not.toBeNull();
+  expect(eleventhCardBox).not.toBeNull();
+
+  expect(Math.abs(tenthCardBox!.y - firstCardBox!.y)).toBeLessThan(1);
+  expect(eleventhCardBox!.y).toBeGreaterThan(firstCardBox!.y + firstCardBox!.height - 1);
+});
+
+test("mmsf3 editor allows only one REG card and marks it in export preview", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
+  await firstCardInput.fill("キャノン");
+  await firstCardInput.press("Escape");
+
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const secondCardInput = cardEditor.locator("input[placeholder='カード名']").nth(1);
+  await secondCardInput.fill("プラスキャノン");
+  await secondCardInput.press("Escape");
+
+  const regularButtons = cardEditor.getByRole("button", { name: "REG" });
+  await regularButtons.first().click();
+  await expect(regularButtons.first()).toHaveAttribute("aria-pressed", "true");
+  await expect(regularButtons.nth(1)).toHaveAttribute("aria-pressed", "false");
+
+  await regularButtons.nth(1).click();
+  await expect(regularButtons.first()).toHaveAttribute("aria-pressed", "false");
+  await expect(regularButtons.nth(1)).toHaveAttribute("aria-pressed", "true");
+
+  const battleCardsSection = page
+    .locator("h3", { hasText: "Battle Cards" })
+    .locator("xpath=ancestor::section[1]");
+  const regularCardTile = battleCardsSection.locator("[data-regular-card='true']");
+  const regularCardOverlay = battleCardsSection.locator("[data-regular-card-overlay='true']");
+
+  await expect(regularCardTile).toHaveCount(1);
+  await expect(regularCardOverlay).toHaveCount(1);
+
+  const regularCardBorder = await regularCardOverlay.evaluate((node) => ({
+    borderStyle: window.getComputedStyle(node as HTMLElement).borderStyle,
+    borderColor: window.getComputedStyle(node as HTMLElement).borderTopColor,
+    borderWidth: window.getComputedStyle(node as HTMLElement).borderTopWidth,
+    boxShadow: window.getComputedStyle(node as HTMLElement).boxShadow,
+  }));
+  expect(regularCardBorder.borderStyle).toBe("solid");
+  expect(regularCardBorder.borderColor).not.toBe("rgba(0, 0, 0, 0)");
+  expect(regularCardBorder.borderWidth).toBe("5px");
+  expect(regularCardBorder.boxShadow).not.toBe("none");
+});

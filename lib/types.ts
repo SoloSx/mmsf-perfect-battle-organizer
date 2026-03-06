@@ -17,6 +17,7 @@ export interface BuildCardEntry {
   name: string;
   quantity: number;
   notes: string;
+  isRegular: boolean;
 }
 
 export interface BuildSourceEntry {

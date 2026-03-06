@@ -7,7 +7,9 @@ import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
 
 const BATTLE_CARD_FRAME_CLASS =
-  "aspect-[4/3] overflow-hidden bg-white/8";
+  "relative aspect-[4/3] overflow-hidden bg-white/8";
+const EXPORT_CARD_TILE_LIMIT = 30;
+const EXPORT_CARD_GRID_COLUMNS = 10;
 
 function getSpecialNotes(build: BuildRecord) {
   switch (build.game) {
@@ -80,21 +82,21 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
 
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
-  const cardTiles = build.commonSections.cards.reduce<string[]>((tiles, entry) => {
-    if (tiles.length >= 16) {
+  const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; isRegular: boolean }>>((tiles, entry) => {
+    if (tiles.length >= EXPORT_CARD_TILE_LIMIT) {
       return tiles;
     }
 
     const name = entry.name.trim();
     const quantity = Number.isFinite(entry.quantity) ? Math.max(0, Math.trunc(entry.quantity)) : 0;
-    const copiesToAdd = Math.min(quantity, 16 - tiles.length);
+    const copiesToAdd = Math.min(quantity, EXPORT_CARD_TILE_LIMIT - tiles.length);
 
     if (!name || copiesToAdd === 0) {
       return tiles;
     }
 
     for (let index = 0; index < copiesToAdd; index += 1) {
-      tiles.push(name);
+      tiles.push({ name, isRegular: entry.isRegular && index === 0 });
     }
 
     return tiles;
@@ -159,25 +161,46 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Battle Cards</h3>
               <span className="text-xs text-white/55">{cardTiles.length} tiles</span>
             </div>
-            <div className="grid grid-cols-8 gap-0">
+            <div
+              className="grid gap-0"
+              style={{
+                gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))`,
+              }}
+            >
               {cardTiles.length > 0 ? (
-                cardTiles.map((card, index) => {
-                  const asset = findCardAssetByName(build.game, card, build.version);
+                cardTiles.map((cardTile, index) => {
+                  const asset = findCardAssetByName(build.game, cardTile.name, build.version);
                   return (
-                    <div key={`${card}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                    <div
+                      key={`${cardTile.name}-${index}`}
+                      className={BATTLE_CARD_FRAME_CLASS}
+                      data-regular-card={cardTile.isRegular ? "true" : undefined}
+                    >
                       {asset ? (
                         // eslint-disable-next-line @next/next/no-img-element
-                        <img src={asset.localPath} alt={card} className="h-full w-full object-cover" />
+                        <img src={asset.localPath} alt={cardTile.name} className="h-full w-full object-cover" />
                       ) : (
                         <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
-                          <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{card}</span>
+                          <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardTile.name}</span>
                         </div>
                       )}
+                      {cardTile.isRegular ? (
+                        <div
+                          aria-hidden="true"
+                          data-regular-card-overlay="true"
+                          className="pointer-events-none absolute inset-0 box-border border-[5px] border-red-600 shadow-[0_0_18px_rgba(220,38,38,0.95)]"
+                        />
+                      ) : null}
                     </div>
                   );
                 })
               ) : (
-                <div className="col-span-8 rounded-2xl border border-dashed border-white/18 px-4 py-12 text-center text-sm text-white/55">
+                <div
+                  className="rounded-2xl border border-dashed border-white/18 px-4 py-12 text-center text-sm text-white/55"
+                  style={{
+                    gridColumn: `span ${EXPORT_CARD_GRID_COLUMNS}`,
+                  }}
+                >
                   カードがまだ入力されていません。
                 </div>
               )}

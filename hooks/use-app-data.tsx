@@ -12,6 +12,7 @@ import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
 import { DEFAULT_MMSF3_WHITE_CARD_SET_ID } from "@/lib/mmsf3-roulette-options";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
+  BuildCardEntry,
   BuildRecord,
   CommonSections,
   GameId,
@@ -55,6 +56,16 @@ function createDefaultCommonSections(): CommonSections {
     brothers: [],
     strategyName: "",
     strategyNote: "",
+  };
+}
+
+function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    quantity: Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1,
+    notes: entry.notes ?? "",
+    isRegular: Boolean(entry.isRegular),
   };
 }
 
@@ -144,6 +155,8 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
     commonSections: {
       ...createDefaultCommonSections(),
       ...build.commonSections,
+      cards: (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
+      abilities: (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
     },
     gameSpecificSections: {
       ...createDefaultGameSpecificSections(),

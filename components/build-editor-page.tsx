@@ -60,7 +60,7 @@ function cloneBuild(build: BuildRecord) {
 }
 
 function buildEmptyCard(): BuildCardEntry {
-  return { id: createId(), name: "", quantity: 1, notes: "" };
+  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
 }
 
 function buildEmptySource(): BuildSourceEntry {
@@ -197,6 +197,7 @@ function validateBuild(build: BuildRecord) {
   const errors: string[] = [];
   const rule = getVersionRuleSet(build.version);
   const totalCards = build.commonSections.cards.reduce((sum, entry) => sum + (Number.isFinite(entry.quantity) ? entry.quantity : 0), 0);
+  const regularCardCount = build.commonSections.cards.filter((entry) => entry.name.trim() && entry.isRegular).length;
 
   if (!VERSIONS_BY_GAME[build.game].includes(build.version)) {
     errors.push("作品とバージョンの組み合わせが一致していません。");
@@ -204,6 +205,10 @@ function validateBuild(build: BuildRecord) {
 
   if (totalCards > rule.folderLimit) {
     errors.push(`カード総数は ${rule.folderLimit} 枚以内にしてください。`);
+  }
+
+  if (regularCardCount > 1) {
+    errors.push("REG カードは1枚だけ指定してください。");
   }
 
   if (build.game === "mmsf3") {
@@ -341,25 +346,35 @@ function CardListEditor({
   entries,
   onChange,
   suggestions,
+  allowRegularSelection = false,
 }: {
   title: string;
   entries: BuildCardEntry[];
   onChange: (entries: BuildCardEntry[]) => void;
   suggestions: string[];
+  allowRegularSelection?: boolean;
 }) {
   const total = entries.reduce((sum, entry) => sum + entry.quantity, 0);
+  const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
 
   return (
     <div className="glass-panel-soft relative z-0 focus-within:z-20">
       <div className="flex items-center justify-between">
         <label className="text-sm font-semibold text-white">{title}</label>
-        <span className="text-xs text-white/45">合計 {total}</span>
+        <div className="flex items-center gap-3 text-xs text-white/45">
+          {allowRegularSelection ? <span>REG {regularCount}/1</span> : null}
+          <span>合計 {total}</span>
+        </div>
       </div>
       <div className="mt-4 space-y-3">
         {entries.map((entry) => (
           <div
             key={entry.id}
-            className="relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-3 focus-within:z-10 md:grid-cols-[1fr_110px_auto]"
+            className={`relative z-0 grid gap-3 rounded-2xl border p-3 focus-within:z-10 ${
+              allowRegularSelection
+                ? "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_88px_auto]"
+                : "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_auto]"
+            }`}
           >
             <SearchableSuggestionInput
               value={entry.name}
@@ -382,6 +397,27 @@ function CardListEditor({
               }
               className="field-shell"
             />
+            {allowRegularSelection ? (
+              <button
+                type="button"
+                aria-pressed={entry.isRegular}
+                className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition-colors ${
+                  entry.isRegular
+                    ? "border-red-300/70 bg-red-500/15 text-red-100"
+                    : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                }`}
+                onClick={() =>
+                  onChange(
+                    entries.map((item) => ({
+                      ...item,
+                      isRegular: item.id === entry.id ? !item.isRegular : false,
+                    })),
+                  )
+                }
+              >
+                REG
+              </button>
+            ) : null}
             <button
               type="button"
               className="secondary-button"
@@ -835,6 +871,7 @@ export function BuildEditorPage() {
             entries={draft.commonSections.cards}
             onChange={(entries) => updateCommon("cards", entries)}
             suggestions={cardSuggestions}
+            allowRegularSelection
           />
 
           <SourceListEditor
