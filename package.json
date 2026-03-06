@@ -1,0 +1,44 @@
+{
+  "name": "mmsf-perfect-battle-organizer",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.30.3",
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "check": "pnpm lint && pnpm build",
+    "check:auto": "sh ./scripts/check-auto.sh",
+    "review:react-best-practices": "pnpm lint && pnpm build && pnpm review:react-best-practices:report",
+    "review:react-best-practices:report": "node scripts/review-react-best-practices.mjs",
+    "manifest:cards": "node scripts/rebuild-asset-manifest.mjs",
+    "ingest:cards": "node scripts/ingest-card-assets.mjs",
+    "snapshot:wily": "node scripts/snapshot-wily-pages.mjs",
+    "normalize:wily": "node scripts/normalize-wily-pages.mjs",
+    "build:card-aliases": "node scripts/build-card-asset-aliases.mjs",
+    "build:wily-card-catalog": "node scripts/build-wily-card-catalog.mjs"
+  },
+  "dependencies": {
+    "clsx": "2.1.1",
+    "html-to-image": "1.11.13",
+    "lucide-react": "0.511.0",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwind-merge": "3.3.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^20.19.37",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.3",
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  }
+}

@@ -1,0 +1,3682 @@
+{
+  "entries": [
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キャノン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s001_Cannon.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "プラスキャノン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s002_PlusCannon.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヘビーキャノン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s003_HeavyCannon.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "プラズマガン１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s004_PlasmaGun1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "プラズマガン２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s005_PlasmaGun2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "プラズマガン３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s006_PlasmaGun3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ガトリング１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s007_Gatling1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ガトリング２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s008_Gatling2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ガトリング３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s009_Gatling3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "エアスプレッド",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s010_AirSpreadGun.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "レーダーミサイル１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s011_RadarMissile1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "レーダーミサイル２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s012_RadarMissile2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "レーダーミサイル３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s013_RadarMissile3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヒートボール１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s014_HeatBall1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヒートボール２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s015_HeatBall2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヒートボール３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s016_HeatBall3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アイスメテオ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s017_IceMeteor1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アイスメテオ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s018_IceMeteor2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アイスメテオ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s019_IceMeteor3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "スタンナックル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s020_StunKnuckle.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ポイズンナックル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s021_PoisonKnuckle.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "フリーズナックル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s022_FreezeKnuckle.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ソード",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s023_Sword.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ワイドソード",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s024_WideSword.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ロングソード",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s025_LongSword.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リュウエンザン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s026_Ryuusenzan.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "スイゲツザン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s027_Suigetsuzan.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ライメイザン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s028_Raimeizan.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "タイボクザン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s029_Taibokuzan.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブレイクサーベル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s030_BreakSaber.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グランドウェーブ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s031_GroundWave1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グランドウェーブ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s032_GroundWave2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グランドウェーブ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s033_GroundWave3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェットアタック１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s034_JetAttack1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェットアタック２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s035_JetAttack2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェットアタック３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s036_JetAttack3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "パワーボム１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s037_PowerBomb1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "パワーボム２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s038_PowerBomb2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "パワーボム３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s039_PowerBomb3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ゴーストパルス１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s040_GhostPulse1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ゴーストパルス２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s041_GhostPulse2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ゴーストパルス３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s042_GhostPulse3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モエリング１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s043_MoeRing1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モエリング２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s044_MoeRing2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モエリング３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s045_MoeRing3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "カウントボム１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s046_CountBomb1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "カウントボム２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s047_CountBomb2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "カウントボム３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s048_CountBomb3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ファイアバズーカ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s049_FireBazooka1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ファイアバズーカ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s050_FireBazooka2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ファイアバズーカ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s051_FireBazooka3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "テイルバーナー１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s052_TailBurner1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "テイルバーナー２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s053_TailBurner2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "テイルバーナー３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s054_TailBurner3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ワイドウェーブ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s055_WideWave1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ワイドウェーブ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s056_WideWave2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ワイドウェーブ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s057_WideWave3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "チェインバブル１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s058_ChainBubble1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "チェインバブル２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s059_ChainBubble2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "チェインバブル３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s060_ChainBubble3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グリーンインク",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s061_GreenInk.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブルーインク",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s062_BlueInk.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "パープルインク",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s063_PurpleInk.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ネバーレイン１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s064_NeverRain1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ネバーレイン２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s065_NeverRain2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ネバーレイン３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s066_NeverRain3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウドシュート１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s067_CloudShoot1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウドシュート２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s068_CloudShoot2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウドシュート３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s069_CloudShoot3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "サンダーボール１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s070_Thunderball1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "サンダーボール２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s071_Thunderball2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "サンダーボール３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s072_Thunderball3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ボルティックアイ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s073_VoltEye1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ボルティックアイ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s074_VoltEye2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ボルティックアイ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s075_VoltEye3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ホタルゲリ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s076_Hotarugeri1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ホタルゲリ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s077_Hotarugeri2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ホタルゲリ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s078_Hotarugeri3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンボハンマー１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s079_JumboHammer1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンボハンマー２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s080_JumboHammer2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンボハンマー３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s081_JumboHammer3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モジャランス１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s082_MojaLance1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モジャランス２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s083_MojaLance2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モジャランス３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s084_MojaLance3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヘンゲノジュツ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s085_HengeNoJutsu1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヘンゲノジュツ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s086_HengeNoJutsu2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ヘンゲノジュツ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s087_HengeNoJutsu3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バルカンシード１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s088_VulcanSeed1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バルカンシード２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s089_VulcanSeed2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バルカンシード３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s090_VulcanSeed3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブレイブソード１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s091_BraveSword1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブレイブソード２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s092_BraveSword2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブレイブソード３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s093_BraveSword3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンクキューブ１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s094_JunkCube1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンクキューブ２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s095_JunkCube2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャンクキューブ３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s096_JunkCube3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "シンクロフック１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s097_SynchroHook1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "シンクロフック２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s098_SynchroHook2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "シンクロフック３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s099_SynchroHook3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "パワーソング",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s100_PowerSong.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クエイクソング",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s101_QuakeSong.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "トリップソング",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s102_TripSong.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モアイフォール１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s103_MoaiFall1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モアイフォール２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s104_MoaiFall2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "モアイフォール３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s105_MoaiFall3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ビッグアックス１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s106_BigAxe1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ビッグアックス２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s107_BigAxe2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ビッグアックス３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s108_BigAxe3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "マジクリスタル１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s109_MagicCrystal1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "マジクリスタル２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s110_MagicCrystal2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "マジクリスタル３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s111_MagicCrystal3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブラックホール1",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s112_BlackHole1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブラックホール２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s113_BlackHole2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ブラックホール３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s114_BlackHole3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ベルセルクソード１",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s115_BerserkSword1.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ベルセルクソード２",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s116_BerserkSword2.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ベルセルクソード３",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s117_BerserkSword3.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グリーンバースト",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s118_GreenBurst.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アイスバースト",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s119_IceBurst.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ポイズンバースト",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s120_PoisonBurst.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "タイフーンダンス",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s121_TyphoonDance.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャミングパンチ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s122_JammingPunch.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジャミングマシンガン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s123_JammingPunch.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ホイッスル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s124_Whistle.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ボムライザー",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s125_BombRiser.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "シラハドリ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s126_Shirahadori.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー１０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s127_Recovery10.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー３０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s128_Recovery30.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー５０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s129_Recovery50.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー８０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s130_Recovery80.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー１２０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s131_Recovery120.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー１５０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s132_Recovery150.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー２００",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s133_Recovery200.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リカバリー３００",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s134_Recovery300.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バリア",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s135_Barrier.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バリア１００",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s136_Barrier100.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "バリア２００",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s137_Barrier200.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オーラ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s138_Aura.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "インビジブル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s139_Invisible.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "セイレイノイカリ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s140_SeireiNoIkari.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ドクリンゴ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s141_DokuRingo.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ウラギリノススメ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s142_UragiriNoSusume.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ギガマイン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s143_GigaMine.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クサムラステージ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s144_KuramasaStage.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アイスステージ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s145_IceStage.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "グラビティステージ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s146_GravityStage.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ゼツエンステージ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s147_ZetsuenStage.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ホーリーパネル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s148_HolyPanel.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "マヒプラス",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s149_MahiPlus.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "アタック＋１０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/s150_Attack+10.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オックスファイア",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m01_OxFire.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オックスファイアＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m02_OxFireEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オックスファイアＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m03_OxFireSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キグナスウイング",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m04_CygnusWing.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キグナスウイングＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m05_CygnusWingEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キグナスウイングＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m06_CygnusWingSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ハープノート",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m07_HarpNote.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ハープノートＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m08_HarpNoteEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ハープノートＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m09_HarpNoteSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リブラバランス",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m10_LibraBalance.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リブラバランスＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m11_LibraBalanceEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "リブラバランスＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m12_LibraBalanceSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オヒュカスクイーン",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m13_OphiuchisQueen.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オヒュカスクイーンＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m14_OphiuchisQueenEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "オヒュカスクイーンＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m15_OphiuchisQueenSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェミニスパーク",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m16_GeminiSpark.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェミニスパークＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m17_GeminiSparkEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ジェミニスパークＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m18_GeminSparkSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キャンサーバブル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m19_CancerBubble.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キャンサーバブルＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m20_CancerBubbleEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "キャンサーバブルＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m21_CancerBubbleSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ウルフフォレスト",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m22_WolfForest.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ウルフフォレストＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m23_WolfForestEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "ウルフフォレストＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m24_WolfForestSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウンサンダー",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m25_CrownThunder.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウンサンダーＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m26_CrownThunderEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
+      "name": "クラウンサンダーＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m27_CrownThunderSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ペガサスマジック",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m28p_PegasusMagic.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ペガサスマジックＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m29p_PegasusMagicEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ペガサスマジックＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m30p_PegasusMagicSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "レオキングダム",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m28l_LeoKingdom.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "レオキングダムＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m29l_LeoKingdomEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "レオキングダムＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m30l_LeoKingdomSP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ドラゴンスカイ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m28d_DragonSky.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ドラゴンスカイＥＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m29d_DragonSkyEX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ドラゴンスカイＳＰ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/m30d_DragonSkySP.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ペガサスマジックＧＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g1p_PegasusMagicGX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "アクア＋５０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g2p_Aqua+50.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "オックスタックル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g3p_OxTackle.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ブレイクカウントボム",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g4p_BreakCountBomb.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "pegasus",
+      "name": "ダークソード",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g5p_DarkSword.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "レオキングダムＧＸ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g1l_LeoKingdomGX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "ファイア＋５０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g2l_Fire+50.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "ジェミニサンダー",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g3l_GeminiThunder.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "ダークネスホール",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g4l_DarknessHole.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "leo",
+      "name": "ドリームオーラ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g5l_DreamAura.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ドラゴンスカイGX",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g1d_DragonSkyGX.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ウッド＋５０",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g2d_Wood+50.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ゴルゴンアイ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g3d_GorgonEye.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "デストロイミサイル",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g4d_DestroyMissile.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": "dragon",
+      "name": "ポイズンファラオ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/g5d_PoisonPharaoh.png"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "キャノン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "プラスキャノン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヘビーキャノン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "プラズマガン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "プラズマガン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "プラズマガン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エアスプレッド１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エアスプレッド２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エアスプレッド３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "レーダーミサイル１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "レーダーミサイル２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "レーダーミサイル３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "シンクロフック１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "シンクロフック２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "シンクロフック３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ミニグレネード１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ミニグレネード２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ミニグレネード３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヒートグレネード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グリーングレネード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アイスグレネード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ソード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ワイドソード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ロングソード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホワイトメテオ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "シルバーメテオ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グレートアックス",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ダブルストーン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S028DoubleStone.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ガーディアン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オーラ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S030Aura.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グランドウェーブ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グランドウェーブ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グランドウェーブ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マッドバルカン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マッドバルカン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マッドバルカン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "デスサイズ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "デスサイズ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "デスサイズ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オロロンハット１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オロロンハット２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オロロンハット３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェットスキー１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェットスキー２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェットスキー３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モエリング１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モエリング２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モエリング３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ダバフレイム１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ダバフレイム２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ダバフレイム３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヒートアッパー１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヒートアッパー２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヒートアッパー３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボボボンボム１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボボボンボム２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボボボンボム３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "チェインバブル１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "チェインバブル２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "チェインバブル３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ネバーレイン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ネバーレイン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ネバーレイン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "スノーボール１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "スノーボール２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "スノーボール３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ピラニアキッス１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ピラニアキッス２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ピラニアキッス３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボルティックアイ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボルティックアイ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボルティックアイ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホタルゲリ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホタルゲリ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホタルゲリ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ステルスレーザー１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S076StealthLaser1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ステルスレーザー２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ステルスレーザー３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マミーハンド１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マミーハンド２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マミーハンド３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モジャランス１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モジャランス２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モジャランス３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヘンゲノジュツ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヘンゲノジュツ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ヘンゲノジュツ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コガラシ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コガラシ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コガラシ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ニドラッシュ１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ニドラッシュ２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ニドラッシュ３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "グリーンカーペット",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブルーカーペット",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "パープルカーペット",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ケサランパサラン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ケサランパサラン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ケサランパサラン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハンマーウェポン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハンマーウェポン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハンマーウェポン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジャングルストーム",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "スノーストーム",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ポイズンストーム",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エレキスラッシュ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ウッドスラッシュ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ファイアスラッシュ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モアイフォール１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モアイフォール２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "モアイフォール３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラックホール１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S112BlackHole1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラックホール２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S113BlackHole2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラックホール３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S114BlackHole3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ベルセルクソード１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ベルセルクソード２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ベルセルクソード３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "タイフーンダンス",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アトミックマイン１",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アトミックマイン２",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アトミックマイン３",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "パラライズステージ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S122ParalyseStage.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ゼツエンステージ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S123ZetsuenStage.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー１０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S124Recovery10.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー３０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S125Recovery30.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー５０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S126Recovery50.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー８０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S127Recovery80.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー１２０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S128Recovery120.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー１５０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S129Recovery150.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー２００",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S130Recovery200.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "リカバリー３００",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S131Recovery300.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "バリア",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S132Barrier.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "スーパーバリア",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S133SuperBarrier.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アタックパネル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S134AttackPanel.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "フクヘイパネル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S135FukeheiPanel.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "バスターパネル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S136BusterPanel.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "インビジブル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S137Invisible.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホイッスル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S138Whistle.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ボムライザー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エリアイーター",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S140AreaEater.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "セイレイノイカリ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "シラハドリ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ドクリンゴ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S143DokuRingo.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ウラギリノススメ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S144UragiriNoSusume.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ギガマイン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "クサムラステージ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S146KusamuraStage.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アイスステージ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S147IceStage.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ホーリーパネル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S148HolyStage.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "マヒプラス",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S149MahiPlus.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アタック＋１０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/S150Attack+10.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ファントムブラック",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M01PhantomBlack.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ファントムブラックＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M02PhantomBlackEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ファントムブラックＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M03PhantomBlackSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "イエティブリザード",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M04YetiBlizzard.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "イエティブリザードＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M05YetiBlizzardEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "イエティブリザードＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M06YetiBlizzardSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブライ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M07Burai.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブライＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M08BuraiEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブライＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M09BuraiSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラキオウェーブ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M10BrachioWave.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラキオウェーブＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M11BrachioWaveEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ブラキオウェーブＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M12BrachioWaveSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コンドルジオグラフ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M13CondorGeograph.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コンドルジオグラフＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M14CondorGeographEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "コンドルジオグラフＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M15CondorGeographSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エンプティー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M16Empty.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エンプティーＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M17EmptyEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "エンプティーＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M18EmptySP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オックスファイア",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M19OxFire.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オックスファイアＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M20OxFireEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オックスファイアＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M21OxFireSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハープノート",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M22HarpNote.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハープノートＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M23HarpNoteEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ハープノートＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M24HarpNoteSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オヒュカスクイーン",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M25OphiuchusQueen.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オヒュカスクイーンＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M26OphiuchusQueenEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オヒュカスクイーンＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M27OphiuchusQueenSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェミニスパーク",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M28GeminiSpark.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェミニスパークＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M29GeminiSparkEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ジェミニスパークＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M30GeminiSparkSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "キャンサーバブル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M31CancerBubble.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "キャンサーバブルＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M32CancerBubbleEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "キャンサーバブルＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M33CancerBubbleSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ゴートカンフー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M34GoatKungfu.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ゴートカンフーＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M35GoatKungfuEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ゴートカンフーＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M36GoatKungfuSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オリガジェネラル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M37AurigaGeneral.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オリガジェネラルＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M38AurigaGeneralEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "オリガジェネラルＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M39AurigaGeneralSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アポロンフレイム",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M40ApolloFlame.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アポロンフレイムＥＸ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M41ApolloFlameEX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "アポロンフレイムＳＰ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/M42ApolloFlameSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "berserker",
+      "name": "ジェミニサンダー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "berserker",
+      "name": "ブライブレイク",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb2BuraiBreak.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "berserker",
+      "name": "サウザンドキック",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb3ThousandKick.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "berserker",
+      "name": "ポイズンファラオ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb4PoisonPharaoh.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "berserker",
+      "name": "ナダレダイコ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb5NadareDeiko.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "shinobi",
+      "name": "ゴルゴンアイ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs1GorgonEye.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "shinobi",
+      "name": "ゲキリュウウェーブ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs2GekiryuuWave.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "shinobi",
+      "name": "バスターマックス",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs3BusterMAX.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "shinobi",
+      "name": "ダークネスホール",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs4DarknessHole.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "shinobi",
+      "name": "フライングインパクト",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs5FlyingImpact.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "dinosaur",
+      "name": "オックスタックル",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd1OxTackle.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "dinosaur",
+      "name": "エンプティーマジック",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd2EmptyMagic.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "dinosaur",
+      "name": "ノーマル＋５０",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd3Normal+50.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "dinosaur",
+      "name": "ブレイクカウントボム",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd4BreakCountBomb.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": "dinosaur",
+      "name": "ファントムスラッシュ",
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd5PhantomSlash.gif"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "キャノン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/001_cannon.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "プラスキャノン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/002_pluscannon.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヘビーキャノン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/003_heavycannon.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "プラズマガン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/004_plasmagun.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エアスプレッド１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/005_airspread1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エアスプレッド２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/006_airspread2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エアスプレッド３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/007_airspread3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マッドバルカン１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/008_madvulcan1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マッドバルカン２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/009_madvulcan2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マッドバルカン３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/010_madvulcan3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブラックインク",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/011_blackink.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ミニグレネード",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/012_minigrenade.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ソード",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/013_sword.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ワイドソード",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/014_widesword.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ロングソード",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/015_longsword.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エドギリブレード１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/016_edogiriblade1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エドギリブレード２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/017_edogiriblade2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "エドギリブレード３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/018_edogiriblade3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グレートアックス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/019_greataxe.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "フレイムアックス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/020_flameaxe.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウィンディアタック１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/021_windyattack1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウィンディアタック２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/022_windyattack2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウィンディアタック３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/023_windyattack3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シンクロフック１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/024_synchrohook1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シンクロフック２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/025_synchrohook2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シンクロフック３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/026_synchrohook3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ドリルアーム１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/027_drillarm1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ドリルアーム２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/028_drillarm2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ドリルアーム３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/029_drillarm3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "タイフーンダンス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/030_typhoondance.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "トルネードダンス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/031_tornadodance.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ホワイトメテオ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/032_whitemeteor.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シルバーメテオ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/033_silvermeteor.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グランドウェーブ１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/034_groundwave1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グランドウェーブ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/035_groundwave2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グランドウェーブ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/036_groundwave3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジェットアタック１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/037_jetattack1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジェットアタック２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/038_jetattack2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジェットアタック３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/039_jetattack3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ハンマーウェポン１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/040_hammerweapon1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ハンマーウェポン２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/041_hammerweapon2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ハンマーウェポン３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/042_hammerweapon3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スマイルコイン１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/043_smilecoin1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スマイルコイン２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/044_smilecoin2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スマイルコイン３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/045_smilecoin3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヘビードーン１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/046_heavydawn1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヘビードーン２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/047_heavydawn2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヘビードーン３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/048_heavydawn3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ギザホイール１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/049_gizawheel1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ギザホイール２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/050_gizawheel2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ギザホイール３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/051_gizawheel3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スカルアロー１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/052_skullarrow1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スカルアロー２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/053_skullarrow2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スカルアロー３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/054_skullarrow3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーテクノロジー１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/055_mutechnology1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーテクノロジー２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/056_mutechnology2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーテクノロジー３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/057_mutechnology3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "カウントボム１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/058_countbomb1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "カウントボム２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/059_countbomb2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "カウントボム３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/060_countbomb3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒートアッパー１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/061_heatupper1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒートアッパー２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/062_heatupper2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒートアッパー３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/063_heatupper3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マシーンフレイム１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/064_machineflame1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マシーンフレイム２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/065_machineflame2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マシーンフレイム３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/066_machineflame3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アンガーファイア１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/067_angerfire1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アンガーファイア２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/068_angerfire2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アンガーファイア３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/069_angerfire3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ワイドウェーブ１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/070_widewave1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ワイドウェーブ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/071_widewave2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ワイドウェーブ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/072_widewave3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "バブルフック１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/073_bubblehook1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "バブルフック２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/074_bubblehook2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "バブルフック３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/075_bubblehook3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シャークカッター１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/076_sharkcutter1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シャークカッター２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/077_sharkcutter2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シャークカッター３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/078_sharkcutter3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アイススピニング１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/079_icespinning1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アイススピニング２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/080_icespinning2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アイススピニング３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/081_icespinning3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ステルスレーザー１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/082_stealthlaser1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ステルスレーザー２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/083_stealthlaser2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ステルスレーザー３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/084_stealthlaser3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マミーハンド１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/085_mummyhand1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マミーハンド２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/086_mummyhand2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マミーハンド３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/087_mummyhand3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "イナズマヘッド１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/088_inazumahead1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "イナズマヘッド２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/089_inazumahead2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "イナズマヘッド３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/090_inazumahead3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "フラッシュスピア１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/091_flashspear1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "フラッシュスピア２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/092_flashspear2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "フラッシュスピア３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/093_flashspear3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダミースパイダー１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/094_dummyspider1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダミースパイダー２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/095_dummyspider2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダミースパイダー３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/096_dummyspider3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シュリシュリケン１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/097_shurishuriken1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シュリシュリケン２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/098_shurishuriken2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シュリシュリケン３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/099_shurishuriken3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パウダーシュート１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/100_powdershoot1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パウダーシュート２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/101_powdershoot2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パウダーシュート３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/102_powdershoot3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ローリングナッツ１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/103_rollingnuts1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ローリングナッツ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/104_rollingnuts2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ローリングナッツ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/105_rollingnuts3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ビーストスイング１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/106_beastswing1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ビーストスイング２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/107_beastswing2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ビーストスイング３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/108_beastswing3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ノイズドウィザード１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/109_noisedwizard1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ノイズドウィザード２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/110_noisedwizard2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ノイズドウィザード３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/111_noisedwizard3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒールウィザード１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/112_heelwizard1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒールウィザード２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/113_heelwizard2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ヒールウィザード３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/114_heelwizard3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブラックホール１",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/115_blackhole1.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブラックホール２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/116_blackhole2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブラックホール３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/117_blackhole3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダブルストーン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/118_doublestone.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ボムライザー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/119_bombriser.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ディバイドライン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/120_divideline.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダブルイーター",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/121_doubleeater.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パネルフォーマット",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/122_panelformat.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パニッククラウド",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/123_paniccloud.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー１０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/124_recovery10.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー３０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/125_recovery30.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー５０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/126_recovery50.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー８０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/127_recovery80.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー１２０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/128_recovery120.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー１５０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/129_recovery150.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー２００",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/130_recovery200.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "リカバリー３００",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/131_recovery300.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "バリア",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/132_barrier.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スーパーバリア",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/133_superbarrier.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "オーラ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/134_aura.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "インビジブル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/135_invisible.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ホイッスル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/136_whistle.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "メガクラッシャー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/137_megacrasher.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "セイレイノイカリ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/138_seireinoikari.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シラハドリ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/139_shirahadori.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ドクリンゴ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/140_dokuringo.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウラギリノススメ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/141_uragirinosusume.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ギガマイン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/142_gigamine.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クサムラステージ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/143_kusamurastage.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アイスステージ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/144_icestage.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "パラライズステージ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/145_paralyzestage.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ホーリーパネル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/146_holypanel.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アタックパネル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/147_attackpanel.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グラビティプラス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/148_gravityplus.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "マヒプラス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/149_mahiplus.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アタック＋１０",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Standard/150_attack+10.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スペードマグネッツ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m01_spademagnets.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スペードマグネッツＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m02_spademagnetsv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "スペードマグネッツＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m03_spademagnetsV3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダイヤアイスバーン",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m04_diaiceburn.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダイヤアイスバーンＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m05_diaiceburnv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ダイヤアイスバーンＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m06_diaiceburnv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クラブストロング",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m07_clubstrong.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クラブストロングＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m08_clubstrongv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クラブストロングＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m09_clubstrongv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クイーンヴァルゴ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m10_queenvirgo.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クイーンヴァルゴＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m11_queenvirgov2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "クイーンヴァルゴＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m12_queenvirgov3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジャックコーヴァス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m13_jackcorvus.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジャックコーヴァスＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m14_jackcorvusv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ジャックコーヴァスＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m15_jackcorvusv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グレイブジョーカー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m16_gravejoker.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グレイブジョーカーＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m17_gravejokerv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "グレイブジョーカーＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m18_gravejokerv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アシッドエース",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m19_acidace.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アシッドエースＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m20_acidacev2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アシッドエースＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m21_acidacev3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "オックスファイア",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m22_oxfire.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "オックスファイアＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m23_oxfirev2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "オックスファイアＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m24_oxfirev3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "キグナスウィング",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m25_cygnuswing.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "キグナスウィングＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m26_cygnuswingv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "キグナスウィングＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m27_cygnuswingv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウルフフォレスト",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m28_wolfforest.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウルフフォレストＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m29_wolfforestv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ウルフフォレストＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m30_wolfforestv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ファントムブラック",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m31_phantomblack.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ファントムブラックＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m32_phantomblackv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ファントムブラックＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m33_phantomblackv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブライ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m34_burai.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブライＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m35_buraiv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ブライＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m36_buraiv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーンディザスター",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m37_moondisaster.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーンディザスターＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m38_moondisasterv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "ムーンディザスターＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m39_moondisasterv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アポロンフレイム",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m40_apolloflame.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アポロンフレイムＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m41_apolloflamev2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アポロンフレイムＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m42_apolloflamev3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シリウス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m43_sirius.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シリウスＶ２",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m44_siriusv2.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "シリウスＶ３",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m45_siriusv3.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "black-ace",
+      "name": "ウィングブレード",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g1a_wingblade.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "black-ace",
+      "name": "ダークネスホール",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g2a_darknesshole.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "black-ace",
+      "name": "サウザンドキック",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g3a_thousandkick.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "black-ace",
+      "name": "ブレイクカウントボム",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g4a_breakcountbomb.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "black-ace",
+      "name": "ムーリジェクション",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g5a_murejection.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "red-joker",
+      "name": "Ｇメテオレーザー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g1j_gmeteorlaser.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "red-joker",
+      "name": "デストロイミサイル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g2j_destroymissile.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "red-joker",
+      "name": "バスターマックス",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g3j_bustermax.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "red-joker",
+      "name": "オックスタックル",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g4j_oxtackle.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": "red-joker",
+      "name": "ドッペルミラー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g5j_dopplemirror.png"
+    }
+  ]
+}
