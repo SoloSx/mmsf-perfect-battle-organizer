@@ -674,16 +674,16 @@ export function BuildEditorPage() {
   return (
     <AppShell>
       <section className="glass-panel">
-        <div className="flex flex-col gap-5 xl:flex-row xl:items-start xl:justify-between">
-          <div>
+        <div className="flex flex-col gap-5 2xl:flex-row 2xl:items-start 2xl:justify-between">
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">{GAME_LABELS[draft.game]}</p>
             <h2 className="mt-3 text-4xl font-black text-white">{VERSION_LABELS[draft.version]}</h2>
           </div>
 
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 self-start 2xl:justify-end">
             <button
               type="button"
-              className="secondary-button"
+              className="secondary-button whitespace-nowrap"
               onClick={() => {
                 const reset = createEmptyBuild(draft.game);
                 reset.version = draft.version;
@@ -697,7 +697,7 @@ export function BuildEditorPage() {
             {buildId && (
               <button
                 type="button"
-                className="secondary-button"
+                className="secondary-button whitespace-nowrap"
                 onClick={() => {
                   const duplicate = duplicateBuild(buildId);
                   if (duplicate) {
@@ -711,7 +711,7 @@ export function BuildEditorPage() {
             )}
             <button
               type="button"
-              className="primary-button"
+              className="primary-button whitespace-nowrap"
               onClick={() => {
                 if (validation.errors.length > 0) {
                   setStatus("保存前にエラーを解消してください。");
@@ -730,7 +730,7 @@ export function BuildEditorPage() {
             </button>
             <button
               type="button"
-              className="primary-button"
+              className="primary-button whitespace-nowrap"
               disabled={isExporting}
               onClick={async () => {
                 if (!exportRef.current) {
@@ -765,8 +765,8 @@ export function BuildEditorPage() {
         <p className="mt-3 text-xs text-white/45">この画面の入力内容はブラウザに一時保存されるため、保存前にリロードしても復元されます。</p>
       </section>
 
-      <section className="grid gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-        <div className="grid gap-6">
+      <section className="grid gap-6 2xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
+        <div className="grid min-w-0 gap-6">
           <div className="glass-panel">
             <div className="grid gap-4 md:grid-cols-[1.1fr_0.45fr_0.45fr]">
               <input
@@ -1461,7 +1461,7 @@ export function BuildEditorPage() {
           </div>
         </div>
 
-        <div className="grid gap-6">
+        <div className="grid min-w-0 gap-6">
           <div className={`glass-panel ${hasValidationErrors ? "ring-1 ring-red-400/20" : ""}`}>
             <div className={`flex items-center gap-3 text-sm font-semibold ${hasValidationErrors ? "text-red-100" : "text-white"}`}>
               <AlertTriangle className={`size-4 ${hasValidationErrors ? "text-red-300" : "text-cyan-200"}`} />
@@ -1505,8 +1505,10 @@ export function BuildEditorPage() {
               </div>
             </div>
             <div className="mt-5 overflow-auto rounded-[28px] border border-white/10 bg-black/25 p-3">
-              <div className="origin-top-left scale-[0.34] md:scale-[0.45] xl:scale-[0.58]">
-                <ExportScene ref={exportRef} build={draft} />
+              <div className="mx-auto aspect-[1200/675] w-full max-w-[408px] md:max-w-[540px]">
+                <div className="origin-top-left scale-[0.34] md:scale-[0.45]">
+                  <ExportScene ref={exportRef} build={draft} />
+                </div>
               </div>
             </div>
           </div>
