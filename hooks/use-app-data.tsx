@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
+import { DEFAULT_MMSF3_WHITE_CARD_SET_ID } from "@/lib/mmsf3-roulette-options";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
   BuildRecord,
@@ -20,7 +21,8 @@ import type {
 } from "@/lib/types";
 import { createId } from "@/lib/utils";
 
-const STORAGE_KEY = "mmsf-perfect-battle-organizer/v1";
+const STORAGE_KEY = "mmsf-perfect-battle-organizer/v2";
+const LEGACY_STORAGE_KEYS = ["mmsf-perfect-battle-organizer/v1"];
 
 interface AppDataContextValue {
   builds: BuildRecord[];
@@ -83,7 +85,7 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       noiseAbilities: [],
       nfb: "",
       mergeNoiseTarget: "",
-      whiteCards: [],
+      whiteCardSetId: DEFAULT_MMSF3_WHITE_CARD_SET_ID,
       megaCards: [],
       gigaCards: [],
       teamSize: 0,
@@ -124,6 +126,18 @@ function normalizeTemplate(template: StrategyTemplate): StrategyTemplate {
 }
 
 function normalizeBuild(build: BuildRecord): BuildRecord {
+  const legacyMmsf3Sections = (build.gameSpecificSections?.mmsf3 ?? {}) as Partial<BuildRecord["gameSpecificSections"]["mmsf3"]> & {
+    whiteCards?: string[];
+  };
+  const { whiteCards: legacyWhiteCards = [], ...nextMmsf3Sections } = legacyMmsf3Sections;
+  const preservedLegacyWhiteCards = legacyWhiteCards.map((item) => item.trim()).filter(Boolean);
+  const legacyWhiteCardsNote =
+    preservedLegacyWhiteCards.length > 0 ? `旧ホワイトカード入力: ${preservedLegacyWhiteCards.join(" / ")}` : "";
+  const normalizedRouletteNotes =
+    legacyWhiteCardsNote && !nextMmsf3Sections.rouletteNotes?.includes(legacyWhiteCardsNote)
+      ? [nextMmsf3Sections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
+      : (nextMmsf3Sections.rouletteNotes ?? "");
+
   return {
     ...createBuild(build.game),
     ...build,
@@ -134,6 +148,11 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
     gameSpecificSections: {
       ...createDefaultGameSpecificSections(),
       ...build.gameSpecificSections,
+      mmsf3: {
+        ...createDefaultGameSpecificSections().mmsf3,
+        ...nextMmsf3Sections,
+        rouletteNotes: normalizedRouletteNotes,
+      },
     },
     createdAt: build.createdAt || nowIso(),
     updatedAt: build.updatedAt || nowIso(),
@@ -147,7 +166,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(STORAGE_KEY);
+      const raw = window.localStorage.getItem(STORAGE_KEY) ?? LEGACY_STORAGE_KEYS.map((key) => window.localStorage.getItem(key)).find(Boolean);
       if (!raw) {
         setLoaded(true);
         return;

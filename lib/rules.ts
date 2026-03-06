@@ -103,12 +103,11 @@ export const VERSION_RULES: Record<VersionId, VersionRuleSet> = {
     description: "流星3のノイズ・ブラザー・レゾン管理を行う。ブラックエース向けのノイズ傾向を明示する。",
     folderLimit: 30,
     notes: [
-      "ホワイトカードは最大4枚。",
+      "ホワイトカードは固定セットから選択。",
       "メガカードは最大5枠、ギガカードは最大1枠。",
       "ブライノイズ時はリアルブラザーとライバルノイズを空にする。",
     ],
     limits: {
-      whiteCards: 4,
       megaCards: 5,
       gigaCards: 1,
       brothers: 6,
@@ -122,12 +121,11 @@ export const VERSION_RULES: Record<VersionId, VersionRuleSet> = {
     description: "流星3のノイズ・ブラザー・レゾン管理を行う。レッドジョーカー向けのノイズ傾向を明示する。",
     folderLimit: 30,
     notes: [
-      "ホワイトカードは最大4枚。",
+      "ホワイトカードは固定セットから選択。",
       "メガカードは最大5枠、ギガカードは最大1枠。",
       "チーム人数とレゾン共有メモを分けて保持する。",
     ],
     limits: {
-      whiteCards: 4,
       megaCards: 5,
       gigaCards: 1,
       brothers: 6,

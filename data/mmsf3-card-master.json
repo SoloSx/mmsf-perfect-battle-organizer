@@ -1,0 +1,2015 @@
+{
+  "entries": [
+    {
+      "name": "キャノン",
+      "section": "standard",
+      "displayOrder": 1
+    },
+    {
+      "name": "プラスキャノン",
+      "section": "standard",
+      "displayOrder": 2
+    },
+    {
+      "name": "ヘビーキャノン",
+      "section": "standard",
+      "displayOrder": 3
+    },
+    {
+      "name": "インパクトキャノン",
+      "section": "standard",
+      "displayOrder": 4
+    },
+    {
+      "name": "プラズマガン",
+      "section": "standard",
+      "displayOrder": 5,
+      "aliases": [
+        "プラスマガン"
+      ]
+    },
+    {
+      "name": "プラズマガンＸ",
+      "section": "standard",
+      "displayOrder": 6
+    },
+    {
+      "name": "エアスプレッド１",
+      "section": "standard",
+      "displayOrder": 7
+    },
+    {
+      "name": "エアスプレッド２",
+      "section": "standard",
+      "displayOrder": 8
+    },
+    {
+      "name": "エアスプレッド３",
+      "section": "standard",
+      "displayOrder": 9
+    },
+    {
+      "name": "エアスプレッドＸ",
+      "section": "standard",
+      "displayOrder": 10
+    },
+    {
+      "name": "マッドバルカン１",
+      "section": "standard",
+      "displayOrder": 11
+    },
+    {
+      "name": "マッドバルカン２",
+      "section": "standard",
+      "displayOrder": 12
+    },
+    {
+      "name": "マッドバルカン３",
+      "section": "standard",
+      "displayOrder": 13
+    },
+    {
+      "name": "マッドバルカンＸ",
+      "section": "standard",
+      "displayOrder": 14
+    },
+    {
+      "name": "ブラックインク",
+      "section": "standard",
+      "displayOrder": 15
+    },
+    {
+      "name": "グリーンインク",
+      "section": "standard",
+      "displayOrder": 16
+    },
+    {
+      "name": "ブルーインク",
+      "section": "standard",
+      "displayOrder": 17
+    },
+    {
+      "name": "パープルインク",
+      "section": "standard",
+      "displayOrder": 18
+    },
+    {
+      "name": "ミニグレネード",
+      "section": "standard",
+      "displayOrder": 19
+    },
+    {
+      "name": "ヒートグレネード",
+      "section": "standard",
+      "displayOrder": 20
+    },
+    {
+      "name": "グリーングレネード",
+      "section": "standard",
+      "displayOrder": 21
+    },
+    {
+      "name": "アイスグレネード",
+      "section": "standard",
+      "displayOrder": 22
+    },
+    {
+      "name": "ビッググレネード",
+      "section": "standard",
+      "displayOrder": 23
+    },
+    {
+      "name": "ソード",
+      "section": "standard",
+      "displayOrder": 24
+    },
+    {
+      "name": "ワイドソード",
+      "section": "standard",
+      "displayOrder": 25
+    },
+    {
+      "name": "ロングソード",
+      "section": "standard",
+      "displayOrder": 26
+    },
+    {
+      "name": "エドギリブレード１",
+      "section": "standard",
+      "displayOrder": 27
+    },
+    {
+      "name": "エドギリブレード２",
+      "section": "standard",
+      "displayOrder": 28
+    },
+    {
+      "name": "エドギリブレード３",
+      "section": "standard",
+      "displayOrder": 29
+    },
+    {
+      "name": "エドギリブレードＸ",
+      "section": "standard",
+      "displayOrder": 30
+    },
+    {
+      "name": "エレキスラッシュ",
+      "section": "standard",
+      "displayOrder": 31
+    },
+    {
+      "name": "ウッドスラッシュ",
+      "section": "standard",
+      "displayOrder": 32
+    },
+    {
+      "name": "ファイアスラッシュ",
+      "section": "standard",
+      "displayOrder": 33
+    },
+    {
+      "name": "ブレイクサーベル",
+      "section": "standard",
+      "displayOrder": 34
+    },
+    {
+      "name": "ブレイクサーベルＸ",
+      "section": "standard",
+      "displayOrder": 35
+    },
+    {
+      "name": "グレートアックス",
+      "section": "standard",
+      "displayOrder": 36
+    },
+    {
+      "name": "フレイムアックス",
+      "section": "standard",
+      "displayOrder": 37
+    },
+    {
+      "name": "ジャイアントアックス",
+      "section": "standard",
+      "displayOrder": 38
+    },
+    {
+      "name": "ムラマサブレード",
+      "section": "standard",
+      "displayOrder": 39
+    },
+    {
+      "name": "ソードファイター１",
+      "section": "standard",
+      "displayOrder": 40
+    },
+    {
+      "name": "ソードファイター２",
+      "section": "standard",
+      "displayOrder": 41
+    },
+    {
+      "name": "ソードファイター３",
+      "section": "standard",
+      "displayOrder": 42
+    },
+    {
+      "name": "ソードファイターＸ",
+      "section": "standard",
+      "displayOrder": 43
+    },
+    {
+      "name": "ウィンディアタック１",
+      "section": "standard",
+      "displayOrder": 44
+    },
+    {
+      "name": "ウィンディアタック２",
+      "section": "standard",
+      "displayOrder": 45
+    },
+    {
+      "name": "ウィンディアタック３",
+      "section": "standard",
+      "displayOrder": 46
+    },
+    {
+      "name": "ウィンディアタックＸ",
+      "section": "standard",
+      "displayOrder": 47
+    },
+    {
+      "name": "シンクロフック１",
+      "section": "standard",
+      "displayOrder": 48
+    },
+    {
+      "name": "シンクロフック２",
+      "section": "standard",
+      "displayOrder": 49
+    },
+    {
+      "name": "シンクロフック３",
+      "section": "standard",
+      "displayOrder": 50
+    },
+    {
+      "name": "シンクロフックＸ",
+      "section": "standard",
+      "displayOrder": 51
+    },
+    {
+      "name": "スタンナックル",
+      "section": "standard",
+      "displayOrder": 52
+    },
+    {
+      "name": "ポイズンナックル",
+      "section": "standard",
+      "displayOrder": 53
+    },
+    {
+      "name": "フリーズナックル",
+      "section": "standard",
+      "displayOrder": 54
+    },
+    {
+      "name": "デストロイアッパー",
+      "section": "standard",
+      "displayOrder": 55
+    },
+    {
+      "name": "ドリルアーム１",
+      "section": "standard",
+      "displayOrder": 56
+    },
+    {
+      "name": "ドリルアーム２",
+      "section": "standard",
+      "displayOrder": 57
+    },
+    {
+      "name": "ドリルアーム３",
+      "section": "standard",
+      "displayOrder": 58
+    },
+    {
+      "name": "ドリルアームＸ",
+      "section": "standard",
+      "displayOrder": 59
+    },
+    {
+      "name": "タイフーンダンス",
+      "section": "standard",
+      "displayOrder": 60
+    },
+    {
+      "name": "トルネードダンス",
+      "section": "standard",
+      "displayOrder": 61
+    },
+    {
+      "name": "ハリケーンダンス",
+      "section": "standard",
+      "displayOrder": 62
+    },
+    {
+      "name": "ホワイトメテオ",
+      "section": "standard",
+      "displayOrder": 63
+    },
+    {
+      "name": "シルバーメテオ",
+      "section": "standard",
+      "displayOrder": 64
+    },
+    {
+      "name": "プラチナメテオ",
+      "section": "standard",
+      "displayOrder": 65
+    },
+    {
+      "name": "ゼツメツメテオ",
+      "section": "standard",
+      "displayOrder": 66
+    },
+    {
+      "name": "レーダーミサイル",
+      "section": "standard",
+      "displayOrder": 67
+    },
+    {
+      "name": "グランドウェーブ１",
+      "section": "standard",
+      "displayOrder": 68
+    },
+    {
+      "name": "グランドウェーブ２",
+      "section": "standard",
+      "displayOrder": 69
+    },
+    {
+      "name": "グランドウェーブ３",
+      "section": "standard",
+      "displayOrder": 70
+    },
+    {
+      "name": "グランドウェーブＸ",
+      "section": "standard",
+      "displayOrder": 71
+    },
+    {
+      "name": "ジェットアタック１",
+      "section": "standard",
+      "displayOrder": 72
+    },
+    {
+      "name": "ジェットアタック２",
+      "section": "standard",
+      "displayOrder": 73
+    },
+    {
+      "name": "ジェットアタック３",
+      "section": "standard",
+      "displayOrder": 74
+    },
+    {
+      "name": "ジェットアタックＸ",
+      "section": "standard",
+      "displayOrder": 75
+    },
+    {
+      "name": "ハンマーウェポン１",
+      "section": "standard",
+      "displayOrder": 76
+    },
+    {
+      "name": "ハンマーウェポン２",
+      "section": "standard",
+      "displayOrder": 77
+    },
+    {
+      "name": "ハンマーウェポン３",
+      "section": "standard",
+      "displayOrder": 78
+    },
+    {
+      "name": "ハンマーウェポンＸ",
+      "section": "standard",
+      "displayOrder": 79
+    },
+    {
+      "name": "スマイルコイン１",
+      "section": "standard",
+      "displayOrder": 80
+    },
+    {
+      "name": "スマイルコイン２",
+      "section": "standard",
+      "displayOrder": 81
+    },
+    {
+      "name": "スマイルコイン３",
+      "section": "standard",
+      "displayOrder": 82
+    },
+    {
+      "name": "スマイルコインＸ",
+      "section": "standard",
+      "displayOrder": 83
+    },
+    {
+      "name": "ヘビードーン１",
+      "section": "standard",
+      "displayOrder": 84
+    },
+    {
+      "name": "ヘビードーン２",
+      "section": "standard",
+      "displayOrder": 85
+    },
+    {
+      "name": "ヘビードーン３",
+      "section": "standard",
+      "displayOrder": 86
+    },
+    {
+      "name": "ヘビードーンＸ",
+      "section": "standard",
+      "displayOrder": 87
+    },
+    {
+      "name": "ギザホイール１",
+      "section": "standard",
+      "displayOrder": 88
+    },
+    {
+      "name": "ギザホイール２",
+      "section": "standard",
+      "displayOrder": 89
+    },
+    {
+      "name": "ギザホイール３",
+      "section": "standard",
+      "displayOrder": 90
+    },
+    {
+      "name": "ギザホイールＸ",
+      "section": "standard",
+      "displayOrder": 91
+    },
+    {
+      "name": "スカルアロー１",
+      "section": "standard",
+      "displayOrder": 92
+    },
+    {
+      "name": "スカルアロー２",
+      "section": "standard",
+      "displayOrder": 93
+    },
+    {
+      "name": "スカルアロー３",
+      "section": "standard",
+      "displayOrder": 94
+    },
+    {
+      "name": "スカルアローＸ",
+      "section": "standard",
+      "displayOrder": 95
+    },
+    {
+      "name": "ムーテクノロジー１",
+      "section": "standard",
+      "displayOrder": 96
+    },
+    {
+      "name": "ムーテクノロジー２",
+      "section": "standard",
+      "displayOrder": 97
+    },
+    {
+      "name": "ムーテクノロジー３",
+      "section": "standard",
+      "displayOrder": 98
+    },
+    {
+      "name": "ムーテクノロジーＸ",
+      "section": "standard",
+      "displayOrder": 99
+    },
+    {
+      "name": "デスサイズ１",
+      "section": "standard",
+      "displayOrder": 100
+    },
+    {
+      "name": "デスサイズ２",
+      "section": "standard",
+      "displayOrder": 101
+    },
+    {
+      "name": "デスサイズ３",
+      "section": "standard",
+      "displayOrder": 102
+    },
+    {
+      "name": "デスサイズＸ",
+      "section": "standard",
+      "displayOrder": 103
+    },
+    {
+      "name": "ケサランパサラン１",
+      "section": "standard",
+      "displayOrder": 104
+    },
+    {
+      "name": "ケサランパサラン２",
+      "section": "standard",
+      "displayOrder": 105
+    },
+    {
+      "name": "ケサランパサラン３",
+      "section": "standard",
+      "displayOrder": 106
+    },
+    {
+      "name": "ケサランパサランＸ",
+      "section": "standard",
+      "displayOrder": 107
+    },
+    {
+      "name": "カウントボム１",
+      "section": "standard",
+      "displayOrder": 108
+    },
+    {
+      "name": "カウントボム２",
+      "section": "standard",
+      "displayOrder": 109
+    },
+    {
+      "name": "カウントボム３",
+      "section": "standard",
+      "displayOrder": 110
+    },
+    {
+      "name": "カウントボムＸ",
+      "section": "standard",
+      "displayOrder": 111
+    },
+    {
+      "name": "ヒートアッパー１",
+      "section": "standard",
+      "displayOrder": 112
+    },
+    {
+      "name": "ヒートアッパー２",
+      "section": "standard",
+      "displayOrder": 113
+    },
+    {
+      "name": "ヒートアッパー３",
+      "section": "standard",
+      "displayOrder": 114
+    },
+    {
+      "name": "ヒートアッパーＸ",
+      "section": "standard",
+      "displayOrder": 115
+    },
+    {
+      "name": "マシーンフレイム１",
+      "section": "standard",
+      "displayOrder": 116
+    },
+    {
+      "name": "マシーンフレイム２",
+      "section": "standard",
+      "displayOrder": 117
+    },
+    {
+      "name": "マシーンフレイム３",
+      "section": "standard",
+      "displayOrder": 118
+    },
+    {
+      "name": "マシーンフレイムＸ",
+      "section": "standard",
+      "displayOrder": 119
+    },
+    {
+      "name": "アンガーファイア１",
+      "section": "standard",
+      "displayOrder": 120
+    },
+    {
+      "name": "アンガーファイア２",
+      "section": "standard",
+      "displayOrder": 121
+    },
+    {
+      "name": "アンガーファイア３",
+      "section": "standard",
+      "displayOrder": 122
+    },
+    {
+      "name": "アンガーファイアＸ",
+      "section": "standard",
+      "displayOrder": 123
+    },
+    {
+      "name": "ダバフレイム１",
+      "section": "standard",
+      "displayOrder": 124
+    },
+    {
+      "name": "ダバフレイム２",
+      "section": "standard",
+      "displayOrder": 125
+    },
+    {
+      "name": "ダバフレイム３",
+      "section": "standard",
+      "displayOrder": 126
+    },
+    {
+      "name": "ダバフレイムＸ",
+      "section": "standard",
+      "displayOrder": 127
+    },
+    {
+      "name": "ボボボンボム１",
+      "section": "standard",
+      "displayOrder": 128
+    },
+    {
+      "name": "ボボボンボム２",
+      "section": "standard",
+      "displayOrder": 129
+    },
+    {
+      "name": "ボボボンボム３",
+      "section": "standard",
+      "displayOrder": 130
+    },
+    {
+      "name": "ボボボンボムＸ",
+      "section": "standard",
+      "displayOrder": 131
+    },
+    {
+      "name": "ワイドウェーブ１",
+      "section": "standard",
+      "displayOrder": 132
+    },
+    {
+      "name": "ワイドウェーブ２",
+      "section": "standard",
+      "displayOrder": 133
+    },
+    {
+      "name": "ワイドウェーブ３",
+      "section": "standard",
+      "displayOrder": 134
+    },
+    {
+      "name": "ワイドウェーブＸ",
+      "section": "standard",
+      "displayOrder": 135
+    },
+    {
+      "name": "バブルフック１",
+      "section": "standard",
+      "displayOrder": 136
+    },
+    {
+      "name": "バブルフック２",
+      "section": "standard",
+      "displayOrder": 137
+    },
+    {
+      "name": "バブルフック３",
+      "section": "standard",
+      "displayOrder": 138
+    },
+    {
+      "name": "バブルフックＸ",
+      "section": "standard",
+      "displayOrder": 139
+    },
+    {
+      "name": "シャークカッター１",
+      "section": "standard",
+      "displayOrder": 140
+    },
+    {
+      "name": "シャークカッター２",
+      "section": "standard",
+      "displayOrder": 141
+    },
+    {
+      "name": "シャークカッター３",
+      "section": "standard",
+      "displayOrder": 142
+    },
+    {
+      "name": "シャークカッターＸ",
+      "section": "standard",
+      "displayOrder": 143
+    },
+    {
+      "name": "アイススピニング１",
+      "section": "standard",
+      "displayOrder": 144
+    },
+    {
+      "name": "アイススピニング２",
+      "section": "standard",
+      "displayOrder": 145
+    },
+    {
+      "name": "アイススピニング３",
+      "section": "standard",
+      "displayOrder": 146
+    },
+    {
+      "name": "アイススピニングＸ",
+      "section": "standard",
+      "displayOrder": 147
+    },
+    {
+      "name": "スノーボール１",
+      "section": "standard",
+      "displayOrder": 148
+    },
+    {
+      "name": "スノーボール２",
+      "section": "standard",
+      "displayOrder": 149
+    },
+    {
+      "name": "スノーボール３",
+      "section": "standard",
+      "displayOrder": 150
+    },
+    {
+      "name": "スノーボールＸ",
+      "section": "standard",
+      "displayOrder": 151
+    },
+    {
+      "name": "ピラニアキッス１",
+      "section": "standard",
+      "displayOrder": 152
+    },
+    {
+      "name": "ピラニアキッス２",
+      "section": "standard",
+      "displayOrder": 153
+    },
+    {
+      "name": "ピラニアキッス３",
+      "section": "standard",
+      "displayOrder": 154
+    },
+    {
+      "name": "ピラニアキッスＸ",
+      "section": "standard",
+      "displayOrder": 155
+    },
+    {
+      "name": "ステルスレーザー１",
+      "section": "standard",
+      "displayOrder": 156
+    },
+    {
+      "name": "ステルスレーザー２",
+      "section": "standard",
+      "displayOrder": 157
+    },
+    {
+      "name": "ステルスレーザー３",
+      "section": "standard",
+      "displayOrder": 158
+    },
+    {
+      "name": "ステルスレーザーＸ",
+      "section": "standard",
+      "displayOrder": 159
+    },
+    {
+      "name": "マミーハンド１",
+      "section": "standard",
+      "displayOrder": 160
+    },
+    {
+      "name": "マミーハンド２",
+      "section": "standard",
+      "displayOrder": 161
+    },
+    {
+      "name": "マミーハンド３",
+      "section": "standard",
+      "displayOrder": 162
+    },
+    {
+      "name": "マミーハンドＸ",
+      "section": "standard",
+      "displayOrder": 163
+    },
+    {
+      "name": "イナズマヘッド１",
+      "section": "standard",
+      "displayOrder": 164
+    },
+    {
+      "name": "イナズマヘッド２",
+      "section": "standard",
+      "displayOrder": 165
+    },
+    {
+      "name": "イナズマヘッド３",
+      "section": "standard",
+      "displayOrder": 166
+    },
+    {
+      "name": "イナズマヘッドＸ",
+      "section": "standard",
+      "displayOrder": 167
+    },
+    {
+      "name": "フラッシュスピア１",
+      "section": "standard",
+      "displayOrder": 168
+    },
+    {
+      "name": "フラッシュスピア２",
+      "section": "standard",
+      "displayOrder": 169
+    },
+    {
+      "name": "フラッシュスピア３",
+      "section": "standard",
+      "displayOrder": 170
+    },
+    {
+      "name": "フラッシュスピアＸ",
+      "section": "standard",
+      "displayOrder": 171
+    },
+    {
+      "name": "サンダーオブアース１",
+      "section": "standard",
+      "displayOrder": 172
+    },
+    {
+      "name": "サンダーオブアース２",
+      "section": "standard",
+      "displayOrder": 173
+    },
+    {
+      "name": "サンダーオブアース３",
+      "section": "standard",
+      "displayOrder": 174
+    },
+    {
+      "name": "サンダーオブアースＸ",
+      "section": "standard",
+      "displayOrder": 175
+    },
+    {
+      "name": "ダミースパイダー１",
+      "section": "standard",
+      "displayOrder": 176
+    },
+    {
+      "name": "ダミースパイダー２",
+      "section": "standard",
+      "displayOrder": 177
+    },
+    {
+      "name": "ダミースパイダー３",
+      "section": "standard",
+      "displayOrder": 178
+    },
+    {
+      "name": "ダミースパイダーＸ",
+      "section": "standard",
+      "displayOrder": 179
+    },
+    {
+      "name": "シュリシュリケン１",
+      "section": "standard",
+      "displayOrder": 180
+    },
+    {
+      "name": "シュリシュリケン２",
+      "section": "standard",
+      "displayOrder": 181
+    },
+    {
+      "name": "シュリシュリケン３",
+      "section": "standard",
+      "displayOrder": 182
+    },
+    {
+      "name": "シュリシュリケンＸ",
+      "section": "standard",
+      "displayOrder": 183
+    },
+    {
+      "name": "パウダーシュート１",
+      "section": "standard",
+      "displayOrder": 184
+    },
+    {
+      "name": "パウダーシュート２",
+      "section": "standard",
+      "displayOrder": 185
+    },
+    {
+      "name": "パウダーシュート３",
+      "section": "standard",
+      "displayOrder": 186
+    },
+    {
+      "name": "パウダーシュートＸ",
+      "section": "standard",
+      "displayOrder": 187
+    },
+    {
+      "name": "ローリングナッツ１",
+      "section": "standard",
+      "displayOrder": 188
+    },
+    {
+      "name": "ローリングナッツ２",
+      "section": "standard",
+      "displayOrder": 189
+    },
+    {
+      "name": "ローリングナッツ３",
+      "section": "standard",
+      "displayOrder": 190
+    },
+    {
+      "name": "ローリングナッツＸ",
+      "section": "standard",
+      "displayOrder": 191
+    },
+    {
+      "name": "コガラシ１",
+      "section": "standard",
+      "displayOrder": 192
+    },
+    {
+      "name": "コガラシ２",
+      "section": "standard",
+      "displayOrder": 193
+    },
+    {
+      "name": "コガラシ３",
+      "section": "standard",
+      "displayOrder": 194
+    },
+    {
+      "name": "コガラシＸ",
+      "section": "standard",
+      "displayOrder": 195
+    },
+    {
+      "name": "バルカンシード１",
+      "section": "standard",
+      "displayOrder": 196
+    },
+    {
+      "name": "バルカンシード２",
+      "section": "standard",
+      "displayOrder": 197
+    },
+    {
+      "name": "バルカンシード３",
+      "section": "standard",
+      "displayOrder": 198
+    },
+    {
+      "name": "バルカンシードＸ",
+      "section": "standard",
+      "displayOrder": 199
+    },
+    {
+      "name": "ビーストスイング１",
+      "section": "standard",
+      "displayOrder": 200
+    },
+    {
+      "name": "ビーストスイング２",
+      "section": "standard",
+      "displayOrder": 201
+    },
+    {
+      "name": "ビーストスイング３",
+      "section": "standard",
+      "displayOrder": 202
+    },
+    {
+      "name": "ビーストスイングＸ",
+      "section": "standard",
+      "displayOrder": 203
+    },
+    {
+      "name": "ノイズドウィザード１",
+      "section": "standard",
+      "displayOrder": 204
+    },
+    {
+      "name": "ノイズドウィザード２",
+      "section": "standard",
+      "displayOrder": 205
+    },
+    {
+      "name": "ノイズドウィザード３",
+      "section": "standard",
+      "displayOrder": 206
+    },
+    {
+      "name": "ノイズドウィザードＸ",
+      "section": "standard",
+      "displayOrder": 207
+    },
+    {
+      "name": "ヒールウィザード１",
+      "section": "standard",
+      "displayOrder": 208
+    },
+    {
+      "name": "ヒールウィザード２",
+      "section": "standard",
+      "displayOrder": 209
+    },
+    {
+      "name": "ヒールウィザード３",
+      "section": "standard",
+      "displayOrder": 210
+    },
+    {
+      "name": "ヒールウィザードＸ",
+      "section": "standard",
+      "displayOrder": 211
+    },
+    {
+      "name": "ダンシングブレード１",
+      "section": "standard",
+      "displayOrder": 212
+    },
+    {
+      "name": "ダンシングブレード２",
+      "section": "standard",
+      "displayOrder": 213
+    },
+    {
+      "name": "ダンシングブレード３",
+      "section": "standard",
+      "displayOrder": 214
+    },
+    {
+      "name": "ダンシングブレードＸ",
+      "section": "standard",
+      "displayOrder": 215
+    },
+    {
+      "name": "ブラックホール１",
+      "section": "standard",
+      "displayOrder": 216
+    },
+    {
+      "name": "ブラックホール２",
+      "section": "standard",
+      "displayOrder": 217
+    },
+    {
+      "name": "ブラックホール３",
+      "section": "standard",
+      "displayOrder": 218
+    },
+    {
+      "name": "ブラックホールＸ",
+      "section": "standard",
+      "displayOrder": 219
+    },
+    {
+      "name": "ジャングルストーム",
+      "section": "standard",
+      "displayOrder": 220
+    },
+    {
+      "name": "スノーストーム",
+      "section": "standard",
+      "displayOrder": 221
+    },
+    {
+      "name": "ポイズンストーム",
+      "section": "standard",
+      "displayOrder": 222
+    },
+    {
+      "name": "ダブルストーン",
+      "section": "standard",
+      "displayOrder": 223
+    },
+    {
+      "name": "ボムライザー",
+      "section": "standard",
+      "displayOrder": 224
+    },
+    {
+      "name": "ディバイドライン",
+      "section": "standard",
+      "displayOrder": 225
+    },
+    {
+      "name": "ダブルイーター",
+      "section": "standard",
+      "displayOrder": 226
+    },
+    {
+      "name": "パネルフォーマット",
+      "section": "standard",
+      "displayOrder": 227
+    },
+    {
+      "name": "パニッククラウド",
+      "section": "standard",
+      "displayOrder": 228
+    },
+    {
+      "name": "リカバリー１０",
+      "section": "standard",
+      "displayOrder": 229
+    },
+    {
+      "name": "リカバリー３０",
+      "section": "standard",
+      "displayOrder": 230
+    },
+    {
+      "name": "リカバリー５０",
+      "section": "standard",
+      "displayOrder": 231
+    },
+    {
+      "name": "リカバリー８０",
+      "section": "standard",
+      "displayOrder": 232
+    },
+    {
+      "name": "リカバリー１２０",
+      "section": "standard",
+      "displayOrder": 233
+    },
+    {
+      "name": "リカバリー１５０",
+      "section": "standard",
+      "displayOrder": 234
+    },
+    {
+      "name": "リカバリー２００",
+      "section": "standard",
+      "displayOrder": 235
+    },
+    {
+      "name": "リカバリー３００",
+      "section": "standard",
+      "displayOrder": 236
+    },
+    {
+      "name": "バリア",
+      "section": "standard",
+      "displayOrder": 237
+    },
+    {
+      "name": "スーパーバリア",
+      "section": "standard",
+      "displayOrder": 238
+    },
+    {
+      "name": "オーラ",
+      "section": "standard",
+      "displayOrder": 239
+    },
+    {
+      "name": "インビジブル",
+      "section": "standard",
+      "displayOrder": 240
+    },
+    {
+      "name": "ウォーロックブースト",
+      "section": "standard",
+      "displayOrder": 241
+    },
+    {
+      "name": "クイックゲージ",
+      "section": "standard",
+      "displayOrder": 242
+    },
+    {
+      "name": "ノーマルゲージ",
+      "section": "standard",
+      "displayOrder": 243
+    },
+    {
+      "name": "ヘビーゲージ",
+      "section": "standard",
+      "displayOrder": 244
+    },
+    {
+      "name": "ウォリアーブラッド",
+      "section": "standard",
+      "displayOrder": 245
+    },
+    {
+      "name": "ホイッスル",
+      "section": "standard",
+      "displayOrder": 246
+    },
+    {
+      "name": "アンデッドリバース",
+      "section": "standard",
+      "displayOrder": 247
+    },
+    {
+      "name": "メガクラッシャー",
+      "section": "standard",
+      "displayOrder": 248
+    },
+    {
+      "name": "セイレイノイカリ",
+      "section": "standard",
+      "displayOrder": 249
+    },
+    {
+      "name": "シラハドリ",
+      "section": "standard",
+      "displayOrder": 250
+    },
+    {
+      "name": "ドクリンゴ",
+      "section": "standard",
+      "displayOrder": 251
+    },
+    {
+      "name": "ウラギリノススメ",
+      "section": "standard",
+      "displayOrder": 252
+    },
+    {
+      "name": "ギガマイン",
+      "section": "standard",
+      "displayOrder": 253
+    },
+    {
+      "name": "クサムラステージ",
+      "section": "standard",
+      "displayOrder": 254
+    },
+    {
+      "name": "アイスステージ",
+      "section": "standard",
+      "displayOrder": 255
+    },
+    {
+      "name": "パラライズステージ",
+      "section": "standard",
+      "displayOrder": 256
+    },
+    {
+      "name": "ホーリーパネル",
+      "section": "standard",
+      "displayOrder": 257
+    },
+    {
+      "name": "アタックパネル",
+      "section": "standard",
+      "displayOrder": 258
+    },
+    {
+      "name": "オールポイズン",
+      "section": "standard",
+      "displayOrder": 259
+    },
+    {
+      "name": "グラビティプラス",
+      "section": "standard",
+      "displayOrder": 260
+    },
+    {
+      "name": "マヒプラス",
+      "section": "standard",
+      "displayOrder": 261
+    },
+    {
+      "name": "アタック＋１０",
+      "section": "standard",
+      "displayOrder": 262
+    },
+    {
+      "name": "ファイア＋３０",
+      "section": "standard",
+      "displayOrder": 263
+    },
+    {
+      "name": "アクア＋３０",
+      "section": "standard",
+      "displayOrder": 264
+    },
+    {
+      "name": "エレキ＋３０",
+      "section": "standard",
+      "displayOrder": 265
+    },
+    {
+      "name": "ウッド＋３０",
+      "section": "standard",
+      "displayOrder": 266
+    },
+    {
+      "name": "スペードマグネッツ",
+      "section": "mega",
+      "displayOrder": 267
+    },
+    {
+      "name": "スペードマグネッツＶ２",
+      "section": "mega",
+      "displayOrder": 268
+    },
+    {
+      "name": "スペードマグネッツＶ３",
+      "section": "mega",
+      "displayOrder": 269
+    },
+    {
+      "name": "スペードマグネッツＸ",
+      "section": "mega",
+      "displayOrder": 270
+    },
+    {
+      "name": "ダイヤアイスバーン",
+      "section": "mega",
+      "displayOrder": 271
+    },
+    {
+      "name": "ダイヤアイスバーンＶ２",
+      "section": "mega",
+      "displayOrder": 272
+    },
+    {
+      "name": "ダイヤアイスバーンＶ３",
+      "section": "mega",
+      "displayOrder": 273
+    },
+    {
+      "name": "ダイヤアイスバーンＸ",
+      "section": "mega",
+      "displayOrder": 274
+    },
+    {
+      "name": "クラブストロング",
+      "section": "mega",
+      "displayOrder": 275
+    },
+    {
+      "name": "クラブストロングＶ２",
+      "section": "mega",
+      "displayOrder": 276
+    },
+    {
+      "name": "クラブストロングＶ３",
+      "section": "mega",
+      "displayOrder": 277
+    },
+    {
+      "name": "クラブストロングＸ",
+      "section": "mega",
+      "displayOrder": 278
+    },
+    {
+      "name": "クイーンヴァルゴ",
+      "section": "mega",
+      "displayOrder": 279
+    },
+    {
+      "name": "クイーンヴァルゴＶ２",
+      "section": "mega",
+      "displayOrder": 280
+    },
+    {
+      "name": "クイーンヴァルゴＶ３",
+      "section": "mega",
+      "displayOrder": 281
+    },
+    {
+      "name": "クイーンヴァルゴＸ",
+      "section": "mega",
+      "displayOrder": 282
+    },
+    {
+      "name": "ジャックコーヴァス",
+      "section": "mega",
+      "displayOrder": 283
+    },
+    {
+      "name": "ジャックコーヴァスＶ２",
+      "section": "mega",
+      "displayOrder": 284
+    },
+    {
+      "name": "ジャックコーヴァスＶ３",
+      "section": "mega",
+      "displayOrder": 285
+    },
+    {
+      "name": "ジャックコーヴァスＸ",
+      "section": "mega",
+      "displayOrder": 286
+    },
+    {
+      "name": "グレイブジョーカー",
+      "section": "mega",
+      "displayOrder": 287
+    },
+    {
+      "name": "グレイブジョーカーＶ２",
+      "section": "mega",
+      "displayOrder": 288
+    },
+    {
+      "name": "グレイブジョーカーＶ３",
+      "section": "mega",
+      "displayOrder": 289
+    },
+    {
+      "name": "グレイブジョーカーＸ",
+      "section": "mega",
+      "displayOrder": 290
+    },
+    {
+      "name": "アシッドエース",
+      "section": "mega",
+      "displayOrder": 291
+    },
+    {
+      "name": "アシッドエースＶ２",
+      "section": "mega",
+      "displayOrder": 292
+    },
+    {
+      "name": "アシッドエースＶ３",
+      "section": "mega",
+      "displayOrder": 293
+    },
+    {
+      "name": "アシッドエースＸ",
+      "section": "mega",
+      "displayOrder": 294
+    },
+    {
+      "name": "オックスファイア",
+      "section": "mega",
+      "displayOrder": 295,
+      "aliases": [
+        "オックスファイアー"
+      ]
+    },
+    {
+      "name": "オックスファイアＶ２",
+      "section": "mega",
+      "displayOrder": 296,
+      "aliases": [
+        "オックスファイアーＶ２",
+        "オックスファイアーｖ２"
+      ]
+    },
+    {
+      "name": "オックスファイアＶ３",
+      "section": "mega",
+      "displayOrder": 297,
+      "aliases": [
+        "オックスファイアーＶ３",
+        "オックスファイアーｖ３"
+      ]
+    },
+    {
+      "name": "オックスファイアＸ",
+      "section": "mega",
+      "displayOrder": 298,
+      "aliases": [
+        "オックスファイアーＸ"
+      ]
+    },
+    {
+      "name": "キグナスウィング",
+      "section": "mega",
+      "displayOrder": 299
+    },
+    {
+      "name": "キグナスウィングＶ２",
+      "section": "mega",
+      "displayOrder": 300
+    },
+    {
+      "name": "キグナスウィングＶ３",
+      "section": "mega",
+      "displayOrder": 301
+    },
+    {
+      "name": "キグナスウィングＸ",
+      "section": "mega",
+      "displayOrder": 302
+    },
+    {
+      "name": "ウルフフォレスト",
+      "section": "mega",
+      "displayOrder": 303
+    },
+    {
+      "name": "ウルフフォレストＶ２",
+      "section": "mega",
+      "displayOrder": 304
+    },
+    {
+      "name": "ウルフフォレストＶ３",
+      "section": "mega",
+      "displayOrder": 305
+    },
+    {
+      "name": "ウルフフォレストＸ",
+      "section": "mega",
+      "displayOrder": 306
+    },
+    {
+      "name": "ファントムブラック",
+      "section": "mega",
+      "displayOrder": 307
+    },
+    {
+      "name": "ファントムブラックＶ２",
+      "section": "mega",
+      "displayOrder": 308
+    },
+    {
+      "name": "ファントムブラックＶ３",
+      "section": "mega",
+      "displayOrder": 309
+    },
+    {
+      "name": "ファントムブラックＸ",
+      "section": "mega",
+      "displayOrder": 310
+    },
+    {
+      "name": "ブライ",
+      "section": "mega",
+      "displayOrder": 311
+    },
+    {
+      "name": "ブライＶ２",
+      "section": "mega",
+      "displayOrder": 312
+    },
+    {
+      "name": "ブライＶ３",
+      "section": "mega",
+      "displayOrder": 313
+    },
+    {
+      "name": "ブライＸ",
+      "section": "mega",
+      "displayOrder": 314
+    },
+    {
+      "name": "ムーンディザスター",
+      "section": "mega",
+      "displayOrder": 315
+    },
+    {
+      "name": "ムーンディザスターＶ２",
+      "section": "mega",
+      "displayOrder": 316
+    },
+    {
+      "name": "ムーンディザスターＶ３",
+      "section": "mega",
+      "displayOrder": 317
+    },
+    {
+      "name": "ムーンディザスターＸ",
+      "section": "mega",
+      "displayOrder": 318
+    },
+    {
+      "name": "リブラバランス",
+      "section": "mega",
+      "displayOrder": 319
+    },
+    {
+      "name": "リブラバランスＶ２",
+      "section": "mega",
+      "displayOrder": 320
+    },
+    {
+      "name": "リブラバランスＶ３",
+      "section": "mega",
+      "displayOrder": 321
+    },
+    {
+      "name": "リブラバランスＸ",
+      "section": "mega",
+      "displayOrder": 322
+    },
+    {
+      "name": "オヒュカスクイーン",
+      "section": "mega",
+      "displayOrder": 323
+    },
+    {
+      "name": "オヒュカスクイーンＶ２",
+      "section": "mega",
+      "displayOrder": 324
+    },
+    {
+      "name": "オヒュカスクイーンＶ３",
+      "section": "mega",
+      "displayOrder": 325
+    },
+    {
+      "name": "オヒュカスクイーンＸ",
+      "section": "mega",
+      "displayOrder": 326
+    },
+    {
+      "name": "ジェミニスパーク",
+      "section": "mega",
+      "displayOrder": 327
+    },
+    {
+      "name": "ジェミニスパークＶ２",
+      "section": "mega",
+      "displayOrder": 328
+    },
+    {
+      "name": "ジェミニスパークＶ３",
+      "section": "mega",
+      "displayOrder": 329
+    },
+    {
+      "name": "ジェミニスパークＸ",
+      "section": "mega",
+      "displayOrder": 330
+    },
+    {
+      "name": "キャンサーバブル",
+      "section": "mega",
+      "displayOrder": 331
+    },
+    {
+      "name": "キャンサーバブルＶ２",
+      "section": "mega",
+      "displayOrder": 332
+    },
+    {
+      "name": "キャンサーバブルＶ３",
+      "section": "mega",
+      "displayOrder": 333
+    },
+    {
+      "name": "キャンサーバブルＸ",
+      "section": "mega",
+      "displayOrder": 334
+    },
+    {
+      "name": "クラウンサンダー",
+      "section": "mega",
+      "displayOrder": 335
+    },
+    {
+      "name": "クラウンサンダーＶ２",
+      "section": "mega",
+      "displayOrder": 336
+    },
+    {
+      "name": "クラウンサンダーＶ３",
+      "section": "mega",
+      "displayOrder": 337
+    },
+    {
+      "name": "クラウンサンダーＸ",
+      "section": "mega",
+      "displayOrder": 338
+    },
+    {
+      "name": "イエティブリザード",
+      "section": "mega",
+      "displayOrder": 339
+    },
+    {
+      "name": "イエティブリザードＶ２",
+      "section": "mega",
+      "displayOrder": 340
+    },
+    {
+      "name": "イエティブリザードＶ３",
+      "section": "mega",
+      "displayOrder": 341
+    },
+    {
+      "name": "イエティブリザードＸ",
+      "section": "mega",
+      "displayOrder": 342
+    },
+    {
+      "name": "ブラキオウェーブ",
+      "section": "mega",
+      "displayOrder": 343
+    },
+    {
+      "name": "ブラキオウェーブＶ２",
+      "section": "mega",
+      "displayOrder": 344
+    },
+    {
+      "name": "ブラキオウェーブＶ３",
+      "section": "mega",
+      "displayOrder": 345
+    },
+    {
+      "name": "ブラキオウェーブＸ",
+      "section": "mega",
+      "displayOrder": 346
+    },
+    {
+      "name": "コンドルジオグラフ",
+      "section": "mega",
+      "displayOrder": 347
+    },
+    {
+      "name": "コンドルジオグラフＶ２",
+      "section": "mega",
+      "displayOrder": 348
+    },
+    {
+      "name": "コンドルジオグラフＶ３",
+      "section": "mega",
+      "displayOrder": 349
+    },
+    {
+      "name": "コンドルジオグラフＸ",
+      "section": "mega",
+      "displayOrder": 350
+    },
+    {
+      "name": "オリガジェネラル",
+      "section": "mega",
+      "displayOrder": 351
+    },
+    {
+      "name": "オリガジェネラルＶ２",
+      "section": "mega",
+      "displayOrder": 352
+    },
+    {
+      "name": "オリガジェネラルＶ３",
+      "section": "mega",
+      "displayOrder": 353
+    },
+    {
+      "name": "オリガジェネラルＸ",
+      "section": "mega",
+      "displayOrder": 354
+    },
+    {
+      "name": "アポロンフレイム",
+      "section": "mega",
+      "displayOrder": 355
+    },
+    {
+      "name": "アポロンフレイムＶ２",
+      "section": "mega",
+      "displayOrder": 356
+    },
+    {
+      "name": "アポロンフレイムＶ３",
+      "section": "mega",
+      "displayOrder": 357
+    },
+    {
+      "name": "アポロンフレイムＸ",
+      "section": "mega",
+      "displayOrder": 358
+    },
+    {
+      "name": "シリウス",
+      "section": "mega",
+      "displayOrder": 359
+    },
+    {
+      "name": "シリウスＶ２",
+      "section": "mega",
+      "displayOrder": 360
+    },
+    {
+      "name": "シリウスＶ３",
+      "section": "mega",
+      "displayOrder": 361
+    },
+    {
+      "name": "シリウスＸ",
+      "section": "mega",
+      "displayOrder": 362
+    },
+    {
+      "name": "アクシスジェット",
+      "section": "mega",
+      "displayOrder": 363
+    },
+    {
+      "name": "アクシスジェットＶ２",
+      "section": "mega",
+      "displayOrder": 364
+    },
+    {
+      "name": "アクシスジェットＶ３",
+      "section": "mega",
+      "displayOrder": 365
+    },
+    {
+      "name": "アクシスジェットＸ",
+      "section": "mega",
+      "displayOrder": 366
+    },
+    {
+      "name": "Ｂアイスハンマー",
+      "section": "mega",
+      "displayOrder": 367
+    },
+    {
+      "name": "ＢアイスハンマーＶ２",
+      "section": "mega",
+      "displayOrder": 368
+    },
+    {
+      "name": "ＢアイスハンマーＶ３",
+      "section": "mega",
+      "displayOrder": 369
+    },
+    {
+      "name": "ＢアイスハンマーＸ",
+      "section": "mega",
+      "displayOrder": 370
+    },
+    {
+      "name": "ストロングスイング",
+      "section": "mega",
+      "displayOrder": 371
+    },
+    {
+      "name": "ストロングスイングＶ２",
+      "section": "mega",
+      "displayOrder": 372
+    },
+    {
+      "name": "ストロングスイングＶ３",
+      "section": "mega",
+      "displayOrder": 373
+    },
+    {
+      "name": "ストロングスイングＸ",
+      "section": "mega",
+      "displayOrder": 374
+    },
+    {
+      "name": "ウィングブレード",
+      "section": "giga",
+      "displayOrder": 375
+    },
+    {
+      "name": "ダークネスホール",
+      "section": "giga",
+      "displayOrder": 376
+    },
+    {
+      "name": "サウザンドキック",
+      "section": "giga",
+      "displayOrder": 377,
+      "aliases": [
+        "サウサンドキック"
+      ]
+    },
+    {
+      "name": "ブレイクカウントボム",
+      "section": "giga",
+      "displayOrder": 378
+    },
+    {
+      "name": "ムーリジェクション",
+      "section": "giga",
+      "displayOrder": 379
+    },
+    {
+      "name": "Ｇメテオレーザー",
+      "section": "giga",
+      "displayOrder": 380,
+      "aliases": [
+        "Gメテオレイザー"
+      ]
+    },
+    {
+      "name": "デストロイミサイル",
+      "section": "giga",
+      "displayOrder": 381
+    },
+    {
+      "name": "バスターマックス",
+      "section": "giga",
+      "displayOrder": 382
+    },
+    {
+      "name": "オックスタックル",
+      "section": "giga",
+      "displayOrder": 383
+    },
+    {
+      "name": "ドッペルミラー",
+      "section": "giga",
+      "displayOrder": 384
+    },
+    {
+      "name": "アシッドイリーガル",
+      "section": "mega",
+      "displayOrder": 385
+    },
+    {
+      "name": "メテオオブクリムゾン",
+      "section": "giga",
+      "displayOrder": 386
+    },
+    {
+      "name": "ペガサスマジックGX",
+      "section": "giga",
+      "displayOrder": 387
+    },
+    {
+      "name": "レオキングダムGX",
+      "section": "giga",
+      "displayOrder": 388
+    },
+    {
+      "name": "ドラゴンスカイGX",
+      "section": "giga",
+      "displayOrder": 389
+    },
+    {
+      "name": "ゴルゴンアイ",
+      "section": "giga",
+      "displayOrder": 390
+    },
+    {
+      "name": "ジェミニサンダー",
+      "section": "giga",
+      "displayOrder": 391
+    },
+    {
+      "name": "ブライブレイク",
+      "section": "giga",
+      "displayOrder": 392
+    },
+    {
+      "name": "ナダレダイコ",
+      "section": "giga",
+      "displayOrder": 393
+    },
+    {
+      "name": "フライングインパクト",
+      "section": "giga",
+      "displayOrder": 394
+    },
+    {
+      "name": "ゲキリュウウェーブ",
+      "section": "giga",
+      "displayOrder": 395
+    },
+    {
+      "name": "ライトオブセイント",
+      "section": "giga",
+      "displayOrder": 396
+    },
+    {
+      "name": "ペインフレイム",
+      "section": "giga",
+      "displayOrder": 397,
+      "aliases": [
+        "ペインヘルフレイム"
+      ]
+    }
+  ]
+}

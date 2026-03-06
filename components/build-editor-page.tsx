@@ -15,7 +15,15 @@ import {
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
 import { useAppData } from "@/hooks/use-app-data";
-import { getCardSuggestions, getKnownCardSources, getSourceSuggestions } from "@/lib/wily-card-catalog";
+import {
+  MMSF3_GIGA_CARD_LABELS,
+  MMSF3_MEGA_CARD_LABELS,
+  MMSF3_WHITE_CARD_SET_OPTIONS,
+  getMmsf3WhiteCardSetCards,
+  isKnownMmsf3WhiteCardSet,
+} from "@/lib/mmsf3-roulette-options";
+import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
+import { getCardSuggestions, getSourceSuggestions, sortCardSuggestions } from "@/lib/wily-card-catalog";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,
@@ -43,7 +51,8 @@ const BROTHER_KIND_OPTIONS: { value: BrotherKind; label: string }[] = [
   { value: "real", label: "リアル" },
   { value: "event", label: "限定配信/イベント" },
 ];
-const EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v1";
+const EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v2";
+const LEGACY_EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v1";
 
 function cloneBuild(build: BuildRecord) {
   return JSON.parse(JSON.stringify(build)) as BuildRecord;
@@ -103,13 +112,18 @@ function buildEditorHref(game: GameId, version: VersionId, buildId?: string | nu
   return `/editor?${params.toString()}`;
 }
 
-function buildEditorDraftStorageKey(buildId: string | null, requestedGame: string | null, requestedVersion: string | null) {
+function buildEditorDraftStorageKey(
+  buildId: string | null,
+  requestedGame: string | null,
+  requestedVersion: string | null,
+  prefix = EDITOR_DRAFT_STORAGE_KEY_PREFIX,
+) {
   if (buildId) {
-    return `${EDITOR_DRAFT_STORAGE_KEY_PREFIX}/build/${buildId}`;
+    return `${prefix}/build/${buildId}`;
   }
 
   const { game, version } = resolveRequestedGameVersion(requestedGame, requestedVersion);
-  return `${EDITOR_DRAFT_STORAGE_KEY_PREFIX}/new/${game}/${version}`;
+  return `${prefix}/new/${game}/${version}`;
 }
 
 function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
@@ -192,9 +206,12 @@ function validateBuild(build: BuildRecord) {
   }
 
   if (build.game === "mmsf3") {
-    const { whiteCards, megaCards, gigaCards, noise, rivalNoise } = build.gameSpecificSections.mmsf3;
-    if (whiteCards.length > (rule.limits.whiteCards ?? 4)) {
-      errors.push("ホワイトカードは最大4枚までです。");
+    const { whiteCardSetId, megaCards, gigaCards, noise, rivalNoise } = build.gameSpecificSections.mmsf3;
+    const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
+    errors.push(...folderValidation.errors);
+
+    if (!isKnownMmsf3WhiteCardSet(whiteCardSetId)) {
+      errors.push("ホワイトカードセットが不正です。");
     }
     if (megaCards.length > (rule.limits.megaCards ?? 5)) {
       errors.push("メガカード候補は最大5枚までです。");
@@ -400,14 +417,12 @@ function SourceListEditor({
   onChange,
   nameSuggestions,
   sourceSuggestions,
-  helperItems,
 }: {
   title: string;
   entries: BuildSourceEntry[];
   onChange: (entries: BuildSourceEntry[]) => void;
   nameSuggestions: string[];
   sourceSuggestions: string[];
-  helperItems?: Array<{ name: string; sources: string[] }>;
 }) {
   const nameListId = useId();
   const sourceListId = useId();
@@ -457,33 +472,16 @@ function SourceListEditor({
             <button
               type="button"
               className="secondary-button"
-              onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
+              onClick={() => {
+                const nextEntries = entries.filter((item) => item.id !== entry.id);
+                onChange(nextEntries.length > 0 ? nextEntries : [buildEmptySource()]);
+              }}
             >
               削除
             </button>
           </div>
         ))}
       </div>
-      <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptySource()])}>
-        行を追加
-      </button>
-      {helperItems && helperItems.length > 0 && (
-        <div className="mt-5 rounded-2xl border border-cyan-200/10 bg-cyan-300/5 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Known Sources</p>
-          <div className="mt-3 space-y-3">
-            {helperItems.map((item) => (
-              <div key={item.name} className="rounded-2xl border border-white/8 bg-black/15 p-3">
-                <p className="text-sm font-semibold text-white">{item.name}</p>
-                <ul className="mt-2 space-y-1 text-xs leading-6 text-white/70">
-                  {item.sources.map((source) => (
-                    <li key={source}>• {source}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -588,6 +586,10 @@ export function BuildEditorPage() {
     () => buildEditorDraftStorageKey(buildId, requestedGame, requestedVersion),
     [buildId, requestedGame, requestedVersion],
   );
+  const legacyDraftStorageKey = useMemo(
+    () => buildEditorDraftStorageKey(buildId, requestedGame, requestedVersion, LEGACY_EDITOR_DRAFT_STORAGE_KEY_PREFIX),
+    [buildId, requestedGame, requestedVersion],
+  );
   const exportRef = useRef<HTMLDivElement>(null);
   const [draft, setDraft] = useState<BuildRecord | null>(null);
   const [status, setStatus] = useState("");
@@ -617,13 +619,16 @@ export function BuildEditorPage() {
       nextBuild.version = nextSelection.version;
     }
 
-    const restoredDraft = restoreEditorDraft(nextBuild, window.localStorage.getItem(draftStorageKey));
+    const restoredDraft = restoreEditorDraft(
+      nextBuild,
+      window.localStorage.getItem(draftStorageKey) ?? window.localStorage.getItem(legacyDraftStorageKey),
+    );
     setDraft(restoredDraft ?? nextBuild);
 
     if (restoredDraft) {
       setStatus("未保存の編集内容を復元しました。");
     }
-  }, [buildId, createEmptyBuild, draftStorageKey, getBuildById, loaded, requestedGame, requestedVersion]);
+  }, [buildId, createEmptyBuild, draftStorageKey, getBuildById, legacyDraftStorageKey, loaded, requestedGame, requestedVersion]);
 
   useEffect(() => {
     if (!loaded || !draft) {
@@ -643,6 +648,11 @@ export function BuildEditorPage() {
   }, []);
 
   const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0 }), [draft]);
+  const hasValidationErrors = validation.errors.length > 0;
+  const statusToneClass =
+    status.includes("解消") || status.includes("失敗") || status.includes("エラー")
+      ? "text-red-200/90"
+      : "text-cyan-200/80";
 
   if (!loaded || !draft) {
     return (
@@ -653,23 +663,20 @@ export function BuildEditorPage() {
   }
 
   const versionRule = getVersionRuleSet(draft.version);
-  const cardSuggestions = uniqueStrings([
-    ...getCardSuggestions(draft.game, draft.version),
-    ...MASTER_DATA.cardsByGame[draft.game],
-  ]);
+  const cardSuggestions =
+    draft.game === "mmsf3"
+      ? getCardSuggestions(draft.game, draft.version)
+      : sortCardSuggestions(
+          draft.game,
+          uniqueStrings([...getCardSuggestions(draft.game, draft.version), ...MASTER_DATA.cardsByGame[draft.game]]),
+        );
   const abilitySuggestions = MASTER_DATA.abilitiesByGame[draft.game];
   const brotherSuggestions = MASTER_DATA.brothersByGame[draft.game];
-  const knownCardSourceHints = draft.commonSections.cards
-    .map((entry) => {
-      const sources = getKnownCardSources(draft.game, entry.name, draft.version);
-      return entry.name.trim() && sources.length > 0 ? { name: entry.name.trim(), sources } : null;
-    })
-    .filter((item): item is { name: string; sources: string[] } => Boolean(item));
   const sourceSuggestions = uniqueStrings([
     ...getSourceSuggestions(draft.game, draft.version),
     ...MASTER_DATA.sourceTagsByGame[draft.game],
-    ...knownCardSourceHints.flatMap((item) => item.sources),
   ]);
+  const whiteCardSetCards = getMmsf3WhiteCardSetCards(draft.gameSpecificSections.mmsf3.whiteCardSetId);
   const selectedTemplate = templates.find((item) => item.id === draft.strategyTemplateId);
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
@@ -766,7 +773,7 @@ export function BuildEditorPage() {
           </div>
         </div>
 
-        {status && <p className="mt-4 text-sm text-cyan-200/80">{status}</p>}
+        {status && <p className={`mt-4 text-sm ${statusToneClass}`}>{status}</p>}
         <p className="mt-3 text-xs text-white/45">この画面の入力内容はブラウザに一時保存されるため、保存前にリロードしても復元されます。</p>
       </section>
 
@@ -848,7 +855,6 @@ export function BuildEditorPage() {
             onChange={(entries) => updateCommon("cardSources", entries)}
             nameSuggestions={cardSuggestions}
             sourceSuggestions={sourceSuggestions}
-            helperItems={knownCardSourceHints}
           />
 
           <CardListEditor
@@ -1314,25 +1320,35 @@ export function BuildEditorPage() {
                     className="field-shell"
                   />
                 </div>
-                <TagEditor
-                  label="ホワイトカード"
-                  values={draft.gameSpecificSections.mmsf3.whiteCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, whiteCards: clampList(values, 4) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={cardSuggestions}
-                  maxItems={4}
-                />
+                <div className="glass-panel-soft">
+                  <label className="text-sm font-semibold text-white">ホワイトカードセット</label>
+                  <select
+                    value={draft.gameSpecificSections.mmsf3.whiteCardSetId}
+                    onChange={(event) =>
+                      setDraft((current) =>
+                        current
+                          ? {
+                              ...current,
+                              gameSpecificSections: {
+                                ...current.gameSpecificSections,
+                                mmsf3: { ...current.gameSpecificSections.mmsf3, whiteCardSetId: event.target.value },
+                              },
+                            }
+                          : current,
+                      )
+                    }
+                    className="field-shell mt-3"
+                  >
+                    {MMSF3_WHITE_CARD_SET_OPTIONS.map((option) => (
+                      <option key={option.value} value={option.value}>
+                        {option.value}: {option.label}
+                      </option>
+                    ))}
+                  </select>
+                  <p className="mt-3 text-xs leading-6 text-white/60">
+                    {whiteCardSetCards.length > 0 ? whiteCardSetCards.join(" / ") : "ホワイトカードなし"}
+                  </p>
+                </div>
                 <TagEditor
                   label="メガカード候補"
                   values={draft.gameSpecificSections.mmsf3.megaCards}
@@ -1349,7 +1365,7 @@ export function BuildEditorPage() {
                         : current,
                     )
                   }
-                  suggestions={cardSuggestions}
+                  suggestions={MMSF3_MEGA_CARD_LABELS}
                   maxItems={5}
                 />
                 <TagEditor
@@ -1368,7 +1384,7 @@ export function BuildEditorPage() {
                         : current,
                     )
                   }
-                  suggestions={cardSuggestions}
+                  suggestions={MMSF3_GIGA_CARD_LABELS}
                   maxItems={1}
                 />
                 <TagEditor
@@ -1458,15 +1474,15 @@ export function BuildEditorPage() {
         </div>
 
         <div className="grid gap-6">
-          <div className="glass-panel">
-            <div className="flex items-center gap-3 text-sm font-semibold text-white">
-              <AlertTriangle className="size-4 text-amber-300" />
+          <div className={`glass-panel ${hasValidationErrors ? "ring-1 ring-red-400/20" : ""}`}>
+            <div className={`flex items-center gap-3 text-sm font-semibold ${hasValidationErrors ? "text-red-100" : "text-white"}`}>
+              <AlertTriangle className={`size-4 ${hasValidationErrors ? "text-red-300" : "text-cyan-200"}`} />
               バリデーション
             </div>
             <div className="mt-4 grid gap-4">
               <div className="glass-panel-soft">
                 <p className="text-sm font-semibold text-white">カード総数</p>
-                <p className="mt-2 text-sm text-white/72">
+                <p className={`mt-2 text-sm ${validation.totalCards > versionRule.folderLimit ? "text-red-200/90" : "text-white/72"}`}>
                   {validation.totalCards} / {versionRule.folderLimit}
                 </p>
               </div>
@@ -1478,9 +1494,9 @@ export function BuildEditorPage() {
                 </p>
               </div>
 
-              <div className="glass-panel-soft">
+              <div className={`glass-panel-soft ${hasValidationErrors ? "bg-red-500/8 ring-1 ring-red-400/25" : ""}`}>
                 <p className="text-sm font-semibold text-white">状態</p>
-                {validation.errors.length > 0 ? (
+                {hasValidationErrors ? (
                   <ul className="mt-3 space-y-2 text-sm leading-7 text-red-200/90">
                     {validation.errors.map((error) => (
                       <li key={error}>• {error}</li>

@@ -73,7 +73,7 @@ export interface Mmsf3Sections {
   noiseAbilities: string[];
   nfb: string;
   mergeNoiseTarget: string;
-  whiteCards: string[];
+  whiteCardSetId: string;
   megaCards: string[];
   gigaCards: string[];
   teamSize: number;
@@ -127,7 +127,6 @@ export interface VersionRuleSet {
   notes: string[];
   limits: {
     brothers?: number;
-    whiteCards?: number;
     megaCards?: number;
     gigaCards?: number;
     legendCards?: number;
