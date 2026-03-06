@@ -804,7 +804,12 @@ export function BuildEditorPage() {
       <section className="grid gap-6 2xl:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)]">
         <div className="grid min-w-0 gap-6">
           <div className="glass-panel">
-            <div className="grid gap-4 md:grid-cols-[1.1fr_0.45fr_0.45fr]">
+            <div>
+              <p className="text-sm font-semibold text-white">基本情報</p>
+              <p className="mt-1 text-sm text-white/60">構築名、作品、概要、タグ、戦法メモをまとめて編集します。</p>
+            </div>
+
+            <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr_0.45fr_0.45fr]">
               <input
                 value={draft.title}
                 onChange={(event) => setDraft((current) => (current ? { ...current, title: event.target.value } : current))}
@@ -848,23 +853,83 @@ export function BuildEditorPage() {
               </select>
             </div>
 
-            <div className="mt-4">
-              <textarea
-                value={draft.commonSections.overview}
-                onChange={(event) => updateCommon("overview", event.target.value)}
-                placeholder="構築全体の概要や狙い"
-                className="field-shell min-h-28 w-full"
-              />
+            <div className="mt-4 grid gap-6 2xl:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+              <div className="min-w-0">
+                <textarea
+                  value={draft.commonSections.overview}
+                  onChange={(event) => updateCommon("overview", event.target.value)}
+                  placeholder="構築全体の概要や狙い"
+                  className="field-shell min-h-48 w-full"
+                />
+              </div>
+
+              <div className="grid min-w-0 gap-6">
+                <TagEditor
+                  label="構築タグ"
+                  values={draft.commonSections.tags}
+                  onChange={(values) => updateCommon("tags", values)}
+                  suggestions={["対戦用", "大会想定", "速攻", "コントロール", "安定重視"]}
+                  placeholder="タグ追加"
+                />
+
+                <div className="glass-panel-soft">
+                  <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <p className="text-sm font-semibold text-white">戦法保存</p>
+                      <p className="text-sm text-white/60">テンプレートの適用と、構築固有の戦法メモをここで管理します。</p>
+                    </div>
+                    <div className="flex flex-wrap gap-3">
+                      <select
+                        value={draft.strategyTemplateId ?? ""}
+                        onChange={(event) =>
+                          setDraft((current) =>
+                            current ? { ...current, strategyTemplateId: event.target.value || null } : current,
+                          )
+                        }
+                        className="field-shell min-w-60"
+                      >
+                        <option value="">テンプレート未選択</option>
+                        {templates.map((template) => (
+                          <option key={template.id} value={template.id}>
+                            {template.name}
+                          </option>
+                        ))}
+                      </select>
+                      <button
+                        type="button"
+                        className="secondary-button"
+                        onClick={() => {
+                          setDraft((current) => (current ? applyTemplateToBuild(current, selectedTemplate) : current));
+                          setStatus("テンプレートを構築に適用しました。");
+                        }}
+                      >
+                        <WandSparkles className="mr-2 size-4" />
+                        適用
+                      </button>
+                      <Link href="/templates" className="secondary-button">
+                        テンプレ一覧へ
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 grid gap-4 md:grid-cols-2">
+                    <input
+                      value={draft.commonSections.strategyName}
+                      onChange={(event) => updateCommon("strategyName", event.target.value)}
+                      placeholder="戦法名"
+                      className="field-shell"
+                    />
+                    <textarea
+                      value={draft.commonSections.strategyNote}
+                      onChange={(event) => updateCommon("strategyNote", event.target.value)}
+                      placeholder="立ち回りや狙い"
+                      className="field-shell min-h-28"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <TagEditor
-            label="構築タグ"
-            values={draft.commonSections.tags}
-            onChange={(values) => updateCommon("tags", values)}
-            suggestions={["対戦用", "大会想定", "速攻", "コントロール", "安定重視"]}
-            placeholder="タグ追加"
-          />
 
           <CardListEditor
             title="対戦構築カード"
@@ -902,62 +967,6 @@ export function BuildEditorPage() {
             onChange={(entries) => updateCommon("brothers", entries)}
             suggestions={brotherSuggestions}
           />
-
-          <div className="glass-panel">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-white">戦法保存</p>
-                <p className="text-sm text-white/60">テンプレートの適用と、構築固有の戦法メモをここで管理します。</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <select
-                  value={draft.strategyTemplateId ?? ""}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current ? { ...current, strategyTemplateId: event.target.value || null } : current,
-                    )
-                  }
-                  className="field-shell min-w-60"
-                >
-                  <option value="">テンプレート未選択</option>
-                  {templates.map((template) => (
-                    <option key={template.id} value={template.id}>
-                      {template.name}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  className="secondary-button"
-                  onClick={() => {
-                    setDraft((current) => (current ? applyTemplateToBuild(current, selectedTemplate) : current));
-                    setStatus("テンプレートを構築に適用しました。");
-                  }}
-                >
-                  <WandSparkles className="mr-2 size-4" />
-                  適用
-                </button>
-                <Link href="/templates" className="secondary-button">
-                  テンプレ一覧へ
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-4 grid gap-4 md:grid-cols-2">
-              <input
-                value={draft.commonSections.strategyName}
-                onChange={(event) => updateCommon("strategyName", event.target.value)}
-                placeholder="戦法名"
-                className="field-shell"
-              />
-              <textarea
-                value={draft.commonSections.strategyNote}
-                onChange={(event) => updateCommon("strategyNote", event.target.value)}
-                placeholder="立ち回りや狙い"
-                className="field-shell min-h-28"
-              />
-            </div>
-          </div>
 
           <div className="glass-panel">
             <p className="text-sm font-semibold text-white">作品固有セクション</p>
