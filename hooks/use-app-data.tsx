@@ -10,6 +10,7 @@ import {
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
 import { DEFAULT_MMSF3_WHITE_CARD_SET_ID } from "@/lib/mmsf3-roulette-options";
+import { normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3-noise-cards";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
   BuildCardEntry,
@@ -70,6 +71,16 @@ function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
   };
 }
 
+function normalizeBuildSourceEntry(entry: CommonSections["cardSources"][number]): CommonSections["cardSources"][number] {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    source: entry.source ?? "",
+    notes: entry.notes ?? "",
+    isOwned: Boolean(entry.isOwned),
+  };
+}
+
 function createDefaultGameSpecificSections(): GameSpecificSections {
   return {
     mmsf1: {
@@ -95,6 +106,7 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       noiseRate: 0,
       pgms: [],
       noiseAbilities: [],
+      noiseCardIds: normalizeMmsf3NoiseCardIds(),
       nfb: "",
       mergeNoiseTarget: "",
       whiteCardSetId: DEFAULT_MMSF3_WHITE_CARD_SET_ID,
@@ -161,7 +173,11 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       overview: normalizedOverview,
       strategyNote: normalizedStrategyNote,
       cards: (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
+      cardSources: (build.commonSections?.cardSources ?? []).map((entry) => normalizeBuildSourceEntry(entry as CommonSections["cardSources"][number])),
       abilities: (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
+      abilitySources: (build.commonSections?.abilitySources ?? []).map((entry) =>
+        normalizeBuildSourceEntry(entry as CommonSections["abilitySources"][number]),
+      ),
     },
     gameSpecificSections: {
       ...createDefaultGameSpecificSections(),
@@ -169,6 +185,7 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,
         ...nextMmsf3Sections,
+        noiseCardIds: normalizeMmsf3NoiseCardIds(nextMmsf3Sections.noiseCardIds),
         rouletteNotes: normalizedRouletteNotes,
       },
     },

@@ -11,6 +11,18 @@ export type VersionId =
   | "red-joker";
 
 export type BrotherKind = "story" | "auto" | "real" | "event";
+export type NoiseCardMark = "♥" | "♦" | "♠" | "♣" | "★";
+export type NoiseCardRank = "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+export type NoiseHandId =
+  | "two-pair"
+  | "three-card"
+  | "straight"
+  | "flush"
+  | "full-house"
+  | "four-card"
+  | "straight-flush"
+  | "royal-straight-flush"
+  | "five-card";
 
 export interface BuildCardEntry {
   id: string;
@@ -25,6 +37,7 @@ export interface BuildSourceEntry {
   name: string;
   source: string;
   notes: string;
+  isOwned: boolean;
 }
 
 export interface BrotherProfile {
@@ -33,6 +46,33 @@ export interface BrotherProfile {
   kind: BrotherKind;
   favoriteCards: string[];
   notes: string;
+}
+
+export interface Mmsf3NoiseCard {
+  id: string;
+  label: string;
+  mark: NoiseCardMark;
+  rank: NoiseCardRank | null;
+  cardName: string;
+  cardEffect: string;
+  isJoker: boolean;
+}
+
+export interface NoiseHandResult {
+  id: NoiseHandId;
+  no: number;
+  label: string;
+  bonusEffect: string;
+  flushSuit: Exclude<NoiseCardMark, "★"> | null;
+}
+
+export interface NoiseHandEvaluation {
+  selectedCards: Mmsf3NoiseCard[];
+  bestHand: NoiseHandResult | null;
+  bonusEffect: string | null;
+  flushSuit: Exclude<NoiseCardMark, "★"> | null;
+  jokerSubstitutionNote: string | null;
+  errors: string[];
 }
 
 export interface CommonSections {
@@ -72,6 +112,7 @@ export interface Mmsf3Sections {
   noiseRate: number;
   pgms: string[];
   noiseAbilities: string[];
+  noiseCardIds: string[];
   nfb: string;
   mergeNoiseTarget: string;
   whiteCardSetId: string;

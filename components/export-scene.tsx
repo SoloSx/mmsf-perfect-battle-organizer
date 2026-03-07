@@ -2,6 +2,7 @@
 
 import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
+import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
 import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
@@ -80,6 +81,31 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
   }
 }
 
+function getMmsf3SystemSnapshotLines(build: BuildRecord) {
+  const evaluation = evaluateNoiseHand(build.gameSpecificSections.mmsf3.noiseCardIds);
+  const selectedCount = build.gameSpecificSections.mmsf3.noiseCardIds.filter(Boolean).length;
+  const lines = [build.gameSpecificSections.mmsf3.noise || build.gameSpecificSections.mmsf3.nfb || "ノイズ情報未設定"];
+
+  if (evaluation.errors.length > 0) {
+    return [...lines, ...evaluation.errors];
+  }
+
+  if (selectedCount < 5) {
+    lines.push(`ノイズドカード ${selectedCount}/5`);
+  } else if (evaluation.bestHand) {
+    lines.push(`ノイズハンド: ${evaluation.bestHand.label}`);
+    lines.push(...evaluation.bestHand.bonusEffect.split("\n").map((effect) => `効果: ${effect}`));
+  } else {
+    lines.push("ノイズハンド: 役なし");
+  }
+
+  for (const card of evaluation.selectedCards) {
+    lines.push(`${card.label} / ${card.cardEffect}`);
+  }
+
+  return lines;
+}
+
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
   const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; isRegular: boolean }>>((tiles, entry) => {
@@ -104,6 +130,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean).slice(0, 8);
   const brothers = build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
   const notes = [...MASTER_DATA.versionHighlights[build.version], ...getSpecialNotes(build)].slice(0, 6);
+  const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];
 
   return (
     <div
@@ -241,13 +268,19 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 </div>
                 <div className="rounded-[24px] bg-white/8 p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">System Snapshot</p>
-                  <p className="mt-3 text-sm leading-6 text-white/82">
-                    {build.game === "mmsf1" && (build.gameSpecificSections.mmsf1.warRockWeapon || "ウォーロック装備未設定")}
-                    {build.game === "mmsf2" &&
-                      (build.gameSpecificSections.mmsf2.bestCombo || build.gameSpecificSections.mmsf2.tribeNotes || "トライブ情報未設定")}
-                    {build.game === "mmsf3" &&
-                      (build.gameSpecificSections.mmsf3.noise || build.gameSpecificSections.mmsf3.nfb || "ノイズ情報未設定")}
-                  </p>
+                  {build.game === "mmsf3" ? (
+                    <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
+                      {mmsf3SystemSnapshotLines.map((line, index) => (
+                        <li key={`${line}-${index}`}>• {line}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="mt-3 text-sm leading-6 text-white/82">
+                      {build.game === "mmsf1" && (build.gameSpecificSections.mmsf1.warRockWeapon || "ウォーロック装備未設定")}
+                      {build.game === "mmsf2" &&
+                        (build.gameSpecificSections.mmsf2.bestCombo || build.gameSpecificSections.mmsf2.tribeNotes || "トライブ情報未設定")}
+                    </p>
+                  )}
                 </div>
               </div>
             </section>

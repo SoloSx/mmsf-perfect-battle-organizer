@@ -1,4 +1,11 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Locator } from "@playwright/test";
+
+async function selectNoiseCard(panel: Locator, index: number, searchText: string, optionName: string) {
+  const input = panel.getByRole("combobox").nth(index);
+  await input.click();
+  await input.fill(searchText);
+  await panel.getByRole("option", { name: optionName }).click();
+}
 
 test("mmsf3 editor shows white card set and folder validation", async ({ page }) => {
   await page.addInitScript(() => {
@@ -197,4 +204,110 @@ test("mmsf3 editor allows only one REG card and marks it in export preview", asy
   expect(regularCardBorder.borderColor).not.toBe("rgba(0, 0, 0, 0)");
   expect(regularCardBorder.borderWidth).toBe("5px");
   expect(regularCardBorder.boxShadow).not.toBe("none");
+});
+
+test("mmsf3 editor evaluates noise hand bonus, filters duplicate cards, and updates export preview", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const noiseCardPanel = page
+    .locator("label", { hasText: "ノイズドカード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await selectNoiseCard(noiseCardPanel, 0, "アンドロメダ", "★: アンドロメダN(マックスバスター)");
+
+  await noiseCardPanel.getByRole("combobox").nth(1).click();
+  await expect(noiseCardPanel.getByRole("option", { name: "★: ラ・ムーN(Sインビジブル)" })).toHaveCount(0);
+  await expect(noiseCardPanel.getByRole("option", { name: "★: アンドロメダN(マックスバスター)" })).toHaveCount(0);
+  await page.keyboard.press("Escape");
+
+  await selectNoiseCard(noiseCardPanel, 1, "ジェミニ", "♠A: ジェミニ・スパークN(サンダーG.A+)");
+  await selectNoiseCard(noiseCardPanel, 2, "イナドラン", "♠2: イナドランN(サンダー+10)");
+  await selectNoiseCard(noiseCardPanel, 3, "ムーン", "♠3: ムーン・ディザスターN(HP+300)");
+  await selectNoiseCard(noiseCardPanel, 4, "ゴロボルタ", "♠4: ゴロボルタN(SPクラウド)");
+
+  await expect(noiseCardPanel).toContainText("ストレートフラッシュ");
+  await expect(noiseCardPanel).toContainText("メガクラス+1");
+  await expect(noiseCardPanel).toContainText("ギガクラス+1");
+  await expect(noiseCardPanel).toContainText("マックスバスター");
+
+  const brotherSystemSection = page
+    .locator("h3", { hasText: "Brother & System" })
+    .locator("xpath=ancestor::section[1]");
+  await expect(brotherSystemSection).toContainText("ノイズハンド: ストレートフラッシュ");
+  await expect(brotherSystemSection).toContainText("効果: メガクラス+1");
+  await expect(brotherSystemSection).toContainText("★: アンドロメダN(マックスバスター) / マックスバスター");
+});
+
+test("mmsf3 editor applies straight sequence rules for noise hands", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const noiseCardPanel = page
+    .locator("label", { hasText: "ノイズドカード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await selectNoiseCard(noiseCardPanel, 0, "ピラニッシュ", "♦10: ピラニッシュN(HP+250)");
+  await selectNoiseCard(noiseCardPanel, 1, "ステルス", "♠J: ステルスN(HP+150)");
+  await selectNoiseCard(noiseCardPanel, 2, "パサラン", "♣Q: パサランN(Sリカバリー30)");
+  await selectNoiseCard(noiseCardPanel, 3, "ペガサス", "♦K: ペガサス・マジックN(アクアG.A+)");
+  await selectNoiseCard(noiseCardPanel, 4, "レオ", "♥A: レオ・キングダムN(ファイアG.A+)");
+
+  await expect(noiseCardPanel).toContainText("ストレート");
+  await expect(noiseCardPanel).toContainText("HP+300");
+
+  await selectNoiseCard(noiseCardPanel, 0, "モアイアン", "♥2: モアイアンN(ブレイク+10)");
+  await expect(noiseCardPanel).toContainText("役なし");
+  await expect(noiseCardPanel).toContainText("ノイズハンドボーナスは発生しません。");
+});
+
+test("mmsf3 editor prefers the highest noise hand when multiple hands overlap", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const noiseCardPanel = page
+    .locator("label", { hasText: "ノイズドカード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await selectNoiseCard(noiseCardPanel, 0, "レオ", "♥A: レオ・キングダムN(ファイアG.A+)");
+  await selectNoiseCard(noiseCardPanel, 1, "プルミン", "♦A: プルミンN(アクア+10)");
+  await selectNoiseCard(noiseCardPanel, 2, "ジェミニ", "♠A: ジェミニ・スパークN(サンダーG.A+)");
+  await selectNoiseCard(noiseCardPanel, 3, "カブホーン", "♣A: カブホーンN(HP+250)");
+  await selectNoiseCard(noiseCardPanel, 4, "アンドロメダ", "★: アンドロメダN(マックスバスター)");
+
+  await expect(noiseCardPanel).toContainText("ファイブカード");
+  await expect(noiseCardPanel).toContainText("ステータスガード");
+  await expect(noiseCardPanel).not.toContainText("フォーカード");
+});
+
+test("mmsf3 editor reports invalid imported noise card states", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem(
+      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      JSON.stringify({
+        game: "mmsf3",
+        version: "black-ace",
+        gameSpecificSections: {
+          mmsf3: {
+            noiseCardIds: ["60", "61", "60", "", ""],
+          },
+        },
+      }),
+    );
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  await expect(page.getByText("同じノイズドカードは重複して選択できません。").first()).toBeVisible();
+  await expect(page.getByText("流星マークのカードは1枚までです。").first()).toBeVisible();
 });

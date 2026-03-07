@@ -12,8 +12,17 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
+import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { useAppData } from "@/hooks/use-app-data";
+import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
+import {
+  getMmsf3NoiseCardById,
+  getMmsf3NoiseCardSelectionErrors,
+  getMmsf3NoiseCardsForSlot,
+  normalizeMmsf3NoiseCardIds,
+  MMSF3_NOISE_CARD_SLOT_COUNT,
+} from "@/lib/mmsf3-noise-cards";
 import {
   MMSF3_GIGA_CARD_LABELS,
   MMSF3_MEGA_CARD_LABELS,
@@ -22,7 +31,7 @@ import {
   isKnownMmsf3WhiteCardSet,
 } from "@/lib/mmsf3-roulette-options";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
-import { getCardSuggestions, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
+import { getCardSuggestions, getKnownCardSources, getSourceDescription, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,
@@ -39,6 +48,7 @@ import type {
   BuildSourceEntry,
   CommonSections,
   GameId,
+  NoiseHandEvaluation,
   VersionId,
 } from "@/lib/types";
 import { createId, uniqueStrings } from "@/lib/utils";
@@ -49,6 +59,7 @@ const BROTHER_KIND_OPTIONS: { value: BrotherKind; label: string }[] = [
   { value: "real", label: "リアル" },
   { value: "event", label: "限定配信/イベント" },
 ];
+const BATTLE_CARD_ROW_GRID_CLASS = "min-[1180px]:grid-cols-[minmax(0,1fr)_110px_88px_112px]";
 const EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v2";
 const LEGACY_EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v1";
 
@@ -61,7 +72,7 @@ function buildEmptyCard(): BuildCardEntry {
 }
 
 function buildEmptySource(): BuildSourceEntry {
-  return { id: createId(), name: "", source: "", notes: "" };
+  return { id: createId(), name: "", source: "", notes: "", isOwned: false };
 }
 
 function buildEmptyBrother(): BrotherProfile {
@@ -209,9 +220,10 @@ function validateBuild(build: BuildRecord) {
   }
 
   if (build.game === "mmsf3") {
-    const { whiteCardSetId, megaCards, gigaCards, noise, rivalNoise } = build.gameSpecificSections.mmsf3;
+    const { whiteCardSetId, megaCards, gigaCards, noise, rivalNoise, noiseCardIds } = build.gameSpecificSections.mmsf3;
     const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
     errors.push(...folderValidation.errors);
+    errors.push(...getMmsf3NoiseCardSelectionErrors(noiseCardIds));
 
     if (!isKnownMmsf3WhiteCardSet(whiteCardSetId)) {
       errors.push("ホワイトカードセットが不正です。");
@@ -235,6 +247,258 @@ function validateBuild(build: BuildRecord) {
   }
 
   return { errors, totalCards };
+}
+
+function NoiseHandSummary({
+  evaluation,
+  selectedCount,
+}: {
+  evaluation: NoiseHandEvaluation;
+  selectedCount: number;
+}) {
+  const bestHand = evaluation.bestHand;
+  const bonusLines = bestHand?.bonusEffect.split("\n") ?? [];
+
+  return (
+    <div className="rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(90,72,196,0.28),rgba(255,255,255,0.05))] p-3">
+      <div className="mb-3">
+        <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">Noise Hand Bonus</p>
+      </div>
+      {evaluation.errors.length > 0 ? (
+        <ul className="mt-3 space-y-2 text-sm leading-6 text-red-100">
+          {evaluation.errors.map((error) => (
+            <li key={error}>• {error}</li>
+          ))}
+        </ul>
+      ) : selectedCount < MMSF3_NOISE_CARD_SLOT_COUNT ? (
+        <div className="mt-4 space-y-3">
+          <div className="flex items-end justify-between gap-3">
+            <p className="text-lg font-semibold text-white">判定待ち</p>
+            <span className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/72">
+              {selectedCount}/{MMSF3_NOISE_CARD_SLOT_COUNT}
+            </span>
+          </div>
+          <p className="text-sm leading-6 text-white/75">5枚そろうとノイズハンドボーナスを判定します。</p>
+        </div>
+      ) : bestHand ? (
+        <div className="mt-4 space-y-4 text-sm leading-6 text-white/82">
+          <div className="grid gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
+            <div>
+              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">成立役</p>
+              <p className="mt-1 text-xl font-semibold text-white">{bestHand.label}</p>
+            </div>
+            <div>
+              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">ボーナス効果</p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {bonusLines.map((line) => (
+                  <li key={line} className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/86">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
+          <p className="text-lg font-semibold text-white">役なし</p>
+          <p>ノイズハンドボーナスは発生しません。</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function NoiseCardEditor({
+  values,
+  onChange,
+  optionsBySlot,
+  evaluation,
+}: {
+  values: string[];
+  onChange: (values: string[]) => void;
+  optionsBySlot: SearchableSelectOption[][];
+  evaluation: NoiseHandEvaluation;
+}) {
+  const selectedCount = values.filter(Boolean).length;
+
+  return (
+    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <label className="text-sm font-semibold text-white">ノイズドカード</label>
+          <p className="mt-1 text-xs leading-5 text-white/52">役判定は順不同。流星マークは 1 枚までです。</p>
+        </div>
+        <span className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/60">
+          {selectedCount}/{MMSF3_NOISE_CARD_SLOT_COUNT}
+        </span>
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
+        {values.map((value, index) => (
+          <div
+            key={`noise-card-slot-${index}`}
+            className="relative z-0 rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-3 focus-within:z-10"
+          >
+            <div className="mb-3">
+              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">
+                SLOT {String(index + 1).padStart(2, "0")}
+              </p>
+            </div>
+            <SearchableSelectInput
+              value={value}
+              onChange={(nextValue) => {
+                const nextValues = [...values];
+                nextValues[index] = nextValue;
+                onChange(normalizeMmsf3NoiseCardIds(nextValues));
+              }}
+              options={optionsBySlot[index]}
+              placeholder="カードを検索"
+              displayValue={
+                value
+                  ? (() => {
+                      const card = getMmsf3NoiseCardById(value);
+                      return card ? `${card.mark}${card.rank ?? ""} ${card.cardName}`.trim() : "";
+                    })()
+                  : ""
+              }
+              className="field-shell min-h-[52px] w-full"
+            />
+            {value ? (
+              <p className="mt-3 line-clamp-2 min-h-10 text-xs leading-5 text-white/62">
+                {getMmsf3NoiseCardById(value)?.cardEffect}
+              </p>
+            ) : (
+              <p className="mt-3 min-h-10 text-xs leading-5 text-white/35">未選択</p>
+            )}
+          </div>
+        ))}
+        <NoiseHandSummary evaluation={evaluation} selectedCount={selectedCount} />
+      </div>
+    </div>
+  );
+}
+
+function getMissingSourceNames(game: GameId, version: VersionId, cards: BuildCardEntry[], sources: BuildSourceEntry[]) {
+  const registeredSourceNames = new Set(
+    sources
+      .map((entry) => ({
+        name: entry.name.trim(),
+        source: entry.source.trim(),
+      }))
+      .filter((entry) => entry.name && entry.source)
+      .map((entry) => entry.name),
+  );
+
+  return uniqueStrings(cards.map((entry) => entry.name.trim()).filter(Boolean)).filter((name) => {
+    if (registeredSourceNames.has(name)) {
+      return false;
+    }
+
+    return getKnownCardSources(game, name, version).length === 0;
+  });
+}
+
+function syncCardSourceEntries(game: GameId, version: VersionId, cards: BuildCardEntry[], sources: BuildSourceEntry[]) {
+  const nextCardNames = uniqueStrings(cards.map((entry) => entry.name.trim()).filter(Boolean));
+
+  if (nextCardNames.length === 0) {
+    return [];
+  }
+
+  const existingEntriesByName = new Map<string, BuildSourceEntry[]>();
+
+  for (const entry of sources) {
+    const name = entry.name.trim();
+    if (!name) {
+      continue;
+    }
+
+    const bucket = existingEntriesByName.get(name) ?? [];
+    bucket.push(entry);
+    existingEntriesByName.set(name, bucket);
+  }
+
+  const nextEntries: BuildSourceEntry[] = [];
+
+  for (const name of nextCardNames) {
+    const existingEntries = [...(existingEntriesByName.get(name) ?? [])];
+    const pullExistingEntry = (predicate: (entry: BuildSourceEntry) => boolean) => {
+      const index = existingEntries.findIndex(predicate);
+
+      if (index === -1) {
+        return null;
+      }
+
+      return existingEntries.splice(index, 1)[0];
+    };
+    const knownSources = getKnownCardSources(game, name, version);
+
+    if (knownSources.length > 0) {
+      for (const source of knownSources) {
+        const matchedEntry = pullExistingEntry((entry) => entry.source.trim() === source) ?? pullExistingEntry((entry) => !entry.source.trim());
+
+        nextEntries.push(
+          matchedEntry
+            ? { ...matchedEntry, name, source }
+            : {
+                id: createId(),
+                name,
+                source,
+                notes: "",
+                isOwned: false,
+              },
+        );
+      }
+
+      for (const entry of existingEntries) {
+        nextEntries.push({ ...entry, name });
+      }
+
+      continue;
+    }
+
+    if (existingEntries.length > 0) {
+      for (const entry of existingEntries) {
+        nextEntries.push({ ...entry, name });
+      }
+
+      continue;
+    }
+
+    nextEntries.push({
+      id: createId(),
+      name,
+      source: "",
+      notes: "",
+      isOwned: false,
+    });
+  }
+
+  return nextEntries;
+}
+
+function haveSameSourceEntries(left: BuildSourceEntry[], right: BuildSourceEntry[]) {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  for (let index = 0; index < left.length; index += 1) {
+    const leftEntry = left[index];
+    const rightEntry = right[index];
+
+    if (
+      leftEntry.id !== rightEntry.id ||
+      leftEntry.name !== rightEntry.name ||
+      leftEntry.source !== rightEntry.source ||
+      leftEntry.notes !== rightEntry.notes ||
+      leftEntry.isOwned !== rightEntry.isOwned
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function TagEditor({
@@ -349,11 +613,7 @@ function CardListEditor({
         {entries.map((entry) => (
           <div
             key={entry.id}
-            className={`relative z-0 grid gap-3 rounded-2xl border p-4 focus-within:z-10 ${
-              allowRegularSelection
-                ? "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_88px_auto]"
-                : "border-white/10 bg-white/6 md:grid-cols-[1fr_110px_auto]"
-            }`}
+            className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${BATTLE_CARD_ROW_GRID_CLASS}`}
           >
             <SearchableSuggestionInput
               value={entry.name}
@@ -384,7 +644,7 @@ function CardListEditor({
                   entry.isRegular
                     ? "border-red-300/70 bg-red-500/15 text-red-100"
                     : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
-                }`}
+                } w-full justify-center`}
                 onClick={() =>
                   onChange(
                     entries.map((item) => ({
@@ -396,10 +656,12 @@ function CardListEditor({
               >
                 REG
               </button>
-            ) : null}
+            ) : (
+              <div aria-hidden="true" className="hidden min-[1180px]:block" />
+            )}
             <button
               type="button"
-              className="secondary-button"
+              className="danger-button w-full justify-center"
               onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
             >
               削除
@@ -418,73 +680,184 @@ function SourceListEditor({
   title,
   entries,
   onChange,
+  game,
+  version,
   nameSuggestions,
   sourceSuggestions,
+  missingNames = [],
+  useKnownSourceSuggestions = false,
+  actionMode = "delete",
 }: {
   title: string;
   entries: BuildSourceEntry[];
   onChange: (entries: BuildSourceEntry[]) => void;
+  game: GameId;
+  version: VersionId;
   nameSuggestions: string[];
   sourceSuggestions: string[];
+  missingNames?: string[];
+  useKnownSourceSuggestions?: boolean;
+  actionMode?: "delete" | "owned";
 }) {
-  const nameListId = useId();
-  const sourceListId = useId();
+  const [selectedSourceInfo, setSelectedSourceInfo] = useState<{
+    name: string;
+    items: Array<{
+      source: string;
+      description: string | null;
+    }>;
+  } | null>(null);
+  const sourceInfoTitleId = useId();
+
+  const groupedOwnedEntries =
+    actionMode === "owned"
+      ? uniqueStrings(entries.map((entry) => entry.name.trim()).filter(Boolean)).map((name) => {
+          const groupedEntries = entries.filter((entry) => entry.name.trim() === name);
+          const items = uniqueStrings(groupedEntries.map((entry) => entry.source.trim()).filter(Boolean))
+            .map((source) => ({
+              source,
+              description: getSourceDescription(game, source),
+            }))
+            .filter((item): item is { source: string; description: string } => Boolean(item.description));
+
+          return {
+            name,
+            isOwned: groupedEntries.every((entry) => entry.isOwned),
+            items,
+          };
+        })
+      : [];
+  const visibleOwnedEntries = actionMode === "owned" ? groupedOwnedEntries.filter((entry) => !entry.isOwned) : [];
 
   return (
-    <div className="glass-panel-soft p-6">
-      <label className="text-sm font-semibold text-white">{title}</label>
-      <datalist id={nameListId}>
-        {nameSuggestions.map((suggestion) => (
-          <option key={suggestion} value={suggestion} />
-        ))}
-      </datalist>
-      <datalist id={sourceListId}>
-        {sourceSuggestions.map((suggestion) => (
-          <option key={suggestion} value={suggestion} />
-        ))}
-      </datalist>
+    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+      <div className="flex items-center justify-between gap-3">
+        <label className="text-sm font-semibold text-white">{title}</label>
+        {missingNames.length > 0 ? <span className="text-xs font-medium text-red-200/85">{missingNames.length}件未入力</span> : null}
+      </div>
+      {missingNames.length > 0 ? (
+        <div className="mt-3 flex flex-wrap gap-2">
+          {missingNames.map((name) => (
+            <span key={name} className="rounded-full border border-red-300/35 bg-red-500/12 px-3 py-1 text-xs font-medium text-red-100">
+              {name}
+            </span>
+          ))}
+        </div>
+      ) : null}
       <div className="mt-4 space-y-3">
-        {entries.map((entry) => (
-          <div key={entry.id} className="grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 md:grid-cols-[0.9fr_1.1fr_0.8fr_auto]">
-            <input
-              list={nameListId}
-              value={entry.name}
-              onChange={(event) =>
-                onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: event.target.value } : item)))
-              }
-              placeholder="対象名"
-              className="field-shell"
-            />
-            <input
-              list={sourceListId}
-              value={entry.source}
-              onChange={(event) =>
-                onChange(entries.map((item) => (item.id === entry.id ? { ...item, source: event.target.value } : item)))
-              }
-              placeholder="入手方法"
-              className="field-shell"
-            />
-            <input
-              value={entry.notes}
-              onChange={(event) =>
-                onChange(entries.map((item) => (item.id === entry.id ? { ...item, notes: event.target.value } : item)))
-              }
-              placeholder="補足"
-              className="field-shell"
-            />
-            <button
-              type="button"
-              className="secondary-button"
-              onClick={() => {
-                const nextEntries = entries.filter((item) => item.id !== entry.id);
-                onChange(nextEntries.length > 0 ? nextEntries : [buildEmptySource()]);
-              }}
-            >
-              削除
+        {actionMode === "owned"
+          ? visibleOwnedEntries.length > 0
+            ? visibleOwnedEntries.map((entry) => (
+              <div
+                key={entry.name}
+                className={`relative z-0 grid items-center gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${BATTLE_CARD_ROW_GRID_CLASS}`}
+              >
+                <div className="field-shell flex min-w-0 items-center">
+                  <span className="truncate">{entry.name}</span>
+                </div>
+                <button
+                  type="button"
+                  className="secondary-button w-full justify-center md:col-span-2"
+                  onClick={() =>
+                    setSelectedSourceInfo((current) =>
+                      current?.name === entry.name
+                        ? null
+                        : {
+                            name: entry.name,
+                            items: entry.items,
+                          },
+                    )
+                  }
+                >
+                  入手方法詳細
+                </button>
+                <button
+                  type="button"
+                  aria-pressed={entry.isOwned}
+                  className={`secondary-button w-full justify-center font-medium ${
+                    entry.isOwned
+                      ? "border-emerald-200/80 bg-emerald-500/24 text-emerald-50 hover:bg-emerald-500/30"
+                      : "border-emerald-300/65 bg-emerald-500/16 text-emerald-100 hover:bg-emerald-500/24"
+                  }`}
+                  onClick={() =>
+                    onChange(
+                      entries.map((item) =>
+                        item.name.trim() === entry.name ? { ...item, isOwned: !entry.isOwned } : item,
+                      ),
+                    )
+                  }
+                >
+                  所持済み
+                </button>
+              </div>
+            ))
+            : (
+              <div className="rounded-3xl border border-emerald-300/28 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-100">
+                未所持のカードはありません。すべて所持済みです。
+              </div>
+            )
+          : entries.map((entry) => {
+              const knownSources =
+                useKnownSourceSuggestions && entry.name.trim() ? getKnownCardSources(game, entry.name.trim(), version) : [];
+              const rowSourceSuggestions = knownSources.length > 0 ? uniqueStrings([...knownSources, ...sourceSuggestions]) : sourceSuggestions;
+
+              return (
+                <div
+                  key={entry.id}
+                  className="relative z-0 grid items-center gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 md:grid-cols-[1fr_110px_auto]"
+                >
+                  <SearchableSuggestionInput
+                    value={entry.name}
+                    onChange={(value) => onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
+                    suggestions={nameSuggestions}
+                    placeholder="対象名"
+                    className="field-shell"
+                  />
+                  <SearchableSuggestionInput
+                    value={entry.source}
+                    onChange={(value) =>
+                      onChange(entries.map((item) => (item.id === entry.id ? { ...item, source: value } : item)))
+                    }
+                    suggestions={rowSourceSuggestions}
+                    placeholder="入手方法"
+                    className="field-shell"
+                  />
+                  <button
+                    type="button"
+                    className="danger-button w-full justify-center"
+                    onClick={() => {
+                      const nextEntries = entries.filter((item) => item.id !== entry.id);
+                      onChange(nextEntries.length > 0 ? nextEntries : [buildEmptySource()]);
+                    }}
+                  >
+                    削除
+                  </button>
+                </div>
+              );
+            })}
+      </div>
+      {selectedSourceInfo && selectedSourceInfo.items.length > 0 ? (
+        <div className="mt-4 rounded-3xl border border-cyan-300/20 bg-cyan-400/8 p-5">
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/70">入手方法詳細</p>
+              <h3 id={sourceInfoTitleId} className="mt-2 text-xl font-black text-white">
+                {selectedSourceInfo.name}
+              </h3>
+            </div>
+            <button type="button" className="secondary-button whitespace-nowrap" onClick={() => setSelectedSourceInfo(null)}>
+              閉じる
             </button>
           </div>
-        ))}
-      </div>
+          <div className="mt-4 space-y-3">
+            {selectedSourceInfo.items.map((item) => (
+              <div key={item.source} className="rounded-2xl border border-white/10 bg-slate-950/28 px-4 py-3">
+                <p className="text-sm font-semibold text-white">{item.source}</p>
+                <p className="mt-2 whitespace-pre-line text-sm leading-7 text-cyan-50/90">{item.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
@@ -555,7 +928,7 @@ function BrotherListEditor({
             />
             <button
               type="button"
-              className="secondary-button"
+              className="danger-button"
               onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
             >
               削除
@@ -650,7 +1023,50 @@ export function BuildEditorPage() {
     return () => window.removeEventListener("beforeunload", handleBeforeUnload);
   }, []);
 
+  useEffect(() => {
+    setDraft((current) => {
+      if (!current) {
+        return current;
+      }
+
+      const nextCardSources = syncCardSourceEntries(
+        current.game,
+        current.version,
+        current.commonSections.cards,
+        current.commonSections.cardSources,
+      );
+
+      if (haveSameSourceEntries(current.commonSections.cardSources, nextCardSources)) {
+        return current;
+      }
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          cardSources: nextCardSources,
+        },
+      };
+    });
+  }, [draft?.game, draft?.version, draft?.commonSections.cards]);
+
   const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0 }), [draft]);
+  const noiseCardIds = useMemo(
+    () => normalizeMmsf3NoiseCardIds(draft?.gameSpecificSections.mmsf3.noiseCardIds ?? []),
+    [draft?.gameSpecificSections.mmsf3.noiseCardIds],
+  );
+  const noiseHandEvaluation = useMemo(() => evaluateNoiseHand(noiseCardIds), [noiseCardIds]);
+  const noiseCardOptionsBySlot = useMemo(
+    () =>
+      noiseCardIds.map((_, slotIndex) => [
+        { value: "", label: "未選択" },
+        ...getMmsf3NoiseCardsForSlot(noiseCardIds, slotIndex).map((card) => ({
+          value: card.id,
+          label: card.label,
+        })),
+      ]),
+    [noiseCardIds],
+  );
   const hasValidationErrors = validation.errors.length > 0;
   const statusToneClass =
     status.includes("解消") || status.includes("失敗") || status.includes("エラー")
@@ -679,6 +1095,7 @@ export function BuildEditorPage() {
     ...getSourceSuggestions(draft.game, draft.version),
     ...MASTER_DATA.sourceTagsByGame[draft.game],
   ]);
+  const missingCardSourceNames = getMissingSourceNames(draft.game, draft.version, draft.commonSections.cards, draft.commonSections.cardSources);
   const whiteCardSetCards = getMmsf3WhiteCardSetCards(draft.gameSpecificSections.mmsf3.whiteCardSetId);
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
@@ -865,8 +1282,13 @@ export function BuildEditorPage() {
             title="カード入手方法"
             entries={draft.commonSections.cardSources}
             onChange={(entries) => updateCommon("cardSources", entries)}
+            game={draft.game}
+            version={draft.version}
             nameSuggestions={cardSuggestions}
             sourceSuggestions={sourceSuggestions}
+            missingNames={missingCardSourceNames}
+            useKnownSourceSuggestions
+            actionMode="owned"
           />
 
           <CardListEditor
@@ -880,6 +1302,8 @@ export function BuildEditorPage() {
             title="アビリティ入手方法"
             entries={draft.commonSections.abilitySources}
             onChange={(entries) => updateCommon("abilitySources", entries)}
+            game={draft.game}
+            version={draft.version}
             nameSuggestions={abilitySuggestions}
             sourceSuggestions={sourceSuggestions}
           />
@@ -1305,6 +1729,24 @@ export function BuildEditorPage() {
                     {whiteCardSetCards.length > 0 ? whiteCardSetCards.join(" / ") : "ホワイトカードなし"}
                   </p>
                 </div>
+                <NoiseCardEditor
+                  values={noiseCardIds}
+                  onChange={(values) =>
+                    setDraft((current) =>
+                      current
+                        ? {
+                            ...current,
+                            gameSpecificSections: {
+                              ...current.gameSpecificSections,
+                              mmsf3: { ...current.gameSpecificSections.mmsf3, noiseCardIds: values },
+                            },
+                          }
+                        : current,
+                    )
+                  }
+                  optionsBySlot={noiseCardOptionsBySlot}
+                  evaluation={noiseHandEvaluation}
+                />
                 <TagEditor
                   label="メガカード候補"
                   values={draft.gameSpecificSections.mmsf3.megaCards}
