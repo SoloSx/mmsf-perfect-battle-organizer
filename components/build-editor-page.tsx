@@ -461,7 +461,7 @@ function SourceListEditor({
               onChange={(event) =>
                 onChange(entries.map((item) => (item.id === entry.id ? { ...item, source: event.target.value } : item)))
               }
-              placeholder="入手元"
+              placeholder="入手方法"
               className="field-shell"
             />
             <input
@@ -862,7 +862,7 @@ export function BuildEditorPage() {
           />
 
           <SourceListEditor
-            title="カード入手元"
+            title="カード入手方法"
             entries={draft.commonSections.cardSources}
             onChange={(entries) => updateCommon("cardSources", entries)}
             nameSuggestions={cardSuggestions}
@@ -877,7 +877,7 @@ export function BuildEditorPage() {
           />
 
           <SourceListEditor
-            title="アビリティ入手元"
+            title="アビリティ入手方法"
             entries={draft.commonSections.abilitySources}
             onChange={(entries) => updateCommon("abilitySources", entries)}
             nameSuggestions={abilitySuggestions}
