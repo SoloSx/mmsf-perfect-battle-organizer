@@ -129,7 +129,7 @@ export const MMSF3_GIGA_CARD_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "18A", label: "フライングインパクト" },
   { value: "18B", label: "ゲキリュウウェーブ" },
   { value: "18C", label: "ライトオブセイント" },
-  { value: "18D", label: "ペインフレイム" },
+  { value: "18D", label: "ペインヘルフレイム" },
 ];
 
 export const MMSF3_MEGA_CARD_OPTIONS: Mmsf3RouletteOption[] = [

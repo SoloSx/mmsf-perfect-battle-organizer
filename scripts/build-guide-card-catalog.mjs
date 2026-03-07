@@ -113,12 +113,277 @@ function extractCardsFromSection(game, section, html) {
     .filter(Boolean);
 }
 
+function normalizeIllegalHeader(value) {
+  return value.replace(/\n+/g, " / ").trim();
+}
+
+function extractIllegalSourceDescriptions(html) {
+  const legendTableMatch = html.match(/<TABLE border="1">[\s\S]*?<TH>区分け<\/TH>[\s\S]*?<\/TABLE>/i);
+
+  if (!legendTableMatch) {
+    return {};
+  }
+
+  const rows = [...legendTableMatch[0].matchAll(/<TR[^>]*>([\s\S]*?)<\/TR>/gi)].map((rowMatch) =>
+    [...rowMatch[0].matchAll(/<T[DH]([^>]*)>([\s\S]*?)<\/T[DH]>/gi)].map((cellMatch) => ({
+      attrs: cellMatch[1] ?? "",
+      value: cleanHtmlText(cellMatch[2] ?? ""),
+    })),
+  );
+
+  const headerRowIndex = rows.findIndex((cells) => cells.length >= 2 && cells[0]?.value === "区分け" && cells[1]?.value === "説明");
+
+  if (headerRowIndex === -1) {
+    return {};
+  }
+
+  return Object.fromEntries(
+    rows
+      .slice(headerRowIndex + 1)
+      .map((cells) => {
+        if (cells.length < 2) {
+          return null;
+        }
+
+        const label = normalizeIllegalHeader(cells[0].value);
+        const description = cells[1].value;
+
+        if (!label || !description) {
+          return null;
+        }
+
+        return [label, description];
+      })
+      .filter(Boolean),
+  );
+}
+
+function extractIllegalCardsFromSection(game, section, html) {
+  const rows = [...html.matchAll(/<TR[^>]*>([\s\S]*?)<\/TR>/gi)].map((rowMatch) =>
+    [...rowMatch[0].matchAll(/<T[DH]([^>]*)>([\s\S]*?)<\/T[DH]>/gi)].map((cellMatch) => ({
+      attrs: cellMatch[1] ?? "",
+      value: cleanHtmlText(cellMatch[2] ?? ""),
+    })),
+  );
+
+  const headerRowIndex = rows.findIndex(
+    (cells) => cells.length >= 3 && cells[0]?.value === "No." && cells[1]?.value === "名前",
+  );
+
+  if (headerRowIndex === -1) {
+    return [];
+  }
+
+  const headerLabels = rows[headerRowIndex].slice(2).map((cell) => normalizeIllegalHeader(cell.value));
+
+  return rows
+    .slice(headerRowIndex + 1)
+    .map((cells, index) => {
+      if (cells.length < 2) {
+        return null;
+      }
+
+      const no = cells[0].value;
+      const name = cells[1].value;
+
+      if (!name || (no && !/^(?:-|\d+)$/.test(no))) {
+        return null;
+      }
+
+      return {
+        game,
+        section,
+        number: /^\d+$/.test(no) ? Number(no) : index + 1,
+        version: null,
+        name,
+        details: cells
+          .slice(2, 2 + headerLabels.length)
+          .flatMap((cell, cellIndex) => (cell.value.includes("○") ? [headerLabels[cellIndex]] : [])),
+      };
+    })
+    .filter(Boolean);
+}
+
+function splitMegaRankDetails(value) {
+  const sections = {
+    normal: [],
+    v2: [],
+    v3: [],
+  };
+  let current = null;
+
+  for (const line of value.split("\n").map((item) => item.trim()).filter(Boolean)) {
+    if (line === "ノーマル") {
+      current = "normal";
+      continue;
+    }
+
+    if (line === "Ｖ２") {
+      current = "v2";
+      continue;
+    }
+
+    if (line.startsWith("Ｖ３")) {
+      current = "v3";
+      continue;
+    }
+
+    if (current) {
+      sections[current].push(line);
+    }
+  }
+
+  return sections;
+}
+
+function extractMmsf3MegaCardsFromSection(game, section, html) {
+  const rows = [...html.matchAll(/<TR[^>]*>([\s\S]*?)<\/TR>/gi)].map((rowMatch) =>
+    [...rowMatch[0].matchAll(/<T[DH]([^>]*)>([\s\S]*?)<\/T[DH]>/gi)].map((cellMatch) => ({
+      attrs: cellMatch[1] ?? "",
+      value: cleanHtmlText(cellMatch[2] ?? ""),
+    })),
+  );
+
+  const headerRowIndex = rows.findIndex(
+    (cells) => cells.length >= 3 && cells[0]?.value === "No." && cells[1]?.value === "名前" && cells[2]?.value === "入手方法",
+  );
+
+  if (headerRowIndex === -1) {
+    return [];
+  }
+
+  const entries = [];
+
+  for (let index = headerRowIndex + 1; index < rows.length; index += 1) {
+    const cells = rows[index];
+
+    if (cells.length < 2 || !/^\d+$/.test(cells[0].value) || !cells[1].value) {
+      continue;
+    }
+
+    const rowspan = Number(cells[2]?.attrs.match(/rowspan="?(\d+)"/i)?.[1] ?? 1);
+
+    if (cells[2] && rowspan > 1) {
+      const groupedRows = rows.slice(index, index + rowspan);
+      const rankDetails = splitMegaRankDetails(cells[2].value);
+      const detailsByOffset = [rankDetails.normal, rankDetails.v2, rankDetails.v3];
+
+      groupedRows.forEach((groupedCells, groupedIndex) => {
+        if (groupedCells.length < 2 || !/^\d+$/.test(groupedCells[0].value) || !groupedCells[1].value) {
+          return;
+        }
+
+        entries.push({
+          game,
+          section,
+          number: Number(groupedCells[0].value),
+          version: null,
+          name: groupedCells[1].value,
+          details: detailsByOffset[groupedIndex] ?? [],
+        });
+      });
+
+      index += rowspan - 1;
+      continue;
+    }
+
+    entries.push({
+      game,
+      section,
+      number: Number(cells[0].value),
+      version: null,
+      name: cells[1].value,
+      details: cells.slice(2).map((cell) => cell.value).filter(isMeaningfulDetail),
+    });
+  }
+
+  return entries;
+}
+
+function upsertCatalogEntry(entries, nextEntry) {
+  const index = entries.findIndex(
+    (entry) => entry.game === nextEntry.game && entry.section === nextEntry.section && entry.name === nextEntry.name,
+  );
+
+  if (index === -1) {
+    entries.push(nextEntry);
+    return;
+  }
+
+  entries[index] = {
+    ...entries[index],
+    ...nextEntry,
+  };
+}
+
+function findCatalogEntry(entries, game, name) {
+  return entries.find((entry) => entry.game === game && entry.name === name) ?? null;
+}
+
+function applyMmsf3SourceOverrides(entries) {
+  const acidAceV3 = findCatalogEntry(entries, "mmsf3", "アシッドエースＶ３");
+  const acidAceV2 = findCatalogEntry(entries, "mmsf3", "アシッドエースＶ２");
+
+  if (acidAceV2 && acidAceV3 && acidAceV2.details.length === 0) {
+    acidAceV2.details = [...acidAceV3.details];
+  }
+
+  const libraBalance1 = findCatalogEntry(entries, "mmsf3", "リブラバランス１");
+  if (libraBalance1) {
+    upsertCatalogEntry(entries, {
+      ...libraBalance1,
+      name: "リブラバランス",
+    });
+  }
+
+  const painHellFlame = findCatalogEntry(entries, "mmsf3", "ペインヘルフレイム");
+  if (painHellFlame) {
+    upsertCatalogEntry(entries, {
+      ...painHellFlame,
+      name: "ペインフレイム",
+    });
+  }
+
+  upsertCatalogEntry(entries, {
+    game: "mmsf3",
+    section: "gentei",
+    number: 1,
+    version: null,
+    name: "アシッドイリーガル",
+    details: ["次世代ワールドホビーフェア'09 winterで配信"],
+    assetLocalPath: null,
+  });
+
+  upsertCatalogEntry(entries, {
+    game: "mmsf3",
+    section: "gentei",
+    number: 2,
+    version: null,
+    name: "メテオオブクリムゾン",
+    details: ["次世代ワールドホビーフェア'09 summerで配信"],
+    assetLocalPath: null,
+  });
+
+  for (const name of ["ペガサスマジックGX", "レオキングダムGX", "ドラゴンスカイGX"]) {
+    upsertCatalogEntry(entries, {
+      game: "mmsf3",
+      section: "gentei",
+      number: 0,
+      version: null,
+      name,
+      details: ["配信"],
+      assetLocalPath: null,
+    });
+  }
+}
+
 function normalizeToken(value) {
   return value.normalize("NFKC").toLowerCase().replace(/\s+/g, "").replace(/[・\-_＋+★☆()（）/]/g, "");
 }
 
 const aliases = JSON.parse(readFileSync(aliasFile, "utf8")).entries;
 const catalogEntries = [];
+const sourceDescriptionsByGame = {};
 
 for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
   const html = readGuideHtml(file);
@@ -129,7 +394,18 @@ for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
     }
 
     const sectionHtml = extractSectionHtml(html, SECTION_ORDER[game], section);
-    for (const card of extractCardsFromSection(game, section, sectionHtml)) {
+    if (game === "mmsf3" && section === "illegal") {
+      sourceDescriptionsByGame[game] = extractIllegalSourceDescriptions(sectionHtml);
+    }
+
+    const extractedCards =
+      game === "mmsf3" && section === "illegal"
+        ? extractIllegalCardsFromSection(game, section, sectionHtml)
+        : game === "mmsf3" && section === "mega"
+          ? extractMmsf3MegaCardsFromSection(game, section, sectionHtml)
+        : extractCardsFromSection(game, section, sectionHtml);
+
+    for (const card of extractedCards) {
       const asset =
         aliases.find(
           (entry) =>
@@ -150,5 +426,7 @@ for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
   }
 }
 
-writeFileSync(outFile, JSON.stringify({ entries: catalogEntries }, null, 2));
+applyMmsf3SourceOverrides(catalogEntries);
+
+writeFileSync(outFile, JSON.stringify({ entries: catalogEntries, sourceDescriptionsByGame }, null, 2));
 console.log(`guide-card-catalog.json written with ${catalogEntries.length} entries`);

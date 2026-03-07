@@ -2400,12 +2400,9 @@
       "assetLocalPath": "/assets/cards/SF3/Cards/SecretGiga/xxx_holy_light.PNG"
     },
     {
-      "name": "ペインフレイム",
+      "name": "ペインヘルフレイム",
       "section": "giga",
       "displayOrder": 397,
-      "aliases": [
-        "ペインヘルフレイム"
-      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/SecretGiga/xxx_wicked_flame.PNG"
     }
   ]

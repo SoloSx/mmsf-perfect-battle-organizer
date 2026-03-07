@@ -107,7 +107,7 @@ export function SearchableSuggestionInput({
   };
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         ref={inputRef}
         role="combobox"
@@ -182,7 +182,7 @@ export function SearchableSuggestionInput({
           }
         }}
         placeholder={placeholder}
-        className={className}
+        className={className ? `w-full ${className}` : "w-full"}
       />
       {isOpen && (
         <div

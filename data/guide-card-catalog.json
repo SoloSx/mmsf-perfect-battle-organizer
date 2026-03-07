@@ -6733,7 +6733,7 @@
       "version": null,
       "name": "スペードマグネッツ",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nコダマタウン：校門近くのウェーブロードの突き当り\nニホンのコスモウェーブ１（ランダム（金））\nＶ３（ランダム）\nコダマタウン\nおくじょう\nニホンのコスモウェーブ１\nニホンのコスモウェーブ２"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m01_spademagnets.png"
     },
@@ -6743,7 +6743,10 @@
       "number": 2,
       "version": null,
       "name": "スペードマグネッツＶ２",
-      "details": [],
+      "details": [
+        "コダマタウン：校門近くのウェーブロードの突き当り",
+        "ニホンのコスモウェーブ１（ランダム（金））"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m02_spademagnetsv2.png"
     },
     {
@@ -6752,7 +6755,12 @@
       "number": 3,
       "version": null,
       "name": "スペードマグネッツＶ３",
-      "details": [],
+      "details": [
+        "コダマタウン",
+        "おくじょう",
+        "ニホンのコスモウェーブ１",
+        "ニホンのコスモウェーブ２"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m03_spademagnetsV3.png"
     },
     {
@@ -6762,7 +6770,8 @@
       "version": null,
       "name": "ダイヤアイスバーン",
       "details": [
-        "ノーマル\nイベントで対戦\nニホンのコスモウェーブ１(ランダム（金）)\nＶ２\nオクダマスタジオ：エリア右下の方にある、ロの字型になっている通路\nＶ３（ランダム）\nとくせつステージ\nニホンのコスモウェーブ１\nニホンのコスモウェーブ２\nスタジオかんない"
+        "イベントで対戦",
+        "ニホンのコスモウェーブ１(ランダム（金）)"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m04_diaiceburn.png"
     },
@@ -6772,7 +6781,9 @@
       "number": 5,
       "version": null,
       "name": "ダイヤアイスバーンＶ２",
-      "details": [],
+      "details": [
+        "オクダマスタジオ：エリア右下の方にある、ロの字型になっている通路"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m05_diaiceburnv2.png"
     },
     {
@@ -6781,7 +6792,12 @@
       "number": 6,
       "version": null,
       "name": "ダイヤアイスバーンＶ３",
-      "details": [],
+      "details": [
+        "とくせつステージ",
+        "ニホンのコスモウェーブ１",
+        "ニホンのコスモウェーブ２",
+        "スタジオかんない"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m06_diaiceburnv3.png"
     },
     {
@@ -6791,7 +6807,7 @@
       "version": null,
       "name": "クラブストロング",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nシーサーアイランド：左下の通路の途中\nＶ３（ランダム）\nニホンのコスモウェーブ１\nシーサーアイランド\nシーサーじょう\nビーチ"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m07_clubstrong.png"
     },
@@ -6801,7 +6817,9 @@
       "number": 8,
       "version": null,
       "name": "クラブストロングＶ２",
-      "details": [],
+      "details": [
+        "シーサーアイランド：左下の通路の途中"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m08_clubstrongv2.png"
     },
     {
@@ -6810,7 +6828,12 @@
       "number": 9,
       "version": null,
       "name": "クラブストロングＶ３",
-      "details": [],
+      "details": [
+        "ニホンのコスモウェーブ１",
+        "シーサーアイランド",
+        "シーサーじょう",
+        "ビーチ"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m09_clubstrongv3.png"
     },
     {
@@ -6820,7 +6843,7 @@
       "version": null,
       "name": "クイーンヴァルゴ",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nしれい室：ウェーブロードに乗ってすぐ左の短い突き当たり\nＶ３（ランダム）\nサテラポリスほんぶ\nノイズウェーブ１\nノイズウェーブ２\nオービタルベース\nノイズウェーブ３"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m10_queenvirgo.png"
     },
@@ -6830,7 +6853,9 @@
       "number": 11,
       "version": null,
       "name": "クイーンヴァルゴＶ２",
-      "details": [],
+      "details": [
+        "しれい室：ウェーブロードに乗ってすぐ左の短い突き当たり"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m11_queenvirgov2.png"
     },
     {
@@ -6839,7 +6864,13 @@
       "number": 12,
       "version": null,
       "name": "クイーンヴァルゴＶ３",
-      "details": [],
+      "details": [
+        "サテラポリスほんぶ",
+        "ノイズウェーブ１",
+        "ノイズウェーブ２",
+        "オービタルベース",
+        "ノイズウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m12_queenvirgov3.png"
     },
     {
@@ -6849,7 +6880,7 @@
       "version": null,
       "name": "ジャックコーヴァス",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nおくじょう：屋上から２Ｆへ下りる坂の途中の突き当たり\nＶ３（ランダム）\nノイズウェーブ２\nクリムゾンこうじょう\nオービタルベース"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m13_jackcorvus.png"
     },
@@ -6859,7 +6890,9 @@
       "number": 14,
       "version": null,
       "name": "ジャックコーヴァスＶ２",
-      "details": [],
+      "details": [
+        "おくじょう：屋上から２Ｆへ下りる坂の途中の突き当たり"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m14_jackcorvusv2.png"
     },
     {
@@ -6868,7 +6901,11 @@
       "number": 15,
       "version": null,
       "name": "ジャックコーヴァスＶ３",
-      "details": [],
+      "details": [
+        "ノイズウェーブ２",
+        "クリムゾンこうじょう",
+        "オービタルベース"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m15_jackcorvusv3.png"
     },
     {
@@ -6878,7 +6915,7 @@
       "version": null,
       "name": "グレイブジョーカー",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nクリムゾンこうじょう：上の階のウェーブステーションから上がってすぐ左上の通路の突き当たり\nＶ３（ランダム）\nノイズウェーブ４\nそとうちゅうのコスモウェーブ２\nＦＭ星のコスモウェーブ１\nＦＭ星のコスモウェーブ２\nＦＭ星のコスモウェーブ３"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m16_gravejoker.png"
     },
@@ -6888,7 +6925,9 @@
       "number": 17,
       "version": null,
       "name": "グレイブジョーカーＶ２",
-      "details": [],
+      "details": [
+        "クリムゾンこうじょう：上の階のウェーブステーションから上がってすぐ左上の通路の突き当たり"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m17_gravejokerv2.png"
     },
     {
@@ -6897,7 +6936,13 @@
       "number": 18,
       "version": null,
       "name": "グレイブジョーカーＶ３",
-      "details": [],
+      "details": [
+        "ノイズウェーブ４",
+        "そとうちゅうのコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ１",
+        "ＦＭ星のコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m18_gravejokerv3.png"
     },
     {
@@ -6907,7 +6952,7 @@
       "version": null,
       "name": "アシッドエース",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nＶ３（ランダム）\nそとうちゅうのコスモウェーブ１\nそとうちゅうのコスモウェーブ２\nＦＭ星のコスモウェーブ１\nＦＭ星のコスモウェーブ２\nＦＭ星のコスモウェーブ３"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m19_acidace.png"
     },
@@ -6917,7 +6962,13 @@
       "number": 20,
       "version": null,
       "name": "アシッドエースＶ２",
-      "details": [],
+      "details": [
+        "そとうちゅうのコスモウェーブ１",
+        "そとうちゅうのコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ１",
+        "ＦＭ星のコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m20_acidacev2.png"
     },
     {
@@ -6926,7 +6977,13 @@
       "number": 21,
       "version": null,
       "name": "アシッドエースＶ３",
-      "details": [],
+      "details": [
+        "そとうちゅうのコスモウェーブ１",
+        "そとうちゅうのコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ１",
+        "ＦＭ星のコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m21_acidacev3.png"
     },
     {
@@ -6936,7 +6993,7 @@
       "version": null,
       "name": "オックスファイア",
       "details": [
-        "ノーマル\nゴン太と対戦\nＶ２\nゴン太と対戦\nＶ３（ランダム）\n１Ｆろうか\nスピカモール\nイベントかいじょう\nオクダマスタジオ\nスタジオかんない\nニホンのコスモウェーブ１\nニホンのコスモウェーブ２"
+        "ゴン太と対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m22_oxfire.png"
     },
@@ -6946,7 +7003,9 @@
       "number": 23,
       "version": null,
       "name": "オックスファイアＶ２",
-      "details": [],
+      "details": [
+        "ゴン太と対戦"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m23_oxfirev2.png"
     },
     {
@@ -6955,7 +7014,15 @@
       "number": 24,
       "version": null,
       "name": "オックスファイアＶ３",
-      "details": [],
+      "details": [
+        "１Ｆろうか",
+        "スピカモール",
+        "イベントかいじょう",
+        "オクダマスタジオ",
+        "スタジオかんない",
+        "ニホンのコスモウェーブ１",
+        "ニホンのコスモウェーブ２"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m24_oxfirev3.png"
     },
     {
@@ -6965,7 +7032,7 @@
       "version": null,
       "name": "キグナスウィング",
       "details": [
-        "ノーマル\nサテラポリスほんぶ：宇田海　しんすけと対戦\nＶ２\nサテラポリスほんぶ：宇田海　しんすけと対戦\nＶ３（ランダム）\nスピカモール\nイベントかいじょう\nニホンのコスモウェーブ１\nニホンのコスモウェーブ２\nビーチ"
+        "サテラポリスほんぶ：宇田海　しんすけと対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m25_cygnuswing.png"
     },
@@ -6975,7 +7042,9 @@
       "number": 26,
       "version": null,
       "name": "キグナスウィングＶ２",
-      "details": [],
+      "details": [
+        "サテラポリスほんぶ：宇田海　しんすけと対戦"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m26_cygnuswingv2.png"
     },
     {
@@ -6984,7 +7053,13 @@
       "number": 27,
       "version": null,
       "name": "キグナスウィングＶ３",
-      "details": [],
+      "details": [
+        "スピカモール",
+        "イベントかいじょう",
+        "ニホンのコスモウェーブ１",
+        "ニホンのコスモウェーブ２",
+        "ビーチ"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m27_cygnuswingv3.png"
     },
     {
@@ -6994,7 +7069,7 @@
       "version": null,
       "name": "ウルフフォレスト",
       "details": [
-        "ノーマル\nおくじょう：尾上　十郎と対戦\nＶ２\nおくじょう：尾上　十郎と対戦\nＶ３（ランダム）\nノイズウェーブ２\nノイズウェーブ３\nちかシェルター"
+        "おくじょう：尾上　十郎と対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m28_wolfforest.png"
     },
@@ -7004,7 +7079,9 @@
       "number": 29,
       "version": null,
       "name": "ウルフフォレストＶ２",
-      "details": [],
+      "details": [
+        "おくじょう：尾上　十郎と対戦"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m29_wolfforestv2.png"
     },
     {
@@ -7013,7 +7090,11 @@
       "number": 30,
       "version": null,
       "name": "ウルフフォレストＶ３",
-      "details": [],
+      "details": [
+        "ノイズウェーブ２",
+        "ノイズウェーブ３",
+        "ちかシェルター"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m30_wolfforestv3.png"
     },
     {
@@ -7023,7 +7104,7 @@
       "version": null,
       "name": "ファントムブラック",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nニホンのコスモウェーブ２：下の方の通路の突き当たり\nＶ３（ランダム）\nＷＡＸＡニホンしぶ\nしれい室\nオービタルベース\nノイズウェーブ１\nノイズウェーブ２\nノイズウェーブ３"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m31_phantomblack.png"
     },
@@ -7033,7 +7114,9 @@
       "number": 32,
       "version": null,
       "name": "ファントムブラックＶ２",
-      "details": [],
+      "details": [
+        "ニホンのコスモウェーブ２：下の方の通路の突き当たり"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m32_phantomblackv2.png"
     },
     {
@@ -7042,7 +7125,14 @@
       "number": 33,
       "version": null,
       "name": "ファントムブラックＶ３",
-      "details": [],
+      "details": [
+        "ＷＡＸＡニホンしぶ",
+        "しれい室",
+        "オービタルベース",
+        "ノイズウェーブ１",
+        "ノイズウェーブ２",
+        "ノイズウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m33_phantomblackv3.png"
     },
     {
@@ -7052,7 +7142,7 @@
       "version": null,
       "name": "ブライ",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nシーサーアイランドで対戦\nＶ３（ランダム）\nそとうちゅうのコスモウェーブ２\nノイズウェーブ６\nＦＭ星のコスモウェーブ１\nＦＭ星のコスモウェーブ３"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m34_burai.png"
     },
@@ -7062,7 +7152,9 @@
       "number": 35,
       "version": null,
       "name": "ブライＶ２",
-      "details": [],
+      "details": [
+        "シーサーアイランドで対戦"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m35_buraiv2.png"
     },
     {
@@ -7071,7 +7163,12 @@
       "number": 36,
       "version": null,
       "name": "ブライＶ３",
-      "details": [],
+      "details": [
+        "そとうちゅうのコスモウェーブ２",
+        "ノイズウェーブ６",
+        "ＦＭ星のコスモウェーブ１",
+        "ＦＭ星のコスモウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m36_buraiv3.png"
     },
     {
@@ -7081,7 +7178,7 @@
       "version": null,
       "name": "ムーンディザスター",
       "details": [
-        "ノーマル\nニホンのコスモウェーブ２で対戦\nＶ２\nニホンのコスモウェーブ２で対戦\nＶ３（ランダム）\nノイズウェーブ５\nＦＭ星のコスモウェーブ２\nＦＭ星のコスモウェーブ３"
+        "ニホンのコスモウェーブ２で対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m37_moondisaster.png"
     },
@@ -7091,7 +7188,9 @@
       "number": 38,
       "version": null,
       "name": "ムーンディザスターＶ２",
-      "details": [],
+      "details": [
+        "ニホンのコスモウェーブ２で対戦"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m38_moondisasterv2.png"
     },
     {
@@ -7100,7 +7199,11 @@
       "number": 39,
       "version": null,
       "name": "ムーンディザスターＶ３",
-      "details": [],
+      "details": [
+        "ノイズウェーブ５",
+        "ＦＭ星のコスモウェーブ２",
+        "ＦＭ星のコスモウェーブ３"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m39_moondisasterv3.png"
     },
     {
@@ -7110,7 +7213,7 @@
       "version": null,
       "name": "アポロンフレイム",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nノイズウェーブ６：上のほうの凹凸のくぼみ\nＶ３（ランダム）\nブラックホールサーバー１\nブラックホールサーバー２"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m40_apolloflame.png"
     },
@@ -7120,7 +7223,9 @@
       "number": 41,
       "version": null,
       "name": "アポロンフレイムＶ２",
-      "details": [],
+      "details": [
+        "ノイズウェーブ６：上のほうの凹凸のくぼみ"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m41_apolloflamev2.png"
     },
     {
@@ -7129,7 +7234,10 @@
       "number": 42,
       "version": null,
       "name": "アポロンフレイムＶ３",
-      "details": [],
+      "details": [
+        "ブラックホールサーバー１",
+        "ブラックホールサーバー２"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m42_apolloflamev3.png"
     },
     {
@@ -7139,7 +7247,7 @@
       "version": null,
       "name": "シリウス",
       "details": [
-        "ノーマル\nイベントで対戦\nＶ２\nブラックホールサーバー２：右上のほうの四角い場所\nＶ３（ランダム）\nブラックホールサーバー１\nブラックホールサーバー２"
+        "イベントで対戦"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m43_sirius.png"
     },
@@ -7149,7 +7257,9 @@
       "number": 44,
       "version": null,
       "name": "シリウスＶ２",
-      "details": [],
+      "details": [
+        "ブラックホールサーバー２：右上のほうの四角い場所"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m44_siriusv2.png"
     },
     {
@@ -7158,7 +7268,10 @@
       "number": 45,
       "version": null,
       "name": "シリウスＶ３",
-      "details": [],
+      "details": [
+        "ブラックホールサーバー１",
+        "ブラックホールサーバー２"
+      ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Mega/m45_siriusv3.png"
     },
     {
@@ -7270,6 +7383,2492 @@
         "ノイズウェーブ１のノイズのかけら交換屋"
       ],
       "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g5j_dopplemirror.png"
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 1,
+      "version": null,
+      "name": "インパクトキャノン",
+      "details": [
+        "序盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 2,
+      "version": null,
+      "name": "プラズマガンＸ",
+      "details": [
+        "序盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 3,
+      "version": null,
+      "name": "エアスプレッドＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 4,
+      "version": null,
+      "name": "グリーンインク",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 5,
+      "version": null,
+      "name": "ブルーインク",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 6,
+      "version": null,
+      "name": "パープルインク",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 7,
+      "version": null,
+      "name": "ヒートグレネード",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 8,
+      "version": null,
+      "name": "グリーングレネード",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 9,
+      "version": null,
+      "name": "アイスグレネード",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 10,
+      "version": null,
+      "name": "ビッググレネード",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 11,
+      "version": null,
+      "name": "マッドバルカンＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 12,
+      "version": null,
+      "name": "エドギリブレードＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 13,
+      "version": null,
+      "name": "エレキスラッシュ",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 14,
+      "version": null,
+      "name": "ウッドスラッシュ",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 15,
+      "version": null,
+      "name": "ファイアスラッシュ",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 16,
+      "version": null,
+      "name": "ブレイクサーベル",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 17,
+      "version": null,
+      "name": "ブレイクサーベルＸ",
+      "details": [
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 18,
+      "version": null,
+      "name": "ジャイアントアックス",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 19,
+      "version": null,
+      "name": "ムラマサブレード",
+      "details": [
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 20,
+      "version": null,
+      "name": "ソードファイター１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 21,
+      "version": null,
+      "name": "ソードファイター２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 22,
+      "version": null,
+      "name": "ソードファイター３",
+      "details": [
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 23,
+      "version": null,
+      "name": "ソードファイターＸ",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 24,
+      "version": null,
+      "name": "ウィンディアタックＸ",
+      "details": [
+        "序盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 25,
+      "version": null,
+      "name": "シンクロフックＸ",
+      "details": [
+        "終盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 26,
+      "version": null,
+      "name": "スタンナックル",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 27,
+      "version": null,
+      "name": "ポイズンナックル",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 28,
+      "version": null,
+      "name": "フリーズナックル",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 29,
+      "version": null,
+      "name": "デストロイアッパー",
+      "details": [
+        "序盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 30,
+      "version": null,
+      "name": "ドリルアームＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 31,
+      "version": null,
+      "name": "ハリケーンダンス",
+      "details": [
+        "Ｖ３ボス",
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 32,
+      "version": null,
+      "name": "プラチナメテオ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 33,
+      "version": null,
+      "name": "ゼツメツメテオ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 34,
+      "version": null,
+      "name": "レーダーミサイル",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 35,
+      "version": null,
+      "name": "グランドウェーブＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 36,
+      "version": null,
+      "name": "ジェットアタックＸ",
+      "details": [
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 37,
+      "version": null,
+      "name": "ハンマーウェポンＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 38,
+      "version": null,
+      "name": "スマイルコインＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 39,
+      "version": null,
+      "name": "ヘビードーンＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 40,
+      "version": null,
+      "name": "ギザホイールＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 41,
+      "version": null,
+      "name": "スカルアローＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 42,
+      "version": null,
+      "name": "ムーテクノロジーＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 43,
+      "version": null,
+      "name": "デスサイズ１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 44,
+      "version": null,
+      "name": "デスサイズ２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 45,
+      "version": null,
+      "name": "デスサイズ３",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 46,
+      "version": null,
+      "name": "デスサイズＸ",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 47,
+      "version": null,
+      "name": "ケサランパサラン１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 48,
+      "version": null,
+      "name": "ケサランパサラン２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 49,
+      "version": null,
+      "name": "ケサランパサラン３",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 50,
+      "version": null,
+      "name": "ケサランパサランＸ",
+      "details": [
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 51,
+      "version": null,
+      "name": "カウントボムＸ",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 52,
+      "version": null,
+      "name": "ヒートアッパーＸ",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 53,
+      "version": null,
+      "name": "マシーンフレイムＸ",
+      "details": [
+        "序盤",
+        "終盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 54,
+      "version": null,
+      "name": "アンガーファイアＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 55,
+      "version": null,
+      "name": "ダバフレイム１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 56,
+      "version": null,
+      "name": "ダバフレイム２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 57,
+      "version": null,
+      "name": "ダバフレイム３",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 58,
+      "version": null,
+      "name": "ダバフレイムＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 59,
+      "version": null,
+      "name": "ボボボンボム１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 60,
+      "version": null,
+      "name": "ボボボンボム２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 61,
+      "version": null,
+      "name": "ボボボンボム３",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 62,
+      "version": null,
+      "name": "ボボボンボムＸ",
+      "details": [
+        "序盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 63,
+      "version": null,
+      "name": "ワイドウェーブＸ",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 64,
+      "version": null,
+      "name": "バブルフックＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 65,
+      "version": null,
+      "name": "シャークカッターＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 66,
+      "version": null,
+      "name": "アイススピニングＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 67,
+      "version": null,
+      "name": "スノーボール１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 68,
+      "version": null,
+      "name": "スノーボール２",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 69,
+      "version": null,
+      "name": "スノーボール３",
+      "details": [
+        "序盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 70,
+      "version": null,
+      "name": "スノーボールＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 71,
+      "version": null,
+      "name": "ピラニアキッス１",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 72,
+      "version": null,
+      "name": "ピラニアキッス２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 73,
+      "version": null,
+      "name": "ピラニアキッス３",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 74,
+      "version": null,
+      "name": "ピラニアキッスＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 75,
+      "version": null,
+      "name": "ステルスレーザーＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 76,
+      "version": null,
+      "name": "マミーハンドＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 77,
+      "version": null,
+      "name": "イナズマヘッドＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 78,
+      "version": null,
+      "name": "サンダーオブアース１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 79,
+      "version": null,
+      "name": "サンダーオブアース２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 80,
+      "version": null,
+      "name": "サンダーオブアース３",
+      "details": [
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 81,
+      "version": null,
+      "name": "サンダーオブアースＸ",
+      "details": [
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 82,
+      "version": null,
+      "name": "フラッシュスピアＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 83,
+      "version": null,
+      "name": "ダミースパイダーＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 84,
+      "version": null,
+      "name": "シュリシュリケンＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 85,
+      "version": null,
+      "name": "パウダーシュートＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 86,
+      "version": null,
+      "name": "ローリングナッツＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 87,
+      "version": null,
+      "name": "コガラシ１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 88,
+      "version": null,
+      "name": "コガラシ２",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 89,
+      "version": null,
+      "name": "コガラシ３",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 90,
+      "version": null,
+      "name": "コガラシＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 91,
+      "version": null,
+      "name": "バルカンシード１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 92,
+      "version": null,
+      "name": "バルカンシード２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 93,
+      "version": null,
+      "name": "バルカンシード３",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 94,
+      "version": null,
+      "name": "バルカンシードＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 95,
+      "version": null,
+      "name": "ビーストスイングＸ",
+      "details": [
+        "序盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 96,
+      "version": null,
+      "name": "ノイズドウィザードＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 97,
+      "version": null,
+      "name": "ヒールウィザードＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 98,
+      "version": null,
+      "name": "ダンシングブレード１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 99,
+      "version": null,
+      "name": "ダンシングブレード２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 100,
+      "version": null,
+      "name": "ダンシングブレード３",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 101,
+      "version": null,
+      "name": "ダンシングブレードＸ",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 102,
+      "version": null,
+      "name": "ブラックホールＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 103,
+      "version": null,
+      "name": "ジャングルストーム",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 104,
+      "version": null,
+      "name": "スノーストーム",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 105,
+      "version": null,
+      "name": "ポイズンストーム",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 106,
+      "version": null,
+      "name": "ウォーロックブースト",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 107,
+      "version": null,
+      "name": "ノーマルゲージ",
+      "details": [
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 108,
+      "version": null,
+      "name": "クイックゲージ",
+      "details": [
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 109,
+      "version": null,
+      "name": "ヘビーゲージ",
+      "details": [
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 110,
+      "version": null,
+      "name": "ウォリアーブラッド",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 111,
+      "version": null,
+      "name": "アンデッドリバース",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 112,
+      "version": null,
+      "name": "オールポイズン",
+      "details": [
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 113,
+      "version": null,
+      "name": "ファイア＋３０",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 114,
+      "version": null,
+      "name": "アクア＋３０",
+      "details": [
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 115,
+      "version": null,
+      "name": "エレキ＋３０",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 116,
+      "version": null,
+      "name": "ウッド＋３０",
+      "details": [
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 117,
+      "version": null,
+      "name": "スペードマグネッツＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 118,
+      "version": null,
+      "name": "ダイヤアイスバーンＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 119,
+      "version": null,
+      "name": "クラブストロングＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 120,
+      "version": null,
+      "name": "クイーンヴァルゴＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 121,
+      "version": null,
+      "name": "ジャックコーヴァスＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 122,
+      "version": null,
+      "name": "グレイブジョーカーＸ",
+      "details": [
+        "終盤",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 123,
+      "version": null,
+      "name": "アシッドエースＸ",
+      "details": [
+        "Ｖ３ボス",
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 124,
+      "version": null,
+      "name": "オックスファイアＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 125,
+      "version": null,
+      "name": "キグナスウィングＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 126,
+      "version": null,
+      "name": "ウルフフォレストＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 127,
+      "version": null,
+      "name": "ファントムブラックＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 128,
+      "version": null,
+      "name": "ブライＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 129,
+      "version": null,
+      "name": "ムーンディザスターＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 130,
+      "version": null,
+      "name": "リブラバランス１",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 131,
+      "version": null,
+      "name": "リブラバランスＶ２",
+      "details": [
+        "序盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 132,
+      "version": null,
+      "name": "リブラバランスＶ３",
+      "details": [
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 133,
+      "version": null,
+      "name": "リブラバランスＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 134,
+      "version": null,
+      "name": "オヒュカスクイーン",
+      "details": [
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 135,
+      "version": null,
+      "name": "オヒュカスクイーンＶ２",
+      "details": [
+        "序盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 136,
+      "version": null,
+      "name": "オヒュカスクイーンＶ３",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 137,
+      "version": null,
+      "name": "オヒュカスクイーンＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 138,
+      "version": null,
+      "name": "ジェミニスパーク",
+      "details": [
+        "序盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 139,
+      "version": null,
+      "name": "ジェミニスパークＶ２",
+      "details": [
+        "中盤",
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 140,
+      "version": null,
+      "name": "ジェミニスパークＶ３",
+      "details": [
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 141,
+      "version": null,
+      "name": "ジェミニスパークＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 142,
+      "version": null,
+      "name": "キャンサーバブル",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 143,
+      "version": null,
+      "name": "キャンサーバブルＶ２",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 144,
+      "version": null,
+      "name": "キャンサーバブルＶ３",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 145,
+      "version": null,
+      "name": "キャンサーバブルＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 146,
+      "version": null,
+      "name": "クラウンサンダー",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 147,
+      "version": null,
+      "name": "クラウンサンダーＶ２",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 148,
+      "version": null,
+      "name": "クラウンサンダーＶ３",
+      "details": [
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 149,
+      "version": null,
+      "name": "クラウンサンダーＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 150,
+      "version": null,
+      "name": "イエティブリザード",
+      "details": [
+        "終盤",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 151,
+      "version": null,
+      "name": "イエティブリザードＶ２",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 152,
+      "version": null,
+      "name": "イエティブリザードＶ３",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 153,
+      "version": null,
+      "name": "イエティブリザードＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 154,
+      "version": null,
+      "name": "ブラキオウェーブ",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 155,
+      "version": null,
+      "name": "ブラキオウェーブＶ２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 156,
+      "version": null,
+      "name": "ブラキオウェーブＶ３",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 157,
+      "version": null,
+      "name": "ブラキオウェーブＸ",
+      "details": [
+        "クリア後",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 158,
+      "version": null,
+      "name": "コンドルジオグラフ",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 159,
+      "version": null,
+      "name": "コンドルジオグラフＶ２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 160,
+      "version": null,
+      "name": "コンドルジオグラフＶ３",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 161,
+      "version": null,
+      "name": "コンドルジオグラフＸ",
+      "details": [
+        "クリア後",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 162,
+      "version": null,
+      "name": "オリガジェネラル",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤",
+        "クリア後"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 163,
+      "version": null,
+      "name": "オリガジェネラルＶ２",
+      "details": [
+        "序盤",
+        "中盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 164,
+      "version": null,
+      "name": "オリガジェネラルＶ３",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 165,
+      "version": null,
+      "name": "オリガジェネラルＸ",
+      "details": [
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 166,
+      "version": null,
+      "name": "アポロンフレイムＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 167,
+      "version": null,
+      "name": "シリウスＸ",
+      "details": [
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 168,
+      "version": null,
+      "name": "アクシスジェット",
+      "details": [
+        "序盤",
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 169,
+      "version": null,
+      "name": "アクシスジェットＶ２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 170,
+      "version": null,
+      "name": "アクシスジェットＶ３",
+      "details": [
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 171,
+      "version": null,
+      "name": "アクシスジェットＸ",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 172,
+      "version": null,
+      "name": "Ｂアイスハンマー",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 173,
+      "version": null,
+      "name": "ＢアイスハンマーＶ２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 174,
+      "version": null,
+      "name": "ＢアイスハンマーＶ３",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 175,
+      "version": null,
+      "name": "ＢアイスハンマーＸ",
+      "details": [
+        "終盤",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 176,
+      "version": null,
+      "name": "ストロングスイング",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス",
+        "Ｒボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 177,
+      "version": null,
+      "name": "ストロングスイングＶ２",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 178,
+      "version": null,
+      "name": "ストロングスイングＶ３",
+      "details": [
+        "終盤",
+        "クリア後",
+        "Ｖ３ボス"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 179,
+      "version": null,
+      "name": "ストロングスイングＸ",
+      "details": [
+        "クリア後",
+        "Ｖ３ボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 180,
+      "version": null,
+      "name": "ゴルゴンアイ",
+      "details": [
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 181,
+      "version": null,
+      "name": "ジェミニサンダー",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 182,
+      "version": null,
+      "name": "ナダレダイコ",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 183,
+      "version": null,
+      "name": "ゲキリュウウェーブ",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 184,
+      "version": null,
+      "name": "フライングインパクト",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 185,
+      "version": null,
+      "name": "ブライブレイク",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 186,
+      "version": null,
+      "name": "ライトオブセイント",
+      "details": [
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 187,
+      "version": null,
+      "name": "ペインヘルフレイム",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 130,
+      "version": null,
+      "name": "リブラバランス",
+      "details": [
+        "序盤",
+        "中盤",
+        "終盤"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "illegal",
+      "number": 187,
+      "version": null,
+      "name": "ペインフレイム",
+      "details": [
+        "Ｒボス",
+        "∑ボス / ブライＺＺ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "gentei",
+      "number": 1,
+      "version": null,
+      "name": "アシッドイリーガル",
+      "details": [
+        "次世代ワールドホビーフェア'09 winterで配信"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "gentei",
+      "number": 2,
+      "version": null,
+      "name": "メテオオブクリムゾン",
+      "details": [
+        "次世代ワールドホビーフェア'09 summerで配信"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "gentei",
+      "number": 0,
+      "version": null,
+      "name": "ペガサスマジックGX",
+      "details": [
+        "配信"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "gentei",
+      "number": 0,
+      "version": null,
+      "name": "レオキングダムGX",
+      "details": [
+        "配信"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf3",
+      "section": "gentei",
+      "number": 0,
+      "version": null,
+      "name": "ドラゴンスカイGX",
+      "details": [
+        "配信"
+      ],
+      "assetLocalPath": null
     }
-  ]
+  ],
+  "sourceDescriptionsByGame": {
+    "mmsf3": {
+      "序盤": "・コダマタウン、コダマ小学校\n・オクダマスタジオ\n・スピカモール\nのウェーブロード、電脳、ノイズで手に入るカード。",
+      "中盤": "・ニホンのコスモウェーブ\n・シーサーアイランド\n・ＷＡＸＡニホンしぶ\nのウェーブロード、電脳、ノイズで手に入るカード。",
+      "終盤": "・ちかシェルター、クリムゾンこうじょう\n・オービタルベース\n・ノイズウェーブ３\n・メテオサーバー\nのウェーブロード、電脳、ノイズで手に入るカード。",
+      "クリア後": "・ノイズウェーブ４、５\n・そとうちゅうのコスモウェーブ\n・ＦＭ星のコスモウェーブ\n・ブラックホールサーバー\nで手に入るカード",
+      "Ｖ３ボス": "Ｖ３ボスから入手できるカード",
+      "Ｒボス": "Ｒボスから入手できるカード",
+      "∑ボス / ブライＺＺ": "∑ボス、ブライＺＺから入手できるカード。"
+    }
+  }
 }

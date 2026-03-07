@@ -105,6 +105,28 @@
     @apply bg-white/12;
   }
 
+  .danger-button {
+    @apply inline-flex items-center justify-center rounded-2xl border px-5 py-3 text-sm font-medium text-red-100 transition-colors;
+    background: rgba(239, 68, 68, 0.14);
+    border-color: rgba(252, 165, 165, 0.7);
+  }
+
+  .danger-button:hover {
+    background: rgba(239, 68, 68, 0.22);
+    border-color: rgba(254, 202, 202, 0.8);
+  }
+
+  .success-button {
+    @apply inline-flex items-center justify-center rounded-2xl border px-5 py-3 text-sm font-medium text-emerald-100 transition-colors;
+    background: rgba(16, 185, 129, 0.12);
+    border-color: rgba(110, 231, 183, 0.55);
+  }
+
+  .success-button:hover {
+    background: rgba(16, 185, 129, 0.2);
+    border-color: rgba(167, 243, 208, 0.72);
+  }
+
   .chip {
     @apply inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium text-white/90;
     background: rgba(255, 255, 255, 0.08);

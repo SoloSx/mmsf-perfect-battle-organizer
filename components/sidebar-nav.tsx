@@ -92,7 +92,6 @@ export function SidebarNav() {
   const pathname = usePathname();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [expandedGames, setExpandedGames] = useState<Record<GameId, boolean>>(initialGameSections);
-  const [activeCollapsedGame, setActiveCollapsedGame] = useState<GameId | null>(null);
 
   const toggleGameSection = (gameId: GameId) => {
     setExpandedGames((current) => ({
@@ -103,11 +102,14 @@ export function SidebarNav() {
 
   const toggleSidebar = () => {
     setIsSidebarOpen((current) => !current);
-    setActiveCollapsedGame(null);
   };
 
-  const toggleCollapsedGame = (gameId: GameId) => {
-    setActiveCollapsedGame((current) => (current === gameId ? null : gameId));
+  const openSidebarForGame = (gameId: GameId) => {
+    setIsSidebarOpen(true);
+    setExpandedGames((current) => ({
+      ...current,
+      [gameId]: true,
+    }));
   };
 
   return (
@@ -151,7 +153,6 @@ export function SidebarNav() {
               href={item.href}
               title={!isSidebarOpen ? item.label : undefined}
               aria-label={!isSidebarOpen ? item.label : undefined}
-              onClick={() => setActiveCollapsedGame(null)}
               className={cn(
                 sidebarItemBaseClass,
                 isSidebarOpen ? "gap-3 px-4" : "justify-center px-3",
@@ -249,54 +250,21 @@ export function SidebarNav() {
         ) : (
           <div className="space-y-2">
             {gameTree.map((game) => (
-              <div key={game.id} className="relative">
+              <div key={game.id}>
                 <button
                   type="button"
-                  onClick={() => toggleCollapsedGame(game.id)}
+                  onClick={() => openSidebarForGame(game.id)}
                   title={game.label}
                   aria-label={game.label}
-                  aria-expanded={activeCollapsedGame === game.id}
-                  aria-controls={`${game.id}-collapsed-versions`}
+                  aria-expanded={false}
                   className={cn(
                     "flex w-full items-center justify-center whitespace-nowrap rounded-2xl border px-3 py-3 text-[11px] font-semibold tracking-[0.08em] transition-all duration-200",
                     game.tones.pill,
-                    activeCollapsedGame === game.id
-                      ? "scale-[1.02] border-white/28 shadow-[0_0_24px_rgba(255,255,255,0.12)]"
-                      : "hover:border-white/24 hover:brightness-110",
+                    "hover:border-white/24 hover:brightness-110",
                   )}
                 >
                   {game.compactLabel}
                 </button>
-
-                {activeCollapsedGame === game.id ? (
-                  <div
-                    id={`${game.id}-collapsed-versions`}
-                    className="absolute left-full top-1/2 z-30 ml-3 w-56 -translate-y-1/2 rounded-3xl border border-white/12 bg-[linear-gradient(180deg,rgba(25,18,72,0.96),rgba(9,8,36,0.94))] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)] backdrop-blur-xl"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className={cn("h-6 w-1 shrink-0 rounded-full", game.tones.line)} />
-                      <div className="min-w-0 flex-1">
-                        <p className={cn("whitespace-nowrap text-sm font-semibold leading-6", game.tones.title)}>{game.label}</p>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {game.versions.map((version) => (
-                            <Link
-                              key={version}
-                              href={`/editor?game=${game.id}&version=${version}`}
-                              onClick={() => setActiveCollapsedGame(null)}
-                              className={cn(
-                                "inline-flex shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-[11px] font-medium tracking-[0.06em] shadow-[0_0_20px_rgba(255,255,255,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110",
-                                game.tones.pill,
-                                pathname === "/editor" ? "hover:border-white/24" : "",
-                              )}
-                            >
-                              {VERSION_LABELS[version]}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
               </div>
             ))}
           </div>

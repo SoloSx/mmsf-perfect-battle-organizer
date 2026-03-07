@@ -4,11 +4,19 @@ import type { GameId, GuideCardCatalogEntry, VersionId } from "@/lib/types";
 import { normalizeToken, uniqueStrings } from "@/lib/utils";
 
 export const guideCardCatalogEntries = catalog.entries as GuideCardCatalogEntry[];
+const sourceDescriptionLookup = new Map<string, string>();
 const sectionLookup = new Map<string, GuideCardCatalogEntry["section"]>();
+const sourceDescriptionsByGame = (catalog.sourceDescriptionsByGame ?? {}) as Partial<Record<GameId, Record<string, string>>>;
 
 for (const entry of guideCardCatalogEntries) {
   const versionKey = entry.version ?? "*";
   sectionLookup.set(`${entry.game}:${versionKey}:${normalizeToken(entry.name)}`, entry.section);
+}
+
+for (const [game, descriptions] of Object.entries(sourceDescriptionsByGame) as Array<[GameId, Record<string, string>]>) {
+  for (const [label, description] of Object.entries(descriptions)) {
+    sourceDescriptionLookup.set(`${game}:${normalizeToken(label)}`, description);
+  }
 }
 
 function buildLookupTokens(name: string) {
@@ -94,6 +102,10 @@ export function getSourceSuggestions(game: GameId, version?: VersionId) {
       .filter((entry) => entry.game === game && matchesVersion(entry, version))
       .flatMap((entry) => entry.details),
   ).sort((a, b) => a.localeCompare(b, "ja"));
+}
+
+export function getSourceDescription(game: GameId, source: string) {
+  return sourceDescriptionLookup.get(`${game}:${normalizeToken(source)}`) ?? null;
 }
 
 export function getCardSection(game: GameId, name: string, version?: VersionId) {

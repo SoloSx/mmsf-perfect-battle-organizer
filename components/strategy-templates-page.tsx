@@ -312,7 +312,7 @@ export function StrategyTemplatesPage() {
               {selectedId !== "new" && (
                 <button
                   type="button"
-                  className="secondary-button"
+                  className="danger-button"
                   onClick={() => {
                     if (window.confirm("この保存済み戦法を削除しますか？")) {
                       deleteTemplate(form.id);

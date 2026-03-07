@@ -209,7 +209,7 @@ export function BuildLibraryPage() {
                   </button>
                   <button
                     type="button"
-                    className="inline-flex w-full items-center justify-center rounded-2xl border border-red-300/70 bg-red-500/15 px-5 py-3 text-sm font-medium text-red-100 transition-colors hover:border-red-200/80 hover:bg-red-500/22"
+                    className="danger-button w-full"
                     onClick={() => {
                       if (window.confirm("この構築を削除しますか？")) {
                         deleteBuild(build.id);
