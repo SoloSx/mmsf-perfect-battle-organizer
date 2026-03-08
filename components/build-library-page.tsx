@@ -113,8 +113,8 @@ export function BuildLibraryPage() {
               <Import className="mr-2 size-4" />
               JSON 読み込み
             </button>
-            <Link href="/editor" className="primary-button">
-              新しい構築
+            <Link href="/editor" className="clear-action-button">
+              新規構築を作る
             </Link>
           </div>
         </div>
@@ -174,9 +174,9 @@ export function BuildLibraryPage() {
 
       <section className="grid gap-5 xl:grid-cols-2">
         {!loaded ? (
-          <div className="glass-panel text-sm text-white/70">保存データを読み込み中です。</div>
+          <div className="glass-panel text-sm text-white/70 xl:col-span-2">保存データを読み込み中です。</div>
         ) : filtered.length === 0 ? (
-          <div className="glass-panel text-sm text-white/70">一致する構築がありません。新規構築から作成してください。</div>
+          <div className="glass-panel text-sm text-white/70 xl:col-span-2">一致する構築がありません。新規構築から作成してください。</div>
         ) : (
           filtered.map((build) => (
             <article key={build.id} className="glass-panel">

@@ -6,7 +6,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import {
   AlertTriangle,
-  Download,
+  Eye,
+  FileImage,
   FilePlus2,
   Save,
   Sparkles,
@@ -21,6 +22,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
   getMissingMmsf3AbilitySourceNames,
+  getMissingMmsf3WarRockWeaponSourceNames,
   getNormalizedMmsf3State,
   normalizeMmsf3BuildRecord,
   normalizeMmsf3Sections,
@@ -31,6 +33,8 @@ import {
   updateMmsf3NoiseCardIds,
   updateMmsf3PlayerRezonCard,
   updateMmsf3SssLevels,
+  updateMmsf3WarRockWeapon,
+  updateMmsf3WarRockWeaponSources,
   updateMmsf3WhiteCardSetId,
   validateMmsf3BuildState,
 } from "@/lib/mmsf3/build-state";
@@ -89,7 +93,28 @@ function normalizeBuildSourceEntry(entry: CommonSections["abilitySources"][numbe
     name: entry.name ?? "",
     source: entry.source ?? "",
     notes: entry.notes ?? "",
-    isOwned: Boolean(entry.isOwned),
+    isOwned: false,
+  };
+}
+
+function stripTransientBuildFlags(build: BuildRecord): BuildRecord {
+  return {
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      cardSources: build.commonSections.cardSources.map((entry) => ({ ...entry, isOwned: false })),
+      abilitySources: build.commonSections.abilitySources.map((entry) => ({ ...entry, isOwned: false })),
+    },
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        warRockWeaponSources: build.gameSpecificSections.mmsf3.warRockWeaponSources.map((entry) => ({
+          ...entry,
+          isOwned: false,
+        })),
+      },
+    },
   };
 }
 
@@ -181,6 +206,10 @@ function getRequiredFieldErrors(build: BuildRecord) {
   if (build.game === "mmsf3") {
     if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
       errors.push("アビリティの未入力行があります。");
+    }
+
+    if (build.gameSpecificSections.mmsf3.warRockWeaponSources.some((entry) => hasIncompleteSourceEntry(entry))) {
+      errors.push("ウォーロック装備入手方法の未入力行があります。");
     }
 
     const slots = build.gameSpecificSections.mmsf3.brotherRouletteSlots;
@@ -375,7 +404,7 @@ function TagEditor({
   };
 
   return (
-    <div className="glass-panel-soft">
+    <div className="glass-panel-soft bg-white/[0.035]">
       <div className="flex items-center justify-between gap-3">
         <label className="text-sm font-semibold text-white">{label}</label>
         {typeof maxItems === "number" && <span className="text-xs text-white/45">{values.length}/{maxItems}</span>}
@@ -665,7 +694,7 @@ export function BuildEditorPage() {
       return;
     }
 
-    window.localStorage.setItem(draftStorageKey, JSON.stringify(draft));
+    window.localStorage.setItem(draftStorageKey, JSON.stringify(stripTransientBuildFlags(draft)));
   });
 
   useEffect(() => {
@@ -779,10 +808,14 @@ export function BuildEditorPage() {
     draft.game === "mmsf3" && normalizedMmsf3State
       ? getMissingMmsf3AbilitySourceNames(normalizedMmsf3State, draft.version)
       : getMissingSourceNames(
-          draft.commonSections.abilities,
-          draft.commonSections.abilitySources,
-          (name) => getKnownCardSources(draft.game, name, draft.version),
-        );
+        draft.commonSections.abilities,
+        draft.commonSections.abilitySources,
+        (name) => getKnownCardSources(draft.game, name, draft.version),
+      );
+  const missingWarRockWeaponSourceNames =
+    draft.game === "mmsf3" && normalizedMmsf3State
+      ? getMissingMmsf3WarRockWeaponSourceNames(normalizedMmsf3State)
+      : [];
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
     setDraft((current) => (current ? { ...current, commonSections: { ...current.commonSections, [key]: value } } : current));
@@ -1092,7 +1125,14 @@ export function BuildEditorPage() {
             abilityNameSuggestions={abilityNameSuggestions}
             sourceSuggestions={sourceSuggestions}
             missingAbilitySourceNames={missingAbilitySourceNames}
+            missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
             onNoiseChange={(noise) => setDraft((current) => (current ? updateMmsf3Noise(current, noise) : current))}
+            onWarRockWeaponChange={(value) =>
+              setDraft((current) => (current ? updateMmsf3WarRockWeapon(current, value) : current))
+            }
+            onWarRockWeaponSourcesChange={(entries) =>
+              setDraft((current) => (current ? updateMmsf3WarRockWeaponSources(current, entries) : current))
+            }
             onPlayerRezonCardChange={(value) =>
               setDraft((current) => (current ? updateMmsf3PlayerRezonCard(current, value) : current))
             }
@@ -1243,7 +1283,7 @@ export function BuildEditorPage() {
             )}
             <button
               type="button"
-              className="primary-button whitespace-nowrap"
+              className="clear-action-button whitespace-nowrap"
               onClick={() => {
                 if (validation.errors.length > 0) {
                   setStatus("保存前にエラーを解消してください。");
@@ -1262,7 +1302,7 @@ export function BuildEditorPage() {
             </button>
             <button
               type="button"
-              className="primary-button whitespace-nowrap"
+              className="clear-action-button whitespace-nowrap"
               disabled={isPreviewing}
               onClick={async () => {
                 setIsPreviewing(true);
@@ -1281,12 +1321,12 @@ export function BuildEditorPage() {
                 }
               }}
             >
-              <Download className="mr-2 size-4" />
+              <Eye className="mr-2 size-4" />
               PNG プレビュー
             </button>
             <button
               type="button"
-              className="primary-button whitespace-nowrap"
+              className="clear-action-button whitespace-nowrap"
               disabled={isExporting}
               onClick={async () => {
                 setIsExporting(true);
@@ -1308,7 +1348,7 @@ export function BuildEditorPage() {
                 }
               }}
             >
-              <Download className="mr-2 size-4" />
+              <FileImage className="mr-2 size-4" />
               PNG 出力
             </button>
           </div>

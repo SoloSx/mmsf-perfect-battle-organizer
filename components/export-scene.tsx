@@ -45,6 +45,15 @@ function getSpecialNotes(build: BuildRecord) {
 }
 
 function getExportBackground(build: BuildRecord) {
+  if (build.game === "mmsf3" && build.version === "red-joker") {
+    return [
+      "radial-gradient(circle at 18% 18%, rgba(255,118,163,0.22), transparent 24%)",
+      "radial-gradient(circle at 62% 16%, rgba(255,228,138,0.18), transparent 18%)",
+      "radial-gradient(circle at 80% 72%, rgba(255,82,82,0.18), transparent 24%)",
+      "linear-gradient(120deg, rgba(43,8,21,0.96), rgba(111,18,52,0.82), rgba(111,26,102,0.76), rgba(18,12,40,0.96))",
+    ].join(", ");
+  }
+
   if (build.game === "mmsf2") {
     if (build.version === "shinobi") {
       return [
@@ -74,6 +83,10 @@ function getExportBackground(build: BuildRecord) {
 }
 
 function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof getVersionRuleSet>) {
+  if (build.game === "mmsf3" && build.version === "red-joker") {
+    return "linear-gradient(135deg, #ff8fb1 0%, #ff2f68 34%, #ffcc4d 74%, #ff5a36 100%)";
+  }
+
   if (build.game !== "mmsf2") {
     return `linear-gradient(135deg, ${rule.accent.from}, ${rule.accent.to})`;
   }
@@ -88,6 +101,11 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
     default:
       return `linear-gradient(135deg, ${rule.accent.from}, ${rule.accent.to})`;
   }
+}
+
+function getExportHeroPanelBackground(build: BuildRecord) {
+  void build;
+  return "rgba(0,0,0,0.25)";
 }
 
 function getMmsf3SystemSnapshotLines(build: BuildRecord) {
@@ -153,6 +171,15 @@ function getMmsf3BrotherRouletteLines(build: BuildRecord) {
 
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
+  const versionLabel = VERSION_LABELS[build.version];
+  const titleClassName =
+    build.game === "mmsf3" && build.version === "red-joker"
+      ? "mt-3 text-[2rem] leading-none font-black tracking-[-0.04em] whitespace-nowrap"
+      : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
+  const heroPanelClassName =
+    build.game === "mmsf3" && build.version === "red-joker"
+      ? "relative overflow-hidden rounded-[32px] border border-white/15 p-8 pr-12 shadow-[0_0_40px_rgba(0,0,0,0.3)]"
+      : "relative overflow-hidden rounded-[32px] border border-white/15 p-8 shadow-[0_0_40px_rgba(0,0,0,0.3)]";
   const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; isRegular: boolean }>>((tiles, entry) => {
     if (tiles.length >= EXPORT_CARD_TILE_LIMIT) {
       return tiles;
@@ -191,7 +218,10 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       }}
     >
       <div className="grid min-h-[675px] grid-cols-[320px_1fr] gap-6 p-10">
-        <div className="relative overflow-hidden rounded-[32px] border border-white/15 bg-black/25 p-8 shadow-[0_0_40px_rgba(0,0,0,0.3)]">
+        <div
+          className={heroPanelClassName}
+          style={{ background: getExportHeroPanelBackground(build) }}
+        >
           <div
             className="absolute inset-x-0 top-0 h-48 opacity-70"
             style={{
@@ -202,7 +232,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
           <div className="relative flex h-full flex-col justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/80">{GAME_LABELS[build.game]}</p>
-              <h2 className="mt-3 text-4xl font-black tracking-tight">{VERSION_LABELS[build.version]}</h2>
+              <h2 className={titleClassName}>{versionLabel}</h2>
               <p className="mt-3 text-sm leading-6 text-white/75">
                 {build.title || "名称未設定の構築"}
               </p>
@@ -232,9 +262,8 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
 
         <div className="grid gap-6">
           <section className="rounded-[30px] border border-white/12 bg-black/20 p-5 shadow-[0_0_40px_rgba(0,0,0,0.18)]">
-            <div className="mb-3 flex items-center justify-between">
+            <div className="mb-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Battle Cards</h3>
-              <span className="text-xs text-white/55">{cardTiles.length} tiles</span>
             </div>
             <div
               className="grid gap-0"

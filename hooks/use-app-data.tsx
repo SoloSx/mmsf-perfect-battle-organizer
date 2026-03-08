@@ -81,7 +81,28 @@ function normalizeBuildSourceEntry(entry: CommonSections["cardSources"][number])
     name: entry.name ?? "",
     source: entry.source ?? "",
     notes: entry.notes ?? "",
-    isOwned: Boolean(entry.isOwned),
+    isOwned: false,
+  };
+}
+
+function stripTransientBuildFlags(build: BuildRecord): BuildRecord {
+  return {
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      cardSources: build.commonSections.cardSources.map((entry) => ({ ...entry, isOwned: false })),
+      abilitySources: build.commonSections.abilitySources.map((entry) => ({ ...entry, isOwned: false })),
+    },
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        warRockWeaponSources: build.gameSpecificSections.mmsf3.warRockWeaponSources.map((entry) => ({
+          ...entry,
+          isOwned: false,
+        })),
+      },
+    },
   };
 }
 
@@ -227,7 +248,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    const payload: PersistedAppState = { builds, templates };
+    const payload: PersistedAppState = { builds: builds.map(stripTransientBuildFlags), templates };
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   }, [builds, templates, loaded]);
 

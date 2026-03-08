@@ -125,6 +125,8 @@ export interface Mmsf2Sections {
 
 export interface Mmsf3Sections {
   noise: string;
+  warRockWeapon: string;
+  warRockWeaponSources: BuildSourceEntry[];
   pgms: string[];
   noiseAbilities: string[];
   noiseCardIds: string[];

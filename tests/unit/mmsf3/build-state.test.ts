@@ -9,6 +9,7 @@ import {
   normalizeMmsf3BuildRecord,
   updateMmsf3AbilityEntries,
   updateMmsf3Noise,
+  updateMmsf3WarRockWeapon,
 } from "@/lib/mmsf3/build-state";
 import type { BuildRecord } from "@/lib/types";
 
@@ -177,6 +178,15 @@ test("updateMmsf3AbilityEntries normalizes entries and syncs tracked ability sou
   assert.ok(state.abilitySources.length > 0);
   assert.ok(state.abilitySources.every((entry) => entry.name === "ＨＰ+50/100"));
   assert.ok(state.abilitySources[0]?.source.length > 0);
+});
+
+test("updateMmsf3WarRockWeapon excludes initial equipment from tracked source entries", () => {
+  const build = normalizeMmsf3BuildRecord(createBaseBuild());
+  const updated = updateMmsf3WarRockWeapon(build, "スルドイキバ");
+  const state = getNormalizedMmsf3State(updated);
+
+  assert.equal(state.warRockWeapon, "スルドイキバ");
+  assert.equal(state.warRockWeaponSources.length, 0);
 });
 
 test("normalizeMmsf3BuildRecord migrates legacy SSS levels into brother slots", () => {

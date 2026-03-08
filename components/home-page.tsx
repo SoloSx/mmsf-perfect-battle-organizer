@@ -46,6 +46,16 @@ const VERSION_DOT_COLORS: Record<VersionId, string> = {
 
 export function HomePage() {
   const { builds, loaded } = useAppData();
+  const gameBuildStats = HOME_VERSION_GROUPS.map(({ game, panel, line }) => {
+    const gameBuilds = builds.filter((build) => build.game === game);
+
+    return {
+      game,
+      panel,
+      line,
+      buildCount: gameBuilds.length,
+    };
+  });
 
   return (
     <AppShell>
@@ -61,14 +71,11 @@ export function HomePage() {
           作品固有仕様をまとめて保存し、最後に構築画像として書き出せます。
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
-          <Link href="/editor" className="primary-button">
+          <Link href="/editor" className="clear-action-button">
             新規構築を作る
           </Link>
           <Link href="/builds" className="secondary-button">
             構築一覧を見る
-          </Link>
-          <Link href="/builds" className="secondary-button">
-            JSONを入出力する
           </Link>
         </div>
       </section>
@@ -112,15 +119,23 @@ export function HomePage() {
         </div>
 
         <div className="glass-panel">
-          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">Workspace</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">Progress</p>
           <div className="mt-4 grid gap-4 md:grid-cols-2">
-            <div className="glass-panel-soft">
+            {gameBuildStats.map(({ game, panel, line, buildCount }) => (
+              <div key={game} className={cn("rounded-[28px] border p-4", panel)}>
+                <div className="flex items-start gap-4">
+                  <div className={cn("mt-1 h-12 w-1 rounded-full", line)} />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-lg font-semibold text-white">{GAME_LABELS[game]}</p>
+                    <p className="mt-2 text-xs font-semibold tracking-[0.24em] text-white/45">構築数</p>
+                    <p className="mt-2 text-3xl font-black text-white">{loaded ? buildCount : "--"}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="glass-panel-soft flex min-h-[134px] flex-col justify-between p-5">
+              <p className="text-xs font-semibold tracking-[0.24em] text-white/45">トータル構築数</p>
               <p className="text-4xl font-black text-white">{loaded ? builds.length : "--"}</p>
-              <p className="mt-2 text-sm text-white/70">保存済み構築</p>
-            </div>
-            <div className="glass-panel-soft">
-              <p className="text-lg font-semibold text-white">JSON バックアップ</p>
-              <p className="mt-2 text-sm leading-6 text-white/70">構築一覧からまとめて書き出し・読み込みできます。</p>
             </div>
           </div>
         </div>

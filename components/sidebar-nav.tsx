@@ -19,7 +19,9 @@ const sidebarItemBaseClass =
 const sidebarItemIdleClass =
   "border-transparent bg-white/5 text-white/80 hover:border-white/12 hover:bg-white/10 hover:text-white";
 
-const sidebarItemExpandedClass = "border-white/12 bg-white/10 text-white";
+const sidebarGameTitleIdleClass =
+  "border-transparent bg-white/5 text-white/80 hover:border-white/12 hover:bg-white/10 hover:text-white";
+const sidebarGameTitleExpandedClass = "border-white/12 bg-white/10 text-white";
 
 const versionDotColors: Record<VersionId, string> = {
   leo: "#E74F1B",
@@ -53,7 +55,7 @@ const gameTree: Array<{
       line: "bg-gradient-to-b from-cyan-200 via-sky-400 to-blue-500 shadow-[0_0_18px_rgba(56,189,248,0.45)]",
       title: "text-cyan-50/92",
       meta: "text-cyan-200/48",
-      pill: "border-cyan-300/16 bg-cyan-400/10 text-cyan-50/88",
+      pill: "border-cyan-300/12 bg-transparent text-cyan-50/86",
     },
   },
   {
@@ -65,7 +67,7 @@ const gameTree: Array<{
       line: "bg-gradient-to-b from-emerald-200 via-lime-300 to-green-500 shadow-[0_0_18px_rgba(74,222,128,0.4)]",
       title: "text-emerald-50/92",
       meta: "text-emerald-200/48",
-      pill: "border-emerald-300/16 bg-emerald-400/10 text-emerald-50/88",
+      pill: "border-emerald-300/12 bg-transparent text-emerald-50/86",
     },
   },
   {
@@ -77,7 +79,7 @@ const gameTree: Array<{
       line: "bg-gradient-to-b from-orange-200 via-rose-300 to-red-500 shadow-[0_0_18px_rgba(251,113,133,0.45)]",
       title: "text-rose-50/92",
       meta: "text-rose-200/48",
-      pill: "border-rose-300/16 bg-rose-400/10 text-rose-50/88",
+      pill: "border-rose-300/12 bg-transparent text-rose-50/86",
     },
   },
 ];
@@ -115,10 +117,16 @@ export function SidebarNav() {
   return (
     <aside
       className={cn(
-        "relative z-20 border-b border-white/10 bg-[linear-gradient(180deg,rgba(35,12,76,0.44),rgba(14,10,52,0.3))] px-4 py-4 backdrop-blur-xl transition-[width,padding] duration-300 md:sticky md:top-0 md:h-dvh md:border-b-0 md:border-r",
-        isSidebarOpen ? "md:w-72 md:px-6 md:py-6" : "md:w-24 md:px-4 md:py-6",
+        "relative z-20 border-b border-white/10 md:shrink-0 md:border-b-0",
+        isSidebarOpen ? "md:w-72" : "md:w-24",
       )}
     >
+      <div
+        className={cn(
+          "bg-[linear-gradient(180deg,rgba(35,12,76,0.44),rgba(14,10,52,0.3))] px-4 py-4 backdrop-blur-xl transition-[width,padding] duration-300 md:fixed md:left-0 md:top-0 md:h-dvh md:overflow-y-auto md:border-r md:border-white/10",
+          isSidebarOpen ? "md:w-72 md:px-6 md:py-6" : "md:w-24 md:px-4 md:py-6",
+        )}
+      >
       <div className={cn("flex gap-4", isSidebarOpen ? "items-start justify-between" : "justify-center")}>
         {isSidebarOpen ? (
           <div className="min-w-0">
@@ -203,7 +211,7 @@ export function SidebarNav() {
                   className={cn(
                     sidebarItemBaseClass,
                     "justify-between gap-3 px-4 text-left",
-                    expandedGames[game.id] ? sidebarItemExpandedClass : sidebarItemIdleClass,
+                    expandedGames[game.id] ? sidebarGameTitleExpandedClass : sidebarGameTitleIdleClass,
                   )}
                   aria-expanded={expandedGames[game.id]}
                   aria-controls={`${game.id}-versions`}
@@ -233,7 +241,7 @@ export function SidebarNav() {
                         <Link
                           href={`/editor?game=${game.id}&version=${version}`}
                           className={cn(
-                            "inline-flex shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-[11px] font-medium tracking-[0.06em] shadow-[0_0_20px_rgba(255,255,255,0.04)] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110",
+                            "inline-flex shrink-0 whitespace-nowrap rounded-full border px-3 py-1 text-[11px] font-medium tracking-[0.06em] transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110",
                             game.tones.pill,
                             pathname === "/editor" ? "hover:border-white/24" : "",
                           )}
@@ -260,7 +268,7 @@ export function SidebarNav() {
                   className={cn(
                     "flex w-full items-center justify-center whitespace-nowrap rounded-2xl border px-3 py-3 text-[11px] font-semibold tracking-[0.08em] transition-all duration-200",
                     game.tones.pill,
-                    "hover:border-white/24 hover:brightness-110",
+                    "hover:border-white/24 hover:bg-transparent hover:brightness-110",
                   )}
                 >
                   {game.compactLabel}
@@ -269,6 +277,7 @@ export function SidebarNav() {
             ))}
           </div>
         )}
+      </div>
       </div>
     </aside>
   );

@@ -125,13 +125,14 @@ export function SearchableSelectInput({
         aria-activedescendant={activeOptionIndex >= 0 ? `${listId}-option-${activeOptionIndex}` : undefined}
         value={isOpen ? query : (displayValue ?? selectedOption?.label ?? "")}
         onFocus={(event) => {
+          const input = event.currentTarget;
           setIsOpen(true);
           setIsFiltering(false);
           setQuery(selectedOption?.label ?? "");
           setHighlightedIndex(selectedOptionIndex >= 0 ? selectedOptionIndex : options.length > 0 ? 0 : -1);
 
-          if (event.currentTarget.value) {
-            requestAnimationFrame(() => event.currentTarget.select());
+          if (input.value) {
+            requestAnimationFrame(() => input.select());
           }
         }}
         onBlur={() => {

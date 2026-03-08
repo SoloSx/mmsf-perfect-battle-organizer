@@ -15,6 +15,7 @@ import {
 } from "@/lib/mmsf3/brother-roulette-state";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3/battle-rules";
 import { getMmsf3NoiseCardSelectionErrors, normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3/noise-cards";
+import { getMmsf3WarRockWeaponSources, isMmsf3WarRockWeapon, isMmsf3WarRockWeaponSourceTracked } from "@/lib/mmsf3/war-rock-weapons";
 import {
   DEFAULT_MMSF3_WHITE_CARD_SET_ID,
   getMmsf3RezonCardOptionByLabel,
@@ -35,6 +36,8 @@ type LegacyMmsf3Sections = Partial<Mmsf3Sections> & {
 
 export interface NormalizedMmsf3State {
   noise: string;
+  warRockWeapon: string;
+  warRockWeaponSources: BuildSourceEntry[];
   playerRezonCard: string;
   whiteCardSetId: string;
   noiseCardIds: string[];
@@ -48,6 +51,8 @@ export interface NormalizedMmsf3State {
 export function createDefaultMmsf3Sections(): Mmsf3Sections {
   return {
     noise: "",
+    warRockWeapon: "",
+    warRockWeaponSources: [],
     pgms: [],
     noiseAbilities: [],
     noiseCardIds: normalizeMmsf3NoiseCardIds(),
@@ -178,9 +183,36 @@ export function normalizeMmsf3AbilitySources(
   return syncOwnedSourceEntries(trackedAbilities, abilitySources, getMmsf3AbilitySources);
 }
 
+export function normalizeMmsf3WarRockWeaponSources(
+  warRockWeapon: string,
+  warRockWeaponSources: BuildSourceEntry[],
+) {
+  if (!warRockWeapon.trim() || !isMmsf3WarRockWeapon(warRockWeapon) || !isMmsf3WarRockWeaponSourceTracked(warRockWeapon)) {
+    return [];
+  }
+
+  return syncOwnedSourceEntries([{ id: "mmsf3-war-rock-weapon", name: warRockWeapon, quantity: 1, notes: "", isRegular: false }], warRockWeaponSources, getMmsf3WarRockWeaponSources);
+}
+
 export function getMissingMmsf3AbilitySourceNames(state: Pick<NormalizedMmsf3State, "abilities" | "abilitySources">, version: BuildRecord["version"]) {
   const trackedAbilities = state.abilities.filter((entry) => isMmsf3AbilitySourceTracked(entry.name, version));
   return getMissingOwnedSourceNames(trackedAbilities, state.abilitySources, getMmsf3AbilitySources);
+}
+
+export function getMissingMmsf3WarRockWeaponSourceNames(state: Pick<NormalizedMmsf3State, "warRockWeapon" | "warRockWeaponSources">) {
+  if (
+    !state.warRockWeapon.trim() ||
+    !isMmsf3WarRockWeapon(state.warRockWeapon) ||
+    !isMmsf3WarRockWeaponSourceTracked(state.warRockWeapon)
+  ) {
+    return [];
+  }
+
+  return getMissingOwnedSourceNames(
+    [{ id: "mmsf3-war-rock-weapon", name: state.warRockWeapon, quantity: 1, notes: "", isRegular: false }],
+    state.warRockWeaponSources,
+    getMmsf3WarRockWeaponSources,
+  );
 }
 
 export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefined, defaults?: Mmsf3Sections) {
@@ -208,6 +240,14 @@ export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefi
     ...baseSections,
     ...nextSections,
     noise: normalizeRouletteValue(nextSections.noise ?? baseSections.noise),
+    warRockWeapon: normalizeRouletteValue(nextSections.warRockWeapon ?? baseSections.warRockWeapon),
+    warRockWeaponSources: (nextSections.warRockWeaponSources ?? baseSections.warRockWeaponSources ?? []).map((entry) => ({
+      id: entry.id,
+      name: entry.name ?? "",
+      source: entry.source ?? "",
+      notes: entry.notes ?? "",
+      isOwned: false,
+    })),
     noiseCardIds: normalizeMmsf3NoiseCardIds(nextSections.noiseCardIds ?? baseSections.noiseCardIds),
     brotherRouletteSlots,
     sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(brotherRouletteSlots)),
@@ -229,6 +269,10 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
     build.version,
   );
   const normalizedSections = normalizeMmsf3Sections(build.gameSpecificSections.mmsf3, build.gameSpecificSections.mmsf3);
+  const normalizedWarRockWeaponSources = normalizeMmsf3WarRockWeaponSources(
+    normalizedSections.warRockWeapon,
+    normalizedSections.warRockWeaponSources,
+  );
   const normalizedBrotherRouletteSlots =
     normalizedSections.noise === "ブライノイズ"
       ? clearMmsf3BrotherSelectionsForBuraNoise(normalizedSections.brotherRouletteSlots)
@@ -245,6 +289,7 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
       ...build.gameSpecificSections,
       mmsf3: {
         ...normalizedSections,
+        warRockWeaponSources: normalizedWarRockWeaponSources,
         brotherRouletteSlots: normalizedBrotherRouletteSlots,
         sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(normalizedBrotherRouletteSlots)),
       },
@@ -262,6 +307,8 @@ export function getNormalizedMmsf3State(build: BuildRecord): NormalizedMmsf3Stat
 
   return {
     noise: sections.noise,
+    warRockWeapon: sections.warRockWeapon,
+    warRockWeaponSources: sections.warRockWeaponSources,
     playerRezonCard: sections.rezonCards[0] ?? "",
     whiteCardSetId: sections.whiteCardSetId,
     noiseCardIds: sections.noiseCardIds,
@@ -321,6 +368,40 @@ export function updateMmsf3WhiteCardSetId(build: BuildRecord, whiteCardSetId: st
       mmsf3: {
         ...build.gameSpecificSections.mmsf3,
         whiteCardSetId,
+      },
+    },
+  });
+}
+
+export function updateMmsf3WarRockWeapon(build: BuildRecord, warRockWeapon: string) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        warRockWeapon,
+      },
+    },
+  });
+}
+
+export function updateMmsf3WarRockWeaponSources(build: BuildRecord, warRockWeaponSources: BuildSourceEntry[]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        warRockWeaponSources,
       },
     },
   });
@@ -456,6 +537,10 @@ export function validateMmsf3BuildState(build: BuildRecord, state = getNormalize
 
   if (state.playerRezonCard && !getMmsf3RezonCardOptionByLabel(state.playerRezonCard)) {
     errors.push("レゾンカードが不正です。");
+  }
+
+  if (state.warRockWeapon && !isMmsf3WarRockWeapon(state.warRockWeapon)) {
+    errors.push("ウォーロック装備が不正です。");
   }
 
   return {

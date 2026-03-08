@@ -239,13 +239,14 @@ export function SourceListEditor({
                       ? "border-emerald-200/80 bg-emerald-500/24 text-emerald-50 hover:bg-emerald-500/30"
                       : "border-emerald-300/65 bg-emerald-500/16 text-emerald-100 hover:bg-emerald-500/24"
                   }`}
-                  onClick={() =>
+                  onClick={() => {
+                    setOpenSourceInfoNames((current) => current.filter((name) => name !== entry.name));
                     onChange(
                       entries.map((item) =>
                         item.name.trim() === entry.name ? { ...item, isOwned: !entry.isOwned } : item,
                       ),
-                    )
-                  }
+                    );
+                  }}
                 >
                   所持済み
                 </button>
