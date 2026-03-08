@@ -17,7 +17,7 @@ function NoiseHandSummary({
   const bonusLines = bestHand?.bonusEffect.split("\n") ?? [];
 
   return (
-    <div className="rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(90,72,196,0.28),rgba(255,255,255,0.05))] p-3">
+    <div className="rounded-[24px] border border-cyan-300/20 bg-[linear-gradient(150deg,rgba(100,82,212,0.34),rgba(70,122,214,0.22),rgba(255,255,255,0.07))] p-3">
       <div className="mb-3">
         <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">Noise Hand Bonus</p>
       </div>
@@ -87,7 +87,7 @@ export function NoiseCardEditor({
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
       <div className="flex items-center justify-between gap-3">
         <div>
-          <label className="text-sm font-semibold text-white">ノイズカード</label>
+          <label className="text-sm font-semibold text-white">ノイズドカード</label>
           <p className="mt-1 text-xs leading-5 text-white/52">役判定は順不同。流星マークは 1 枚までです。</p>
         </div>
       </div>
@@ -96,7 +96,7 @@ export function NoiseCardEditor({
         {values.map((value, index) => (
           <div
             key={`noise-card-slot-${index}`}
-            className="relative z-0 rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-3 focus-within:z-10"
+            className="relative z-0 rounded-[24px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.1),rgba(150,117,255,0.08),rgba(255,255,255,0.035))] p-3 focus-within:z-10"
           >
             <div className="mb-3">
               <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">

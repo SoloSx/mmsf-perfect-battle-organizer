@@ -789,7 +789,7 @@ test("mmsf3 editor evaluates noise hand bonus, filters duplicate cards, and upda
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
   const noiseCardPanel = page
-    .locator("label", { hasText: "ノイズカード" })
+    .locator("label", { hasText: "ノイズドカード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
   await selectNoiseCard(noiseCardPanel, 0, "アンドロメダ", "★: アンドロメダN(マックスバスター)");
@@ -825,7 +825,7 @@ test("mmsf3 editor applies straight sequence rules for noise hands", async ({ pa
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
   const noiseCardPanel = page
-    .locator("label", { hasText: "ノイズカード" })
+    .locator("label", { hasText: "ノイズドカード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
   await selectNoiseCard(noiseCardPanel, 0, "ピラニッシュ", "♦10: ピラニッシュN(HP+250)");
@@ -850,7 +850,7 @@ test("mmsf3 editor prefers the highest noise hand when multiple hands overlap", 
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
   const noiseCardPanel = page
-    .locator("label", { hasText: "ノイズカード" })
+    .locator("label", { hasText: "ノイズドカード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
   await selectNoiseCard(noiseCardPanel, 0, "レオ", "♥A: レオ・キングダムN(ファイアG.A+)");
