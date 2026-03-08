@@ -12,6 +12,7 @@ import {
   getMmsf3NoiseOptionByLabel,
   getMmsf3RezonCardOption,
   getMmsf3SssLevelOption,
+  getMmsf3WhiteCardSetCards,
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
 } from "@/lib/mmsf3/roulette-data";
@@ -114,15 +115,6 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
     return [...lines, ...evaluation.errors];
   }
 
-  if (selectedCount < 5) {
-    lines.push(`ノイズドカード ${selectedCount}/5`);
-  } else if (evaluation.bestHand) {
-    lines.push(`ノイズハンド: ${evaluation.bestHand.label}`);
-    lines.push(...evaluation.bestHand.bonusEffect.split("\n").map((effect) => `効果: ${effect}`));
-  } else {
-    lines.push("ノイズハンド: 役なし");
-  }
-
   for (const card of evaluation.selectedCards) {
     lines.push(`${card.label} / ${card.cardEffect}`);
   }
@@ -170,6 +162,57 @@ function getMmsf3BrotherRouletteLines(build: BuildRecord) {
     .filter((line): line is string => Boolean(line));
 }
 
+function getMmsf3BrotherVisualSummary(build: BuildRecord) {
+  const state = getNormalizedMmsf3State(build);
+  const noisePortraits: Array<{ path: string; label: string }> = [];
+  const sssEntries: Array<{ positionLabel: string; sssLabel: string; isGreek: boolean }> = [];
+  const whiteCardGroups: string[][] = [];
+  const sideCardNames: string[] = [];
+
+  for (const slot of state.brotherRouletteSlots) {
+    const positionLabel =
+      MMSF3_BROTHER_ROULETTE_POSITIONS.find((p) => p.key === slot.position)?.label ?? slot.position;
+
+    if (slot.slotType === "sss") {
+      const sssLabel = getMmsf3SssLevelOption(slot.sssLevel)?.label ?? "";
+      if (sssLabel) {
+        sssEntries.push({ positionLabel, sssLabel, isGreek: slot.sssLevel.startsWith("G") });
+      }
+      continue;
+    }
+
+    const noiseValue =
+      getMmsf3NoiseOption(slot.noise)?.value ??
+      getMmsf3NoiseOptionByLabel(slot.noise)?.value ??
+      "";
+    const portraitPath = MMSF3_NOISE_PORTRAIT_PATHS[noiseValue] ?? "";
+    const noiseLabel = getMmsf3NoiseOption(slot.noise)?.label ?? slot.noise;
+    if (portraitPath) {
+      noisePortraits.push({ path: portraitPath, label: noiseLabel });
+    }
+
+    const slotWhiteCards = getMmsf3WhiteCardSetCards(slot.whiteCardSetId);
+    if (slotWhiteCards.length > 0) {
+      const setKey = slotWhiteCards.join(",");
+      if (!whiteCardGroups.some((g) => g.join(",") === setKey)) {
+        whiteCardGroups.push(slotWhiteCards);
+      }
+    }
+
+    const gigaLabel = getMmsf3GigaCardOption(slot.gigaCard)?.label;
+    if (gigaLabel && !sideCardNames.includes(gigaLabel)) {
+      sideCardNames.push(gigaLabel);
+    }
+
+    const megaLabel = getMmsf3MegaCardOption(slot.megaCard)?.label;
+    if (megaLabel && !sideCardNames.includes(megaLabel)) {
+      sideCardNames.push(megaLabel);
+    }
+  }
+
+  return { noisePortraits, sssEntries, whiteCardGroups, sideCardNames };
+}
+
 function getMmsf3NoisePortraitPath(build: BuildRecord) {
   if (build.game !== "mmsf3") {
     return "";
@@ -208,8 +251,8 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
   const noisePortraitClassName =
     build.game === "mmsf3" && build.version === "red-joker"
-      ? "absolute left-[196px] top-[64px] h-14 w-14 object-contain"
-      : "absolute left-0 top-[96px] h-14 w-14 object-contain";
+      ? "absolute left-[196px] top-[64px] h-[55px] w-[74px] object-contain"
+      : "absolute left-0 top-[96px] h-[55px] w-[74px] object-contain";
   const heroPanelClassName =
     build.game === "mmsf3" && build.version === "red-joker"
       ? "relative overflow-hidden rounded-[32px] border border-white/15 p-8 pr-12 shadow-[0_0_40px_rgba(0,0,0,0.3)]"
@@ -242,6 +285,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
+  const mmsf3BrotherVisualSummary = build.game === "mmsf3" ? getMmsf3BrotherVisualSummary(build) : null;
 
   return (
     <div
@@ -284,6 +328,22 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
 
             <div className="space-y-3">
               <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Rockman</p>
+                {build.game === "mmsf3" ? (
+                  <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+                    {mmsf3SystemSnapshotLines.map((line, index) => (
+                      <li key={`${line}-${index}`}>• {line}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-2 text-sm leading-5 text-white/80">
+                    {build.game === "mmsf1" && (build.gameSpecificSections.mmsf1.warRockWeapon || "ウォーロック装備未設定")}
+                    {build.game === "mmsf2" &&
+                      (build.gameSpecificSections.mmsf2.bestCombo || build.gameSpecificSections.mmsf2.tribeNotes || "トライブ情報未設定")}
+                  </p>
+                )}
+              </div>
+              <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
                 <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
                   {abilities.length > 0 ? (
@@ -293,28 +353,11 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                   )}
                 </ul>
               </div>
-              <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Strategy</p>
-                <p className="mt-2 text-sm leading-6 text-white/80">
-                  {build.commonSections.overview || build.commonSections.strategyNote || "概要メモはまだ入力されていません。"}
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {build.commonSections.tags.length > 0 ? (
-                  build.commonSections.tags.slice(0, 6).map((tag) => (
-                    <span key={tag} className="chip">
-                      {tag}
-                    </span>
-                  ))
-                ) : (
-                  <span className="chip">戦法タグ未設定</span>
-                )}
-              </div>
             </div>
           </div>
         </div>
 
-        <div className="grid gap-6">
+        <div className="flex flex-col gap-6">
           <section className="rounded-[30px] border border-white/12 bg-black/20 p-5 shadow-[0_0_40px_rgba(0,0,0,0.18)]">
             <div className="mb-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Battle Cards</h3>
@@ -391,37 +434,110 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
             ) : null}
           </section>
 
-          <div>
-            <section className="rounded-[30px] border border-white/12 bg-black/20 p-5">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Brother & System</h3>
-              <div className="mt-4 space-y-4">
-                <div className="rounded-[24px] bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Brothers</p>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
-                    {brothers.length > 0
-                      ? brothers.map((item) => <li key={item}>• {item}</li>)
-                      : <li>• {build.game === "mmsf3" ? "ブラザールーレット未設定" : "ブラザー未設定"}</li>}
-                  </ul>
-                </div>
-                <div className="rounded-[24px] bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">System Snapshot</p>
-                  {build.game === "mmsf3" ? (
-                    <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
-                      {mmsf3SystemSnapshotLines.map((line, index) => (
-                        <li key={`${line}-${index}`}>• {line}</li>
+          <section className="flex-1 rounded-[30px] border border-white/12 bg-black/20 p-5">
+            <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Brothers</h3>
+              {mmsf3BrotherVisualSummary ? (
+                <div className="mt-4 space-y-3">
+                  {/* Row 1: Noise portraits (square, height = battle card height) + Side cards */}
+                  {(mmsf3BrotherVisualSummary.noisePortraits.length > 0 || mmsf3BrotherVisualSummary.sideCardNames.length > 0) && (
+                    <div className="flex">
+                      {mmsf3BrotherVisualSummary.noisePortraits.map((portrait, index) => (
+                        <div
+                          key={`${portrait.label}-${index}`}
+                          className="relative aspect-square shrink-0 overflow-hidden"
+                          style={{ width: `${(100 / EXPORT_CARD_GRID_COLUMNS) * 0.75}%` }}
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={portrait.path}
+                            alt={portrait.label}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
                       ))}
-                    </ul>
-                  ) : (
-                    <p className="mt-3 text-sm leading-6 text-white/82">
-                      {build.game === "mmsf1" && (build.gameSpecificSections.mmsf1.warRockWeapon || "ウォーロック装備未設定")}
-                      {build.game === "mmsf2" &&
-                        (build.gameSpecificSections.mmsf2.bestCombo || build.gameSpecificSections.mmsf2.tribeNotes || "トライブ情報未設定")}
-                    </p>
+                      {mmsf3BrotherVisualSummary.noisePortraits.length > 0 && mmsf3BrotherVisualSummary.sideCardNames.length > 0 && (
+                        <div className="shrink-0" style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }} />
+                      )}
+                      {mmsf3BrotherVisualSummary.sideCardNames.map((cardName, index) => {
+                        const asset = findCardAssetByName(build.game, cardName, build.version);
+                        return (
+                          <div
+                            key={`side-${cardName}-${index}`}
+                            className={`${BATTLE_CARD_FRAME_CLASS} shrink-0`}
+                            style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }}
+                          >
+                            {asset ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                            ) : (
+                              <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {/* Row 2: White card sets grouped per brother */}
+                  {mmsf3BrotherVisualSummary.whiteCardGroups.length > 0 && (
+                    <div className="flex">
+                      {mmsf3BrotherVisualSummary.whiteCardGroups.map((group, groupIndex) => [
+                        groupIndex > 0 ? (
+                          <div key={`wc-spacer-${groupIndex}`} className="shrink-0" style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }} />
+                        ) : null,
+                        ...group.map((cardName, cardIndex) => {
+                          const asset = findCardAssetByName(build.game, cardName, build.version);
+                          return (
+                            <div
+                              key={`wc-${groupIndex}-${cardName}-${cardIndex}`}
+                              className={`${BATTLE_CARD_FRAME_CLASS} shrink-0`}
+                              style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }}
+                            >
+                              {asset ? (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                              ) : (
+                                <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                  <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        }),
+                      ])}
+                    </div>
+                  )}
+                  {/* Row 3: SSS badges */}
+                  {mmsf3BrotherVisualSummary.sssEntries.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {mmsf3BrotherVisualSummary.sssEntries.map((entry, index) => (
+                        <span
+                          key={`${entry.positionLabel}-${index}`}
+                          className={`rounded-lg px-4 py-1.5 text-xs font-semibold text-white ${entry.isGreek ? "bg-orange-500/70" : "bg-blue-600/60"}`}
+                        >
+                          {entry.sssLabel}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {mmsf3BrotherVisualSummary.noisePortraits.length === 0 &&
+                    mmsf3BrotherVisualSummary.sideCardNames.length === 0 &&
+                    mmsf3BrotherVisualSummary.whiteCardGroups.length === 0 &&
+                    mmsf3BrotherVisualSummary.sssEntries.length === 0 && (
+                    <p className="text-sm text-white/60">ブラザールーレット未設定</p>
                   )}
                 </div>
-              </div>
-            </section>
-          </div>
+              ) : (
+                <div className="mt-4">
+                  <ul className="space-y-2 text-sm leading-6 text-white/82">
+                    {brothers.length > 0
+                      ? brothers.map((item) => <li key={item}>• {item}</li>)
+                      : <li>• ブラザー未設定</li>}
+                  </ul>
+                </div>
+              )}
+          </section>
         </div>
       </div>
     </div>
