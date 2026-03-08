@@ -33,7 +33,6 @@ function Mmsf3AbilityEditor({
         <label className="text-sm font-semibold text-white">アビリティ</label>
         <span className="text-xs text-white/45">合計P {totalCost}/{limit}</span>
       </div>
-      <p className="mt-1 text-xs leading-5 text-white/52">ランダム入手ありは最大9個、その他は1個。SSS は1枠ごとに上限 -140P、ブライノイズ時は上限 900P です。</p>
       <div className="mt-4 space-y-3">
         {entries.map((entry, index) => {
           const selectedAbility = getMmsf3AbilityByLabel(entry.name.trim());

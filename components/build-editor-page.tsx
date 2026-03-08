@@ -48,6 +48,7 @@ import type {
   BuildRecord,
   CommonSections,
   GameId,
+  Mmsf3BrotherRouletteSlot,
   VersionId,
 } from "@/lib/types";
 import { createId, uniqueStrings } from "@/lib/utils";
@@ -88,6 +89,104 @@ function normalizeBuildSourceEntry(entry: CommonSections["abilitySources"][numbe
     notes: entry.notes ?? "",
     isOwned: Boolean(entry.isOwned),
   };
+}
+
+function hasPartialCardEntry(entry: BuildCardEntry) {
+  return Boolean(entry.name.trim());
+}
+
+function hasIncompleteSourceEntry(entry: CommonSections["cardSources"][number]) {
+  const hasAnyValue = Boolean(entry.name.trim() || entry.source.trim() || entry.notes.trim());
+  if (!hasAnyValue) {
+    return false;
+  }
+
+  return !entry.name.trim() || !entry.source.trim();
+}
+
+function hasIncompleteBrotherProfile(entry: BrotherProfile) {
+  const hasAnyValue = Boolean(
+    entry.name.trim() ||
+    entry.favoriteCards.length > 0 ||
+    entry.rezonCard.trim() ||
+    entry.notes.trim(),
+  );
+  if (!hasAnyValue) {
+    return false;
+  }
+
+  return !entry.name.trim();
+}
+
+function hasIncompleteBrotherRouletteSlot(slot: Mmsf3BrotherRouletteSlot) {
+  if (slot.slotType === "sss") {
+    return !slot.sssLevel.trim();
+  }
+
+  const filledFieldCount = [
+    slot.version,
+    slot.noise,
+    slot.rezon,
+    slot.whiteCardSetId,
+    slot.gigaCard,
+    slot.megaCard,
+  ].filter((value) => value.trim()).length;
+
+  if (filledFieldCount === 0) {
+    return false;
+  }
+
+  return filledFieldCount < 6;
+}
+
+function getRequiredFieldErrors(build: BuildRecord) {
+  const errors: string[] = [];
+
+  if (!build.title.trim()) {
+    errors.push("構築名を入力してください。");
+  }
+
+  if (!build.commonSections.overview.trim()) {
+    errors.push("構築概要を入力してください。");
+  }
+
+  const namedCards = build.commonSections.cards.filter((entry) => hasPartialCardEntry(entry));
+  if (namedCards.length === 0) {
+    errors.push("対戦構築カードを1件以上入力してください。");
+  }
+
+  if (build.commonSections.cards.some((entry) => !entry.name.trim())) {
+    errors.push("対戦構築カードの未入力行があります。");
+  }
+
+  if (build.commonSections.cardSources.some((entry) => hasIncompleteSourceEntry(entry))) {
+    errors.push("カード入手方法の未入力行があります。");
+  }
+
+  if (build.game === "mmsf3") {
+    if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
+      errors.push("アビリティの未入力行があります。");
+    }
+
+    const slots = build.gameSpecificSections.mmsf3.brotherRouletteSlots;
+    if (slots.some((slot) => hasIncompleteBrotherRouletteSlot(slot))) {
+      errors.push("ブラザー情報の未入力項目があります。");
+    }
+  } else {
+    if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
+      errors.push("アビリティの未入力行があります。");
+    }
+
+    if (build.commonSections.abilitySources.some((entry) => hasIncompleteSourceEntry(entry))) {
+      errors.push("アビリティ入手方法の未入力行があります。");
+    }
+
+    if (build.commonSections.brothers.some((entry) => hasIncompleteBrotherProfile(entry))) {
+      errors.push("ブラザー情報の未入力行があります。");
+    }
+  }
+
+  return errors;
 }
 
 function buildEmptyBrother(): BrotherProfile {
@@ -223,6 +322,8 @@ function validateBuild(build: BuildRecord) {
   if (regularCardCount > 1) {
     errors.push("REG カードは1枚だけ指定してください。");
   }
+
+  errors.push(...getRequiredFieldErrors(build));
 
   if (build.game === "mmsf3") {
     const state = getNormalizedMmsf3State(build);

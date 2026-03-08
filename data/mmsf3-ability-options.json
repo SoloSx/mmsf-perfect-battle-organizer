@@ -5,6 +5,7 @@
       "id": "mmsf3-ability-001",
       "name": "HP+50",
       "cost": 120,
+      "maxCount": 9,
       "label": "HP+50 (120P)",
       "sources": [
         "ストーリー中にマグネッツからメールでもらう",
@@ -20,6 +21,7 @@
       "id": "mmsf3-ability-002",
       "name": "HP+50",
       "cost": 110,
+      "maxCount": 9,
       "label": "HP+50 (110P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん2体)",
@@ -36,6 +38,7 @@
       "id": "mmsf3-ability-003",
       "name": "HP+50",
       "cost": 100,
+      "maxCount": 1,
       "label": "HP+50 (100P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん4体)",
@@ -47,6 +50,7 @@
       "id": "mmsf3-ability-004",
       "name": "HP+100",
       "cost": 220,
+      "maxCount": 9,
       "label": "HP+100 (220P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん2体)",
@@ -59,6 +63,7 @@
       "id": "mmsf3-ability-005",
       "name": "HP+100",
       "cost": 205,
+      "maxCount": 9,
       "label": "HP+100 (205P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん4体)",
@@ -73,6 +78,7 @@
       "id": "mmsf3-ability-006",
       "name": "HP+100",
       "cost": 190,
+      "maxCount": 1,
       "label": "HP+100 (190P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん6体)"
@@ -83,6 +89,7 @@
       "id": "mmsf3-ability-007",
       "name": "HP+100",
       "cost": 170,
+      "maxCount": 9,
       "label": "HP+100 (170P)",
       "sources": [
         "ノイズウェーブ5(ランダム(金))"
@@ -93,6 +100,7 @@
       "id": "mmsf3-ability-008",
       "name": "HP+200",
       "cost": 310,
+      "maxCount": 9,
       "label": "HP+200 (310P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん3体)",
@@ -107,6 +115,7 @@
       "id": "mmsf3-ability-009",
       "name": "HP+200",
       "cost": 290,
+      "maxCount": 9,
       "label": "HP+200 (290P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん5体)",
@@ -122,6 +131,7 @@
       "id": "mmsf3-ability-010",
       "name": "HP+200",
       "cost": 270,
+      "maxCount": 1,
       "label": "HP+200 (270P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん8体)"
@@ -132,6 +142,7 @@
       "id": "mmsf3-ability-011",
       "name": "HP+200",
       "cost": 250,
+      "maxCount": 9,
       "label": "HP+200 (250P)",
       "sources": [
         "シーサーじょう(ランダム(金))",
@@ -143,6 +154,7 @@
       "id": "mmsf3-ability-012",
       "name": "HP+300",
       "cost": 420,
+      "maxCount": 1,
       "label": "HP+300 (420P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん7体)"
@@ -153,6 +165,7 @@
       "id": "mmsf3-ability-013",
       "name": "HP+300",
       "cost": 390,
+      "maxCount": 9,
       "label": "HP+300 (390P)",
       "sources": [
         "シーサーだいざの電脳(固定)",
@@ -169,6 +182,7 @@
       "id": "mmsf3-ability-014",
       "name": "HP+300",
       "cost": 370,
+      "maxCount": 9,
       "label": "HP+300 (370P)",
       "sources": [
         "FM星のコスモウェーブ1(ランダム)",
@@ -180,6 +194,7 @@
       "id": "mmsf3-ability-015",
       "name": "HP+300",
       "cost": 340,
+      "maxCount": 9,
       "label": "HP+300 (340P)",
       "sources": [
         "ノイズウェーブ1(ランダム(金))"
@@ -190,6 +205,7 @@
       "id": "mmsf3-ability-016",
       "name": "HP+400",
       "cost": 490,
+      "maxCount": 9,
       "label": "HP+400 (490P)",
       "sources": [
         "オービタルベース(ランダム)",
@@ -203,6 +219,7 @@
       "id": "mmsf3-ability-017",
       "name": "HP+400",
       "cost": 470,
+      "maxCount": 9,
       "label": "HP+400 (470P)",
       "sources": [
         "FM星のコスモウェーブ3(ランダム)"
@@ -213,6 +230,7 @@
       "id": "mmsf3-ability-018",
       "name": "HP+400",
       "cost": 450,
+      "maxCount": 1,
       "label": "HP+400 (450P)",
       "sources": [
         "そとうちゅうのコスモウェーブ2(固定)"
@@ -223,6 +241,7 @@
       "id": "mmsf3-ability-019",
       "name": "HP+500",
       "cost": 610,
+      "maxCount": 9,
       "label": "HP+500 (610P)",
       "sources": [
         "ノイズウェーブ5(固定)",
@@ -237,6 +256,7 @@
       "id": "mmsf3-ability-020",
       "name": "HP+500",
       "cost": 570,
+      "maxCount": 9,
       "label": "HP+500 (570P)",
       "sources": [
         "FM星のコスモウェーブ2(固定)",
@@ -248,6 +268,7 @@
       "id": "mmsf3-ability-021",
       "name": "HP+500",
       "cost": 540,
+      "maxCount": 9,
       "label": "HP+500 (540P)",
       "sources": [
         "ブラックホールサーバー1(固定)",
@@ -259,6 +280,7 @@
       "id": "mmsf3-ability-022",
       "name": "HP+500",
       "cost": 450,
+      "maxCount": 1,
       "label": "HP+500 (450P)",
       "sources": [
         "暗号コード"
@@ -269,6 +291,7 @@
       "id": "mmsf3-ability-023",
       "name": "HP+500",
       "cost": 350,
+      "maxCount": 1,
       "label": "HP+500 (350P)",
       "sources": [
         "リブラノイズで一定回数戦闘したときに入手"
@@ -279,6 +302,7 @@
       "id": "mmsf3-ability-024",
       "name": "アンダーシャツ",
       "cost": 60,
+      "maxCount": 1,
       "label": "アンダーシャツ (60P)",
       "sources": [
         "ゴン太のベッドのノイズ(固定)"
@@ -289,6 +313,7 @@
       "id": "mmsf3-ability-025",
       "name": "アンダーシャツ",
       "cost": 50,
+      "maxCount": 9,
       "label": "アンダーシャツ (50P)",
       "sources": [
         "アイランドディスプレイの電脳(固定)",
@@ -301,6 +326,7 @@
       "id": "mmsf3-ability-026",
       "name": "アンダーシャツ",
       "cost": 30,
+      "maxCount": 9,
       "label": "アンダーシャツ (30P)",
       "sources": [
         "エアダクトの電脳(固定)",
@@ -313,6 +339,7 @@
       "id": "mmsf3-ability-027",
       "name": "アンダーシャツ",
       "cost": 5,
+      "maxCount": 9,
       "label": "アンダーシャツ (5P)",
       "sources": [
         "シーサーじょう(ランダム(金))",
@@ -325,6 +352,7 @@
       "id": "mmsf3-ability-028",
       "name": "エアシューズ",
       "cost": 450,
+      "maxCount": 1,
       "label": "エアシューズ (450P)",
       "sources": [
         "ノイズウェーブ1(固定)",
@@ -336,6 +364,7 @@
       "id": "mmsf3-ability-029",
       "name": "エアシューズ",
       "cost": 400,
+      "maxCount": 1,
       "label": "エアシューズ (400P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋"
@@ -346,6 +375,7 @@
       "id": "mmsf3-ability-030",
       "name": "エアシューズ",
       "cost": 260,
+      "maxCount": 1,
       "label": "エアシューズ (260P)",
       "sources": [
         "暗号コード"
@@ -356,6 +386,7 @@
       "id": "mmsf3-ability-031",
       "name": "エアシューズ",
       "cost": 200,
+      "maxCount": 1,
       "label": "エアシューズ (200P)",
       "sources": [
         "コーヴァスノイズで一定回数戦闘したときに入手"
@@ -366,6 +397,7 @@
       "id": "mmsf3-ability-032",
       "name": "フロートシューズ",
       "cost": 300,
+      "maxCount": 1,
       "label": "フロートシューズ (300P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん12体)"
@@ -376,6 +408,7 @@
       "id": "mmsf3-ability-033",
       "name": "フロートシューズ",
       "cost": 270,
+      "maxCount": 1,
       "label": "フロートシューズ (270P)",
       "sources": [
         "人助け:響ミソラ"
@@ -386,6 +419,7 @@
       "id": "mmsf3-ability-034",
       "name": "フロートシューズ",
       "cost": 240,
+      "maxCount": 9,
       "label": "フロートシューズ (240P)",
       "sources": [
         "ノイズウェーブ4(ランダム)",
@@ -397,6 +431,7 @@
       "id": "mmsf3-ability-035",
       "name": "フロートシューズ",
       "cost": 210,
+      "maxCount": 1,
       "label": "フロートシューズ (210P)",
       "sources": [
         "ノイズウェーブ6(固定)"
@@ -407,6 +442,7 @@
       "id": "mmsf3-ability-036",
       "name": "フロートシューズ",
       "cost": 150,
+      "maxCount": 1,
       "label": "フロートシューズ (150P)",
       "sources": [
         "キグナスノイズで一定回数戦闘したときに入手"
@@ -417,6 +453,7 @@
       "id": "mmsf3-ability-037",
       "name": "リフレクト",
       "cost": 260,
+      "maxCount": 1,
       "label": "リフレクト (260P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん体)"
@@ -427,6 +464,7 @@
       "id": "mmsf3-ability-038",
       "name": "リフレクト",
       "cost": 230,
+      "maxCount": 9,
       "label": "リフレクト (230P)",
       "sources": [
         "コダマタウン(ランダム)",
@@ -438,6 +476,7 @@
       "id": "mmsf3-ability-039",
       "name": "リフレクト",
       "cost": 200,
+      "maxCount": 9,
       "label": "リフレクト (200P)",
       "sources": [
         "キングウォールの電脳(固定)",
@@ -449,6 +488,7 @@
       "id": "mmsf3-ability-040",
       "name": "リフレクト",
       "cost": 150,
+      "maxCount": 9,
       "label": "リフレクト (150P)",
       "sources": [
         "ノイズウェーブ4(ランダム(金))"
@@ -459,6 +499,7 @@
       "id": "mmsf3-ability-041",
       "name": "リフレクト",
       "cost": 50,
+      "maxCount": 1,
       "label": "リフレクト (50P)",
       "sources": [
         "ブライノイズで一定回数戦闘したときに入手"
@@ -469,6 +510,7 @@
       "id": "mmsf3-ability-042",
       "name": "スーパーアーマー",
       "cost": 900,
+      "maxCount": 1,
       "label": "スーパーアーマー (900P)",
       "sources": [
         "ブラックホールサーバー2:",
@@ -480,6 +522,7 @@
       "id": "mmsf3-ability-043",
       "name": "スーパーアーマー",
       "cost": 700,
+      "maxCount": 1,
       "label": "スーパーアーマー (700P)",
       "sources": [
         "オックスノイズで一定回数戦闘したときに入手"
@@ -490,6 +533,7 @@
       "id": "mmsf3-ability-044",
       "name": "フラッシュボディ",
       "cost": 300,
+      "maxCount": 1,
       "label": "フラッシュボディ (300P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん4体)"
@@ -500,6 +544,7 @@
       "id": "mmsf3-ability-045",
       "name": "フラッシュボディ",
       "cost": 200,
+      "maxCount": 1,
       "label": "フラッシュボディ (200P)",
       "sources": [
         "オヒュカスノイズで一定回数戦闘したときに入手"
@@ -510,6 +555,7 @@
       "id": "mmsf3-ability-046",
       "name": "グラビティボディ",
       "cost": 500,
+      "maxCount": 1,
       "label": "グラビティボディ (500P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん8体)"
@@ -520,6 +566,7 @@
       "id": "mmsf3-ability-047",
       "name": "グラビティボディ",
       "cost": 300,
+      "maxCount": 1,
       "label": "グラビティボディ (300P)",
       "sources": [
         "コーヴァスノイズで一定回数戦闘したときに入手"
@@ -530,6 +577,7 @@
       "id": "mmsf3-ability-048",
       "name": "パラライズボディ",
       "cost": 800,
+      "maxCount": 1,
       "label": "パラライズボディ (800P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん9体)"
@@ -540,6 +588,7 @@
       "id": "mmsf3-ability-049",
       "name": "パラライズボディ",
       "cost": 600,
+      "maxCount": 1,
       "label": "パラライズボディ (600P)",
       "sources": [
         "ジェミニノイズで一定回数戦闘したときに入手"
@@ -550,6 +599,7 @@
       "id": "mmsf3-ability-050",
       "name": "フリーズボディ",
       "cost": 800,
+      "maxCount": 1,
       "label": "フリーズボディ (800P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん13体)"
@@ -560,6 +610,7 @@
       "id": "mmsf3-ability-051",
       "name": "フリーズボディ",
       "cost": 600,
+      "maxCount": 1,
       "label": "フリーズボディ (600P)",
       "sources": [
         "ヴァルゴノイズで一定回数戦闘したときに入手"
@@ -570,6 +621,7 @@
       "id": "mmsf3-ability-052",
       "name": "バブルボディ",
       "cost": 800,
+      "maxCount": 1,
       "label": "バブルボディ (800P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん13体)"
@@ -580,6 +632,7 @@
       "id": "mmsf3-ability-053",
       "name": "バブルボディ",
       "cost": 600,
+      "maxCount": 1,
       "label": "バブルボディ (600P)",
       "sources": [
         "キャンサーノイズで一定回数戦闘したときに入手"
@@ -590,6 +643,7 @@
       "id": "mmsf3-ability-054",
       "name": "ファーストバリア",
       "cost": 60,
+      "maxCount": 1,
       "label": "ファーストバリア (60P)",
       "sources": [
         "アイランドディスプレイの電脳(固定)"
@@ -600,6 +654,7 @@
       "id": "mmsf3-ability-055",
       "name": "ファーストバリア",
       "cost": 50,
+      "maxCount": 9,
       "label": "ファーストバリア (50P)",
       "sources": [
         "ニホンのコスモウェーブ2(ランダム)",
@@ -612,6 +667,7 @@
       "id": "mmsf3-ability-056",
       "name": "ファーストバリア",
       "cost": 40,
+      "maxCount": 9,
       "label": "ファーストバリア (40P)",
       "sources": [
         "オービタルベース(ランダム)",
@@ -623,6 +679,7 @@
       "id": "mmsf3-ability-057",
       "name": "ファーストバリア",
       "cost": 30,
+      "maxCount": 9,
       "label": "ファーストバリア (30P)",
       "sources": [
         "ニホンのコスモウェーブ1(ランダム(金))",
@@ -634,6 +691,7 @@
       "id": "mmsf3-ability-058",
       "name": "ファーストオーラ",
       "cost": 600,
+      "maxCount": 1,
       "label": "ファーストオーラ (600P)",
       "sources": [
         "コダマタウン"
@@ -644,6 +702,7 @@
       "id": "mmsf3-ability-059",
       "name": "ファーストオーラ",
       "cost": 400,
+      "maxCount": 1,
       "label": "ファーストオーラ (400P)",
       "sources": [
         "ブライノイズで一定回数戦闘したときに入手"
@@ -654,6 +713,7 @@
       "id": "mmsf3-ability-060",
       "name": "メガクラス+1",
       "cost": 440,
+      "maxCount": 1,
       "label": "メガクラス+1 (440P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん12体)"
@@ -664,6 +724,7 @@
       "id": "mmsf3-ability-061",
       "name": "メガクラス+1",
       "cost": 400,
+      "maxCount": 1,
       "label": "メガクラス+1 (400P)",
       "sources": [
         "デンパくんスクエア(キング・ルーツ:デンパくん18体)",
@@ -677,6 +738,7 @@
       "id": "mmsf3-ability-062",
       "name": "メガクラス+1",
       "cost": 360,
+      "maxCount": 9,
       "label": "メガクラス+1 (360P)",
       "sources": [
         "FM星のコスモウェーブ3(ランダム(金))"
@@ -687,6 +749,7 @@
       "id": "mmsf3-ability-063",
       "name": "メガクラス+1",
       "cost": 270,
+      "maxCount": 1,
       "label": "メガクラス+1 (270P)",
       "sources": [
         "暗号コード"
@@ -697,6 +760,7 @@
       "id": "mmsf3-ability-064",
       "name": "メガクラス+1",
       "cost": 200,
+      "maxCount": 1,
       "label": "メガクラス+1 (200P)",
       "sources": [
         "クラウンノイズで一定回数戦闘したときに入手"
@@ -707,6 +771,7 @@
       "id": "mmsf3-ability-065",
       "name": "ギガクラス+1",
       "cost": 750,
+      "maxCount": 1,
       "label": "ギガクラス+1 (750P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋"
@@ -717,6 +782,7 @@
       "id": "mmsf3-ability-066",
       "name": "ギガクラス+1",
       "cost": 700,
+      "maxCount": 1,
       "label": "ギガクラス+1 (700P)",
       "sources": [
         "ノイズウェーブ6(固定)",
@@ -730,6 +796,7 @@
       "id": "mmsf3-ability-067",
       "name": "ギガクラス+1",
       "cost": 650,
+      "maxCount": 1,
       "label": "ギガクラス+1 (650P)",
       "sources": [
         "ブラックホールサーバー2 :",
@@ -741,6 +808,7 @@
       "id": "mmsf3-ability-068",
       "name": "ギガクラス+1",
       "cost": 600,
+      "maxCount": 1,
       "label": "ギガクラス+1 (600P)",
       "sources": [
         "人助け:最小院 キザマロ"
@@ -751,6 +819,7 @@
       "id": "mmsf3-ability-069",
       "name": "ギガクラス+1",
       "cost": 400,
+      "maxCount": 1,
       "label": "ギガクラス+1 (400P)",
       "sources": [
         "暗号コード"
@@ -761,6 +830,7 @@
       "id": "mmsf3-ability-070",
       "name": "プラスV",
       "cost": 90,
+      "maxCount": 1,
       "label": "プラスV (90P)",
       "sources": [
         "とくせつステージの電脳1(固定)"
@@ -771,6 +841,7 @@
       "id": "mmsf3-ability-071",
       "name": "プラスV",
       "cost": 80,
+      "maxCount": 9,
       "label": "プラスV (80P)",
       "sources": [
         "ニホンのコスモウェーブ2(ランダム)",
@@ -785,6 +856,7 @@
       "id": "mmsf3-ability-072",
       "name": "プラスV",
       "cost": 70,
+      "maxCount": 9,
       "label": "プラスV (70P)",
       "sources": [
         "あんないばんの電脳(ランダム)",
@@ -796,6 +868,7 @@
       "id": "mmsf3-ability-073",
       "name": "プラスクロス",
       "cost": 150,
+      "maxCount": 9,
       "label": "プラスクロス (150P)",
       "sources": [
         "ビーチ(固定)",
@@ -807,6 +880,7 @@
       "id": "mmsf3-ability-074",
       "name": "プラスクロス",
       "cost": 130,
+      "maxCount": 9,
       "label": "プラスクロス (130P)",
       "sources": [
         "コダマタウン(ランダム)",
@@ -818,6 +892,7 @@
       "id": "mmsf3-ability-075",
       "name": "プラスクロス",
       "cost": 110,
+      "maxCount": 9,
       "label": "プラスクロス (110P)",
       "sources": [
         "シューティングゲームの電脳(固定)",
@@ -831,6 +906,7 @@
       "id": "mmsf3-ability-076",
       "name": "プラスクロス",
       "cost": 45,
+      "maxCount": 1,
       "label": "プラスクロス (45P)",
       "sources": [
         "キャンサーノイズで一定回数戦闘したときに入手"
@@ -841,6 +917,7 @@
       "id": "mmsf3-ability-077",
       "name": "プラススプレッド",
       "cost": 200,
+      "maxCount": 1,
       "label": "プラススプレッド (200P)",
       "sources": [
         "あんないばんの電脳(固定)"
@@ -851,6 +928,7 @@
       "id": "mmsf3-ability-078",
       "name": "プラススプレッド",
       "cost": 180,
+      "maxCount": 1,
       "label": "プラススプレッド (180P)",
       "sources": [
         "クリムゾンマシンの電脳2(固定)"
@@ -861,6 +939,7 @@
       "id": "mmsf3-ability-079",
       "name": "プラススプレッド",
       "cost": 160,
+      "maxCount": 9,
       "label": "プラススプレッド (160P)",
       "sources": [
         "ブラックホールサーバー2:",
@@ -873,6 +952,7 @@
       "id": "mmsf3-ability-080",
       "name": "プラススプレッド",
       "cost": 140,
+      "maxCount": 9,
       "label": "プラススプレッド (140P)",
       "sources": [
         "そとうちゅうのコスモウェーブ1(ランダム(金))"
@@ -883,6 +963,7 @@
       "id": "mmsf3-ability-081",
       "name": "プラススプレッド",
       "cost": 100,
+      "maxCount": 1,
       "label": "プラススプレッド (100P)",
       "sources": [
         "リブラノイズで一定回数戦闘したときに入手"
@@ -893,6 +974,7 @@
       "id": "mmsf3-ability-082",
       "name": "+グリーンパネル",
       "cost": 220,
+      "maxCount": 1,
       "label": "+グリーンパネル (220P)",
       "sources": [
         "かんきょうシステムの電脳3(固定)"
@@ -903,6 +985,7 @@
       "id": "mmsf3-ability-083",
       "name": "+グリーンパネル",
       "cost": 200,
+      "maxCount": 9,
       "label": "+グリーンパネル (200P)",
       "sources": [
         "木ばこのノイズ(固定)",
@@ -914,6 +997,7 @@
       "id": "mmsf3-ability-084",
       "name": "+グリーンパネル",
       "cost": 170,
+      "maxCount": 9,
       "label": "+グリーンパネル (170P)",
       "sources": [
         "メテオサーバー1(ランダム)",
@@ -925,6 +1009,7 @@
       "id": "mmsf3-ability-085",
       "name": "+グリーンパネル",
       "cost": 150,
+      "maxCount": 9,
       "label": "+グリーンパネル (150P)",
       "sources": [
         "メテオサーバー3(ランダム(金))"
@@ -935,6 +1020,7 @@
       "id": "mmsf3-ability-086",
       "name": "+グリーンパネル",
       "cost": 50,
+      "maxCount": 1,
       "label": "+グリーンパネル (50P)",
       "sources": [
         "オヒュカスノイズで一定回数戦闘したときに入手"
@@ -945,6 +1031,7 @@
       "id": "mmsf3-ability-087",
       "name": "+アイスパネル",
       "cost": 220,
+      "maxCount": 1,
       "label": "+アイスパネル (220P)",
       "sources": [
         "ニホンのコスモウェーブ1(固定)"
@@ -955,6 +1042,7 @@
       "id": "mmsf3-ability-088",
       "name": "+アイスパネル",
       "cost": 210,
+      "maxCount": 1,
       "label": "+アイスパネル (210P)",
       "sources": [
         "クリムゾンタンクの電脳(固定)"
@@ -965,6 +1053,7 @@
       "id": "mmsf3-ability-089",
       "name": "+アイスパネル",
       "cost": 180,
+      "maxCount": 9,
       "label": "+アイスパネル (180P)",
       "sources": [
         "オービタルベース(ランダム)",
@@ -976,6 +1065,7 @@
       "id": "mmsf3-ability-090",
       "name": "+アイスパネル",
       "cost": 50,
+      "maxCount": 1,
       "label": "+アイスパネル (50P)",
       "sources": [
         "ヴァルゴノイズで一定回数戦闘したときに入手"
@@ -986,6 +1076,7 @@
       "id": "mmsf3-ability-091",
       "name": "+Pパネル",
       "cost": 250,
+      "maxCount": 1,
       "label": "+Pパネル (250P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋"
@@ -996,6 +1087,7 @@
       "id": "mmsf3-ability-092",
       "name": "+Pパネル",
       "cost": 230,
+      "maxCount": 9,
       "label": "+Pパネル (230P)",
       "sources": [
         "ノイズウェーブ3(ランダム)",
@@ -1008,6 +1100,7 @@
       "id": "mmsf3-ability-093",
       "name": "+Pパネル",
       "cost": 210,
+      "maxCount": 9,
       "label": "+Pパネル (210P)",
       "sources": [
         "FM星のコスモウェーブ1(ランダム)",
@@ -1019,6 +1112,7 @@
       "id": "mmsf3-ability-094",
       "name": "+Pパネル",
       "cost": 180,
+      "maxCount": 1,
       "label": "+Pパネル (180P)",
       "sources": [
         "ノイズウェーブ6(固定)"
@@ -1029,6 +1123,7 @@
       "id": "mmsf3-ability-095",
       "name": "+Pパネル",
       "cost": 70,
+      "maxCount": 1,
       "label": "+Pパネル (70P)",
       "sources": [
         "ジェミニノイズで一定回数戦闘したときに入手"
@@ -1039,6 +1134,7 @@
       "id": "mmsf3-ability-096",
       "name": "+ゼツエンパネル",
       "cost": 200,
+      "maxCount": 1,
       "label": "+ゼツエンパネル (200P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋",
@@ -1050,6 +1146,7 @@
       "id": "mmsf3-ability-097",
       "name": "+ゼツエンパネル",
       "cost": 190,
+      "maxCount": 9,
       "label": "+ゼツエンパネル (190P)",
       "sources": [
         "ノイズウェーブ4(ランダム)",
@@ -1063,6 +1160,7 @@
       "id": "mmsf3-ability-098",
       "name": "+ゼツエンパネル",
       "cost": 170,
+      "maxCount": 9,
       "label": "+ゼツエンパネル (170P)",
       "sources": [
         "ブラックホールサーバー1(ランダム)"
@@ -1073,6 +1171,7 @@
       "id": "mmsf3-ability-099",
       "name": "+ゼツエンパネル",
       "cost": 140,
+      "maxCount": 9,
       "label": "+ゼツエンパネル (140P)",
       "sources": [
         "FM星のコスモウェーブ2(ランダム(金))"
@@ -1083,6 +1182,7 @@
       "id": "mmsf3-ability-100",
       "name": "+ゼツエンパネル",
       "cost": 50,
+      "maxCount": 1,
       "label": "+ゼツエンパネル (50P)",
       "sources": [
         "キグナスノイズで一定回数戦闘したときに入手"
@@ -1093,6 +1193,7 @@
       "id": "mmsf3-ability-101",
       "name": "+ポイズンパネル",
       "cost": 270,
+      "maxCount": 1,
       "label": "+ポイズンパネル (270P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋"
@@ -1103,6 +1204,7 @@
       "id": "mmsf3-ability-102",
       "name": "+ポイズンパネル",
       "cost": 250,
+      "maxCount": 9,
       "label": "+ポイズンパネル (250P)",
       "sources": [
         "FM星のコスモウェーブ3(ランダム)",
@@ -1115,6 +1217,7 @@
       "id": "mmsf3-ability-103",
       "name": "+ポイズンパネル",
       "cost": 230,
+      "maxCount": 9,
       "label": "+ポイズンパネル (230P)",
       "sources": [
         "ブラックホールサーバー1(ランダム)",
@@ -1126,6 +1229,7 @@
       "id": "mmsf3-ability-104",
       "name": "+ポイズンパネル",
       "cost": 120,
+      "maxCount": 9,
       "label": "+ポイズンパネル (120P)",
       "sources": [
         "FM星のコスモウェーブ2(ランダム(金))"
@@ -1136,6 +1240,7 @@
       "id": "mmsf3-ability-105",
       "name": "クイックゲージ",
       "cost": 500,
+      "maxCount": 1,
       "label": "クイックゲージ (500P)",
       "sources": [
         "ブラックホールサーバー2",
@@ -1147,6 +1252,7 @@
       "id": "mmsf3-ability-106",
       "name": "クイックゲージ",
       "cost": 300,
+      "maxCount": 1,
       "label": "クイックゲージ (300P)",
       "sources": [
         "ウルフノイズで一定回数戦闘したときに入手"
@@ -1157,6 +1263,7 @@
       "id": "mmsf3-ability-107",
       "name": "オートロックオン",
       "cost": 950,
+      "maxCount": 1,
       "label": "オートロックオン (950P)",
       "sources": [
         "ちかシェルター",
@@ -1170,6 +1277,7 @@
       "id": "mmsf3-ability-108",
       "name": "カワリミ",
       "cost": 370,
+      "maxCount": 1,
       "label": "カワリミ (370P)",
       "sources": [
         "ノイズウェーブ1のノイズのかけら交換屋"
@@ -1180,6 +1288,7 @@
       "id": "mmsf3-ability-109",
       "name": "カワリミ",
       "cost": 350,
+      "maxCount": 1,
       "label": "カワリミ (350P)",
       "sources": [
         "きょだいモニターの電脳(固定)"
@@ -1190,6 +1299,7 @@
       "id": "mmsf3-ability-110",
       "name": "カワリミ",
       "cost": 330,
+      "maxCount": 1,
       "label": "カワリミ (330P)",
       "sources": [
         "人助け:白金ルナ"
@@ -1200,6 +1310,7 @@
       "id": "mmsf3-ability-111",
       "name": "カワリミ",
       "cost": 250,
+      "maxCount": 1,
       "label": "カワリミ (250P)",
       "sources": [
         "暗号コード"
@@ -1210,6 +1321,7 @@
       "id": "mmsf3-ability-112",
       "name": "サークルサーチ",
       "cost": 5,
+      "maxCount": 1,
       "label": "サークルサーチ (5P)",
       "sources": [
         "ニホンのコスモウェーブ2(固定)"
@@ -1220,6 +1332,7 @@
       "id": "mmsf3-ability-113",
       "name": "サイドサーチ",
       "cost": 5,
+      "maxCount": 1,
       "label": "サイドサーチ (5P)",
       "sources": [
         "しれい室(固定)"
@@ -1230,6 +1343,7 @@
       "id": "mmsf3-ability-114",
       "name": "エースPGM",
       "cost": 0,
+      "maxCount": 1,
       "label": "エースPGM (0P)",
       "sources": [
         "イベントで入手(ブラックエース)"
@@ -1240,6 +1354,7 @@
       "id": "mmsf3-ability-115",
       "name": "ジョーカーPGM",
       "cost": 0,
+      "maxCount": 1,
       "label": "ジョーカーPGM (0P)",
       "sources": [
         "イベントで入手(レッドジョーカー)"
@@ -1250,6 +1365,7 @@
       "id": "mmsf3-ability-116",
       "name": "Sエリアイーター",
       "cost": 5,
+      "maxCount": 1,
       "label": "Sエリアイーター (5P)",
       "sources": [
         "スタントカーの電脳(固定)"
@@ -1260,6 +1376,7 @@
       "id": "mmsf3-ability-117",
       "name": "Sダブルストーン",
       "cost": 5,
+      "maxCount": 1,
       "label": "Sダブルストーン (5P)",
       "sources": [
         "だがしショップ(固定)"
@@ -1270,6 +1387,7 @@
       "id": "mmsf3-ability-118",
       "name": "SパネルF",
       "cost": 5,
+      "maxCount": 1,
       "label": "SパネルF (5P)",
       "sources": [
         "ノイズウェーブ2(固定)"
@@ -1280,6 +1398,7 @@
       "id": "mmsf3-ability-119",
       "name": "ユーモアワード",
       "cost": 1,
+      "maxCount": 1,
       "label": "ユーモアワード (1P)",
       "sources": [
         "オービタルベース:",
@@ -1291,6 +1410,7 @@
       "id": "mmsf3-ability-120",
       "name": "ユーモアバスター",
       "cost": 1,
+      "maxCount": 1,
       "label": "ユーモアバスター (1P)",
       "sources": [
         "FM星のコスモウェーブ1:",
@@ -1302,6 +1422,7 @@
       "id": "mmsf3-ability-121",
       "name": "ユーモアB2",
       "cost": 1,
+      "maxCount": 1,
       "label": "ユーモアB2 (1P)",
       "sources": [
         "FM星のコスモウェーブ3(固定)"

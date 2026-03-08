@@ -6,6 +6,7 @@ export type Mmsf3AbilityOption = {
   id: string;
   name: string;
   cost: number;
+  maxCount: number;
   label: string;
   legacyLabel: string;
   sources: string[];
@@ -133,7 +134,7 @@ export function getMmsf3AbilitySources(label: string) {
 }
 
 function getMmsf3AbilitySelectionLimit(option: Mmsf3AbilityOption) {
-  return option.sources.some((source) => source.includes("ランダム")) ? 9 : 1;
+  return Math.max(1, Math.trunc(option.maxCount));
 }
 
 export function normalizeMmsf3AbilityEntry(entry: BuildCardEntry): BuildCardEntry {

@@ -4,6 +4,20 @@ import path from "node:path";
 const SOURCE_PATH = path.join("scripts", "raw", "guide-pages", "__rockman__ryusei__ryusei3__item.htm.html");
 const OUTPUT_PATH = path.join("data", "mmsf3-ability-options.json");
 
+async function loadExistingMaxCountMap() {
+  try {
+    const current = JSON.parse(await readFile(OUTPUT_PATH, "utf8"));
+    const entries = Array.isArray(current.entries) ? current.entries : [];
+    return new Map(
+      entries
+        .filter((entry) => entry && typeof entry.name === "string" && Number.isFinite(entry.cost))
+        .map((entry) => [`${entry.name}::${entry.cost}`, Number.isFinite(entry.maxCount) ? entry.maxCount : undefined]),
+    );
+  } catch {
+    return new Map();
+  }
+}
+
 function toHalfWidth(value) {
   return value
     .replace(/\u3000/g, " ")
@@ -33,6 +47,7 @@ function parseCost(value) {
 
 async function main() {
   const source = await readFile(SOURCE_PATH);
+  const existingMaxCountMap = await loadExistingMaxCountMap();
   const html = new TextDecoder("shift_jis").decode(source);
   const start = html.indexOf('<A name="ability-wave">');
   const end = html.indexOf('<A name="key-item">');
@@ -57,12 +72,15 @@ async function main() {
     if (cells.length === 4) {
       currentName = cells[0];
       currentEffect = cells[3];
+      const cost = parseCost(cells[1]);
+      const sources = cells[2].split("\n").filter(Boolean);
       entries.push({
         id: `mmsf3-ability-${String(entries.length + 1).padStart(3, "0")}`,
         name: currentName,
-        cost: parseCost(cells[1]),
-        label: `${currentName} (${parseCost(cells[1])}P)`,
-        sources: cells[2].split("\n").filter(Boolean),
+        cost,
+        maxCount: existingMaxCountMap.get(`${currentName}::${cost}`) ?? 1,
+        label: `${currentName} (${cost}P)`,
+        sources,
         effect: currentEffect,
       });
       continue;
@@ -70,12 +88,14 @@ async function main() {
 
     if (cells.length === 2 && currentName) {
       const cost = parseCost(cells[0]);
+      const sources = cells[1].split("\n").filter(Boolean);
       entries.push({
         id: `mmsf3-ability-${String(entries.length + 1).padStart(3, "0")}`,
         name: currentName,
         cost,
+        maxCount: existingMaxCountMap.get(`${currentName}::${cost}`) ?? 1,
         label: `${currentName} (${cost}P)`,
-        sources: cells[1].split("\n").filter(Boolean),
+        sources,
         effect: currentEffect,
       });
     }
