@@ -455,9 +455,14 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                           />
                         </div>
                       ))}
-                      {mmsf3BrotherVisualSummary.noisePortraits.length > 0 && mmsf3BrotherVisualSummary.sideCardNames.length > 0 && (
-                        <div className="shrink-0" style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }} />
-                      )}
+                      {mmsf3BrotherVisualSummary.sideCardNames.length > 0 && (() => {
+                        const cellPct = 100 / EXPORT_CARD_GRID_COLUMNS;
+                        const portraitPct = mmsf3BrotherVisualSummary.noisePortraits.length * cellPct * 0.75;
+                        const firstGroupLen = mmsf3BrotherVisualSummary.whiteCardGroups[0]?.length ?? 0;
+                        const targetPct = firstGroupLen > 0 ? (firstGroupLen + 1) * cellPct : portraitPct + cellPct;
+                        const spacerPct = Math.max(cellPct, targetPct - portraitPct);
+                        return <div className="shrink-0" style={{ width: `${spacerPct}%` }} />;
+                      })()}
                       {mmsf3BrotherVisualSummary.sideCardNames.map((cardName, index) => {
                         const asset = findCardAssetByName(build.game, cardName, build.version);
                         return (
