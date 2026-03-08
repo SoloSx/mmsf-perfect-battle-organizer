@@ -64,8 +64,12 @@ for (const options of abilityByNormalizedName.values()) {
   options.sort((left, right) => left.cost - right.cost);
 }
 
-export function getMmsf3AbilityPointLimit(noise: string) {
-  return noise === "ブライノイズ" ? 900 : 1900;
+export function getMmsf3AbilityPointLimit(noise: string, sssSlotCount = 0) {
+  if (noise === "ブライノイズ") {
+    return 900;
+  }
+
+  return 1900 - Math.min(Math.max(sssSlotCount, 0), 3) * 140;
 }
 
 export function getMmsf3AbilityByLabel(label: string) {
@@ -181,7 +185,7 @@ export function getMmsf3AbilityOptionsForSlot(entries: BuildCardEntry[], index: 
   });
 }
 
-export function getMmsf3AbilitySelectionErrors(entries: BuildCardEntry[], noise: string) {
+export function getMmsf3AbilitySelectionErrors(entries: BuildCardEntry[], noise: string, sssSlotCount = 0) {
   const selectedEntries = entries
     .map((entry) => normalizeMmsf3AbilityEntry(entry))
     .filter((entry) => entry.name.trim());
@@ -212,7 +216,7 @@ export function getMmsf3AbilitySelectionErrors(entries: BuildCardEntry[], noise:
   }
 
   const totalCost = selectedEntries.reduce((sum, entry) => sum + (Number.isFinite(entry.quantity) ? entry.quantity : 0), 0);
-  const limit = getMmsf3AbilityPointLimit(noise);
+  const limit = getMmsf3AbilityPointLimit(noise, sssSlotCount);
 
   if (totalCost > limit) {
     errors.push(`アビリティ消費Pは ${limit} 以内にしてください。`);

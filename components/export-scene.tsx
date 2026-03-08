@@ -5,6 +5,7 @@ import { findCardAssetByName } from "@/lib/assets";
 import { getNormalizedMmsf3State } from "@/lib/mmsf3-build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
 import {
+  getMmsf3BrotherVersionOption,
   getMmsf3GigaCardOption,
   getMmsf3MegaCardOption,
   getMmsf3NoiseOption,
@@ -127,15 +128,17 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
 function getMmsf3BrotherRouletteLines(build: BuildRecord) {
   const state = getNormalizedMmsf3State(build);
 
-  if (state.noise === "ブライノイズ") {
-    return [];
-  }
-
   return state.brotherRouletteSlots
     .map((slot) => {
       const positionLabel = MMSF3_BROTHER_ROULETTE_POSITIONS.find((position) => position.key === slot.position)?.label ?? slot.position;
+      if (slot.slotType === "sss") {
+        const sssLabel = getMmsf3SssLevelOption(slot.sssLevel)?.label;
+        return sssLabel ? `${positionLabel}: SSS / ${sssLabel}` : `${positionLabel}: SSS`;
+      }
+
       const whiteCardLabel = getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label;
       const parts = [
+        getMmsf3BrotherVersionOption(slot.version)?.label,
         getMmsf3NoiseOption(slot.noise)?.label,
         getMmsf3RezonCardOption(slot.rezon)?.label,
         whiteCardLabel && whiteCardLabel !== "なし" ? whiteCardLabel : "",
@@ -145,12 +148,6 @@ function getMmsf3BrotherRouletteLines(build: BuildRecord) {
 
       return parts.length > 0 ? `${positionLabel}: ${parts.join(" / ")}` : null;
     })
-    .filter((line): line is string => Boolean(line));
-}
-
-function getMmsf3SssLines(build: BuildRecord) {
-  return getNormalizedMmsf3State(build).sssLevels
-    .map((value, index) => (value ? `SSS ${String(index + 1).padStart(2, "0")}: ${getMmsf3SssLevelOption(value)?.label ?? value}` : null))
     .filter((line): line is string => Boolean(line));
 }
 
@@ -178,7 +175,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean).slice(0, 8);
   const brothers =
     build.game === "mmsf3"
-      ? [...getMmsf3SssLines(build), ...getMmsf3BrotherRouletteLines(build)].slice(0, 6)
+      ? getMmsf3BrotherRouletteLines(build).slice(0, 6)
       : build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
   const notes = [...MASTER_DATA.versionHighlights[build.version], ...getSpecialNotes(build)].slice(0, 6);
   const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];

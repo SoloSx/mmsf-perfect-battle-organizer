@@ -1,5 +1,5 @@
 import { normalizeToken } from "@/lib/utils";
-import type { Mmsf3BrotherRoulettePosition, Mmsf3BrotherRouletteSlot } from "@/lib/types";
+import type { Mmsf3BrotherRoulettePosition, Mmsf3BrotherRouletteSlot, Mmsf3BrotherRouletteSlotType, Mmsf3BrotherVersionId } from "@/lib/types";
 
 export interface Mmsf3RouletteOption {
   value: string;
@@ -8,6 +8,14 @@ export interface Mmsf3RouletteOption {
 
 export const DEFAULT_MMSF3_WHITE_CARD_SET_ID = "00";
 export const MMSF3_SSS_SLOT_COUNT = 3;
+export const MMSF3_BROTHER_ROULETTE_SLOT_TYPE_OPTIONS: Array<{ value: Mmsf3BrotherRouletteSlotType; label: string }> = [
+  { value: "brother", label: "ブラザー" },
+  { value: "sss", label: "SSS" },
+];
+export const MMSF3_BROTHER_VERSION_OPTIONS: Array<{ value: Mmsf3BrotherVersionId; label: string }> = [
+  { value: "black-ace", label: "ブラックエース" },
+  { value: "red-joker", label: "レッドジョーカー" },
+];
 const MMSF3_SSS_SERVER_NAMES = [
   "オックス",
   "キャンサー",
@@ -107,6 +115,8 @@ export const MMSF3_NOISE_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "0A", label: "ウルフ" },
   { value: "0B", label: "ブライ" },
 ];
+
+export const MMSF3_BROTHER_ROULETTE_NOISE_OPTIONS = MMSF3_NOISE_OPTIONS.filter((option) => option.value !== "0B");
 
 export const MMSF3_REZON_CARD_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "00", label: "バトル" },
@@ -245,6 +255,18 @@ export const MMSF3_GIGA_CARD_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "18C", label: "ライトオブセイント" },
   { value: "18D", label: "ペインヘルフレイム" },
 ];
+const MMSF3_GIGA_CARD_REQUIRED_VERSION_BY_VALUE: Partial<Record<string, Mmsf3BrotherVersionId>> = {
+  "0C4": "black-ace",
+  "0C5": "black-ace",
+  "0C6": "black-ace",
+  "0C7": "black-ace",
+  "0C8": "black-ace",
+  "0C9": "red-joker",
+  "0CA": "red-joker",
+  "0CB": "red-joker",
+  "0CC": "red-joker",
+  "0CD": "red-joker",
+};
 
 export const MMSF3_MEGA_CARD_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "097", label: "スペードマグネッツ" },
@@ -373,14 +395,26 @@ const megaCardOptionsByToken = new Map(MMSF3_MEGA_CARD_OPTIONS.map((option) => [
 const gigaCardOptionsByToken = new Map(MMSF3_GIGA_CARD_OPTIONS.map((option) => [normalizeToken(option.label), option] as const));
 const megaCardNameTokens = new Set(MMSF3_MEGA_CARD_OPTIONS.map((option) => normalizeToken(option.label)));
 const gigaCardNameTokens = new Set(MMSF3_GIGA_CARD_OPTIONS.map((option) => normalizeToken(option.label)));
+const brotherRouletteNoiseOptionValues = new Set(MMSF3_BROTHER_ROULETTE_NOISE_OPTIONS.map((option) => option.value));
+const brotherVersionOptionsByValue = new Map(MMSF3_BROTHER_VERSION_OPTIONS.map((option) => [option.value, option] as const));
 
 function normalizeRouletteValue(value: string | null | undefined) {
   return typeof value === "string" ? value.trim() : "";
 }
 
+function normalizeMmsf3BrotherVersion(value: string | null | undefined): Mmsf3BrotherVersionId | "" {
+  const normalizedValue = normalizeRouletteValue(value);
+  return brotherVersionOptionsByValue.has(normalizedValue as Mmsf3BrotherVersionId)
+    ? (normalizedValue as Mmsf3BrotherVersionId)
+    : "";
+}
+
 function createEmptyBrotherRouletteSlot(position: Mmsf3BrotherRoulettePosition): Mmsf3BrotherRouletteSlot {
   return {
     position,
+    slotType: "brother",
+    sssLevel: "",
+    version: "",
     noise: "",
     rezon: "",
     whiteCardSetId: "",
@@ -389,9 +423,48 @@ function createEmptyBrotherRouletteSlot(position: Mmsf3BrotherRoulettePosition):
   };
 }
 
+function hasBrotherSlotDetails(slot: Partial<Mmsf3BrotherRouletteSlot> | undefined) {
+  return [
+    slot?.version,
+    slot?.noise,
+    slot?.rezon,
+    normalizeRouletteValue(slot?.whiteCardSetId) === DEFAULT_MMSF3_WHITE_CARD_SET_ID ? "" : slot?.whiteCardSetId,
+    slot?.gigaCard,
+    slot?.megaCard,
+  ].some((value) => normalizeRouletteValue(value).length > 0);
+}
+
 function hasBrotherRouletteSelection(slots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined) {
   return (slots ?? []).some((slot) =>
-    [slot?.noise, slot?.rezon, slot?.whiteCardSetId, slot?.gigaCard, slot?.megaCard].some((value) => normalizeRouletteValue(value).length > 0),
+    slot?.slotType === "sss" || normalizeRouletteValue(slot?.sssLevel).length > 0 || hasBrotherSlotDetails(slot),
+  );
+}
+
+export function getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(slots: Mmsf3BrotherRouletteSlot[]) {
+  return slots
+    .filter((slot) => slot.slotType === "sss")
+    .map((slot) => normalizeRouletteValue(slot.sssLevel))
+    .filter((value) => sssLevelOptionsByValue.has(value))
+    .slice(0, MMSF3_SSS_SLOT_COUNT);
+}
+
+export function getMmsf3ConfiguredSssSlotCount(slots: Mmsf3BrotherRouletteSlot[]) {
+  return slots.filter((slot) => slot.slotType === "sss").length;
+}
+
+export function clearMmsf3BrotherSelectionsForBuraNoise(slots: Mmsf3BrotherRouletteSlot[]) {
+  return normalizeMmsf3BrotherRouletteSlots(slots).map<Mmsf3BrotherRouletteSlot>((slot) =>
+    slot.slotType === "sss"
+      ? slot
+      : {
+          ...slot,
+          version: "",
+          noise: "",
+          rezon: "",
+          whiteCardSetId: "",
+          gigaCard: "",
+          megaCard: "",
+        },
   );
 }
 
@@ -406,8 +479,10 @@ export function normalizeMmsf3BrotherRouletteSlots(
     gigaCards?: string[];
     megaCards?: string[];
     rezonCards?: string[];
+    sssLevels?: string[];
   },
 ) {
+  const hasCurrentSssSchema = (slots ?? []).some((slot) => "slotType" in (slot ?? {}) || "sssLevel" in (slot ?? {}));
   const slotsByPosition = new Map(
     (slots ?? [])
       .filter((slot): slot is Partial<Mmsf3BrotherRouletteSlot> & Pick<Mmsf3BrotherRouletteSlot, "position"> => {
@@ -416,10 +491,33 @@ export function normalizeMmsf3BrotherRouletteSlots(
       .map((slot) => [slot.position, slot] as const),
   );
 
-  const normalizedSlots = MMSF3_BROTHER_ROULETTE_POSITIONS.map(({ key }) => {
+  const normalizedSlots: Mmsf3BrotherRouletteSlot[] = MMSF3_BROTHER_ROULETTE_POSITIONS.map(({ key }) => {
     const current = slotsByPosition.get(key);
+    const normalizedSssLevel = normalizeRouletteValue(current?.sssLevel);
+    const slotType: Mmsf3BrotherRouletteSlotType =
+      current?.slotType === "sss" || (!current?.slotType && normalizedSssLevel)
+        ? "sss"
+        : "brother";
+
+    if (slotType === "sss") {
+      return {
+        position: key,
+        slotType,
+        sssLevel: sssLevelOptionsByValue.has(normalizedSssLevel) ? normalizedSssLevel : "",
+        version: "",
+        noise: "",
+        rezon: "",
+        whiteCardSetId: "",
+        gigaCard: "",
+        megaCard: "",
+      };
+    }
+
     return {
       position: key,
+      slotType,
+      sssLevel: "",
+      version: normalizeMmsf3BrotherVersion(current?.version),
       noise: normalizeRouletteValue(current?.noise),
       rezon: normalizeRouletteValue(current?.rezon),
       whiteCardSetId: normalizeRouletteValue(current?.whiteCardSetId),
@@ -427,57 +525,89 @@ export function normalizeMmsf3BrotherRouletteSlots(
       megaCard: normalizeRouletteValue(current?.megaCard),
     };
   });
+  const hasExplicitSlotSelection = hasBrotherRouletteSelection(slots);
+  const migratedSlots = hasExplicitSlotSelection ? normalizedSlots : buildDefaultMmsf3BrotherRouletteSlots();
 
-  if (hasBrotherRouletteSelection(slots)) {
-    return normalizedSlots;
-  }
+  if (!hasExplicitSlotSelection) {
+    const legacyWhiteCardSetId = normalizeRouletteValue(legacy?.whiteCardSetId);
+    const legacyRezonCard = legacy?.rezonCards?.find((value) => normalizeRouletteValue(value)) ?? "";
+    const legacyMegaCards = legacy?.megaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
+    const legacyGigaCards = legacy?.gigaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
+    const topLeftSlot = migratedSlots[0];
 
-  const legacyWhiteCardSetId = normalizeRouletteValue(legacy?.whiteCardSetId);
-  const legacyRezonCard = legacy?.rezonCards?.find((value) => normalizeRouletteValue(value)) ?? "";
-  const legacyMegaCards = legacy?.megaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
-  const legacyGigaCards = legacy?.gigaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
-
-  if (!legacyWhiteCardSetId && !legacyRezonCard && legacyMegaCards.length === 0 && legacyGigaCards.length === 0) {
-    return normalizedSlots;
-  }
-
-  const migratedSlots = buildDefaultMmsf3BrotherRouletteSlots();
-  const topLeftSlot = migratedSlots[0];
-
-  if (isKnownMmsf3WhiteCardSet(legacyWhiteCardSetId)) {
-    topLeftSlot.whiteCardSetId = legacyWhiteCardSetId;
-  }
-
-  const legacyRezonOption = getMmsf3RezonCardOptionByLabel(legacyRezonCard);
-  if (legacyRezonOption) {
-    topLeftSlot.rezon = legacyRezonOption.value;
-  }
-
-  legacyMegaCards.slice(0, migratedSlots.length).forEach((name, index) => {
-    const option = getMmsf3MegaCardOptionByLabel(name);
-    if (option) {
-      migratedSlots[index].megaCard = option.value;
+    if (legacyWhiteCardSetId && legacyWhiteCardSetId !== DEFAULT_MMSF3_WHITE_CARD_SET_ID && isKnownMmsf3WhiteCardSet(legacyWhiteCardSetId)) {
+      topLeftSlot.whiteCardSetId = legacyWhiteCardSetId;
     }
-  });
 
-  legacyGigaCards.slice(0, migratedSlots.length).forEach((name, index) => {
-    const option = getMmsf3GigaCardOptionByLabel(name);
-    if (option) {
-      migratedSlots[index].gigaCard = option.value;
+    const legacyRezonOption = getMmsf3RezonCardOptionByLabel(legacyRezonCard);
+    if (legacyRezonOption) {
+      topLeftSlot.rezon = legacyRezonOption.value;
     }
-  });
+
+    legacyMegaCards.slice(0, migratedSlots.length).forEach((name, index) => {
+      const option = getMmsf3MegaCardOptionByLabel(name);
+      if (option) {
+        migratedSlots[index].megaCard = option.value;
+      }
+    });
+
+    legacyGigaCards.slice(0, migratedSlots.length).forEach((name, index) => {
+      const option = getMmsf3GigaCardOptionByLabel(name);
+      if (option) {
+        migratedSlots[index].gigaCard = option.value;
+      }
+    });
+  }
+
+  if (!hasCurrentSssSchema && getMmsf3ConfiguredSssSlotCount(migratedSlots) === 0) {
+    const legacySssLevels = normalizeMmsf3SssLevels(legacy?.sssLevels);
+    const availableSlots = migratedSlots.filter((slot) => slot.slotType !== "sss" && !hasBrotherSlotDetails(slot));
+
+    legacySssLevels
+      .filter(Boolean)
+      .slice(0, MMSF3_SSS_SLOT_COUNT)
+      .forEach((level, index) => {
+        const targetSlot = availableSlots[index];
+        if (!targetSlot) {
+          return;
+        }
+
+        targetSlot.slotType = "sss";
+        targetSlot.sssLevel = level;
+        targetSlot.noise = "";
+        targetSlot.rezon = "";
+        targetSlot.whiteCardSetId = "";
+        targetSlot.gigaCard = "";
+        targetSlot.megaCard = "";
+      });
+  }
 
   return migratedSlots;
 }
 
 export function getMmsf3BrotherRouletteSelectionErrors(slots: Mmsf3BrotherRouletteSlot[]) {
   const errors: string[] = [];
+  const sssSlotCount = getMmsf3ConfiguredSssSlotCount(slots);
+
+  if (sssSlotCount > MMSF3_SSS_SLOT_COUNT) {
+    errors.push(`SSS は ${MMSF3_SSS_SLOT_COUNT} 枠までです。`);
+  }
 
   for (const slot of slots) {
     const label = MMSF3_BROTHER_ROULETTE_POSITIONS.find((position) => position.key === slot.position)?.label ?? slot.position;
 
-    if (slot.noise && !noiseOptionsByValue.has(slot.noise)) {
+    if (slot.slotType === "sss") {
+      if (slot.sssLevel && !sssLevelOptionsByValue.has(slot.sssLevel)) {
+        errors.push(`${label} のSSSが不正です。`);
+      }
+      continue;
+    }
+
+    if (slot.noise && !brotherRouletteNoiseOptionValues.has(slot.noise)) {
       errors.push(`${label} のマージノイズが不正です。`);
+    }
+    if (slot.version && !brotherVersionOptionsByValue.has(slot.version)) {
+      errors.push(`${label} のバージョンが不正です。`);
     }
     if (slot.rezon && !rezonCardOptionsByValue.has(slot.rezon)) {
       errors.push(`${label} のレゾンカードが不正です。`);
@@ -487,6 +617,10 @@ export function getMmsf3BrotherRouletteSelectionErrors(slots: Mmsf3BrotherRoulet
     }
     if (slot.gigaCard && !gigaCardOptionsByValue.has(slot.gigaCard)) {
       errors.push(`${label} のギガカードが不正です。`);
+    } else if (slot.gigaCard && slot.version && !isMmsf3GigaCardAllowedInVersion(slot.gigaCard, slot.version)) {
+      const gigaCardLabel = getMmsf3GigaCardOption(slot.gigaCard)?.label ?? slot.gigaCard;
+      const versionLabel = getMmsf3BrotherVersionOption(slot.version)?.label ?? slot.version;
+      errors.push(`${label} のギガカード「${gigaCardLabel}」は${versionLabel}では設定できません。`);
     }
     if (slot.megaCard && !megaCardOptionsByValue.has(slot.megaCard)) {
       errors.push(`${label} のメガカードが不正です。`);
@@ -515,6 +649,10 @@ export function getMmsf3SssLevelOption(value: string) {
 
 export function getMmsf3NoiseOption(value: string) {
   return noiseOptionsByValue.get(value);
+}
+
+export function getMmsf3BrotherVersionOption(value: string) {
+  return brotherVersionOptionsByValue.get(value as Mmsf3BrotherVersionId);
 }
 
 export function getMmsf3NoiseOptionByLabel(label: string) {
@@ -547,6 +685,23 @@ export function getMmsf3GigaCardOption(value: string) {
 
 export function getMmsf3GigaCardOptionByLabel(label: string) {
   return gigaCardOptionsByToken.get(normalizeToken(label));
+}
+
+export function getMmsf3RequiredVersionForGigaCard(value: string) {
+  return MMSF3_GIGA_CARD_REQUIRED_VERSION_BY_VALUE[value] ?? null;
+}
+
+export function isMmsf3GigaCardAllowedInVersion(value: string, version: Mmsf3BrotherVersionId) {
+  const requiredVersion = getMmsf3RequiredVersionForGigaCard(value);
+  return requiredVersion === null || requiredVersion === version;
+}
+
+export function getMmsf3GigaCardOptionsForVersion(version?: Mmsf3BrotherVersionId | "") {
+  if (!version) {
+    return MMSF3_GIGA_CARD_OPTIONS;
+  }
+
+  return MMSF3_GIGA_CARD_OPTIONS.filter((option) => isMmsf3GigaCardAllowedInVersion(option.value, version));
 }
 
 export function getMmsf3WhiteCardSetCards(id: string) {

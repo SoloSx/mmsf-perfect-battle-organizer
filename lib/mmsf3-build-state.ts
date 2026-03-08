@@ -7,10 +7,12 @@ import {
 import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
 import { getMmsf3NoiseCardSelectionErrors, normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3-noise-cards";
 import {
+  clearMmsf3BrotherSelectionsForBuraNoise,
   DEFAULT_MMSF3_WHITE_CARD_SET_ID,
+  getMmsf3ConfiguredSssSlotCount,
   getMmsf3BrotherRouletteSelectionErrors,
   getMmsf3RezonCardOptionByLabel,
-  getMmsf3SssSelectionErrors,
+  getMmsf3SelectedSssLevelsFromBrotherRouletteSlots,
   getMmsf3WhiteCardSetOption,
   normalizeMmsf3BrotherRouletteSlots,
   normalizeMmsf3SssLevels,
@@ -37,6 +39,7 @@ export interface NormalizedMmsf3State {
   abilitySources: BuildSourceEntry[];
   brotherRouletteSlots: Mmsf3Sections["brotherRouletteSlots"];
   sssLevels: string[];
+  sssSlotCount: number;
 }
 
 export function createDefaultMmsf3Sections(): Mmsf3Sections {
@@ -190,19 +193,21 @@ export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefi
     legacyWhiteCardsNote && !nextSections.rouletteNotes?.includes(legacyWhiteCardsNote)
       ? [nextSections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
       : (nextSections.rouletteNotes ?? baseSections.rouletteNotes);
+  const brotherRouletteSlots = normalizeMmsf3BrotherRouletteSlots(nextSections.brotherRouletteSlots, {
+    whiteCardSetId: nextSections.whiteCardSetId ?? baseSections.whiteCardSetId,
+    gigaCards: nextSections.gigaCards ?? baseSections.gigaCards,
+    megaCards: nextSections.megaCards ?? baseSections.megaCards,
+    rezonCards: nextSections.rezonCards ?? baseSections.rezonCards,
+    sssLevels: nextSections.sssLevels ?? baseSections.sssLevels,
+  });
 
   return {
     ...baseSections,
     ...nextSections,
     noise: normalizeRouletteValue(nextSections.noise ?? baseSections.noise),
     noiseCardIds: normalizeMmsf3NoiseCardIds(nextSections.noiseCardIds ?? baseSections.noiseCardIds),
-    brotherRouletteSlots: normalizeMmsf3BrotherRouletteSlots(nextSections.brotherRouletteSlots, {
-      whiteCardSetId: nextSections.whiteCardSetId ?? baseSections.whiteCardSetId,
-      gigaCards: nextSections.gigaCards ?? baseSections.gigaCards,
-      megaCards: nextSections.megaCards ?? baseSections.megaCards,
-      rezonCards: nextSections.rezonCards ?? baseSections.rezonCards,
-    }),
-    sssLevels: normalizeMmsf3SssLevels(nextSections.sssLevels ?? baseSections.sssLevels),
+    brotherRouletteSlots,
+    sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(brotherRouletteSlots)),
     whiteCardSetId: normalizeRouletteValue(nextSections.whiteCardSetId ?? baseSections.whiteCardSetId) || DEFAULT_MMSF3_WHITE_CARD_SET_ID,
     rezonCards: normalizeMmsf3RezonCards(nextSections.rezonCards ?? baseSections.rezonCards),
     rouletteNotes,
@@ -221,6 +226,10 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
     build.version,
   );
   const normalizedSections = normalizeMmsf3Sections(build.gameSpecificSections.mmsf3, build.gameSpecificSections.mmsf3);
+  const normalizedBrotherRouletteSlots =
+    normalizedSections.noise === "ブライノイズ"
+      ? clearMmsf3BrotherSelectionsForBuraNoise(normalizedSections.brotherRouletteSlots)
+      : normalizedSections.brotherRouletteSlots;
 
   return {
     ...build,
@@ -231,13 +240,11 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
     },
     gameSpecificSections: {
       ...build.gameSpecificSections,
-      mmsf3:
-        normalizedSections.noise === "ブライノイズ"
-          ? {
-              ...normalizedSections,
-              brotherRouletteSlots: normalizeMmsf3BrotherRouletteSlots(undefined),
-            }
-          : normalizedSections,
+      mmsf3: {
+        ...normalizedSections,
+        brotherRouletteSlots: normalizedBrotherRouletteSlots,
+        sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(normalizedBrotherRouletteSlots)),
+      },
     },
   };
 }
@@ -259,6 +266,7 @@ export function getNormalizedMmsf3State(build: BuildRecord): NormalizedMmsf3Stat
     abilitySources: normalizedBuild.commonSections.abilitySources,
     brotherRouletteSlots: sections.brotherRouletteSlots,
     sssLevels: sections.sssLevels,
+    sssSlotCount: getMmsf3ConfiguredSssSlotCount(sections.brotherRouletteSlots),
   };
 }
 
@@ -365,13 +373,16 @@ export function updateMmsf3BrotherRouletteSlots(build: BuildRecord, brotherRoule
     return build;
   }
 
+  const normalizedBrotherRouletteSlots = normalizeMmsf3BrotherRouletteSlots(brotherRouletteSlots);
+
   return normalizeMmsf3BuildRecord({
     ...build,
     gameSpecificSections: {
       ...build.gameSpecificSections,
       mmsf3: {
         ...build.gameSpecificSections.mmsf3,
-        brotherRouletteSlots,
+        brotherRouletteSlots: normalizedBrotherRouletteSlots,
+        sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(normalizedBrotherRouletteSlots)),
       },
     },
   });
@@ -382,13 +393,41 @@ export function updateMmsf3SssLevels(build: BuildRecord, sssLevels: string[]) {
     return build;
   }
 
+  const nextBrotherRouletteSlots: Mmsf3Sections["brotherRouletteSlots"] = normalizeMmsf3BrotherRouletteSlots(
+    build.gameSpecificSections.mmsf3.brotherRouletteSlots,
+  ).map((slot) =>
+    slot.slotType === "sss"
+      ? {
+          ...slot,
+          slotType: "brother" as const,
+          sssLevel: "",
+        }
+      : slot,
+  );
+  const availableSlots = nextBrotherRouletteSlots.filter(
+    (slot) => !slot.version && !slot.noise && !slot.rezon && !slot.whiteCardSetId && !slot.gigaCard && !slot.megaCard,
+  );
+
+  normalizeMmsf3SssLevels(sssLevels)
+    .filter(Boolean)
+    .forEach((level, index) => {
+      const targetSlot = availableSlots[index];
+      if (!targetSlot) {
+        return;
+      }
+
+      targetSlot.slotType = "sss";
+      targetSlot.sssLevel = level;
+    });
+
   return normalizeMmsf3BuildRecord({
     ...build,
     gameSpecificSections: {
       ...build.gameSpecificSections,
       mmsf3: {
         ...build.gameSpecificSections.mmsf3,
-        sssLevels,
+        brotherRouletteSlots: nextBrotherRouletteSlots,
+        sssLevels: normalizeMmsf3SssLevels(sssLevels),
       },
     },
   });
@@ -397,16 +436,12 @@ export function updateMmsf3SssLevels(build: BuildRecord, sssLevels: string[]) {
 export function validateMmsf3BuildState(build: BuildRecord, state = getNormalizedMmsf3State(build)) {
   const errors: string[] = [];
   const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
-  const abilityValidation = getMmsf3AbilitySelectionErrors(state.abilities, state.noise);
+  const abilityValidation = getMmsf3AbilitySelectionErrors(state.abilities, state.noise, state.sssSlotCount);
 
   errors.push(...folderValidation.errors);
   errors.push(...abilityValidation.errors);
   errors.push(...getMmsf3NoiseCardSelectionErrors(state.noiseCardIds));
-  errors.push(...getMmsf3SssSelectionErrors(state.sssLevels));
-
-  if (state.noise !== "ブライノイズ") {
-    errors.push(...getMmsf3BrotherRouletteSelectionErrors(state.brotherRouletteSlots));
-  }
+  errors.push(...getMmsf3BrotherRouletteSelectionErrors(state.brotherRouletteSlots));
 
   if (!getMmsf3WhiteCardSetOption(state.whiteCardSetId)) {
     errors.push("ホワイトカードが不正です。");

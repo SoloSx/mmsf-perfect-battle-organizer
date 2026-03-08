@@ -1,4 +1,6 @@
 import masterData from "@/data/mmsf3-card-master.json";
+import { getMmsf3GigaCardOptionByLabel, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-roulette-options";
+import type { VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 
 type Mmsf3CardMasterEntry = {
@@ -25,8 +27,21 @@ for (const entry of mmsf3CardMasterEntries) {
   }
 }
 
-export function getMmsf3CardSuggestions() {
-  return mmsf3CardMasterEntries.map((entry) => entry.name);
+export function getMmsf3CardSuggestions(version?: Extract<VersionId, "black-ace" | "red-joker">) {
+  return mmsf3CardMasterEntries
+    .filter((entry) => {
+      if (entry.section !== "giga" || !version) {
+        return true;
+      }
+
+      const gigaCardOption =
+        getMmsf3GigaCardOptionByLabel(entry.name) ??
+        (entry.aliases ?? [])
+          .map((alias) => getMmsf3GigaCardOptionByLabel(alias))
+          .find((option) => Boolean(option));
+      return gigaCardOption ? isMmsf3GigaCardAllowedInVersion(gigaCardOption.value, version) : true;
+    })
+    .map((entry) => entry.name);
 }
 
 export function getMmsf3CardDisplayOrder(name: string) {

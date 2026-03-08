@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { getMmsf3AbilitySelectionErrors } from "@/lib/mmsf3-abilities";
+import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
+import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3-roulette-options";
 import {
   createDefaultMmsf3Sections,
   getNormalizedMmsf3State,
@@ -107,7 +110,7 @@ test("normalizeMmsf3BuildRecord keeps the version default PGM and excludes it fr
   assert.deepEqual(sourceNames, []);
 });
 
-test("updateMmsf3Noise clears brother roulette when switching to ブライノイズ", () => {
+test("updateMmsf3Noise clears brother slots but keeps SSS when switching to ブライノイズ", () => {
   const seeded = normalizeMmsf3BuildRecord(
     createBaseBuild({
       gameSpecificSections: {
@@ -118,13 +121,27 @@ test("updateMmsf3Noise clears brother roulette when switching to ブライノイ
           brotherRouletteSlots: [
             {
               position: "top_left",
+              slotType: "brother",
+              sssLevel: "",
+              version: "black-ace",
               noise: "01",
               rezon: "05",
               whiteCardSetId: "57",
               gigaCard: "0C9",
               megaCard: "0A9",
             },
-            ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+            {
+              position: "top_right",
+              slotType: "sss",
+              sssLevel: "32",
+              version: "",
+              noise: "",
+              rezon: "",
+              whiteCardSetId: "",
+              gigaCard: "",
+              megaCard: "",
+            },
+            ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(2),
           ],
         },
       },
@@ -134,7 +151,18 @@ test("updateMmsf3Noise clears brother roulette when switching to ブライノイ
   const updated = updateMmsf3Noise(seeded, "ブライノイズ");
 
   assert.equal(updated.gameSpecificSections.mmsf3.noise, "ブライノイズ");
-  assert.ok(updated.gameSpecificSections.mmsf3.brotherRouletteSlots.every((slot) => !slot.noise && !slot.rezon && !slot.whiteCardSetId && !slot.gigaCard && !slot.megaCard));
+  const [topLeftSlot, topRightSlot] = updated.gameSpecificSections.mmsf3.brotherRouletteSlots;
+
+  assert.equal(topLeftSlot?.slotType, "brother");
+  assert.equal(topLeftSlot?.version, "");
+  assert.equal(topLeftSlot?.noise, "");
+  assert.equal(topLeftSlot?.rezon, "");
+  assert.equal(topLeftSlot?.whiteCardSetId, "");
+  assert.equal(topLeftSlot?.gigaCard, "");
+  assert.equal(topLeftSlot?.megaCard, "");
+  assert.equal(topRightSlot?.slotType, "sss");
+  assert.equal(topRightSlot?.sssLevel, "32");
+  assert.deepEqual(updated.gameSpecificSections.mmsf3.sssLevels.filter(Boolean), ["32"]);
 });
 
 test("updateMmsf3AbilityEntries normalizes entries and syncs tracked ability sources", () => {
@@ -149,4 +177,144 @@ test("updateMmsf3AbilityEntries normalizes entries and syncs tracked ability sou
   assert.ok(state.abilitySources.length > 0);
   assert.ok(state.abilitySources.every((entry) => entry.name === "ＨＰ+50/100"));
   assert.ok(state.abilitySources[0]?.source.length > 0);
+});
+
+test("normalizeMmsf3BuildRecord migrates legacy SSS levels into brother slots", () => {
+  const build = createBaseBuild();
+  (build.gameSpecificSections.mmsf3 as unknown as { brotherRouletteSlots?: unknown }).brotherRouletteSlots = undefined;
+  build.gameSpecificSections.mmsf3.sssLevels = ["4", "32", "G24"];
+
+  const state = getNormalizedMmsf3State(normalizeMmsf3BuildRecord(build));
+
+  assert.equal(state.sssSlotCount, 3);
+  assert.deepEqual(state.sssLevels, ["4", "32", "G24"]);
+  assert.equal(state.brotherRouletteSlots[0]?.slotType, "sss");
+  assert.equal(state.brotherRouletteSlots[0]?.sssLevel, "4");
+  assert.equal(state.brotherRouletteSlots[1]?.slotType, "sss");
+  assert.equal(state.brotherRouletteSlots[1]?.sssLevel, "32");
+  assert.equal(state.brotherRouletteSlots[2]?.slotType, "sss");
+  assert.equal(state.brotherRouletteSlots[2]?.sssLevel, "G24");
+});
+
+test("getMmsf3AbilitySelectionErrors lowers the point cap by active SSS slots", () => {
+  const seededBuild = normalizeMmsf3BuildRecord(
+    createBaseBuild({
+      commonSections: {
+        ...createBaseBuild().commonSections,
+        abilities: [
+          { id: "a0", name: "エースＰＧＭ/0", quantity: 0, notes: "", isRegular: false },
+          { id: "a1", name: "ＨＰ+500/610", quantity: 610, notes: "", isRegular: false },
+          { id: "a2", name: "ＨＰ+500/570", quantity: 570, notes: "", isRegular: false },
+          { id: "a3", name: "ファーストオーラ/400", quantity: 400, notes: "", isRegular: false },
+        ],
+      },
+      gameSpecificSections: {
+        mmsf1: createBaseBuild().gameSpecificSections.mmsf1,
+        mmsf2: createBaseBuild().gameSpecificSections.mmsf2,
+        mmsf3: {
+          ...createDefaultMmsf3Sections(),
+          brotherRouletteSlots: [
+            { position: "top_left", slotType: "sss", sssLevel: "4", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+            { position: "top_right", slotType: "sss", sssLevel: "32", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+            { position: "mid_left", slotType: "sss", sssLevel: "G24", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+            ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(3),
+          ],
+        },
+      },
+    }),
+  );
+
+  const state = getNormalizedMmsf3State(seededBuild);
+  const result = getMmsf3AbilitySelectionErrors(state.abilities, state.noise, state.sssSlotCount);
+
+  assert.equal(result.limit, 1480);
+  assert.equal(result.totalCost, 1580);
+  assert.ok(result.errors.includes("アビリティ消費Pは 1480 以内にしてください。"));
+});
+
+test("getMmsf3BrotherRouletteSelectionErrors rejects ブライ as a brother merge noise", () => {
+  const result = getMmsf3BrotherRouletteSelectionErrors([
+    {
+      position: "top_left",
+      slotType: "brother",
+      sssLevel: "",
+      version: "",
+      noise: "0B",
+      rezon: "",
+      whiteCardSetId: "",
+      gigaCard: "",
+      megaCard: "",
+    },
+    ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+  ]);
+
+  assert.ok(result.includes("左上 のマージノイズが不正です。"));
+});
+
+test("getMmsf3BrotherRouletteSelectionErrors rejects an invalid brother version", () => {
+  const result = getMmsf3BrotherRouletteSelectionErrors([
+    {
+      position: "top_left",
+      slotType: "brother",
+      sssLevel: "",
+      version: "pegasus" as never,
+      noise: "",
+      rezon: "",
+      whiteCardSetId: "",
+      gigaCard: "",
+      megaCard: "",
+    },
+    ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+  ]);
+
+  assert.ok(result.includes("左上 のバージョンが不正です。"));
+});
+
+test("validateMmsf3FolderCards rejects version-exclusive giga cards from the other version", () => {
+  const result = validateMmsf3FolderCards(
+    [{ id: "giga-1", name: "Gメテオレイザー", quantity: 1, notes: "", isRegular: false }],
+    "black-ace",
+  );
+
+  assert.ok(result.errors.includes("ギガカード「Gメテオレイザー」はブラックエースでは使用できません。"));
+  assert.ok(
+    validateMmsf3FolderCards([{ id: "giga-2", name: "ウィングブレード", quantity: 1, notes: "", isRegular: false }], "red-joker").errors.includes(
+      "ギガカード「ウィングブレード」はレッドジョーカーでは使用できません。",
+    ),
+  );
+});
+
+test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga cards from the other version", () => {
+  const result = getMmsf3BrotherRouletteSelectionErrors([
+    {
+      position: "top_left",
+      slotType: "brother",
+      sssLevel: "",
+      version: "black-ace",
+      noise: "",
+      rezon: "",
+      whiteCardSetId: "",
+      gigaCard: "0C9",
+      megaCard: "",
+    },
+    ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+  ]);
+
+  assert.ok(result.includes("左上 のギガカード「Gメテオレイザー」はブラックエースでは設定できません。"));
+  assert.ok(
+    getMmsf3BrotherRouletteSelectionErrors([
+      {
+        position: "top_left",
+        slotType: "brother",
+        sssLevel: "",
+        version: "red-joker",
+        noise: "",
+        rezon: "",
+        whiteCardSetId: "",
+        gigaCard: "0C4",
+        megaCard: "",
+      },
+      ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+    ]).includes("左上 のギガカード「ウィングブレード」はレッドジョーカーでは設定できません。"),
+  );
 });

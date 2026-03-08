@@ -1,3 +1,5 @@
+import { getMmsf3GigaCardOptionByLabel, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-roulette-options";
+import { VERSION_LABELS } from "@/lib/rules";
 import { getCardSection } from "@/lib/guide-card-catalog";
 import type { BuildCardEntry, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
@@ -25,6 +27,7 @@ function addCardTotal(map: Map<string, ClassifiedCardTotal>, token: string, labe
 }
 
 export function validateMmsf3FolderCards(entries: BuildCardEntry[], version: VersionId) {
+  const mmsf3Version = version as Extract<VersionId, "black-ace" | "red-joker">;
   const errors: string[] = [];
   const standardTotals = new Map<string, ClassifiedCardTotal>();
   const megaTotals = new Map<string, ClassifiedCardTotal>();
@@ -59,6 +62,10 @@ export function validateMmsf3FolderCards(entries: BuildCardEntry[], version: Ver
     }
 
     gigaTotal += quantity;
+    const gigaOption = getMmsf3GigaCardOptionByLabel(name);
+    if (gigaOption && !isMmsf3GigaCardAllowedInVersion(gigaOption.value, mmsf3Version)) {
+      errors.push(`ギガカード「${gigaOption.label}」は${VERSION_LABELS[mmsf3Version]}では使用できません。`);
+    }
   }
 
   for (const { label, quantity } of standardTotals.values()) {

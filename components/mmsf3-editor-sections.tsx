@@ -12,20 +12,23 @@ import {
   MMSF3_NOISE_CARD_SLOT_COUNT,
 } from "@/lib/mmsf3-noise-cards";
 import {
+  MMSF3_BROTHER_ROULETTE_NOISE_OPTIONS,
+  MMSF3_BROTHER_ROULETTE_SLOT_TYPE_OPTIONS,
+  MMSF3_BROTHER_VERSION_OPTIONS,
+  getMmsf3BrotherVersionOption,
+  getMmsf3GigaCardOptionsForVersion,
   getMmsf3GigaCardOption,
   getMmsf3MegaCardOption,
   getMmsf3NoiseOption,
   getMmsf3RezonCardOption,
-  getMmsf3SssLevelOption,
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
-  MMSF3_GIGA_CARD_OPTIONS,
   MMSF3_MEGA_CARD_OPTIONS,
   MMSF3_NOISE_OPTIONS,
   MMSF3_REZON_CARD_OPTIONS,
-  MMSF3_SSS_LEVEL_OPTIONS,
   MMSF3_WHITE_CARD_SET_OPTIONS,
-  normalizeMmsf3SssLevels,
+  getMmsf3SssLevelOption,
+  MMSF3_SSS_LEVEL_OPTIONS,
 } from "@/lib/mmsf3-roulette-options";
 import type {
   BuildCardEntry,
@@ -39,11 +42,19 @@ import { createId } from "@/lib/utils";
 const EMPTY_SEARCHABLE_SELECT_OPTION: SearchableSelectOption = { value: "", label: "未選択" };
 const MMSF3_BROTHER_ROULETTE_NOISE_SELECT_OPTIONS: SearchableSelectOption[] = [
   EMPTY_SEARCHABLE_SELECT_OPTION,
-  ...MMSF3_NOISE_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
+  ...MMSF3_BROTHER_ROULETTE_NOISE_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
 ];
 const MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS: SearchableSelectOption[] = [
   EMPTY_SEARCHABLE_SELECT_OPTION,
   ...MMSF3_REZON_CARD_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
+];
+const MMSF3_BROTHER_ROULETTE_SLOT_TYPE_SELECT_OPTIONS: SearchableSelectOption[] = MMSF3_BROTHER_ROULETTE_SLOT_TYPE_OPTIONS.map((option) => ({
+  value: option.value,
+  label: option.label,
+}));
+const MMSF3_BROTHER_VERSION_SELECT_OPTIONS: SearchableSelectOption[] = [
+  EMPTY_SEARCHABLE_SELECT_OPTION,
+  ...MMSF3_BROTHER_VERSION_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
 ];
 const MMSF3_PLAYER_NOISE_OPTIONS = MMSF3_NOISE_OPTIONS
   .filter((option) => option.value !== "00")
@@ -59,10 +70,6 @@ const MMSF3_SSS_LEVEL_SELECT_OPTIONS: SearchableSelectOption[] = [
 const MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS: SearchableSelectOption[] = [
   EMPTY_SEARCHABLE_SELECT_OPTION,
   ...MMSF3_WHITE_CARD_SET_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
-];
-const MMSF3_BROTHER_ROULETTE_GIGA_SELECT_OPTIONS: SearchableSelectOption[] = [
-  EMPTY_SEARCHABLE_SELECT_OPTION,
-  ...MMSF3_GIGA_CARD_OPTIONS.map((option) => ({ value: option.value, label: option.label })),
 ];
 const MMSF3_BROTHER_ROULETTE_MEGA_SELECT_OPTIONS: SearchableSelectOption[] = [
   EMPTY_SEARCHABLE_SELECT_OPTION,
@@ -208,14 +215,16 @@ function Mmsf3AbilityEditor({
   entries,
   onChange,
   noise,
+  sssSlotCount,
   version,
 }: {
   entries: BuildCardEntry[];
   onChange: (entries: BuildCardEntry[]) => void;
   noise: string;
+  sssSlotCount: number;
   version: VersionId;
 }) {
-  const { totalCost, limit } = getMmsf3AbilitySelectionErrors(entries, noise);
+  const { totalCost, limit } = getMmsf3AbilitySelectionErrors(entries, noise, sssSlotCount);
 
   return (
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
@@ -223,7 +232,7 @@ function Mmsf3AbilityEditor({
         <label className="text-sm font-semibold text-white">アビリティ</label>
         <span className="text-xs text-white/45">合計P {totalCost}/{limit}</span>
       </div>
-      <p className="mt-1 text-xs leading-5 text-white/52">ランダム入手ありは最大9個、その他は1個。ブライノイズ時は上限 900P です。</p>
+      <p className="mt-1 text-xs leading-5 text-white/52">ランダム入手ありは最大9個、その他は1個。SSS は1枠ごとに上限 -140P、ブライノイズ時は上限 900P です。</p>
       <div className="mt-4 space-y-3">
         {entries.map((entry, index) => {
           const selectedAbility = getMmsf3AbilityByLabel(entry.name.trim());
@@ -287,14 +296,14 @@ export function Mmsf3BrotherRouletteSection({
   slots: Mmsf3BrotherRouletteSlot[];
   sssLevels: string[];
   onBrotherChange: (slots: Mmsf3BrotherRouletteSlot[]) => void;
-  onSssChange: (levels: string[]) => void;
+  onSssChange: (sssLevels: string[]) => void;
   isDisabled: boolean;
 }) {
   const slotsByPosition = useMemo(
     () => new Map(slots.map((slot) => [slot.position, slot] as const)),
     [slots],
   );
-  const normalizedSssLevels = useMemo(() => normalizeMmsf3SssLevels(sssLevels), [sssLevels]);
+  const sssSlotCount = useMemo(() => slots.filter((slot) => slot.slotType === "sss").length, [slots]);
 
   const updateSlot = (position: Mmsf3BrotherRouletteSlot["position"], patch: Partial<Mmsf3BrotherRouletteSlot>) => {
     onBrotherChange(slots.map((slot) => (slot.position === position ? { ...slot, ...patch } : slot)));
@@ -303,45 +312,57 @@ export function Mmsf3BrotherRouletteSection({
   return (
     <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
       <label className="text-sm font-semibold text-white">ブラザー情報</label>
+      <p className="mt-1 text-xs leading-5 text-white/52">SSS はブラザー枠の中で最大3枠まで設定でき、1枠ごとにアビリティ上限が 140P 下がります。</p>
       <div className="mt-4 grid gap-4">
-        <div className="relative z-0 overflow-visible rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4 focus-within:z-20">
-          <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">シークレットサテライトサーバー</p>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            {normalizedSssLevels.map((level, index) => (
-              <div key={`sss-slot-${index}`} className="relative z-0 grid gap-2 focus-within:z-10">
-                <p className="text-xs font-semibold tracking-[0.24em] text-white/42">SSS {String(index + 1).padStart(2, "0")}</p>
-                <SearchableSelectInput
-                  value={level}
-                  onChange={(value) => {
-                    const nextLevels = [...normalizedSssLevels];
-                    nextLevels[index] = value;
-                    onSssChange(normalizeMmsf3SssLevels(nextLevels));
-                  }}
-                  options={MMSF3_SSS_LEVEL_SELECT_OPTIONS}
-                  placeholder="レベルを選択"
-                  displayValue={getMmsf3SssLevelOption(level)?.label ?? ""}
-                  className="field-shell min-h-[52px] w-full"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
         {isDisabled ? (
-          <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
-            ブライノイズではブラザーを設定できません。
-          </div>
-        ) : (
+          <>
+            <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
+              ブライノイズではブラザーは設定できませんが、SSSは設定できます。
+            </div>
+            <div className="rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4">
+              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">シークレットサテライトサーバー</p>
+              <div className="mt-4 grid gap-4 md:grid-cols-3">
+                {Array.from({ length: 3 }, (_, index) => (
+                  <div key={`sss-slot-${index}`} className="grid gap-2">
+                    <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">
+                      SSS {String(index + 1).padStart(2, "0")}
+                    </p>
+                    <SearchableSelectInput
+                      value={sssLevels[index] ?? ""}
+                      onChange={(value) => {
+                        const nextLevels = [...sssLevels];
+                        nextLevels[index] = value;
+                        onSssChange(nextLevels);
+                      }}
+                      options={MMSF3_SSS_LEVEL_SELECT_OPTIONS}
+                      placeholder="SSS を検索"
+                      displayValue={getMmsf3SssLevelOption(sssLevels[index] ?? "")?.label ?? ""}
+                      className="field-shell min-h-[52px] w-full"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </>
+        ) : null}
+        {!isDisabled ? (
           <div className="grid gap-4 xl:grid-cols-2">
             {MMSF3_BROTHER_ROULETTE_POSITIONS.map((position) => {
               const slot = slotsByPosition.get(position.key) ?? {
                 position: position.key,
+                slotType: "brother",
+                sssLevel: "",
+                version: "",
                 noise: "",
                 rezon: "",
                 whiteCardSetId: "",
                 gigaCard: "",
                 megaCard: "",
               };
+              const gigaOptions = [
+                EMPTY_SEARCHABLE_SELECT_OPTION,
+                ...getMmsf3GigaCardOptionsForVersion(slot.version).map((option) => ({ value: option.value, label: option.label })),
+              ];
 
               return (
                 <div
@@ -352,72 +373,139 @@ export function Mmsf3BrotherRouletteSection({
 
                   <div className="mt-4 grid gap-3">
                     <div className="grid gap-2">
-                      <p className="text-xs font-semibold tracking-[0.24em] text-white/42">マージノイズ</p>
+                      <p className="text-xs font-semibold tracking-[0.24em] text-white/42">枠種別</p>
                       <SearchableSelectInput
-                        value={slot.noise}
-                        onChange={(value) => updateSlot(position.key, { noise: value })}
-                        options={MMSF3_BROTHER_ROULETTE_NOISE_SELECT_OPTIONS}
-                        placeholder="マージノイズを検索"
-                        displayValue={getMmsf3NoiseOption(slot.noise)?.label ?? ""}
+                        value={slot.slotType}
+                        onChange={(value) => {
+                          if (value === "sss" && slot.slotType !== "sss" && sssSlotCount >= 3) {
+                            return;
+                          }
+
+                          updateSlot(
+                            position.key,
+                            value === "sss"
+                              ? {
+                                slotType: "sss",
+                                sssLevel: slot.sssLevel,
+                                version: "",
+                                noise: "",
+                                rezon: "",
+                                whiteCardSetId: "",
+                                  gigaCard: "",
+                                  megaCard: "",
+                                }
+                              : {
+                                  slotType: "brother",
+                                  sssLevel: "",
+                                },
+                          );
+                        }}
+                        options={
+                          slot.slotType === "sss" || sssSlotCount < 3
+                            ? MMSF3_BROTHER_ROULETTE_SLOT_TYPE_SELECT_OPTIONS
+                            : MMSF3_BROTHER_ROULETTE_SLOT_TYPE_SELECT_OPTIONS.filter((option) => option.value !== "sss")
+                        }
+                        placeholder="種別を選択"
+                        displayValue={slot.slotType === "sss" ? "SSS" : "ブラザー"}
                         className="field-shell min-h-[52px] w-full"
                       />
                     </div>
 
-                    <div className="grid gap-2">
-                      <p className="text-xs font-semibold tracking-[0.24em] text-white/42">レゾンカード</p>
-                      <SearchableSelectInput
-                        value={slot.rezon}
-                        onChange={(value) => updateSlot(position.key, { rezon: value })}
-                        options={MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS}
-                        placeholder="レゾンカードを検索"
-                        displayValue={getMmsf3RezonCardOption(slot.rezon)?.label ?? ""}
-                        className="field-shell min-h-[52px] w-full"
-                      />
-                    </div>
-
-                    <div className="grid gap-2">
-                      <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ホワイトカード</p>
-                      <SearchableSelectInput
-                        value={slot.whiteCardSetId}
-                        onChange={(value) => updateSlot(position.key, { whiteCardSetId: value })}
-                        options={MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS}
-                        placeholder="ホワイトカードを検索"
-                        displayValue={getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label ?? ""}
-                        className="field-shell min-h-[52px] w-full"
-                      />
-                    </div>
-
-                    <div className="grid gap-3 md:grid-cols-2">
+                    {slot.slotType === "sss" ? (
                       <div className="grid gap-2">
-                        <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ギガカード</p>
+                        <p className="text-xs font-semibold tracking-[0.24em] text-white/42">シークレットサテライトサーバー</p>
                         <SearchableSelectInput
-                          value={slot.gigaCard}
-                          onChange={(value) => updateSlot(position.key, { gigaCard: value })}
-                          options={MMSF3_BROTHER_ROULETTE_GIGA_SELECT_OPTIONS}
-                          placeholder="ギガカードを検索"
-                          displayValue={getMmsf3GigaCardOption(slot.gigaCard)?.label ?? ""}
+                          value={slot.sssLevel}
+                          onChange={(value) => updateSlot(position.key, { slotType: "sss", sssLevel: value })}
+                          options={MMSF3_SSS_LEVEL_SELECT_OPTIONS}
+                          placeholder="SSS を検索"
+                          displayValue={getMmsf3SssLevelOption(slot.sssLevel)?.label ?? ""}
                           className="field-shell min-h-[52px] w-full"
                         />
                       </div>
+                    ) : (
+                      <>
+                        <div className="grid gap-2">
+                          <p className="text-xs font-semibold tracking-[0.24em] text-white/42">バージョン</p>
+                          <SearchableSelectInput
+                            value={slot.version}
+                            onChange={(value) => updateSlot(position.key, { version: value as typeof slot.version })}
+                            options={MMSF3_BROTHER_VERSION_SELECT_OPTIONS}
+                            placeholder="バージョンを選択"
+                            displayValue={getMmsf3BrotherVersionOption(slot.version)?.label ?? ""}
+                            className="field-shell min-h-[52px] w-full"
+                          />
+                        </div>
 
-                      <div className="grid gap-2">
-                        <p className="text-xs font-semibold tracking-[0.24em] text-white/42">メガカード</p>
-                        <SearchableSelectInput
-                          value={slot.megaCard}
-                          onChange={(value) => updateSlot(position.key, { megaCard: value })}
-                          options={MMSF3_BROTHER_ROULETTE_MEGA_SELECT_OPTIONS}
-                          placeholder="メガカードを検索"
-                          displayValue={getMmsf3MegaCardOption(slot.megaCard)?.label ?? ""}
-                          className="field-shell min-h-[52px] w-full"
-                        />
-                      </div>
-                    </div>
+                        <div className="grid gap-2">
+                          <p className="text-xs font-semibold tracking-[0.24em] text-white/42">マージノイズ</p>
+                          <SearchableSelectInput
+                            value={slot.noise}
+                            onChange={(value) => updateSlot(position.key, { noise: value })}
+                            options={MMSF3_BROTHER_ROULETTE_NOISE_SELECT_OPTIONS}
+                            placeholder="マージノイズを検索"
+                            displayValue={getMmsf3NoiseOption(slot.noise)?.label ?? ""}
+                            className="field-shell min-h-[52px] w-full"
+                          />
+                        </div>
+
+                        <div className="grid gap-2">
+                          <p className="text-xs font-semibold tracking-[0.24em] text-white/42">レゾンカード</p>
+                          <SearchableSelectInput
+                            value={slot.rezon}
+                            onChange={(value) => updateSlot(position.key, { rezon: value })}
+                            options={MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS}
+                            placeholder="レゾンカードを検索"
+                            displayValue={getMmsf3RezonCardOption(slot.rezon)?.label ?? ""}
+                            className="field-shell min-h-[52px] w-full"
+                          />
+                        </div>
+
+                        <div className="grid gap-2">
+                          <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ホワイトカード</p>
+                          <SearchableSelectInput
+                            value={slot.whiteCardSetId}
+                            onChange={(value) => updateSlot(position.key, { whiteCardSetId: value })}
+                            options={MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS}
+                            placeholder="ホワイトカードを検索"
+                            displayValue={getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label ?? ""}
+                            className="field-shell min-h-[52px] w-full"
+                          />
+                        </div>
+
+                        <div className="grid gap-3 md:grid-cols-2">
+                          <div className="grid gap-2">
+                            <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ギガカード</p>
+                            <SearchableSelectInput
+                              value={slot.gigaCard}
+                              onChange={(value) => updateSlot(position.key, { gigaCard: value })}
+                              options={gigaOptions}
+                              placeholder="ギガカードを検索"
+                              displayValue={getMmsf3GigaCardOption(slot.gigaCard)?.label ?? ""}
+                              className="field-shell min-h-[52px] w-full"
+                            />
+                          </div>
+
+                          <div className="grid gap-2">
+                            <p className="text-xs font-semibold tracking-[0.24em] text-white/42">メガカード</p>
+                            <SearchableSelectInput
+                              value={slot.megaCard}
+                              onChange={(value) => updateSlot(position.key, { megaCard: value })}
+                              options={MMSF3_BROTHER_ROULETTE_MEGA_SELECT_OPTIONS}
+                              placeholder="メガカードを検索"
+                              displayValue={getMmsf3MegaCardOption(slot.megaCard)?.label ?? ""}
+                              className="field-shell min-h-[52px] w-full"
+                            />
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               );
             })}
           </div>
-        )}
+        ) : null}
       </div>
     </div>
   );
@@ -513,7 +601,13 @@ export function Mmsf3AbilitySection({
 }) {
   return (
     <>
-      <Mmsf3AbilityEditor entries={state.abilities} onChange={onAbilitiesChange} noise={state.noise} version={version} />
+      <Mmsf3AbilityEditor
+        entries={state.abilities}
+        onChange={onAbilitiesChange}
+        noise={state.noise}
+        sssSlotCount={state.sssSlotCount}
+        version={version}
+      />
       <SourceListEditor
         title="アビリティ入手方法"
         entries={state.abilitySources}

@@ -14,6 +14,27 @@ async function selectAbilityOption(panel: Locator, index: number, searchText: st
   await panel.getByRole("option", { name: optionName }).click();
 }
 
+async function selectBrotherSlotType(slotCard: Locator, optionName: string) {
+  const input = slotCard.getByRole("combobox").nth(0);
+  await input.click();
+  await input.fill(optionName);
+  await slotCard.getByRole("option", { name: optionName }).click();
+}
+
+async function selectBrotherSss(slotCard: Locator, searchText: string, optionName: string) {
+  const input = slotCard.getByRole("combobox").nth(1);
+  await input.click();
+  await input.fill(searchText);
+  await slotCard.getByRole("option", { name: optionName }).click();
+}
+
+async function selectBrotherVersion(slotCard: Locator, searchText: string, optionName: string) {
+  const input = slotCard.getByRole("combobox").nth(1);
+  await input.click();
+  await input.fill(searchText);
+  await slotCard.getByRole("option", { name: optionName }).click();
+}
+
 test("mmsf3 editor shows folder validation", async ({ page }) => {
   await page.addInitScript(() => {
     window.localStorage.clear();
@@ -35,6 +56,70 @@ test("mmsf3 editor shows folder validation", async ({ page }) => {
 
   await expect(page.getByText("ノーマルカード「キャノン」は5枚までです。")).toBeVisible();
   await expect(page.getByText("メガカード「スペードマグネッツ」は1枚までです。")).toBeVisible();
+});
+
+test("mmsf3 editor validates version-exclusive giga cards for player and brother settings", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
+
+  await firstCardInput.click();
+  await firstCardInput.fill("Gメテオ");
+  await expect(cardEditor.getByRole("option", { name: "Ｇメテオレーザー" })).toHaveCount(0);
+
+  await firstCardInput.fill("Gメテオレイザー");
+  await cardEditor.locator("input[type='number']").first().fill("1");
+
+  await expect(page.getByText("ギガカード「Gメテオレイザー」はブラックエースでは使用できません。")).toBeVisible();
+
+  const brotherEditor = page
+    .locator("label", { hasText: "ブラザー情報" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const topLeftCard = brotherEditor
+    .getByText("左上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const topLeftInputs = topLeftCard.getByRole("combobox");
+
+  await selectBrotherVersion(topLeftCard, "ブラック", "ブラックエース");
+  await topLeftInputs.nth(5).click();
+  await topLeftInputs.nth(5).fill("Gメテオ");
+  await expect(topLeftCard.getByRole("option", { name: "Gメテオレイザー" })).toHaveCount(0);
+
+  await page.goto("/editor?game=mmsf3&version=red-joker");
+
+  const redJokerCardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  await redJokerCardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const redJokerFirstCardInput = redJokerCardEditor.locator("input[placeholder='カード名']").first();
+  await redJokerFirstCardInput.click();
+  await redJokerFirstCardInput.fill("ウィング");
+  await expect(redJokerCardEditor.getByRole("option", { name: "ウィングブレード" })).toHaveCount(0);
+  await redJokerFirstCardInput.fill("ウィングブレード");
+  await redJokerCardEditor.locator("input[type='number']").first().fill("1");
+
+  await expect(page.getByText("ギガカード「ウィングブレード」はレッドジョーカーでは使用できません。")).toBeVisible();
+
+  const redJokerBrotherEditor = page
+    .locator("label", { hasText: "ブラザー情報" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const redJokerTopLeftCard = redJokerBrotherEditor
+    .getByText("左上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const redJokerTopLeftInputs = redJokerTopLeftCard.getByRole("combobox");
+
+  await selectBrotherVersion(redJokerTopLeftCard, "レッド", "レッドジョーカー");
+  await redJokerTopLeftInputs.nth(5).click();
+  await redJokerTopLeftInputs.nth(5).fill("ウィング");
+  await expect(redJokerTopLeftCard.getByRole("option", { name: "ウィングブレード" })).toHaveCount(0);
 });
 
 test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => {
@@ -114,31 +199,58 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
   const topLeftInputs = topLeftCard.getByRole("combobox");
   const topRightInputs = topRightCard.getByRole("combobox");
 
-  await topLeftInputs.nth(0).click();
-  await topLeftInputs.nth(0).fill("リブラ");
-  await brotherEditor.getByRole("option", { name: "リブラ" }).click();
-
   await topLeftInputs.nth(1).click();
-  await topLeftInputs.nth(1).fill("ソード");
-  await brotherEditor.getByRole("option", { name: "ソード" }).click();
+  await topLeftInputs.nth(1).fill("レッド");
+  await brotherEditor.getByRole("option", { name: "レッドジョーカー" }).click();
 
   await topLeftInputs.nth(2).click();
-  await topLeftInputs.nth(2).fill("ワイドウェーブ3");
-  await brotherEditor.getByRole("option", { name: "ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード" }).click();
+  await topLeftInputs.nth(2).fill("リブラ");
+  await brotherEditor.getByRole("option", { name: "リブラ" }).click();
 
   await topLeftInputs.nth(3).click();
-  await topLeftInputs.nth(3).fill("Gメテオ");
-  await brotherEditor.getByRole("option", { name: "Gメテオレイザー" }).click();
+  await topLeftInputs.nth(3).fill("ソード");
+  await brotherEditor.getByRole("option", { name: "ソード" }).click();
 
   await topLeftInputs.nth(4).click();
-  await topLeftInputs.nth(4).fill("アシッド");
+  await topLeftInputs.nth(4).fill("ワイドウェーブ3");
+  await brotherEditor.getByRole("option", { name: "ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード" }).click();
+
+  await topLeftInputs.nth(5).click();
+  await topLeftInputs.nth(5).fill("Gメテオ");
+  await brotherEditor.getByRole("option", { name: "Gメテオレイザー" }).click();
+
+  await topLeftInputs.nth(6).click();
+  await topLeftInputs.nth(6).fill("アシッド");
   await brotherEditor.getByRole("option", { name: "アシッドエース", exact: true }).click();
 
-  await expect(topLeftInputs.nth(0)).toHaveValue("リブラ");
-  await expect(topLeftInputs.nth(1)).toHaveValue("ソード");
-  await expect(topLeftInputs.nth(3)).toHaveValue("Gメテオレイザー");
-  await expect(topLeftInputs.nth(4)).toHaveValue("アシッドエース");
-  await expect(topRightInputs.nth(0)).toHaveValue("");
+  await expect(topLeftInputs.nth(0)).toHaveValue("ブラザー");
+  await expect(topLeftInputs.nth(1)).toHaveValue("レッドジョーカー");
+  await expect(topLeftInputs.nth(2)).toHaveValue("リブラ");
+  await expect(topLeftInputs.nth(3)).toHaveValue("ソード");
+  await expect(topLeftInputs.nth(5)).toHaveValue("Gメテオレイザー");
+  await expect(topLeftInputs.nth(6)).toHaveValue("アシッドエース");
+  await expect(topRightInputs.nth(0)).toHaveValue("ブラザー");
+});
+
+test("mmsf3 editor does not offer ブライ as a brother merge noise", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const brotherEditor = page
+    .locator("label", { hasText: "ブラザー情報" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const topLeftCard = brotherEditor
+    .getByText("左上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const topLeftNoiseInput = topLeftCard.getByRole("combobox").nth(2);
+
+  await topLeftNoiseInput.click();
+  await topLeftNoiseInput.fill("ブライ");
+
+  await expect(topLeftCard.getByRole("option", { name: "ブライ" })).toHaveCount(0);
 });
 
 test("mmsf3 editor keeps player rezon card and white card in the rockman section", async ({ page }) => {
@@ -175,7 +287,7 @@ test("mmsf3 editor keeps player rezon card and white card in the rockman section
   await expect(whiteInput).toHaveValue("ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード");
 });
 
-test("mmsf3 editor adds three SSS level slots", async ({ page }) => {
+test("mmsf3 editor allows up to three SSS brother slots", async ({ page }) => {
   await page.addInitScript(() => {
     window.localStorage.clear();
   });
@@ -186,36 +298,39 @@ test("mmsf3 editor adds three SSS level slots", async ({ page }) => {
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  for (const label of ["SSS 01", "SSS 02", "SSS 03"]) {
+  for (const label of ["左上", "右上", "左中"]) {
     await expect(brotherEditor.getByText(label, { exact: true })).toBeVisible();
   }
 
-  const firstSssInput = brotherEditor
-    .getByText("SSS 01", { exact: true })
-    .locator("xpath=following::input[@role='combobox'][1]");
-  const secondSssInput = brotherEditor
-    .getByText("SSS 02", { exact: true })
-    .locator("xpath=following::input[@role='combobox'][1]");
-  const thirdSssInput = brotherEditor
-    .getByText("SSS 03", { exact: true })
-    .locator("xpath=following::input[@role='combobox'][1]");
+  const topLeftCard = brotherEditor
+    .getByText("左上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const topRightCard = brotherEditor
+    .getByText("右上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const midLeftCard = brotherEditor
+    .getByText("左中", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const midRightCard = brotherEditor
+    .getByText("右中", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
 
-  await firstSssInput.click();
-  await firstSssInput.fill("オヒュ");
-  await brotherEditor.getByRole("option", { name: "Lv.4: オヒュカス" }).click();
+  await selectBrotherSlotType(topLeftCard, "SSS");
+  await selectBrotherSss(topLeftCard, "オヒュ", "Lv.4: オヒュカス");
 
-  await secondSssInput.click();
-  await secondSssInput.fill("フォル");
-  await brotherEditor.getByRole("option", { name: "Lv.32: フォルテ" }).click();
+  await selectBrotherSlotType(topRightCard, "SSS");
+  await selectBrotherSss(topRightCard, "フォル", "Lv.32: フォルテ");
 
-  await thirdSssInput.click();
-  await thirdSssInput.fill("Lv.2");
-  await expect(brotherEditor.getByRole("option", { name: "Lv.24: オメガ" })).toBeVisible();
-  await brotherEditor.getByRole("option", { name: "Lv.24: オメガ" }).click();
+  await selectBrotherSlotType(midLeftCard, "SSS");
+  await selectBrotherSss(midLeftCard, "Lv.2", "Lv.24: オメガ");
 
-  await expect(firstSssInput).toHaveValue("Lv.4: オヒュカス");
-  await expect(secondSssInput).toHaveValue("Lv.32: フォルテ");
-  await expect(thirdSssInput).toHaveValue("Lv.24: オメガ");
+  await expect(topLeftCard.getByRole("combobox").nth(1)).toHaveValue("Lv.4: オヒュカス");
+  await expect(topRightCard.getByRole("combobox").nth(1)).toHaveValue("Lv.32: フォルテ");
+  await expect(midLeftCard.getByRole("combobox").nth(1)).toHaveValue("Lv.24: オメガ");
+
+  await midRightCard.getByRole("combobox").nth(0).click();
+  await midRightCard.getByRole("combobox").nth(0).fill("SSS");
+  await expect(midRightCard.getByRole("option", { name: "SSS" })).toHaveCount(0);
 });
 
 test("mmsf3 editor disables brother roulette when bura noise is selected", async ({ page }) => {
@@ -228,20 +343,19 @@ test("mmsf3 editor disables brother roulette when bura noise is selected", async
   const brotherEditor = page
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-  const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
-    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
-  const topLeftNoiseInput = topLeftCard.getByRole("combobox").nth(0);
-
-  await topLeftNoiseInput.click();
-  await topLeftNoiseInput.fill("リブラ");
-  await brotherEditor.getByRole("option", { name: "リブラ" }).click();
-  await expect(topLeftNoiseInput).toHaveValue("リブラ");
 
   await page.locator("select:has(option[value='ブライノイズ'])").first().selectOption({ label: "ブライノイズ" });
 
-  await expect(brotherEditor).toContainText("ブライノイズではブラザーを設定できません。");
+  await expect(brotherEditor).toContainText("ブライノイズではブラザーは設定できませんが、SSSは設定できます。");
+  await expect(brotherEditor.getByText("シークレットサテライトサーバー", { exact: true })).toBeVisible();
+  await expect(brotherEditor.getByText("SSS 01", { exact: true })).toBeVisible();
   await expect(brotherEditor.getByText("左上", { exact: true })).toHaveCount(0);
+
+  const firstSssInput = brotherEditor.getByRole("combobox").nth(0);
+  await firstSssInput.click();
+  await firstSssInput.fill("フォル");
+  await brotherEditor.getByRole("option", { name: "Lv.32: フォルテ" }).click();
+  await expect(firstSssInput).toHaveValue("Lv.32: フォルテ");
 });
 
 test("mmsf3 editor includes cost-based ability options", async ({ page }) => {
@@ -351,6 +465,46 @@ test("mmsf3 editor validates ability point totals against the standard limit", a
 
   await expect(abilityEditor).toContainText("合計P 1940/1900");
   await expect(page.getByText("アビリティ消費Pは 1900 以内にしてください。")).toBeVisible();
+});
+
+test("mmsf3 editor lowers the ability point limit as brother slots become SSS", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const brotherEditor = page
+    .locator("label", { hasText: "ブラザー情報" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const abilityEditor = page
+    .locator("label", { hasText: "アビリティ" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]")
+    .first();
+
+  const topLeftCard = brotherEditor
+    .getByText("左上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const topRightCard = brotherEditor
+    .getByText("右上", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const midLeftCard = brotherEditor
+    .getByText("左中", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+
+  await expect(abilityEditor).toContainText("合計P 0/1900");
+
+  await selectBrotherSlotType(topLeftCard, "SSS");
+  await selectBrotherSss(topLeftCard, "オヒュ", "Lv.4: オヒュカス");
+  await expect(abilityEditor).toContainText("合計P 0/1760");
+
+  await selectBrotherSlotType(topRightCard, "SSS");
+  await selectBrotherSss(topRightCard, "フォル", "Lv.32: フォルテ");
+  await expect(abilityEditor).toContainText("合計P 0/1620");
+
+  await selectBrotherSlotType(midLeftCard, "SSS");
+  await selectBrotherSss(midLeftCard, "オメガ", "Lv.24: オメガ");
+  await expect(abilityEditor).toContainText("合計P 0/1480");
 });
 
 test("mmsf3 editor limits duplicate random abilities to 9 and non-random abilities to 1", async ({ page }) => {

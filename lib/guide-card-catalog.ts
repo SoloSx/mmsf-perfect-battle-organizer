@@ -73,7 +73,7 @@ export function sortCardSuggestions(game: GameId, suggestions: string[]) {
 
 export function getCardSuggestions(game: GameId, version?: VersionId) {
   if (game === "mmsf3") {
-    return getMmsf3CardSuggestions();
+    return getMmsf3CardSuggestions(version as Extract<VersionId, "black-ace" | "red-joker"> | undefined);
   }
 
   return sortCardSuggestions(

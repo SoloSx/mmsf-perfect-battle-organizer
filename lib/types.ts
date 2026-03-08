@@ -14,6 +14,8 @@ export type BrotherKind = "story" | "auto" | "real" | "event";
 export type NoiseCardMark = "♥" | "♦" | "♠" | "♣" | "★";
 export type NoiseCardRank = "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
 export type Mmsf3BrotherRoulettePosition = "top_left" | "top_right" | "mid_left" | "mid_right" | "btm_left" | "btm_right";
+export type Mmsf3BrotherRouletteSlotType = "brother" | "sss";
+export type Mmsf3BrotherVersionId = Extract<VersionId, "black-ace" | "red-joker">;
 export type NoiseHandId =
   | "two-pair"
   | "three-card"
@@ -52,6 +54,9 @@ export interface BrotherProfile {
 
 export interface Mmsf3BrotherRouletteSlot {
   position: Mmsf3BrotherRoulettePosition;
+  slotType: Mmsf3BrotherRouletteSlotType;
+  sssLevel: string;
+  version: Mmsf3BrotherVersionId | "";
   noise: string;
   rezon: string;
   whiteCardSetId: string;

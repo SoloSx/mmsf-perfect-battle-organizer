@@ -1014,7 +1014,9 @@ export function BuildEditorPage() {
           onBrotherChange={(slots) =>
             setDraft((current) => (current ? updateMmsf3BrotherRouletteSlots(current, slots) : current))
           }
-          onSssChange={(levels) => setDraft((current) => (current ? updateMmsf3SssLevels(current, levels) : current))}
+          onSssChange={(sssLevels) =>
+            setDraft((current) => (current ? updateMmsf3SssLevels(current, sssLevels) : current))
+          }
           isDisabled={normalizedMmsf3State.noise === "ブライノイズ"}
         />
       ) : null
