@@ -116,7 +116,7 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   }
 
   for (const card of evaluation.selectedCards) {
-    lines.push(`${card.label} / ${card.cardEffect}`);
+    lines.push(card.label);
   }
 
   return lines;
