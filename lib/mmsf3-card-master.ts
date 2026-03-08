@@ -1,5 +1,5 @@
 import masterData from "@/data/mmsf3-card-master.json";
-import { getMmsf3GigaCardOptionByLabel, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-roulette-options";
+import { findMmsf3GigaCardOptionByNames, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-giga-version-rules";
 import type { VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 
@@ -34,11 +34,7 @@ export function getMmsf3CardSuggestions(version?: Extract<VersionId, "black-ace"
         return true;
       }
 
-      const gigaCardOption =
-        getMmsf3GigaCardOptionByLabel(entry.name) ??
-        (entry.aliases ?? [])
-          .map((alias) => getMmsf3GigaCardOptionByLabel(alias))
-          .find((option) => Boolean(option));
+      const gigaCardOption = findMmsf3GigaCardOptionByNames([entry.name, ...(entry.aliases ?? [])]);
       return gigaCardOption ? isMmsf3GigaCardAllowedInVersion(gigaCardOption.value, version) : true;
     })
     .map((entry) => entry.name);

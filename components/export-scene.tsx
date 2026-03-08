@@ -13,7 +13,7 @@ import {
   getMmsf3SssLevelOption,
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
-} from "@/lib/mmsf3-roulette-options";
+} from "@/lib/mmsf3-roulette-data";
 import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";

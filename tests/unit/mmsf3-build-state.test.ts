@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { getMmsf3AbilitySelectionErrors } from "@/lib/mmsf3-abilities";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
-import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3-roulette-options";
+import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3-brother-roulette-state";
 import {
   createDefaultMmsf3Sections,
   getNormalizedMmsf3State,

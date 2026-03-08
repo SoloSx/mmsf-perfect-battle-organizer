@@ -4,19 +4,21 @@ import {
   isMmsf3AbilitySourceTracked,
   normalizeMmsf3AbilityEntries,
 } from "@/lib/mmsf3-abilities";
+import {
+  clearMmsf3BrotherSelectionsForBuraNoise,
+  getMmsf3BrotherRouletteSelectionErrors,
+  getMmsf3ConfiguredSssSlotCount,
+  getMmsf3SelectedSssLevelsFromBrotherRouletteSlots,
+  normalizeMmsf3BrotherRouletteSlots,
+  normalizeMmsf3SssLevels,
+} from "@/lib/mmsf3-brother-roulette-state";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
 import { getMmsf3NoiseCardSelectionErrors, normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3-noise-cards";
 import {
-  clearMmsf3BrotherSelectionsForBuraNoise,
   DEFAULT_MMSF3_WHITE_CARD_SET_ID,
-  getMmsf3ConfiguredSssSlotCount,
-  getMmsf3BrotherRouletteSelectionErrors,
   getMmsf3RezonCardOptionByLabel,
-  getMmsf3SelectedSssLevelsFromBrotherRouletteSlots,
   getMmsf3WhiteCardSetOption,
-  normalizeMmsf3BrotherRouletteSlots,
-  normalizeMmsf3SssLevels,
-} from "@/lib/mmsf3-roulette-options";
+} from "@/lib/mmsf3-roulette-data";
 import type {
   BuildCardEntry,
   BuildRecord,
