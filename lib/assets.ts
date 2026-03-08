@@ -1,6 +1,6 @@
 import manifest from "@/data/asset-manifest.json";
 import aliases from "@/data/card-asset-aliases.json";
-import { getMmsf3CardAssetLocalPath } from "@/lib/mmsf3-card-master";
+import { getMmsf3CardAssetLocalPath } from "@/lib/mmsf3/card-master";
 import type { AssetManifestEntry, CardAssetAliasEntry, GameId, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 

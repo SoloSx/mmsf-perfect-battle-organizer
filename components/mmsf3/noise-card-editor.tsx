@@ -1,7 +1,7 @@
 "use client";
 
 import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
-import { getMmsf3NoiseCardById, MMSF3_NOISE_CARD_SLOT_COUNT } from "@/lib/mmsf3-noise-cards";
+import { getMmsf3NoiseCardById, MMSF3_NOISE_CARD_SLOT_COUNT } from "@/lib/mmsf3/noise-cards";
 import type { NoiseHandEvaluation } from "@/lib/types";
 
 const EMPTY_SEARCHABLE_SELECT_OPTION: SearchableSelectOption = { value: "", label: "未選択" };

@@ -1,5 +1,5 @@
-import { isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-giga-version-rules";
-import { getMmsf3GigaCardOptionByLabel } from "@/lib/mmsf3-roulette-data";
+import { isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3/giga-version-rules";
+import { getMmsf3GigaCardOptionByLabel } from "@/lib/mmsf3/roulette-data";
 import { VERSION_LABELS } from "@/lib/rules";
 import { getCardSection } from "@/lib/guide-card-catalog";
 import type { BuildCardEntry, VersionId } from "@/lib/types";

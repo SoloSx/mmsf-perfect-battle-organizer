@@ -1,4 +1,4 @@
-import abilityOptionsData from "@/data/mmsf3-ability-options.json";
+import abilityOptionsData from "@/data/mmsf3/ability-options.json";
 import type { BuildCardEntry, VersionId } from "@/lib/types";
 import { createId, normalizeToken } from "@/lib/utils";
 
@@ -42,11 +42,8 @@ export const MMSF3_ABILITY_OPTIONS = (abilityOptionsData.entries as RawMmsf3Abil
 const abilityByLabel = new Map<string, Mmsf3AbilityOption>();
 const abilityByNormalizedName = new Map<string, Mmsf3AbilityOption[]>();
 const abilityByNameAndCost = new Map<string, Mmsf3AbilityOption>();
-const MMSF3_VERSION_DEFAULT_ABILITY_NAMES: Partial<Record<VersionId, string[]>> = {
-  "black-ace": ["エースPGM"],
-  "red-joker": ["ジョーカーPGM"],
-};
-const allVersionDefaultAbilityNames = new Set(Object.values(MMSF3_VERSION_DEFAULT_ABILITY_NAMES).flat());
+const BLACK_ACE_DEFAULT_ABILITY_NAME = "エースPGM";
+const RED_JOKER_DEFAULT_ABILITY_NAME = "ジョーカーPGM";
 
 for (const option of MMSF3_ABILITY_OPTIONS) {
   abilityByLabel.set(option.label, option);
@@ -63,6 +60,26 @@ for (const option of MMSF3_ABILITY_OPTIONS) {
 
 for (const options of abilityByNormalizedName.values()) {
   options.sort((left, right) => left.cost - right.cost);
+}
+
+function getMmsf3VersionDefaultAbilityName(version: VersionId) {
+  if (version === "black-ace") {
+    return BLACK_ACE_DEFAULT_ABILITY_NAME;
+  }
+
+  if (version === "red-joker") {
+    return RED_JOKER_DEFAULT_ABILITY_NAME;
+  }
+
+  return null;
+}
+
+function isMmsf3VersionDefaultAbilityName(name: string) {
+  return name === BLACK_ACE_DEFAULT_ABILITY_NAME || name === RED_JOKER_DEFAULT_ABILITY_NAME;
+}
+
+function getMmsf3AbilityName(entry: Pick<BuildCardEntry, "name">) {
+  return getMmsf3AbilityByLabel(entry.name)?.name ?? entry.name.trim();
 }
 
 export function getMmsf3AbilityPointLimit(noise: string, sssSlotCount = 0) {
@@ -82,14 +99,16 @@ export function getMmsf3AbilityByNameAndCost(name: string, cost: number) {
 }
 
 export function getMmsf3VersionDefaultAbilityLabels(version: VersionId) {
-  return (MMSF3_VERSION_DEFAULT_ABILITY_NAMES[version] ?? [])
-    .map((name) => abilityByNormalizedName.get(normalizeToken(name))?.[0]?.label ?? null)
-    .filter((label): label is string => Boolean(label));
+  const defaultAbilityName = getMmsf3VersionDefaultAbilityName(version);
+  const defaultAbilityLabel = defaultAbilityName
+    ? abilityByNormalizedName.get(normalizeToken(defaultAbilityName))?.[0]?.label ?? null
+    : null;
+  return defaultAbilityLabel ? [defaultAbilityLabel] : [];
 }
 
 export function isMmsf3VersionDefaultAbility(label: string, version: VersionId) {
   const ability = getMmsf3AbilityByLabel(label);
-  return ability ? (MMSF3_VERSION_DEFAULT_ABILITY_NAMES[version] ?? []).includes(ability.name) : false;
+  return ability ? ability.name === getMmsf3VersionDefaultAbilityName(version) : false;
 }
 
 export function isMmsf3AbilitySourceTracked(label: string, version: VersionId) {
@@ -98,20 +117,21 @@ export function isMmsf3AbilitySourceTracked(label: string, version: VersionId) {
 
 export function normalizeMmsf3AbilityEntries(entries: BuildCardEntry[], version: VersionId) {
   const normalizedEntries = entries.map((entry) => normalizeMmsf3AbilityEntry(entry));
-  const requiredNames = new Set(MMSF3_VERSION_DEFAULT_ABILITY_NAMES[version] ?? []);
+  const requiredName = getMmsf3VersionDefaultAbilityName(version);
   const keptEntries = normalizedEntries.filter((entry) => {
-    const abilityName = getMmsf3AbilityByLabel(entry.name)?.name ?? entry.name.trim();
-    return !allVersionDefaultAbilityNames.has(abilityName) || requiredNames.has(abilityName);
+    const abilityName = getMmsf3AbilityName(entry);
+    return !isMmsf3VersionDefaultAbilityName(abilityName) || abilityName === requiredName;
   });
-  const requiredEntries = Array.from(requiredNames).map((name) => {
-    const existingEntry = keptEntries.find((entry) => getMmsf3AbilityByLabel(entry.name)?.name === name);
 
-    if (existingEntry) {
-      return existingEntry;
-    }
+  if (!requiredName) {
+    return keptEntries;
+  }
 
-    const defaultAbility = abilityByNormalizedName.get(normalizeToken(name))?.[0];
-    return defaultAbility
+  const existingDefaultEntry = keptEntries.find((entry) => getMmsf3AbilityName(entry) === requiredName);
+  const defaultAbility = abilityByNormalizedName.get(normalizeToken(requiredName))?.[0];
+  const requiredEntry =
+    existingDefaultEntry ??
+    (defaultAbility
       ? {
           id: createId(),
           name: defaultAbility.label,
@@ -119,14 +139,10 @@ export function normalizeMmsf3AbilityEntries(entries: BuildCardEntry[], version:
           notes: "",
           isRegular: false,
         }
-      : null;
-  }).filter((entry): entry is BuildCardEntry => Boolean(entry));
-  const nonDefaultEntries = keptEntries.filter((entry) => {
-    const abilityName = getMmsf3AbilityByLabel(entry.name)?.name ?? entry.name.trim();
-    return !requiredNames.has(abilityName);
-  });
+      : null);
+  const nonDefaultEntries = keptEntries.filter((entry) => getMmsf3AbilityName(entry) !== requiredName);
 
-  return [...requiredEntries, ...nonDefaultEntries];
+  return requiredEntry ? [requiredEntry, ...nonDefaultEntries] : nonDefaultEntries;
 }
 
 export function getMmsf3AbilitySources(label: string) {
@@ -134,7 +150,7 @@ export function getMmsf3AbilitySources(label: string) {
 }
 
 function getMmsf3AbilitySelectionLimit(option: Mmsf3AbilityOption) {
-  return Math.max(1, Math.trunc(option.maxCount));
+  return option.maxCount;
 }
 
 export function normalizeMmsf3AbilityEntry(entry: BuildCardEntry): BuildCardEntry {
@@ -171,14 +187,14 @@ export function getMmsf3AbilityOptionsForSlot(entries: BuildCardEntry[], index: 
     selectedCounts.set(label, (selectedCounts.get(label) ?? 0) + 1);
   });
 
-  const allowedDefaultNames = new Set(MMSF3_VERSION_DEFAULT_ABILITY_NAMES[version ?? "black-ace"] ?? []);
+  const allowedDefaultName = version ? getMmsf3VersionDefaultAbilityName(version) : null;
 
   return MMSF3_ABILITY_OPTIONS.filter((option) => {
     if ((selectedCounts.get(option.label) ?? 0) >= getMmsf3AbilitySelectionLimit(option)) {
       return false;
     }
 
-    if (allVersionDefaultAbilityNames.has(option.name) && !allowedDefaultNames.has(option.name)) {
+    if (isMmsf3VersionDefaultAbilityName(option.name) && option.name !== allowedDefaultName) {
       return false;
     }
 

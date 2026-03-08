@@ -1,5 +1,5 @@
-import masterData from "@/data/mmsf3-card-master.json";
-import { findMmsf3GigaCardOptionByNames, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-giga-version-rules";
+import masterData from "@/data/mmsf3/card-master.json";
+import { findMmsf3GigaCardOptionByNames, isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3/giga-version-rules";
 import type { VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 

@@ -8,7 +8,7 @@ import {
   MMSF3_REZON_CARD_OPTIONS,
   MMSF3_SSS_LEVEL_OPTIONS,
   MMSF3_WHITE_CARD_SET_OPTIONS,
-} from "@/lib/mmsf3-roulette-data";
+} from "@/lib/mmsf3/roulette-data";
 
 export const EMPTY_SEARCHABLE_SELECT_OPTION: SearchableSelectOption = { value: "", label: "未選択" };
 

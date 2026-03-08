@@ -1,5 +1,5 @@
 import catalog from "@/data/guide-card-catalog.json";
-import { getMmsf3CardDisplayOrder, getMmsf3CardSection, getMmsf3CardSuggestions } from "@/lib/mmsf3-card-master";
+import { getMmsf3CardDisplayOrder, getMmsf3CardSection, getMmsf3CardSuggestions } from "@/lib/mmsf3/card-master";
 import type { GameId, GuideCardCatalogEntry, VersionId } from "@/lib/types";
 import { normalizeToken, uniqueStrings } from "@/lib/utils";
 

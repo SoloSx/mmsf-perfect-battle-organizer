@@ -3,8 +3,8 @@
 import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
 import { EMPTY_SEARCHABLE_SELECT_OPTION } from "@/components/mmsf3/select-options";
 import { SourceListEditor } from "@/components/source-list-editor";
-import { getMmsf3AbilityByLabel, getMmsf3AbilityOptionsForSlot, getMmsf3AbilitySelectionErrors, getMmsf3AbilitySources } from "@/lib/mmsf3-abilities";
-import type { NormalizedMmsf3State } from "@/lib/mmsf3-build-state";
+import { getMmsf3AbilityByLabel, getMmsf3AbilityOptionsForSlot, getMmsf3AbilitySelectionErrors, getMmsf3AbilitySources } from "@/lib/mmsf3/abilities";
+import type { NormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import type { BuildCardEntry, BuildSourceEntry, VersionId } from "@/lib/types";
 import { createId } from "@/lib/utils";
 

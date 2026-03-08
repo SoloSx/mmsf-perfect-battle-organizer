@@ -1,15 +1,15 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMmsf3AbilitySelectionErrors } from "@/lib/mmsf3-abilities";
-import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
-import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3-brother-roulette-state";
+import { getMmsf3AbilitySelectionErrors } from "@/lib/mmsf3/abilities";
+import { validateMmsf3FolderCards } from "@/lib/mmsf3/battle-rules";
+import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3/brother-roulette-state";
 import {
   createDefaultMmsf3Sections,
   getNormalizedMmsf3State,
   normalizeMmsf3BuildRecord,
   updateMmsf3AbilityEntries,
   updateMmsf3Noise,
-} from "@/lib/mmsf3-build-state";
+} from "@/lib/mmsf3/build-state";
 import type { BuildRecord } from "@/lib/types";
 
 function createBaseBuild(overrides: Partial<BuildRecord> = {}): BuildRecord {

@@ -9,13 +9,13 @@ import {
   MMSF3_PLAYER_REZON_SELECT_OPTIONS,
 } from "@/components/mmsf3/select-options";
 import { SearchableSelectInput } from "@/components/searchable-select-input";
-import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
-import { getMmsf3NoiseCardsForSlot } from "@/lib/mmsf3-noise-cards";
+import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
+import { getMmsf3NoiseCardsForSlot } from "@/lib/mmsf3/noise-cards";
 import {
   getMmsf3RezonCardOption,
   getMmsf3WhiteCardSetOption,
-} from "@/lib/mmsf3-roulette-data";
-import type { NormalizedMmsf3State } from "@/lib/mmsf3-build-state";
+} from "@/lib/mmsf3/roulette-data";
+import type { NormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 
 export function Mmsf3RockmanSection({
   state,

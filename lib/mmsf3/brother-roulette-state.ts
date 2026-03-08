@@ -13,8 +13,8 @@ import {
   getMmsf3RezonCardOption,
   getMmsf3RezonCardOptionByLabel,
   getMmsf3WhiteCardSetOption,
-} from "@/lib/mmsf3-roulette-data";
-import { isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3-giga-version-rules";
+} from "@/lib/mmsf3/roulette-data";
+import { isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3/giga-version-rules";
 import type { Mmsf3BrotherRoulettePosition, Mmsf3BrotherRouletteSlot, Mmsf3BrotherRouletteSlotType, Mmsf3BrotherVersionId } from "@/lib/types";
 
 const sssLevelOptionValues = new Set(MMSF3_SSS_LEVEL_OPTIONS.map((option) => option.value));

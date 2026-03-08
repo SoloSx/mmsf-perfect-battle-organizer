@@ -13,7 +13,7 @@ import {
   createDefaultMmsf3Sections,
   normalizeMmsf3BuildRecord,
   normalizeMmsf3Sections,
-} from "@/lib/mmsf3-build-state";
+} from "@/lib/mmsf3/build-state";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
   BrotherProfile,

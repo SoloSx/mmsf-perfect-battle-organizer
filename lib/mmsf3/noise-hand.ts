@@ -1,4 +1,4 @@
-import { getMmsf3NoiseCardSelectionErrors, getMmsf3NoiseCardsByIds } from "@/lib/mmsf3-noise-cards";
+import { getMmsf3NoiseCardSelectionErrors, getMmsf3NoiseCardsByIds } from "@/lib/mmsf3/noise-cards";
 import type {
   NoiseCardMark,
   NoiseCardRank,

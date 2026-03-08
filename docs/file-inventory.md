@@ -68,7 +68,7 @@
 - `data/asset-manifest.json`: 画像アセットの総覧。ゲーム、名前、ローカルパス、元URLなどを保持
 - `data/asset-download-failures.json`: 画像取得スクリプトの失敗ログ
 - `data/card-asset-aliases.json`: 日本語カード名と実画像ファイルの対応表
-- `data/mmsf3-card-master.json`: 流星3カードの表示順、区分、画像パスのマスタ
+- `data/mmsf3/card-master.json`: 流星3カードの表示順、区分、画像パスのマスタ
 - `data/guide-card-catalog.json`: 攻略ページから抽出したカード一覧と入手元データ
 - `data/guide-page-index.json`: `scripts/raw/guide-pages/` HTML のタイトル・見出しインデックス
 
@@ -117,11 +117,11 @@
 ### Tests
 
 - `tests/e2e/sidebar.smoke.spec.ts`: サイドバーと主要導線のスモークテスト
-- `tests/e2e/mmsf3-editor.spec.ts`: 流星3エディタのホワイトカードとフォルダ検証テスト
+- `tests/e2e/mmsf3/editor.spec.ts`: 流星3エディタのホワイトカードとフォルダ検証テスト
 
 ## 2. カード画像アセット
 
-`public/assets/cards/` は命名変更の対象としては最後に回すべきです。アプリからは `data/asset-manifest.json`, `data/card-asset-aliases.json`, `data/mmsf3-card-master.json` 経由で参照されています。
+`public/assets/cards/` は命名変更の対象としては最後に回すべきです。アプリからは `data/asset-manifest.json`, `data/card-asset-aliases.json`, `data/mmsf3/card-master.json` 経由で参照されています。
 
 件数:
 

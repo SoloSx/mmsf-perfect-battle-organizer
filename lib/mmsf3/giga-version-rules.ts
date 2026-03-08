@@ -2,7 +2,7 @@ import type { Mmsf3BrotherVersionId } from "@/lib/types";
 import {
   getMmsf3GigaCardOptionByLabel,
   MMSF3_GIGA_CARD_OPTIONS,
-} from "@/lib/mmsf3-roulette-data";
+} from "@/lib/mmsf3/roulette-data";
 
 const MMSF3_GIGA_CARD_REQUIRED_VERSION_BY_VALUE: Partial<Record<string, Mmsf3BrotherVersionId>> = {
   "0C4": "black-ace",

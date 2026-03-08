@@ -12,11 +12,11 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
-import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3-editor-sections";
+import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3/editor-sections";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
 import { useAppData } from "@/hooks/use-app-data";
-import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3-abilities";
+import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
   getMissingMmsf3AbilitySourceNames,
   getNormalizedMmsf3State,
@@ -31,7 +31,7 @@ import {
   updateMmsf3SssLevels,
   updateMmsf3WhiteCardSetId,
   validateMmsf3BuildState,
-} from "@/lib/mmsf3-build-state";
+} from "@/lib/mmsf3/build-state";
 import { getCardSuggestions, getKnownCardSources, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {

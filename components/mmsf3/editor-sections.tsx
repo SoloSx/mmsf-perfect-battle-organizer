@@ -2,7 +2,7 @@
 
 import { Mmsf3AbilitySection } from "@/components/mmsf3/ability-section";
 import { Mmsf3RockmanSection } from "@/components/mmsf3/rockman-section";
-import type { NormalizedMmsf3State } from "@/lib/mmsf3-build-state";
+import type { NormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import type { BuildCardEntry, BuildSourceEntry, VersionId } from "@/lib/types";
 
 export { Mmsf3BrotherRouletteSection } from "@/components/mmsf3/brother-roulette-section";

@@ -2,8 +2,8 @@
 
 import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
-import { getNormalizedMmsf3State } from "@/lib/mmsf3-build-state";
-import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
+import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
+import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
 import {
   getMmsf3BrotherVersionOption,
   getMmsf3GigaCardOption,
@@ -13,7 +13,7 @@ import {
   getMmsf3SssLevelOption,
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
-} from "@/lib/mmsf3-roulette-data";
+} from "@/lib/mmsf3/roulette-data";
 import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
