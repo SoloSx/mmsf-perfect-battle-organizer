@@ -165,13 +165,7 @@ export function SourceListEditor({
   resolveKnownSources?: KnownSourcesResolver;
   emptyOwnedMessage?: string;
 }) {
-  const [selectedSourceInfo, setSelectedSourceInfo] = useState<{
-    name: string;
-    items: Array<{
-      source: string;
-      description: string | null;
-    }>;
-  } | null>(null);
+  const [openSourceInfoNames, setOpenSourceInfoNames] = useState<string[]>([]);
   const sourceInfoTitleId = useId();
 
   const groupedOwnedEntries =
@@ -191,6 +185,12 @@ export function SourceListEditor({
         })
       : [];
   const visibleOwnedEntries = actionMode === "owned" ? groupedOwnedEntries.filter((entry) => !entry.isOwned) : [];
+  const openSourceInfos =
+    actionMode === "owned"
+      ? openSourceInfoNames
+          .map((name) => groupedOwnedEntries.find((entry) => entry.name === name))
+          .filter((entry): entry is (typeof groupedOwnedEntries)[number] => Boolean(entry))
+      : [];
 
   return (
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
@@ -222,13 +222,10 @@ export function SourceListEditor({
                   type="button"
                   className="secondary-button w-full justify-center md:col-span-2"
                   onClick={() =>
-                    setSelectedSourceInfo((current) =>
-                      current?.name === entry.name
-                        ? null
-                        : {
-                            name: entry.name,
-                            items: entry.items,
-                          },
+                    setOpenSourceInfoNames((current) =>
+                      current.includes(entry.name)
+                        ? current.filter((name) => name !== entry.name)
+                        : [...current, entry.name],
                     )
                   }
                 >
@@ -311,29 +308,35 @@ export function SourceListEditor({
           行を追加
         </button>
       ) : null}
-      {selectedSourceInfo ? (
-        <div className="mt-4 rounded-3xl border border-white/10 bg-white/6 p-4">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <p id={sourceInfoTitleId} className="text-sm font-semibold text-white">
-                {selectedSourceInfo.name}
-              </p>
-              <p className="mt-1 text-xs text-white/52">既知の入手方法一覧</p>
+      {openSourceInfos.length > 0
+        ? openSourceInfos.map((entry, index) => (
+          <div key={entry.name} className="mt-4 rounded-3xl border border-white/10 bg-white/6 p-4">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p id={`${sourceInfoTitleId}-${index}`} className="text-sm font-semibold text-white">
+                  {entry.name}
+                </p>
+                <p className="mt-1 text-xs text-white/52">既知の入手方法一覧</p>
+              </div>
+              <button
+                type="button"
+                className="secondary-button"
+                onClick={() => setOpenSourceInfoNames((current) => current.filter((name) => name !== entry.name))}
+              >
+                閉じる
+              </button>
             </div>
-            <button type="button" className="secondary-button" onClick={() => setSelectedSourceInfo(null)}>
-              閉じる
-            </button>
+            <ul aria-labelledby={`${sourceInfoTitleId}-${index}`} className="mt-3 space-y-3 text-sm leading-6 text-white/78">
+              {entry.items.map((item) => (
+                <li key={`${entry.name}-${item.source}`}>
+                  <p className="font-medium text-white">{item.source}</p>
+                  {item.description ? <p className="mt-1 text-white/58">{item.description}</p> : null}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul aria-labelledby={sourceInfoTitleId} className="mt-3 space-y-3 text-sm leading-6 text-white/78">
-            {selectedSourceInfo.items.map((item) => (
-              <li key={`${selectedSourceInfo.name}-${item.source}`}>
-                <p className="font-medium text-white">{item.source}</p>
-                {item.description ? <p className="mt-1 text-white/58">{item.description}</p> : null}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
+        ))
+        : null}
     </div>
   );
 }

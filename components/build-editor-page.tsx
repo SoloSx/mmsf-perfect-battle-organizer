@@ -769,6 +769,50 @@ export function BuildEditorPage() {
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
     setDraft((current) => (current ? { ...current, commonSections: { ...current.commonSections, [key]: value } } : current));
   };
+  const updateCards = (entries: BuildCardEntry[]) => {
+    setDraft((current) => {
+      if (!current) {
+        return current;
+      }
+
+      const nextCardSources = syncSourceEntries(
+        entries,
+        current.commonSections.cardSources,
+        (name) => getKnownCardSources(current.game, name, current.version),
+      );
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          cards: entries,
+          cardSources: nextCardSources,
+        },
+      };
+    });
+  };
+  const updateAbilities = (entries: BuildCardEntry[]) => {
+    setDraft((current) => {
+      if (!current) {
+        return current;
+      }
+
+      const nextAbilitySources = syncSourceEntries(
+        entries,
+        current.commonSections.abilitySources,
+        (name) => getKnownCardSources(current.game, name, current.version),
+      );
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          abilities: entries,
+          abilitySources: nextAbilitySources,
+        },
+      };
+    });
+  };
 
   const rockmanSection = (
     <div className="glass-panel">
@@ -1055,7 +1099,7 @@ export function BuildEditorPage() {
           <CardListEditor
             title="アビリティ"
             entries={draft.commonSections.abilities}
-            onChange={(entries) => updateCommon("abilities", entries)}
+            onChange={updateAbilities}
             suggestions={abilitySuggestions}
           />
 
@@ -1086,7 +1130,7 @@ export function BuildEditorPage() {
       <CardListEditor
         title="対戦構築カード"
         entries={draft.commonSections.cards}
-        onChange={(entries) => updateCommon("cards", entries)}
+        onChange={updateCards}
         suggestions={cardSuggestions}
         allowRegularSelection
       />

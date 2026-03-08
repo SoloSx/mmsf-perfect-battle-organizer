@@ -169,6 +169,31 @@ test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => 
   await expect(firstCardInput).toHaveValue("グランドウェーブ１");
 });
 
+test("mmsf3 editor syncs card sources when replacing a battle card in the same row", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const cardSourceEditor = page
+    .locator("label", { hasText: "カード入手方法" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+
+  const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
+  await firstCardInput.fill("キャノン");
+  await expect(cardSourceEditor.getByText("キャノン", { exact: true })).toBeVisible();
+
+  await firstCardInput.fill("プラスキャノン");
+  await expect(cardSourceEditor.getByText("プラスキャノン", { exact: true })).toBeVisible();
+  await expect(cardSourceEditor.getByText("キャノン", { exact: true })).toHaveCount(0);
+});
+
 test("mmsf3 editor uses fixed brother roulette slots with the generator option set", async ({ page }) => {
   await page.addInitScript(() => {
     window.localStorage.clear();
@@ -413,6 +438,34 @@ test("mmsf3 editor syncs ability sources like battle cards", async ({ page }) =>
   await expect(abilitySourceEditor.getByRole("button", { name: "所持済み" })).toBeVisible();
   await abilitySourceEditor.getByRole("button", { name: "入手方法詳細" }).click();
   await expect(abilitySourceEditor).toContainText("ストーリー中にマグネッツからメールでもらう");
+});
+
+test("mmsf3 editor shows multiple source detail panels at the same time", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const abilityEditor = page
+    .locator("label", { hasText: "アビリティ" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]")
+    .first();
+  const abilitySourceEditor = page
+    .locator("label", { hasText: "アビリティ入手方法" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  await selectAbilityOption(abilityEditor, 1, "HP+50", "ＨＰ+50/120");
+  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  await selectAbilityOption(abilityEditor, 2, "HP+50", "ＨＰ+50/110");
+
+  await abilitySourceEditor.getByRole("button", { name: "入手方法詳細" }).nth(0).click();
+  await abilitySourceEditor.getByRole("button", { name: "入手方法詳細" }).nth(1).click();
+
+  await expect(abilitySourceEditor.getByRole("button", { name: "閉じる" })).toHaveCount(2);
+  await expect(abilitySourceEditor).toContainText("ストーリー中にマグネッツからメールでもらう");
+  await expect(abilitySourceEditor).toContainText("デンパくんスクエア(キング・ルーツ:デンパくん2体)");
 });
 
 test("mmsf3 editor normalizes legacy ability labels into the new cost format", async ({ page }) => {
