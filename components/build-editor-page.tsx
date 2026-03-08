@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useEffectEvent, useId, useMemo, useRef, useState, type ReactNode } from "react";
+import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import {
@@ -9,6 +10,7 @@ import {
   FilePlus2,
   Save,
   Sparkles,
+  X,
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
@@ -655,6 +657,8 @@ export function BuildEditorPage() {
   const [draft, setDraft] = useState<BuildRecord | null>(null);
   const [status, setStatus] = useState("");
   const [isExporting, setIsExporting] = useState(false);
+  const [isPreviewing, setIsPreviewing] = useState(false);
+  const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
 
   const persistDraftSnapshot = useEffectEvent(() => {
     if (!draft) {
@@ -1187,6 +1191,18 @@ export function BuildEditorPage() {
       />
     );
 
+  const renderExportSceneToPng = async () => {
+    if (!exportRef.current) {
+      return null;
+    }
+
+    return toPng(exportRef.current, {
+      cacheBust: true,
+      pixelRatio: 2,
+      backgroundColor: "#05050f",
+    });
+  };
+
   return (
     <AppShell>
       <section className="glass-panel">
@@ -1247,18 +1263,39 @@ export function BuildEditorPage() {
             <button
               type="button"
               className="primary-button whitespace-nowrap"
+              disabled={isPreviewing}
+              onClick={async () => {
+                setIsPreviewing(true);
+                try {
+                  const dataUrl = await renderExportSceneToPng();
+                  if (!dataUrl) {
+                    return;
+                  }
+
+                  setPreviewImageUrl(dataUrl);
+                  setStatus("PNG プレビューを更新しました。");
+                } catch {
+                  setStatus("PNG プレビューの生成に失敗しました。");
+                } finally {
+                  setIsPreviewing(false);
+                }
+              }}
+            >
+              <Download className="mr-2 size-4" />
+              PNG プレビュー
+            </button>
+            <button
+              type="button"
+              className="primary-button whitespace-nowrap"
               disabled={isExporting}
               onClick={async () => {
-                if (!exportRef.current) {
-                  return;
-                }
                 setIsExporting(true);
                 try {
-                  const dataUrl = await toPng(exportRef.current, {
-                    cacheBust: true,
-                    pixelRatio: 2,
-                    backgroundColor: "#05050f",
-                  });
+                  const dataUrl = await renderExportSceneToPng();
+                  if (!dataUrl) {
+                    return;
+                  }
+
                   const anchor = document.createElement("a");
                   anchor.download = `${draft.title || VERSION_LABELS[draft.version]}-build.png`;
                   anchor.href = dataUrl;
@@ -1391,24 +1428,39 @@ export function BuildEditorPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div className="glass-panel">
+      <div className="pointer-events-none fixed -left-[9999px] top-0 opacity-0">
+        <ExportScene ref={exportRef} build={draft} />
+      </div>
+
+      {previewImageUrl ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-[1280px] rounded-[32px] border border-white/12 bg-[linear-gradient(160deg,rgba(8,12,36,0.96),rgba(29,25,68,0.94))] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
             <div className="flex items-center justify-between gap-3">
               <div>
                 <p className="text-sm font-semibold text-white">PNG プレビュー</p>
                 <p className="mt-1 text-sm text-white/60">カード画像が未取得の項目はタイトル付きプレースホルダで出力します。</p>
               </div>
+              <button type="button" className="secondary-button whitespace-nowrap" onClick={() => setPreviewImageUrl(null)}>
+                <X className="mr-2 size-4" />
+                閉じる
+              </button>
             </div>
-            <div className="mt-5 overflow-auto rounded-[28px] border border-white/10 bg-black/25 p-3">
-              <div className="mx-auto aspect-[1200/675] w-full max-w-[408px] md:max-w-[540px]">
-                <div className="origin-top-left scale-[0.34] md:scale-[0.45]">
-                  <ExportScene ref={exportRef} build={draft} />
-                </div>
-              </div>
+            <div className="mt-4 overflow-auto">
+              <Image
+                src={previewImageUrl}
+                alt="PNG preview"
+                width={1200}
+                height={675}
+                unoptimized
+                className="mx-auto h-auto w-full"
+              />
             </div>
           </div>
         </div>
-      </section>
+      ) : null}
     </AppShell>
   );
 }

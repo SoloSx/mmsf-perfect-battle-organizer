@@ -70,7 +70,7 @@ function getExportBackground(build: BuildRecord) {
     ].join(", ");
   }
 
-  return "radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 34%), linear-gradient(120deg, rgba(127,29,29,0.92), rgba(91,33,182,0.72), rgba(15,23,42,0.96))";
+  return "radial-gradient(circle at top left, rgba(255,255,255,0.16), transparent 34%), linear-gradient(120deg, rgba(30,64,175,0.92), rgba(91,33,182,0.72), rgba(15,23,42,0.96))";
 }
 
 function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof getVersionRuleSet>) {
@@ -183,7 +183,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   return (
     <div
       ref={ref}
-      className="overflow-hidden rounded-[36px] border border-white/12 text-white"
+      className="overflow-hidden rounded-[36px] text-white"
       style={{
         width: "1200px",
         minHeight: "675px",
