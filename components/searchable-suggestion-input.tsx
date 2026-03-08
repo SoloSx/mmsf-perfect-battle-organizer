@@ -117,12 +117,13 @@ export function SearchableSuggestionInput({
         aria-activedescendant={activeSuggestionIndex >= 0 ? `${listId}-option-${activeSuggestionIndex}` : undefined}
         value={value}
         onFocus={(event) => {
+          const input = event.currentTarget;
           setIsOpen(true);
           setIsFiltering(false);
           setHighlightedIndex(exactSuggestionIndex >= 0 ? exactSuggestionIndex : suggestions.length > 0 ? 0 : -1);
 
-          if (event.currentTarget.value) {
-            requestAnimationFrame(() => event.currentTarget.select());
+          if (input.value) {
+            requestAnimationFrame(() => input.select());
           }
         }}
         onBlur={() => {

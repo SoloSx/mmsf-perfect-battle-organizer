@@ -56,6 +56,14 @@ test("mmsf3 editor shows folder validation", async ({ page }) => {
 
   await expect(page.getByText("ノーマルカード「キャノン」は5枚までです。")).toBeVisible();
   await expect(page.getByText("メガカード「スペードマグネッツ」は1枚までです。")).toBeVisible();
+
+  const validationPanel = page
+    .getByText("バリデーション", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel')][1]");
+  const totalCardText = validationPanel.getByText("8 / 30", { exact: true });
+
+  await expect(totalCardText).toBeVisible();
+  await expect(totalCardText).toHaveClass(/text-red-200\/90/);
 });
 
 test("mmsf3 editor validates version-exclusive giga cards for player and brother settings", async ({ page }) => {

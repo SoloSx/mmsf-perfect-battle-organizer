@@ -139,6 +139,19 @@ function hasIncompleteBrotherRouletteSlot(slot: Mmsf3BrotherRouletteSlot) {
   return filledFieldCount < 6;
 }
 
+function isFolderValidationError(error: string) {
+  return (
+    error.includes("カード総数") ||
+    error.includes("REG カード") ||
+    error.includes("ノーマルカード") ||
+    error.includes("メガカード") ||
+    error.includes("ギガカード") ||
+    error.includes("カード種別を判定できないカードがあります") ||
+    error.includes("対戦構築カードを1件以上入力してください。") ||
+    error.includes("対戦構築カードの未入力行があります。")
+  );
+}
+
 function getRequiredFieldErrors(build: BuildRecord) {
   const errors: string[] = [];
 
@@ -331,7 +344,8 @@ function validateBuild(build: BuildRecord) {
     errors.push(...mmsf3Validation.errors);
   }
 
-  return { errors, totalCards };
+  const hasFolderErrors = errors.some(isFolderValidationError);
+  return { errors, totalCards, hasFolderErrors };
 }
 
 function TagEditor({
@@ -720,7 +734,7 @@ export function BuildEditorPage() {
     });
   }, [draft?.game, draft?.version, draft?.commonSections.cards]);
 
-  const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0 }), [draft]);
+  const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0, hasFolderErrors: false }), [draft]);
   const hasValidationErrors = validation.errors.length > 0;
   const statusToneClass =
     status.includes("解消") || status.includes("失敗") || status.includes("エラー")
@@ -1359,23 +1373,20 @@ export function BuildEditorPage() {
               バリデーション
             </div>
             <div className="mt-4 grid gap-4">
-              <div className="glass-panel-soft">
-                <p className="text-sm font-semibold text-white">カード総数</p>
-                <p className={`mt-2 text-sm ${validation.totalCards > versionRule.folderLimit ? "text-red-200/90" : "text-white/72"}`}>
-                  {validation.totalCards} / {versionRule.folderLimit}
-                </p>
-              </div>
-
               <div className={`glass-panel-soft ${hasValidationErrors ? "bg-red-500/8 ring-1 ring-red-400/25" : ""}`}>
                 <p className="text-sm font-semibold text-white">状態</p>
                 {hasValidationErrors ? (
                   <ul className="mt-3 space-y-2 text-sm leading-7 text-red-200/90">
+                    <li>• カード総数: {validation.totalCards} / {versionRule.folderLimit}</li>
                     {validation.errors.map((error) => (
                       <li key={error}>• {error}</li>
                     ))}
                   </ul>
                 ) : (
-                  <p className="mt-3 text-sm text-emerald-200/90">保存可能です。</p>
+                  <div className="mt-3 space-y-2 text-sm text-emerald-200/90">
+                    <p>カード総数: {validation.totalCards} / {versionRule.folderLimit}</p>
+                    <p>保存可能です。</p>
+                  </div>
                 )}
               </div>
             </div>
