@@ -3677,6 +3677,18 @@
       "version": "red-joker",
       "name": "ドッペルミラー",
       "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g5j_dopplemirror.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "アトミックブレイザー",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Other/nfb_atomicblazer.png"
+    },
+    {
+      "game": "mmsf3",
+      "version": null,
+      "name": "メテオライトバレッジ",
+      "assetLocalPath": "/assets/cards/SF3/Cards/Other/nfb_meteoritebarrage.png"
     }
   ]
 }

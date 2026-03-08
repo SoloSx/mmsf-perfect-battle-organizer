@@ -9,12 +9,12 @@ import {
   getMmsf3GigaCardOption,
   getMmsf3MegaCardOption,
   getMmsf3NoiseOption,
+  getMmsf3NoiseOptionByLabel,
   getMmsf3RezonCardOption,
   getMmsf3SssLevelOption,
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
 } from "@/lib/mmsf3/roulette-data";
-import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
 
@@ -22,27 +22,19 @@ const BATTLE_CARD_FRAME_CLASS =
   "relative aspect-[4/3] overflow-hidden bg-white/8";
 const EXPORT_CARD_TILE_LIMIT = 30;
 const EXPORT_CARD_GRID_COLUMNS = 10;
-
-function getSpecialNotes(build: BuildRecord) {
-  switch (build.game) {
-    case "mmsf1":
-      return [
-        build.gameSpecificSections.mmsf1.versionFeature,
-        build.gameSpecificSections.mmsf1.crossBrotherNotes,
-        build.gameSpecificSections.mmsf1.notes,
-      ].filter(Boolean);
-    case "mmsf2":
-      return [
-        build.gameSpecificSections.mmsf2.tribeNotes,
-        build.gameSpecificSections.mmsf2.bestCombo,
-        build.gameSpecificSections.mmsf2.notes,
-      ].filter(Boolean);
-    case "mmsf3":
-      return [
-        build.gameSpecificSections.mmsf3.notes,
-      ].filter(Boolean);
-  }
-}
+const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
+  "01": "/assets/mmsf3/noises/libra-noise.png",
+  "02": "/assets/mmsf3/noises/corvus-noise.png",
+  "03": "/assets/mmsf3/noises/cancer-noise.png",
+  "04": "/assets/mmsf3/noises/gemini-noise.png",
+  "05": "/assets/mmsf3/noises/ophiuchus-noise.png",
+  "06": "/assets/mmsf3/noises/cygnus-noise.png",
+  "07": "/assets/mmsf3/noises/ox-noise.png",
+  "08": "/assets/mmsf3/noises/virgo-noise.png",
+  "09": "/assets/mmsf3/noises/crown-noise.png",
+  "0A": "/assets/mmsf3/noises/wolf-noise.png",
+  "0B": "/assets/mmsf3/noises/burai-noise.png",
+};
 
 function getExportBackground(build: BuildRecord) {
   if (build.game === "mmsf3" && build.version === "red-joker") {
@@ -113,14 +105,9 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   const evaluation = evaluateNoiseHand(state.noiseCardIds);
   const selectedCount = state.noiseCardIds.filter(Boolean).length;
   const lines = [state.noise || "ノイズ情報未設定"];
-  const whiteCardLabel = getMmsf3WhiteCardSetOption(state.whiteCardSetId)?.label;
 
   if (state.playerRezonCard) {
     lines.push(`レゾンカード: ${state.playerRezonCard}`);
-  }
-
-  if (whiteCardLabel && whiteCardLabel !== "なし") {
-    lines.push(`ホワイトカード: ${whiteCardLabel}`);
   }
 
   if (evaluation.errors.length > 0) {
@@ -141,6 +128,20 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   }
 
   return lines;
+}
+
+function getMmsf3WhiteCardNames(build: BuildRecord) {
+  const state = getNormalizedMmsf3State(build);
+  const whiteCardLabel = getMmsf3WhiteCardSetOption(state.whiteCardSetId)?.label ?? "";
+
+  if (!whiteCardLabel || whiteCardLabel === "なし") {
+    return [];
+  }
+
+  return whiteCardLabel
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
 }
 
 function getMmsf3BrotherRouletteLines(build: BuildRecord) {
@@ -169,6 +170,35 @@ function getMmsf3BrotherRouletteLines(build: BuildRecord) {
     .filter((line): line is string => Boolean(line));
 }
 
+function getMmsf3NoisePortraitPath(build: BuildRecord) {
+  if (build.game !== "mmsf3") {
+    return "";
+  }
+
+  const state = getNormalizedMmsf3State(build);
+  const normalizedNoiseValue =
+    getMmsf3NoiseOption(state.noise)?.value ??
+    getMmsf3NoiseOptionByLabel(state.noise.replace(/ノイズ$/, ""))?.value ??
+    getMmsf3NoiseOptionByLabel(state.noise)?.value ??
+    "";
+
+  return MMSF3_NOISE_PORTRAIT_PATHS[normalizedNoiseValue] ?? "";
+}
+
+function getMmsf3NoiseLabel(build: BuildRecord) {
+  if (build.game !== "mmsf3") {
+    return "";
+  }
+
+  const state = getNormalizedMmsf3State(build);
+  return (
+    getMmsf3NoiseOption(state.noise)?.label ??
+    getMmsf3NoiseOptionByLabel(state.noise.replace(/ノイズ$/, ""))?.label ??
+    getMmsf3NoiseOptionByLabel(state.noise)?.label ??
+    state.noise
+  );
+}
+
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
   const versionLabel = VERSION_LABELS[build.version];
@@ -176,6 +206,10 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
     build.game === "mmsf3" && build.version === "red-joker"
       ? "mt-3 text-[2rem] leading-none font-black tracking-[-0.04em] whitespace-nowrap"
       : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
+  const noisePortraitClassName =
+    build.game === "mmsf3" && build.version === "red-joker"
+      ? "absolute left-[196px] top-[64px] h-14 w-14 object-contain"
+      : "absolute left-0 top-[96px] h-14 w-14 object-contain";
   const heroPanelClassName =
     build.game === "mmsf3" && build.version === "red-joker"
       ? "relative overflow-hidden rounded-[32px] border border-white/15 p-8 pr-12 shadow-[0_0_40px_rgba(0,0,0,0.3)]"
@@ -204,8 +238,10 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
     build.game === "mmsf3"
       ? getMmsf3BrotherRouletteLines(build).slice(0, 6)
       : build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
-  const notes = [...MASTER_DATA.versionHighlights[build.version], ...getSpecialNotes(build)].slice(0, 6);
   const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];
+  const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
+  const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
+  const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
 
   return (
     <div
@@ -236,9 +272,27 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               <p className="mt-3 text-sm leading-6 text-white/75">
                 {build.title || "名称未設定の構築"}
               </p>
+              {mmsf3NoisePortraitPath ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={mmsf3NoisePortraitPath}
+                  alt={`${mmsf3NoiseLabel || "ノイズ"}ノイズ`}
+                  className={noisePortraitClassName}
+                />
+              ) : null}
             </div>
 
             <div className="space-y-3">
+              <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
+                <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+                  {abilities.length > 0 ? (
+                    abilities.map((item) => <li key={item}>• {item}</li>)
+                  ) : (
+                    <li>• アビリティ未設定</li>
+                  )}
+                </ul>
+              </div>
               <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Strategy</p>
                 <p className="mt-2 text-sm leading-6 text-white/80">
@@ -309,31 +363,35 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 </div>
               )}
             </div>
-          </section>
+            {mmsf3WhiteCardNames.length > 0 ? (
+              <div className="mt-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">White Cards</p>
+                <div
+                  className="mt-2 grid gap-0"
+                  style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                >
+                  {mmsf3WhiteCardNames.map((cardName, index) => {
+                    const asset = findCardAssetByName(build.game, cardName, build.version);
 
-          <div className="grid grid-cols-[1.1fr_0.9fr] gap-6">
-            <section className="rounded-[30px] border border-white/12 bg-black/20 p-5">
-              <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Abilities & Notes</h3>
-              <div className="mt-4 grid gap-4 md:grid-cols-[0.9fr_1.1fr]">
-                <div className="rounded-[24px] bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
-                    {abilities.length > 0 ? (
-                      abilities.map((item) => <li key={item}>• {item}</li>)
-                    ) : (
-                      <li>• アビリティ未設定</li>
-                    )}
-                  </ul>
-                </div>
-                <div className="rounded-[24px] bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Special Rules</p>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
-                    {notes.length > 0 ? notes.map((note) => <li key={note}>• {note}</li>) : <li>• 版固有メモ未設定</li>}
-                  </ul>
+                    return (
+                      <div key={`${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                        {asset ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                        ) : (
+                          <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                            <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
-            </section>
+            ) : null}
+          </section>
 
+          <div>
             <section className="rounded-[30px] border border-white/12 bg-black/20 p-5">
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Brother & System</h3>
               <div className="mt-4 space-y-4">
