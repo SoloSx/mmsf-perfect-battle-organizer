@@ -1,4 +1,5 @@
 import { normalizeToken } from "@/lib/utils";
+import type { Mmsf3BrotherRoulettePosition, Mmsf3BrotherRouletteSlot } from "@/lib/types";
 
 export interface Mmsf3RouletteOption {
   value: string;
@@ -6,6 +7,119 @@ export interface Mmsf3RouletteOption {
 }
 
 export const DEFAULT_MMSF3_WHITE_CARD_SET_ID = "00";
+export const MMSF3_SSS_SLOT_COUNT = 3;
+const MMSF3_SSS_SERVER_NAMES = [
+  "オックス",
+  "キャンサー",
+  "ダイヤ",
+  "オヒュカス",
+  "クラウン",
+  "ブラキオ",
+  "ゴート",
+  "キグナス",
+  "ハープ",
+  "クラブ",
+  "アポロン",
+  "ファントム",
+  "レオ",
+  "エンプティー",
+  "ウルフ",
+  "ジェミニ",
+  "リブラ",
+  "コーヴァス",
+  "コンドル",
+  "ムーン",
+  "スペード",
+  "オリガ",
+  "ヴァルゴ",
+  "ペガサス",
+  "エース",
+  "アンドロメダ",
+  "ブライ",
+  "ブルース",
+  "ドラゴン",
+  "ジョーカー",
+  "ラ・ムー",
+  "フォルテ",
+] as const;
+
+const MMSF3_SSS_GREEK_SERVER_NAMES = [
+  "アルファ",
+  "ベータ",
+  "ガンマ",
+  "デルタ",
+  "イプシロン",
+  "ゼータ",
+  "イータ",
+  "シータ",
+  "イオタ",
+  "カッパ",
+  "ラムダ",
+  "ミュー",
+  "ニュー",
+  "クサイ",
+  "オミクロン",
+  "パイ",
+  "ロー",
+  "シグマ",
+  "タウ",
+  "ユプシロン",
+  "ファイ",
+  "カイ",
+  "プサイ",
+  "オメガ",
+] as const;
+
+export const MMSF3_SSS_LEVEL_OPTIONS: Mmsf3RouletteOption[] = [
+  ...MMSF3_SSS_SERVER_NAMES.map((name, index) => ({
+    value: String(index + 1),
+    label: `Lv.${index + 1}: ${name}`,
+  })),
+  ...MMSF3_SSS_GREEK_SERVER_NAMES.map((name, index) => ({
+    value: `G${String(index + 1).padStart(2, "0")}`,
+    label: `Lv.${index + 1}: ${name}`,
+  })),
+];
+
+export const MMSF3_BROTHER_ROULETTE_POSITIONS: Array<{
+  key: Mmsf3BrotherRoulettePosition;
+  label: string;
+}> = [
+  { key: "top_left", label: "左上" },
+  { key: "top_right", label: "右上" },
+  { key: "mid_left", label: "左中" },
+  { key: "mid_right", label: "右中" },
+  { key: "btm_left", label: "左下" },
+  { key: "btm_right", label: "右下" },
+];
+
+export const MMSF3_NOISE_OPTIONS: Mmsf3RouletteOption[] = [
+  { value: "00", label: "初期" },
+  { value: "01", label: "リブラ" },
+  { value: "02", label: "コーヴァス" },
+  { value: "03", label: "キャンサー" },
+  { value: "04", label: "ジェミニ" },
+  { value: "05", label: "オヒュカス" },
+  { value: "06", label: "キグナス" },
+  { value: "07", label: "オックス" },
+  { value: "08", label: "ヴァルゴ" },
+  { value: "09", label: "クラウン" },
+  { value: "0A", label: "ウルフ" },
+  { value: "0B", label: "ブライ" },
+];
+
+export const MMSF3_REZON_CARD_OPTIONS: Mmsf3RouletteOption[] = [
+  { value: "00", label: "バトル" },
+  { value: "01", label: "ファイア" },
+  { value: "02", label: "アクア" },
+  { value: "03", label: "サンダー" },
+  { value: "04", label: "ウッド" },
+  { value: "05", label: "ソード" },
+  { value: "06", label: "ブレイク" },
+  { value: "07", label: "ガード" },
+  { value: "08", label: "パラライズ" },
+  { value: "09", label: "ファイナライズ" },
+];
 
 export const MMSF3_WHITE_CARD_SET_OPTIONS: Mmsf3RouletteOption[] = [
   { value: "00", label: "なし" },
@@ -247,12 +361,192 @@ export const MMSF3_MEGA_CARD_OPTIONS: Mmsf3RouletteOption[] = [
 export const MMSF3_MEGA_CARD_LABELS = MMSF3_MEGA_CARD_OPTIONS.map((option) => option.label);
 export const MMSF3_GIGA_CARD_LABELS = MMSF3_GIGA_CARD_OPTIONS.map((option) => option.label);
 
+const noiseOptionsByValue = new Map(MMSF3_NOISE_OPTIONS.map((option) => [option.value, option] as const));
+const noiseOptionsByToken = new Map(MMSF3_NOISE_OPTIONS.map((option) => [normalizeToken(option.label), option] as const));
+const rezonCardOptionsByValue = new Map(MMSF3_REZON_CARD_OPTIONS.map((option) => [option.value, option] as const));
+const rezonCardOptionsByToken = new Map(MMSF3_REZON_CARD_OPTIONS.map((option) => [normalizeToken(option.label), option] as const));
+const sssLevelOptionsByValue = new Map(MMSF3_SSS_LEVEL_OPTIONS.map((option) => [option.value, option] as const));
 const whiteCardSetOptionsById = new Map(MMSF3_WHITE_CARD_SET_OPTIONS.map((option) => [option.value, option] as const));
+const megaCardOptionsByValue = new Map(MMSF3_MEGA_CARD_OPTIONS.map((option) => [option.value, option] as const));
+const gigaCardOptionsByValue = new Map(MMSF3_GIGA_CARD_OPTIONS.map((option) => [option.value, option] as const));
+const megaCardOptionsByToken = new Map(MMSF3_MEGA_CARD_OPTIONS.map((option) => [normalizeToken(option.label), option] as const));
+const gigaCardOptionsByToken = new Map(MMSF3_GIGA_CARD_OPTIONS.map((option) => [normalizeToken(option.label), option] as const));
 const megaCardNameTokens = new Set(MMSF3_MEGA_CARD_OPTIONS.map((option) => normalizeToken(option.label)));
 const gigaCardNameTokens = new Set(MMSF3_GIGA_CARD_OPTIONS.map((option) => normalizeToken(option.label)));
 
+function normalizeRouletteValue(value: string | null | undefined) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function createEmptyBrotherRouletteSlot(position: Mmsf3BrotherRoulettePosition): Mmsf3BrotherRouletteSlot {
+  return {
+    position,
+    noise: "",
+    rezon: "",
+    whiteCardSetId: "",
+    gigaCard: "",
+    megaCard: "",
+  };
+}
+
+function hasBrotherRouletteSelection(slots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined) {
+  return (slots ?? []).some((slot) =>
+    [slot?.noise, slot?.rezon, slot?.whiteCardSetId, slot?.gigaCard, slot?.megaCard].some((value) => normalizeRouletteValue(value).length > 0),
+  );
+}
+
+export function buildDefaultMmsf3BrotherRouletteSlots() {
+  return MMSF3_BROTHER_ROULETTE_POSITIONS.map((position) => createEmptyBrotherRouletteSlot(position.key));
+}
+
+export function normalizeMmsf3BrotherRouletteSlots(
+  slots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined,
+  legacy?: {
+    whiteCardSetId?: string;
+    gigaCards?: string[];
+    megaCards?: string[];
+    rezonCards?: string[];
+  },
+) {
+  const slotsByPosition = new Map(
+    (slots ?? [])
+      .filter((slot): slot is Partial<Mmsf3BrotherRouletteSlot> & Pick<Mmsf3BrotherRouletteSlot, "position"> => {
+        return Boolean(slot?.position && MMSF3_BROTHER_ROULETTE_POSITIONS.some((position) => position.key === slot.position));
+      })
+      .map((slot) => [slot.position, slot] as const),
+  );
+
+  const normalizedSlots = MMSF3_BROTHER_ROULETTE_POSITIONS.map(({ key }) => {
+    const current = slotsByPosition.get(key);
+    return {
+      position: key,
+      noise: normalizeRouletteValue(current?.noise),
+      rezon: normalizeRouletteValue(current?.rezon),
+      whiteCardSetId: normalizeRouletteValue(current?.whiteCardSetId),
+      gigaCard: normalizeRouletteValue(current?.gigaCard),
+      megaCard: normalizeRouletteValue(current?.megaCard),
+    };
+  });
+
+  if (hasBrotherRouletteSelection(slots)) {
+    return normalizedSlots;
+  }
+
+  const legacyWhiteCardSetId = normalizeRouletteValue(legacy?.whiteCardSetId);
+  const legacyRezonCard = legacy?.rezonCards?.find((value) => normalizeRouletteValue(value)) ?? "";
+  const legacyMegaCards = legacy?.megaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
+  const legacyGigaCards = legacy?.gigaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
+
+  if (!legacyWhiteCardSetId && !legacyRezonCard && legacyMegaCards.length === 0 && legacyGigaCards.length === 0) {
+    return normalizedSlots;
+  }
+
+  const migratedSlots = buildDefaultMmsf3BrotherRouletteSlots();
+  const topLeftSlot = migratedSlots[0];
+
+  if (isKnownMmsf3WhiteCardSet(legacyWhiteCardSetId)) {
+    topLeftSlot.whiteCardSetId = legacyWhiteCardSetId;
+  }
+
+  const legacyRezonOption = getMmsf3RezonCardOptionByLabel(legacyRezonCard);
+  if (legacyRezonOption) {
+    topLeftSlot.rezon = legacyRezonOption.value;
+  }
+
+  legacyMegaCards.slice(0, migratedSlots.length).forEach((name, index) => {
+    const option = getMmsf3MegaCardOptionByLabel(name);
+    if (option) {
+      migratedSlots[index].megaCard = option.value;
+    }
+  });
+
+  legacyGigaCards.slice(0, migratedSlots.length).forEach((name, index) => {
+    const option = getMmsf3GigaCardOptionByLabel(name);
+    if (option) {
+      migratedSlots[index].gigaCard = option.value;
+    }
+  });
+
+  return migratedSlots;
+}
+
+export function getMmsf3BrotherRouletteSelectionErrors(slots: Mmsf3BrotherRouletteSlot[]) {
+  const errors: string[] = [];
+
+  for (const slot of slots) {
+    const label = MMSF3_BROTHER_ROULETTE_POSITIONS.find((position) => position.key === slot.position)?.label ?? slot.position;
+
+    if (slot.noise && !noiseOptionsByValue.has(slot.noise)) {
+      errors.push(`${label} のマージノイズが不正です。`);
+    }
+    if (slot.rezon && !rezonCardOptionsByValue.has(slot.rezon)) {
+      errors.push(`${label} のレゾンカードが不正です。`);
+    }
+    if (slot.whiteCardSetId && !whiteCardSetOptionsById.has(slot.whiteCardSetId)) {
+      errors.push(`${label} のホワイトカードが不正です。`);
+    }
+    if (slot.gigaCard && !gigaCardOptionsByValue.has(slot.gigaCard)) {
+      errors.push(`${label} のギガカードが不正です。`);
+    }
+    if (slot.megaCard && !megaCardOptionsByValue.has(slot.megaCard)) {
+      errors.push(`${label} のメガカードが不正です。`);
+    }
+  }
+
+  return errors;
+}
+
+export function normalizeMmsf3SssLevels(levels: string[] | undefined) {
+  return Array.from({ length: MMSF3_SSS_SLOT_COUNT }, (_, index) => {
+    const value = normalizeRouletteValue(levels?.[index]);
+    return sssLevelOptionsByValue.has(value) ? value : "";
+  });
+}
+
+export function getMmsf3SssSelectionErrors(levels: string[]) {
+  return levels.flatMap((value, index) =>
+    value && !sssLevelOptionsByValue.has(value) ? [`SSS ${String(index + 1).padStart(2, "0")} のレベルが不正です。`] : [],
+  );
+}
+
+export function getMmsf3SssLevelOption(value: string) {
+  return sssLevelOptionsByValue.get(value);
+}
+
+export function getMmsf3NoiseOption(value: string) {
+  return noiseOptionsByValue.get(value);
+}
+
+export function getMmsf3NoiseOptionByLabel(label: string) {
+  return noiseOptionsByToken.get(normalizeToken(label));
+}
+
+export function getMmsf3RezonCardOption(value: string) {
+  return rezonCardOptionsByValue.get(value);
+}
+
+export function getMmsf3RezonCardOptionByLabel(label: string) {
+  return rezonCardOptionsByToken.get(normalizeToken(label));
+}
+
 export function getMmsf3WhiteCardSetOption(id: string) {
   return whiteCardSetOptionsById.get(id);
+}
+
+export function getMmsf3MegaCardOption(value: string) {
+  return megaCardOptionsByValue.get(value);
+}
+
+export function getMmsf3MegaCardOptionByLabel(label: string) {
+  return megaCardOptionsByToken.get(normalizeToken(label));
+}
+
+export function getMmsf3GigaCardOption(value: string) {
+  return gigaCardOptionsByValue.get(value);
+}
+
+export function getMmsf3GigaCardOptionByLabel(label: string) {
+  return gigaCardOptionsByToken.get(normalizeToken(label));
 }
 
 export function getMmsf3WhiteCardSetCards(id: string) {

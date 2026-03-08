@@ -13,6 +13,7 @@ export type VersionId =
 export type BrotherKind = "story" | "auto" | "real" | "event";
 export type NoiseCardMark = "♥" | "♦" | "♠" | "♣" | "★";
 export type NoiseCardRank = "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
+export type Mmsf3BrotherRoulettePosition = "top_left" | "top_right" | "mid_left" | "mid_right" | "btm_left" | "btm_right";
 export type NoiseHandId =
   | "two-pair"
   | "three-card"
@@ -45,7 +46,17 @@ export interface BrotherProfile {
   name: string;
   kind: BrotherKind;
   favoriteCards: string[];
+  rezonCard: string;
   notes: string;
+}
+
+export interface Mmsf3BrotherRouletteSlot {
+  position: Mmsf3BrotherRoulettePosition;
+  noise: string;
+  rezon: string;
+  whiteCardSetId: string;
+  gigaCard: string;
+  megaCard: string;
 }
 
 export interface Mmsf3NoiseCard {
@@ -109,10 +120,11 @@ export interface Mmsf2Sections {
 
 export interface Mmsf3Sections {
   noise: string;
-  noiseRate: number;
   pgms: string[];
   noiseAbilities: string[];
   noiseCardIds: string[];
+  brotherRouletteSlots: Mmsf3BrotherRouletteSlot[];
+  sssLevels: string[];
   nfb: string;
   mergeNoiseTarget: string;
   whiteCardSetId: string;

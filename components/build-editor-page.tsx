@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useEffectEvent, useId, useMemo, useRef, useState } from "react";
+import { useEffect, useEffectEvent, useId, useMemo, useRef, useState, type ReactNode } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { toPng } from "html-to-image";
 import {
@@ -12,26 +12,27 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
-import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
+import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3-editor-sections";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
+import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
 import { useAppData } from "@/hooks/use-app-data";
-import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
+import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3-abilities";
 import {
-  getMmsf3NoiseCardById,
-  getMmsf3NoiseCardSelectionErrors,
-  getMmsf3NoiseCardsForSlot,
-  normalizeMmsf3NoiseCardIds,
-  MMSF3_NOISE_CARD_SLOT_COUNT,
-} from "@/lib/mmsf3-noise-cards";
-import {
-  MMSF3_GIGA_CARD_LABELS,
-  MMSF3_MEGA_CARD_LABELS,
-  MMSF3_WHITE_CARD_SET_OPTIONS,
-  getMmsf3WhiteCardSetCards,
-  isKnownMmsf3WhiteCardSet,
-} from "@/lib/mmsf3-roulette-options";
-import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
-import { getCardSuggestions, getKnownCardSources, getSourceDescription, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
+  getMissingMmsf3AbilitySourceNames,
+  getNormalizedMmsf3State,
+  normalizeMmsf3BuildRecord,
+  normalizeMmsf3Sections,
+  updateMmsf3AbilityEntries,
+  updateMmsf3AbilitySources,
+  updateMmsf3BrotherRouletteSlots,
+  updateMmsf3Noise,
+  updateMmsf3NoiseCardIds,
+  updateMmsf3PlayerRezonCard,
+  updateMmsf3SssLevels,
+  updateMmsf3WhiteCardSetId,
+  validateMmsf3BuildState,
+} from "@/lib/mmsf3-build-state";
+import { getCardSuggestions, getKnownCardSources, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,
@@ -45,10 +46,8 @@ import type {
   BrotherKind,
   BuildCardEntry,
   BuildRecord,
-  BuildSourceEntry,
   CommonSections,
   GameId,
-  NoiseHandEvaluation,
   VersionId,
 } from "@/lib/types";
 import { createId, uniqueStrings } from "@/lib/utils";
@@ -71,17 +70,44 @@ function buildEmptyCard(): BuildCardEntry {
   return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
 }
 
-function buildEmptySource(): BuildSourceEntry {
-  return { id: createId(), name: "", source: "", notes: "", isOwned: false };
+function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    quantity: Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1,
+    notes: entry.notes ?? "",
+    isRegular: Boolean(entry.isRegular),
+  };
+}
+
+function normalizeBuildSourceEntry(entry: CommonSections["abilitySources"][number]): CommonSections["abilitySources"][number] {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    source: entry.source ?? "",
+    notes: entry.notes ?? "",
+    isOwned: Boolean(entry.isOwned),
+  };
 }
 
 function buildEmptyBrother(): BrotherProfile {
-  return { id: createId(), name: "", kind: "story", favoriteCards: [], notes: "" };
+  return { id: createId(), name: "", kind: "story", favoriteCards: [], rezonCard: "", notes: "" };
 }
 
 function clampList(values: string[], max?: number) {
   const unique = Array.from(new Set(values.map((item) => item.trim()).filter(Boolean)));
   return typeof max === "number" ? unique.slice(0, max) : unique;
+}
+
+function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    kind: entry.kind ?? "story",
+    favoriteCards: clampList(entry.favoriteCards ?? []),
+    rezonCard: entry.rezonCard ?? "",
+    notes: entry.notes ?? "",
+  };
 }
 
 function resolveRequestedGameVersion(requestedGame: string | null, requestedVersion: string | null) {
@@ -142,13 +168,21 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
 
   try {
     const parsed = JSON.parse(rawDraft) as Partial<BuildRecord>;
-
-    return {
+    return normalizeMmsf3BuildRecord({
       ...baseBuild,
       ...parsed,
       commonSections: {
         ...baseBuild.commonSections,
         ...(parsed.commonSections ?? {}),
+        brothers: (parsed.commonSections?.brothers ?? baseBuild.commonSections.brothers).map((entry) =>
+          normalizeBrotherProfile(entry as BrotherProfile),
+        ),
+        abilities: (parsed.commonSections?.abilities ?? baseBuild.commonSections.abilities).map((entry) =>
+          normalizeBuildCardEntry(entry as BuildCardEntry),
+        ),
+        abilitySources: (parsed.commonSections?.abilitySources ?? baseBuild.commonSections.abilitySources).map((entry) =>
+          normalizeBuildSourceEntry(entry as CommonSections["abilitySources"][number]),
+        ),
       },
       gameSpecificSections: {
         ...baseBuild.gameSpecificSections,
@@ -163,41 +197,12 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
         },
         mmsf3: {
           ...baseBuild.gameSpecificSections.mmsf3,
-          ...(parsed.gameSpecificSections?.mmsf3 ?? {}),
+          ...normalizeMmsf3Sections(parsed.gameSpecificSections?.mmsf3, baseBuild.gameSpecificSections.mmsf3),
         },
       },
-    };
+    });
   } catch {
     return null;
-  }
-}
-
-function getGameSpecificSummary(build: BuildRecord) {
-  switch (build.game) {
-    case "mmsf1":
-      return [
-        build.gameSpecificSections.mmsf1.warRockWeapon,
-        build.gameSpecificSections.mmsf1.brotherBandMode,
-        build.gameSpecificSections.mmsf1.versionFeature,
-      ]
-        .filter(Boolean)
-        .join(" / ");
-    case "mmsf2":
-      return [
-        build.gameSpecificSections.mmsf2.tribeNotes,
-        build.gameSpecificSections.mmsf2.bestCombo,
-        build.gameSpecificSections.mmsf2.warRockWeapon,
-      ]
-        .filter(Boolean)
-        .join(" / ");
-    case "mmsf3":
-      return [
-        build.gameSpecificSections.mmsf3.noise,
-        build.gameSpecificSections.mmsf3.nfb,
-        build.gameSpecificSections.mmsf3.mergeNoiseTarget,
-      ]
-        .filter(Boolean)
-        .join(" / ");
   }
 }
 
@@ -220,285 +225,12 @@ function validateBuild(build: BuildRecord) {
   }
 
   if (build.game === "mmsf3") {
-    const { whiteCardSetId, megaCards, gigaCards, noise, rivalNoise, noiseCardIds } = build.gameSpecificSections.mmsf3;
-    const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
-    errors.push(...folderValidation.errors);
-    errors.push(...getMmsf3NoiseCardSelectionErrors(noiseCardIds));
-
-    if (!isKnownMmsf3WhiteCardSet(whiteCardSetId)) {
-      errors.push("ホワイトカードセットが不正です。");
-    }
-    if (megaCards.length > (rule.limits.megaCards ?? 5)) {
-      errors.push("メガカード候補は最大5枚までです。");
-    }
-    if (gigaCards.length > (rule.limits.gigaCards ?? 1)) {
-      errors.push("ギガカード候補は最大1枚までです。");
-    }
-
-    if (noise === "ブライノイズ") {
-      const realBrothers = build.commonSections.brothers.filter((entry) => entry.kind === "real" && entry.name.trim()).length;
-      if (realBrothers > 0) {
-        errors.push("ブライノイズ構築ではリアルブラザー登録を外してください。");
-      }
-      if (rivalNoise.trim()) {
-        errors.push("ブライノイズ構築ではライバルノイズを空にしてください。");
-      }
-    }
+    const state = getNormalizedMmsf3State(build);
+    const mmsf3Validation = validateMmsf3BuildState(build, state);
+    errors.push(...mmsf3Validation.errors);
   }
 
   return { errors, totalCards };
-}
-
-function NoiseHandSummary({
-  evaluation,
-  selectedCount,
-}: {
-  evaluation: NoiseHandEvaluation;
-  selectedCount: number;
-}) {
-  const bestHand = evaluation.bestHand;
-  const bonusLines = bestHand?.bonusEffect.split("\n") ?? [];
-
-  return (
-    <div className="rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(90,72,196,0.28),rgba(255,255,255,0.05))] p-3">
-      <div className="mb-3">
-        <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">Noise Hand Bonus</p>
-      </div>
-      {evaluation.errors.length > 0 ? (
-        <ul className="mt-3 space-y-2 text-sm leading-6 text-red-100">
-          {evaluation.errors.map((error) => (
-            <li key={error}>• {error}</li>
-          ))}
-        </ul>
-      ) : selectedCount < MMSF3_NOISE_CARD_SLOT_COUNT ? (
-        <div className="mt-4 space-y-3">
-          <div className="flex items-end justify-between gap-3">
-            <p className="text-lg font-semibold text-white">判定待ち</p>
-            <span className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/72">
-              {selectedCount}/{MMSF3_NOISE_CARD_SLOT_COUNT}
-            </span>
-          </div>
-          <p className="text-sm leading-6 text-white/75">5枚そろうとノイズハンドボーナスを判定します。</p>
-        </div>
-      ) : bestHand ? (
-        <div className="mt-4 space-y-4 text-sm leading-6 text-white/82">
-          <div className="grid gap-4 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:items-start">
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">成立役</p>
-              <p className="mt-1 text-xl font-semibold text-white">{bestHand.label}</p>
-            </div>
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">ボーナス効果</p>
-              <ul className="mt-2 flex flex-wrap gap-2">
-                {bonusLines.map((line) => (
-                  <li key={line} className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/86">
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
-          <p className="text-lg font-semibold text-white">役なし</p>
-          <p>ノイズハンドボーナスは発生しません。</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function NoiseCardEditor({
-  values,
-  onChange,
-  optionsBySlot,
-  evaluation,
-}: {
-  values: string[];
-  onChange: (values: string[]) => void;
-  optionsBySlot: SearchableSelectOption[][];
-  evaluation: NoiseHandEvaluation;
-}) {
-  const selectedCount = values.filter(Boolean).length;
-
-  return (
-    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
-      <div className="flex items-center justify-between gap-3">
-        <div>
-          <label className="text-sm font-semibold text-white">ノイズドカード</label>
-          <p className="mt-1 text-xs leading-5 text-white/52">役判定は順不同。流星マークは 1 枚までです。</p>
-        </div>
-        <span className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/60">
-          {selectedCount}/{MMSF3_NOISE_CARD_SLOT_COUNT}
-        </span>
-      </div>
-
-      <div className="mt-5 grid gap-3 md:grid-cols-2 2xl:grid-cols-3">
-        {values.map((value, index) => (
-          <div
-            key={`noise-card-slot-${index}`}
-            className="relative z-0 rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-3 focus-within:z-10"
-          >
-            <div className="mb-3">
-              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">
-                SLOT {String(index + 1).padStart(2, "0")}
-              </p>
-            </div>
-            <SearchableSelectInput
-              value={value}
-              onChange={(nextValue) => {
-                const nextValues = [...values];
-                nextValues[index] = nextValue;
-                onChange(normalizeMmsf3NoiseCardIds(nextValues));
-              }}
-              options={optionsBySlot[index]}
-              placeholder="カードを検索"
-              displayValue={
-                value
-                  ? (() => {
-                      const card = getMmsf3NoiseCardById(value);
-                      return card ? `${card.mark}${card.rank ?? ""} ${card.cardName}`.trim() : "";
-                    })()
-                  : ""
-              }
-              className="field-shell min-h-[52px] w-full"
-            />
-            {value ? (
-              <p className="mt-3 line-clamp-2 min-h-10 text-xs leading-5 text-white/62">
-                {getMmsf3NoiseCardById(value)?.cardEffect}
-              </p>
-            ) : (
-              <p className="mt-3 min-h-10 text-xs leading-5 text-white/35">未選択</p>
-            )}
-          </div>
-        ))}
-        <NoiseHandSummary evaluation={evaluation} selectedCount={selectedCount} />
-      </div>
-    </div>
-  );
-}
-
-function getMissingSourceNames(game: GameId, version: VersionId, cards: BuildCardEntry[], sources: BuildSourceEntry[]) {
-  const registeredSourceNames = new Set(
-    sources
-      .map((entry) => ({
-        name: entry.name.trim(),
-        source: entry.source.trim(),
-      }))
-      .filter((entry) => entry.name && entry.source)
-      .map((entry) => entry.name),
-  );
-
-  return uniqueStrings(cards.map((entry) => entry.name.trim()).filter(Boolean)).filter((name) => {
-    if (registeredSourceNames.has(name)) {
-      return false;
-    }
-
-    return getKnownCardSources(game, name, version).length === 0;
-  });
-}
-
-function syncCardSourceEntries(game: GameId, version: VersionId, cards: BuildCardEntry[], sources: BuildSourceEntry[]) {
-  const nextCardNames = uniqueStrings(cards.map((entry) => entry.name.trim()).filter(Boolean));
-
-  if (nextCardNames.length === 0) {
-    return [];
-  }
-
-  const existingEntriesByName = new Map<string, BuildSourceEntry[]>();
-
-  for (const entry of sources) {
-    const name = entry.name.trim();
-    if (!name) {
-      continue;
-    }
-
-    const bucket = existingEntriesByName.get(name) ?? [];
-    bucket.push(entry);
-    existingEntriesByName.set(name, bucket);
-  }
-
-  const nextEntries: BuildSourceEntry[] = [];
-
-  for (const name of nextCardNames) {
-    const existingEntries = [...(existingEntriesByName.get(name) ?? [])];
-    const pullExistingEntry = (predicate: (entry: BuildSourceEntry) => boolean) => {
-      const index = existingEntries.findIndex(predicate);
-
-      if (index === -1) {
-        return null;
-      }
-
-      return existingEntries.splice(index, 1)[0];
-    };
-    const knownSources = getKnownCardSources(game, name, version);
-
-    if (knownSources.length > 0) {
-      for (const source of knownSources) {
-        const matchedEntry = pullExistingEntry((entry) => entry.source.trim() === source) ?? pullExistingEntry((entry) => !entry.source.trim());
-
-        nextEntries.push(
-          matchedEntry
-            ? { ...matchedEntry, name, source }
-            : {
-                id: createId(),
-                name,
-                source,
-                notes: "",
-                isOwned: false,
-              },
-        );
-      }
-
-      for (const entry of existingEntries) {
-        nextEntries.push({ ...entry, name });
-      }
-
-      continue;
-    }
-
-    if (existingEntries.length > 0) {
-      for (const entry of existingEntries) {
-        nextEntries.push({ ...entry, name });
-      }
-
-      continue;
-    }
-
-    nextEntries.push({
-      id: createId(),
-      name,
-      source: "",
-      notes: "",
-      isOwned: false,
-    });
-  }
-
-  return nextEntries;
-}
-
-function haveSameSourceEntries(left: BuildSourceEntry[], right: BuildSourceEntry[]) {
-  if (left.length !== right.length) {
-    return false;
-  }
-
-  for (let index = 0; index < left.length; index += 1) {
-    const leftEntry = left[index];
-    const rightEntry = right[index];
-
-    if (
-      leftEntry.id !== rightEntry.id ||
-      leftEntry.name !== rightEntry.name ||
-      leftEntry.source !== rightEntry.source ||
-      leftEntry.notes !== rightEntry.notes ||
-      leftEntry.isOwned !== rightEntry.isOwned
-    ) {
-      return false;
-    }
-  }
-
-  return true;
 }
 
 function TagEditor({
@@ -676,200 +408,18 @@ function CardListEditor({
   );
 }
 
-function SourceListEditor({
-  title,
-  entries,
-  onChange,
-  game,
-  version,
-  nameSuggestions,
-  sourceSuggestions,
-  missingNames = [],
-  useKnownSourceSuggestions = false,
-  actionMode = "delete",
-}: {
-  title: string;
-  entries: BuildSourceEntry[];
-  onChange: (entries: BuildSourceEntry[]) => void;
-  game: GameId;
-  version: VersionId;
-  nameSuggestions: string[];
-  sourceSuggestions: string[];
-  missingNames?: string[];
-  useKnownSourceSuggestions?: boolean;
-  actionMode?: "delete" | "owned";
-}) {
-  const [selectedSourceInfo, setSelectedSourceInfo] = useState<{
-    name: string;
-    items: Array<{
-      source: string;
-      description: string | null;
-    }>;
-  } | null>(null);
-  const sourceInfoTitleId = useId();
-
-  const groupedOwnedEntries =
-    actionMode === "owned"
-      ? uniqueStrings(entries.map((entry) => entry.name.trim()).filter(Boolean)).map((name) => {
-          const groupedEntries = entries.filter((entry) => entry.name.trim() === name);
-          const items = uniqueStrings(groupedEntries.map((entry) => entry.source.trim()).filter(Boolean))
-            .map((source) => ({
-              source,
-              description: getSourceDescription(game, source),
-            }))
-            .filter((item): item is { source: string; description: string } => Boolean(item.description));
-
-          return {
-            name,
-            isOwned: groupedEntries.every((entry) => entry.isOwned),
-            items,
-          };
-        })
-      : [];
-  const visibleOwnedEntries = actionMode === "owned" ? groupedOwnedEntries.filter((entry) => !entry.isOwned) : [];
-
-  return (
-    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
-      <div className="flex items-center justify-between gap-3">
-        <label className="text-sm font-semibold text-white">{title}</label>
-        {missingNames.length > 0 ? <span className="text-xs font-medium text-red-200/85">{missingNames.length}件未入力</span> : null}
-      </div>
-      {missingNames.length > 0 ? (
-        <div className="mt-3 flex flex-wrap gap-2">
-          {missingNames.map((name) => (
-            <span key={name} className="rounded-full border border-red-300/35 bg-red-500/12 px-3 py-1 text-xs font-medium text-red-100">
-              {name}
-            </span>
-          ))}
-        </div>
-      ) : null}
-      <div className="mt-4 space-y-3">
-        {actionMode === "owned"
-          ? visibleOwnedEntries.length > 0
-            ? visibleOwnedEntries.map((entry) => (
-              <div
-                key={entry.name}
-                className={`relative z-0 grid items-center gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${BATTLE_CARD_ROW_GRID_CLASS}`}
-              >
-                <div className="field-shell flex min-w-0 items-center">
-                  <span className="truncate">{entry.name}</span>
-                </div>
-                <button
-                  type="button"
-                  className="secondary-button w-full justify-center md:col-span-2"
-                  onClick={() =>
-                    setSelectedSourceInfo((current) =>
-                      current?.name === entry.name
-                        ? null
-                        : {
-                            name: entry.name,
-                            items: entry.items,
-                          },
-                    )
-                  }
-                >
-                  入手方法詳細
-                </button>
-                <button
-                  type="button"
-                  aria-pressed={entry.isOwned}
-                  className={`secondary-button w-full justify-center font-medium ${
-                    entry.isOwned
-                      ? "border-emerald-200/80 bg-emerald-500/24 text-emerald-50 hover:bg-emerald-500/30"
-                      : "border-emerald-300/65 bg-emerald-500/16 text-emerald-100 hover:bg-emerald-500/24"
-                  }`}
-                  onClick={() =>
-                    onChange(
-                      entries.map((item) =>
-                        item.name.trim() === entry.name ? { ...item, isOwned: !entry.isOwned } : item,
-                      ),
-                    )
-                  }
-                >
-                  所持済み
-                </button>
-              </div>
-            ))
-            : (
-              <div className="rounded-3xl border border-emerald-300/28 bg-emerald-500/10 px-5 py-4 text-sm text-emerald-100">
-                未所持のカードはありません。すべて所持済みです。
-              </div>
-            )
-          : entries.map((entry) => {
-              const knownSources =
-                useKnownSourceSuggestions && entry.name.trim() ? getKnownCardSources(game, entry.name.trim(), version) : [];
-              const rowSourceSuggestions = knownSources.length > 0 ? uniqueStrings([...knownSources, ...sourceSuggestions]) : sourceSuggestions;
-
-              return (
-                <div
-                  key={entry.id}
-                  className="relative z-0 grid items-center gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 md:grid-cols-[1fr_110px_auto]"
-                >
-                  <SearchableSuggestionInput
-                    value={entry.name}
-                    onChange={(value) => onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
-                    suggestions={nameSuggestions}
-                    placeholder="対象名"
-                    className="field-shell"
-                  />
-                  <SearchableSuggestionInput
-                    value={entry.source}
-                    onChange={(value) =>
-                      onChange(entries.map((item) => (item.id === entry.id ? { ...item, source: value } : item)))
-                    }
-                    suggestions={rowSourceSuggestions}
-                    placeholder="入手方法"
-                    className="field-shell"
-                  />
-                  <button
-                    type="button"
-                    className="danger-button w-full justify-center"
-                    onClick={() => {
-                      const nextEntries = entries.filter((item) => item.id !== entry.id);
-                      onChange(nextEntries.length > 0 ? nextEntries : [buildEmptySource()]);
-                    }}
-                  >
-                    削除
-                  </button>
-                </div>
-              );
-            })}
-      </div>
-      {selectedSourceInfo && selectedSourceInfo.items.length > 0 ? (
-        <div className="mt-4 rounded-3xl border border-cyan-300/20 bg-cyan-400/8 p-5">
-          <div className="flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/70">入手方法詳細</p>
-              <h3 id={sourceInfoTitleId} className="mt-2 text-xl font-black text-white">
-                {selectedSourceInfo.name}
-              </h3>
-            </div>
-            <button type="button" className="secondary-button whitespace-nowrap" onClick={() => setSelectedSourceInfo(null)}>
-              閉じる
-            </button>
-          </div>
-          <div className="mt-4 space-y-3">
-            {selectedSourceInfo.items.map((item) => (
-              <div key={item.source} className="rounded-2xl border border-white/10 bg-slate-950/28 px-4 py-3">
-                <p className="text-sm font-semibold text-white">{item.source}</p>
-                <p className="mt-2 whitespace-pre-line text-sm leading-7 text-cyan-50/90">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
 function BrotherListEditor({
   entries,
   onChange,
   suggestions,
+  rezonCardOptions,
+  extraContent,
 }: {
   entries: BrotherProfile[];
   onChange: (entries: BrotherProfile[]) => void;
   suggestions: string[];
+  rezonCardOptions?: string[];
+  extraContent?: ReactNode;
 }) {
   const listId = useId();
 
@@ -933,6 +483,25 @@ function BrotherListEditor({
             >
               削除
             </button>
+            {rezonCardOptions?.length ? (
+              <div className="md:col-span-2">
+                <p className="mb-2 text-[11px] font-semibold tracking-[0.28em] text-white/45">REZON CARD</p>
+                <select
+                  value={entry.rezonCard ?? ""}
+                  onChange={(event) =>
+                    onChange(entries.map((item) => (item.id === entry.id ? { ...item, rezonCard: event.target.value } : item)))
+                  }
+                  className="field-shell"
+                >
+                  <option value="">レゾンカードを選択</option>
+                  {rezonCardOptions.map((option) => (
+                    <option key={option} value={option}>
+                      {option}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
             <textarea
               value={entry.notes}
               onChange={(event) =>
@@ -947,6 +516,7 @@ function BrotherListEditor({
       <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyBrother()])}>
         ブラザーを追加
       </button>
+      {extraContent ? <div className="mt-4 grid gap-4">{extraContent}</div> : null}
     </div>
   );
 }
@@ -1029,11 +599,10 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const nextCardSources = syncCardSourceEntries(
-        current.game,
-        current.version,
+      const nextCardSources = syncSourceEntries(
         current.commonSections.cards,
         current.commonSections.cardSources,
+        (name) => getKnownCardSources(current.game, name, current.version),
       );
 
       if (haveSameSourceEntries(current.commonSections.cardSources, nextCardSources)) {
@@ -1051,22 +620,6 @@ export function BuildEditorPage() {
   }, [draft?.game, draft?.version, draft?.commonSections.cards]);
 
   const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0 }), [draft]);
-  const noiseCardIds = useMemo(
-    () => normalizeMmsf3NoiseCardIds(draft?.gameSpecificSections.mmsf3.noiseCardIds ?? []),
-    [draft?.gameSpecificSections.mmsf3.noiseCardIds],
-  );
-  const noiseHandEvaluation = useMemo(() => evaluateNoiseHand(noiseCardIds), [noiseCardIds]);
-  const noiseCardOptionsBySlot = useMemo(
-    () =>
-      noiseCardIds.map((_, slotIndex) => [
-        { value: "", label: "未選択" },
-        ...getMmsf3NoiseCardsForSlot(noiseCardIds, slotIndex).map((card) => ({
-          value: card.id,
-          label: card.label,
-        })),
-      ]),
-    [noiseCardIds],
-  );
   const hasValidationErrors = validation.errors.length > 0;
   const statusToneClass =
     status.includes("解消") || status.includes("失敗") || status.includes("エラー")
@@ -1082,6 +635,7 @@ export function BuildEditorPage() {
   }
 
   const versionRule = getVersionRuleSet(draft.version);
+  const normalizedMmsf3State = draft.game === "mmsf3" ? getNormalizedMmsf3State(draft) : null;
   const cardSuggestions =
     draft.game === "mmsf3"
       ? getCardSuggestions(draft.game, draft.version)
@@ -1090,17 +644,387 @@ export function BuildEditorPage() {
           uniqueStrings([...getCardSuggestions(draft.game, draft.version), ...MASTER_DATA.cardsByGame[draft.game]]),
         );
   const abilitySuggestions = MASTER_DATA.abilitiesByGame[draft.game];
+  const abilityNameSuggestions =
+    draft.game === "mmsf3" ? MMSF3_ABILITY_OPTIONS.map((option) => option.label) : abilitySuggestions;
   const brotherSuggestions = MASTER_DATA.brothersByGame[draft.game];
   const sourceSuggestions = uniqueStrings([
     ...getSourceSuggestions(draft.game, draft.version),
     ...MASTER_DATA.sourceTagsByGame[draft.game],
   ]);
-  const missingCardSourceNames = getMissingSourceNames(draft.game, draft.version, draft.commonSections.cards, draft.commonSections.cardSources);
-  const whiteCardSetCards = getMmsf3WhiteCardSetCards(draft.gameSpecificSections.mmsf3.whiteCardSetId);
+  const missingCardSourceNames = getMissingSourceNames(
+    draft.commonSections.cards,
+    draft.commonSections.cardSources,
+    (name) => getKnownCardSources(draft.game, name, draft.version),
+  );
+  const missingAbilitySourceNames =
+    draft.game === "mmsf3" && normalizedMmsf3State
+      ? getMissingMmsf3AbilitySourceNames(normalizedMmsf3State, draft.version)
+      : getMissingSourceNames(
+          draft.commonSections.abilities,
+          draft.commonSections.abilitySources,
+          (name) => getKnownCardSources(draft.game, name, draft.version),
+        );
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
     setDraft((current) => (current ? { ...current, commonSections: { ...current.commonSections, [key]: value } } : current));
   };
+
+  const rockmanSection = (
+    <div className="glass-panel">
+      <p className="text-sm font-semibold text-white">ロックマン</p>
+
+      {draft.game === "mmsf1" && (
+        <div className="mt-4 grid gap-4">
+          <select
+            value={draft.gameSpecificSections.mmsf1.warRockWeapon}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeapon: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            className="field-shell"
+          >
+            <option value="">ウォーロック装備を選択</option>
+            {MASTER_DATA.warRockWeaponsByGame.mmsf1.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+          <input
+            value={draft.gameSpecificSections.mmsf1.brotherBandMode}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf1: { ...current.gameSpecificSections.mmsf1, brotherBandMode: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            placeholder="ブラザーバンド運用メモ"
+            className="field-shell"
+          />
+          <textarea
+            value={draft.gameSpecificSections.mmsf1.versionFeature}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf1: { ...current.gameSpecificSections.mmsf1, versionFeature: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            placeholder="版差・特殊仕様"
+            className="field-shell min-h-28"
+          />
+          <textarea
+            value={draft.gameSpecificSections.mmsf1.crossBrotherNotes}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf1: { ...current.gameSpecificSections.mmsf1, crossBrotherNotes: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            placeholder="クロスブラザーバンド系メモ"
+            className="field-shell min-h-28"
+          />
+        </div>
+      )}
+
+      {draft.game === "mmsf2" && (
+        <div className="mt-4 grid gap-4">
+          <textarea
+            value={draft.gameSpecificSections.mmsf2.tribeNotes}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, tribeNotes: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            placeholder="トライブ関連メモ"
+            className="field-shell min-h-28"
+          />
+          <div className="grid gap-4 md:grid-cols-[1fr_220px]">
+            <input
+              value={draft.gameSpecificSections.mmsf2.brotherType}
+              onChange={(event) =>
+                setDraft((current) =>
+                  current
+                    ? {
+                        ...current,
+                        gameSpecificSections: {
+                          ...current.gameSpecificSections,
+                          mmsf2: { ...current.gameSpecificSections.mmsf2, brotherType: event.target.value },
+                        },
+                      }
+                    : current,
+                )
+              }
+              placeholder="ブラザー種別メモ"
+              className="field-shell"
+            />
+            <input
+              type="number"
+              min={0}
+              value={draft.gameSpecificSections.mmsf2.kizunaTarget}
+              onChange={(event) =>
+                setDraft((current) =>
+                  current
+                    ? {
+                        ...current,
+                        gameSpecificSections: {
+                          ...current.gameSpecificSections,
+                          mmsf2: {
+                            ...current.gameSpecificSections.mmsf2,
+                            kizunaTarget: Number(event.target.value || 0),
+                          },
+                        },
+                      }
+                    : current,
+                )
+              }
+              placeholder="キズナ目標"
+              className="field-shell"
+            />
+          </div>
+          <input
+            value={draft.gameSpecificSections.mmsf2.bestCombo}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, bestCombo: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            placeholder="ベストコンボ"
+            className="field-shell"
+          />
+          <TagEditor
+            label="レジェンドカード"
+            values={draft.gameSpecificSections.mmsf2.legendCards}
+            onChange={(values) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, legendCards: clampList(values, 6) },
+                      },
+                    }
+                  : current,
+              )
+            }
+            suggestions={cardSuggestions}
+            maxItems={6}
+          />
+          <TagEditor
+            label="ブランクカード"
+            values={draft.gameSpecificSections.mmsf2.blankCards}
+            onChange={(values) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, blankCards: clampList(values, 6) },
+                      },
+                    }
+                  : current,
+              )
+            }
+            suggestions={cardSuggestions}
+            maxItems={6}
+          />
+          <TagEditor
+            label="ウェーブコマンドカード"
+            values={draft.gameSpecificSections.mmsf2.waveCommandCards}
+            onChange={(values) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, waveCommandCards: clampList(values, 6) },
+                      },
+                    }
+                  : current,
+              )
+            }
+            suggestions={cardSuggestions}
+            maxItems={6}
+          />
+          <select
+            value={draft.gameSpecificSections.mmsf2.warRockWeapon}
+            onChange={(event) =>
+              setDraft((current) =>
+                current
+                  ? {
+                      ...current,
+                      gameSpecificSections: {
+                        ...current.gameSpecificSections,
+                        mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeapon: event.target.value },
+                      },
+                    }
+                  : current,
+              )
+            }
+            className="field-shell"
+          >
+            <option value="">ウォーロック装備を選択</option>
+            {MASTER_DATA.warRockWeaponsByGame.mmsf2.map((item) => (
+              <option key={item} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {draft.game === "mmsf3" && (
+        normalizedMmsf3State ? (
+          <Mmsf3EditorSections
+            version={draft.version}
+            state={normalizedMmsf3State}
+            abilityNameSuggestions={abilityNameSuggestions}
+            sourceSuggestions={sourceSuggestions}
+            missingAbilitySourceNames={missingAbilitySourceNames}
+            onNoiseChange={(noise) => setDraft((current) => (current ? updateMmsf3Noise(current, noise) : current))}
+            onPlayerRezonCardChange={(value) =>
+              setDraft((current) => (current ? updateMmsf3PlayerRezonCard(current, value) : current))
+            }
+            onWhiteCardSetIdChange={(value) =>
+              setDraft((current) => (current ? updateMmsf3WhiteCardSetId(current, value) : current))
+            }
+            onNoiseCardIdsChange={(values) =>
+              setDraft((current) => (current ? updateMmsf3NoiseCardIds(current, values) : current))
+            }
+            onAbilitiesChange={(entries) =>
+              setDraft((current) => (current ? updateMmsf3AbilityEntries(current, entries) : current))
+            }
+            onAbilitySourcesChange={(entries) =>
+              setDraft((current) => (current ? updateMmsf3AbilitySources(current, entries) : current))
+            }
+          />
+        ) : null
+      )}
+
+      {draft.game !== "mmsf3" && (
+        <div className="mt-4 grid gap-4">
+          <CardListEditor
+            title="アビリティ"
+            entries={draft.commonSections.abilities}
+            onChange={(entries) => updateCommon("abilities", entries)}
+            suggestions={abilitySuggestions}
+          />
+
+          <SourceListEditor
+            title="アビリティ入手方法"
+            entries={draft.commonSections.abilitySources}
+            onChange={(entries) => updateCommon("abilitySources", entries)}
+            game={draft.game}
+            version={draft.version}
+            nameSuggestions={abilityNameSuggestions}
+            sourceSuggestions={sourceSuggestions}
+            missingNames={missingAbilitySourceNames}
+            useKnownSourceSuggestions
+            actionMode="owned"
+            resolveKnownSources={(name) =>
+              getKnownCardSources(draft.game, name, draft.version)
+            }
+          />
+        </div>
+      )}
+    </div>
+  );
+
+  const battleCardsSection = (
+    <div className="glass-panel grid gap-4">
+      <p className="text-sm font-semibold text-white">フォルダー</p>
+
+      <CardListEditor
+        title="対戦構築カード"
+        entries={draft.commonSections.cards}
+        onChange={(entries) => updateCommon("cards", entries)}
+        suggestions={cardSuggestions}
+        allowRegularSelection
+      />
+
+      <SourceListEditor
+        title="カード入手方法"
+        entries={draft.commonSections.cardSources}
+        onChange={(entries) => updateCommon("cardSources", entries)}
+        game={draft.game}
+        version={draft.version}
+        nameSuggestions={cardSuggestions}
+        sourceSuggestions={sourceSuggestions}
+        missingNames={missingCardSourceNames}
+        useKnownSourceSuggestions
+        actionMode="owned"
+      />
+    </div>
+  );
+
+  const brotherSection =
+    draft.game === "mmsf3" ? (
+      normalizedMmsf3State ? (
+        <Mmsf3BrotherRouletteSection
+          slots={normalizedMmsf3State.brotherRouletteSlots}
+          sssLevels={normalizedMmsf3State.sssLevels}
+          onBrotherChange={(slots) =>
+            setDraft((current) => (current ? updateMmsf3BrotherRouletteSlots(current, slots) : current))
+          }
+          onSssChange={(levels) => setDraft((current) => (current ? updateMmsf3SssLevels(current, levels) : current))}
+          isDisabled={normalizedMmsf3State.noise === "ブライノイズ"}
+        />
+      ) : null
+    ) : (
+      <BrotherListEditor
+        entries={draft.commonSections.brothers}
+        onChange={(entries) => updateCommon("brothers", entries)}
+        suggestions={brotherSuggestions}
+      />
+    );
 
   return (
     <AppShell>
@@ -1217,11 +1141,11 @@ export function BuildEditorPage() {
                   const nextGame = event.target.value as GameId;
                   setDraft((current) =>
                     current
-                      ? {
+                      ? normalizeMmsf3BuildRecord({
                           ...current,
                           game: nextGame,
                           version: getDefaultVersionForGame(nextGame),
-                        }
+                        })
                       : current,
                   );
                 }}
@@ -1236,7 +1160,11 @@ export function BuildEditorPage() {
               <select
                 value={draft.version}
                 onChange={(event) =>
-                  setDraft((current) => (current ? { ...current, version: event.target.value as BuildRecord["version"] } : current))
+                  setDraft((current) =>
+                    current
+                      ? normalizeMmsf3BuildRecord({ ...current, version: event.target.value as BuildRecord["version"] })
+                      : current,
+                  )
                 }
                 className="field-shell"
               >
@@ -1270,605 +1198,11 @@ export function BuildEditorPage() {
             </div>
           </div>
 
-          <CardListEditor
-            title="対戦構築カード"
-            entries={draft.commonSections.cards}
-            onChange={(entries) => updateCommon("cards", entries)}
-            suggestions={cardSuggestions}
-            allowRegularSelection
-          />
+          {rockmanSection}
 
-          <SourceListEditor
-            title="カード入手方法"
-            entries={draft.commonSections.cardSources}
-            onChange={(entries) => updateCommon("cardSources", entries)}
-            game={draft.game}
-            version={draft.version}
-            nameSuggestions={cardSuggestions}
-            sourceSuggestions={sourceSuggestions}
-            missingNames={missingCardSourceNames}
-            useKnownSourceSuggestions
-            actionMode="owned"
-          />
+          {battleCardsSection}
 
-          <CardListEditor
-            title="アビリティ"
-            entries={draft.commonSections.abilities}
-            onChange={(entries) => updateCommon("abilities", entries)}
-            suggestions={abilitySuggestions}
-          />
-
-          <SourceListEditor
-            title="アビリティ入手方法"
-            entries={draft.commonSections.abilitySources}
-            onChange={(entries) => updateCommon("abilitySources", entries)}
-            game={draft.game}
-            version={draft.version}
-            nameSuggestions={abilitySuggestions}
-            sourceSuggestions={sourceSuggestions}
-          />
-
-          <BrotherListEditor
-            entries={draft.commonSections.brothers}
-            onChange={(entries) => updateCommon("brothers", entries)}
-            suggestions={brotherSuggestions}
-          />
-
-          <div className="glass-panel">
-            <p className="text-sm font-semibold text-white">作品固有セクション</p>
-            <p className="mt-1 text-sm text-white/60">{GAME_LABELS[draft.game]} / {VERSION_LABELS[draft.version]}</p>
-
-            {draft.game === "mmsf1" && (
-              <div className="mt-4 grid gap-4">
-                <select
-                  value={draft.gameSpecificSections.mmsf1.warRockWeapon}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeapon: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  className="field-shell"
-                >
-                  <option value="">ウォーロック装備を選択</option>
-                  {MASTER_DATA.warRockWeaponsByGame.mmsf1.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  value={draft.gameSpecificSections.mmsf1.brotherBandMode}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf1: { ...current.gameSpecificSections.mmsf1, brotherBandMode: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="ブラザーバンド運用メモ"
-                  className="field-shell"
-                />
-                <textarea
-                  value={draft.gameSpecificSections.mmsf1.versionFeature}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf1: { ...current.gameSpecificSections.mmsf1, versionFeature: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="版差・特殊仕様"
-                  className="field-shell min-h-28"
-                />
-                <textarea
-                  value={draft.gameSpecificSections.mmsf1.crossBrotherNotes}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf1: { ...current.gameSpecificSections.mmsf1, crossBrotherNotes: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="クロスブラザーバンド系メモ"
-                  className="field-shell min-h-28"
-                />
-              </div>
-            )}
-
-            {draft.game === "mmsf2" && (
-              <div className="mt-4 grid gap-4">
-                <textarea
-                  value={draft.gameSpecificSections.mmsf2.tribeNotes}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, tribeNotes: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="トライブ関連メモ"
-                  className="field-shell min-h-28"
-                />
-                <div className="grid gap-4 md:grid-cols-[1fr_220px]">
-                  <input
-                    value={draft.gameSpecificSections.mmsf2.brotherType}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf2: { ...current.gameSpecificSections.mmsf2, brotherType: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="ブラザー種別メモ"
-                    className="field-shell"
-                  />
-                  <input
-                    type="number"
-                    min={0}
-                    value={draft.gameSpecificSections.mmsf2.kizunaTarget}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf2: {
-                                  ...current.gameSpecificSections.mmsf2,
-                                  kizunaTarget: Number(event.target.value || 0),
-                                },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="キズナ目標"
-                    className="field-shell"
-                  />
-                </div>
-                <input
-                  value={draft.gameSpecificSections.mmsf2.bestCombo}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, bestCombo: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="ベストコンボ"
-                  className="field-shell"
-                />
-                <TagEditor
-                  label="レジェンドカード"
-                  values={draft.gameSpecificSections.mmsf2.legendCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, legendCards: clampList(values, 6) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={cardSuggestions}
-                  maxItems={6}
-                />
-                <TagEditor
-                  label="ブランクカード"
-                  values={draft.gameSpecificSections.mmsf2.blankCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, blankCards: clampList(values, 6) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={cardSuggestions}
-                  maxItems={6}
-                />
-                <TagEditor
-                  label="ウェーブコマンドカード"
-                  values={draft.gameSpecificSections.mmsf2.waveCommandCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, waveCommandCards: clampList(values, 6) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={cardSuggestions}
-                  maxItems={6}
-                />
-                <select
-                  value={draft.gameSpecificSections.mmsf2.warRockWeapon}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeapon: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  className="field-shell"
-                >
-                  <option value="">ウォーロック装備を選択</option>
-                  {MASTER_DATA.warRockWeaponsByGame.mmsf2.map((item) => (
-                    <option key={item} value={item}>
-                      {item}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            )}
-
-            {draft.game === "mmsf3" && (
-              <div className="mt-4 grid gap-4">
-                <div className="grid gap-4 md:grid-cols-[1fr_180px]">
-                  <select
-                    value={draft.gameSpecificSections.mmsf3.noise}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: { ...current.gameSpecificSections.mmsf3, noise: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    className="field-shell"
-                  >
-                    <option value="">ノイズを選択</option>
-                    {MASTER_DATA.noises.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    type="number"
-                    min={0}
-                    max={200}
-                    value={draft.gameSpecificSections.mmsf3.noiseRate}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: {
-                                  ...current.gameSpecificSections.mmsf3,
-                                  noiseRate: Number(event.target.value || 0),
-                                },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="ノイズ率"
-                    className="field-shell"
-                  />
-                </div>
-                <TagEditor
-                  label="PGM"
-                  values={draft.gameSpecificSections.mmsf3.pgms}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, pgms: clampList(values, 2) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={MASTER_DATA.pgms}
-                  maxItems={2}
-                />
-                <TagEditor
-                  label="ノイズ別能力"
-                  values={draft.gameSpecificSections.mmsf3.noiseAbilities}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, noiseAbilities: clampList(values, 8) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={abilitySuggestions}
-                  maxItems={8}
-                />
-                <div className="grid gap-4 md:grid-cols-2">
-                  <select
-                    value={draft.gameSpecificSections.mmsf3.nfb}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: { ...current.gameSpecificSections.mmsf3, nfb: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    className="field-shell"
-                  >
-                    <option value="">NFB を選択</option>
-                    {MASTER_DATA.nfbs.map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                  </select>
-                  <input
-                    value={draft.gameSpecificSections.mmsf3.mergeNoiseTarget}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: { ...current.gameSpecificSections.mmsf3, mergeNoiseTarget: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="マージノイズ先"
-                    className="field-shell"
-                  />
-                </div>
-                <div className="glass-panel-soft">
-                  <label className="text-sm font-semibold text-white">ホワイトカードセット</label>
-                  <select
-                    value={draft.gameSpecificSections.mmsf3.whiteCardSetId}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: { ...current.gameSpecificSections.mmsf3, whiteCardSetId: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    className="field-shell mt-3"
-                  >
-                    {MMSF3_WHITE_CARD_SET_OPTIONS.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.value}: {option.label}
-                      </option>
-                    ))}
-                  </select>
-                  <p className="mt-3 text-xs leading-6 text-white/60">
-                    {whiteCardSetCards.length > 0 ? whiteCardSetCards.join(" / ") : "ホワイトカードなし"}
-                  </p>
-                </div>
-                <NoiseCardEditor
-                  values={noiseCardIds}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, noiseCardIds: values },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  optionsBySlot={noiseCardOptionsBySlot}
-                  evaluation={noiseHandEvaluation}
-                />
-                <TagEditor
-                  label="メガカード候補"
-                  values={draft.gameSpecificSections.mmsf3.megaCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, megaCards: clampList(values, 5) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={MMSF3_MEGA_CARD_LABELS}
-                  maxItems={5}
-                />
-                <TagEditor
-                  label="ギガカード候補"
-                  values={draft.gameSpecificSections.mmsf3.gigaCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, gigaCards: clampList(values, 1) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={MMSF3_GIGA_CARD_LABELS}
-                  maxItems={1}
-                />
-                <TagEditor
-                  label="レゾンカード"
-                  values={draft.gameSpecificSections.mmsf3.rezonCards}
-                  onChange={(values) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, rezonCards: clampList(values, 5) },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  suggestions={MASTER_DATA.rezonCards}
-                  maxItems={5}
-                />
-                <div className="grid gap-4 md:grid-cols-[180px_1fr]">
-                  <input
-                    type="number"
-                    min={0}
-                    max={7}
-                    value={draft.gameSpecificSections.mmsf3.teamSize}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: {
-                                  ...current.gameSpecificSections.mmsf3,
-                                  teamSize: Number(event.target.value || 0),
-                                },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="チーム人数"
-                    className="field-shell"
-                  />
-                  <input
-                    value={draft.gameSpecificSections.mmsf3.rivalNoise}
-                    onChange={(event) =>
-                      setDraft((current) =>
-                        current
-                          ? {
-                              ...current,
-                              gameSpecificSections: {
-                                ...current.gameSpecificSections,
-                                mmsf3: { ...current.gameSpecificSections.mmsf3, rivalNoise: event.target.value },
-                              },
-                            }
-                          : current,
-                      )
-                    }
-                    placeholder="ライバルノイズ"
-                    className="field-shell"
-                  />
-                </div>
-                <textarea
-                  value={draft.gameSpecificSections.mmsf3.rouletteNotes}
-                  onChange={(event) =>
-                    setDraft((current) =>
-                      current
-                        ? {
-                            ...current,
-                            gameSpecificSections: {
-                              ...current.gameSpecificSections,
-                              mmsf3: { ...current.gameSpecificSections.mmsf3, rouletteNotes: event.target.value },
-                            },
-                          }
-                        : current,
-                    )
-                  }
-                  placeholder="ブラザールーレット・チーム共有メモ"
-                  className="field-shell min-h-28"
-                />
-              </div>
-            )}
-          </div>
+          {brotherSection}
         </div>
 
         <div className="grid min-w-0 gap-6">
@@ -1882,13 +1216,6 @@ export function BuildEditorPage() {
                 <p className="text-sm font-semibold text-white">カード総数</p>
                 <p className={`mt-2 text-sm ${validation.totalCards > versionRule.folderLimit ? "text-red-200/90" : "text-white/72"}`}>
                   {validation.totalCards} / {versionRule.folderLimit}
-                </p>
-              </div>
-
-              <div className="glass-panel-soft">
-                <p className="text-sm font-semibold text-white">構築サマリー</p>
-                <p className="mt-2 text-sm leading-7 text-white/72">
-                  {getGameSpecificSummary(draft) || "作品固有情報はまだ入力されていません。"}
                 </p>
               </div>
 

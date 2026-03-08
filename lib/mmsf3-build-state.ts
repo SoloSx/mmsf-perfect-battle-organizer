@@ -1,0 +1,424 @@
+import {
+  getMmsf3AbilitySources,
+  getMmsf3AbilitySelectionErrors,
+  isMmsf3AbilitySourceTracked,
+  normalizeMmsf3AbilityEntries,
+} from "@/lib/mmsf3-abilities";
+import { validateMmsf3FolderCards } from "@/lib/mmsf3-battle-rules";
+import { getMmsf3NoiseCardSelectionErrors, normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3-noise-cards";
+import {
+  DEFAULT_MMSF3_WHITE_CARD_SET_ID,
+  getMmsf3BrotherRouletteSelectionErrors,
+  getMmsf3RezonCardOptionByLabel,
+  getMmsf3SssSelectionErrors,
+  getMmsf3WhiteCardSetOption,
+  normalizeMmsf3BrotherRouletteSlots,
+  normalizeMmsf3SssLevels,
+} from "@/lib/mmsf3-roulette-options";
+import type {
+  BuildCardEntry,
+  BuildRecord,
+  BuildSourceEntry,
+  Mmsf3Sections,
+} from "@/lib/types";
+import { createId, uniqueStrings } from "@/lib/utils";
+
+type LegacyMmsf3Sections = Partial<Mmsf3Sections> & {
+  whiteCards?: string[];
+  noiseRate?: number;
+};
+
+export interface NormalizedMmsf3State {
+  noise: string;
+  playerRezonCard: string;
+  whiteCardSetId: string;
+  noiseCardIds: string[];
+  abilities: BuildCardEntry[];
+  abilitySources: BuildSourceEntry[];
+  brotherRouletteSlots: Mmsf3Sections["brotherRouletteSlots"];
+  sssLevels: string[];
+}
+
+export function createDefaultMmsf3Sections(): Mmsf3Sections {
+  return {
+    noise: "",
+    pgms: [],
+    noiseAbilities: [],
+    noiseCardIds: normalizeMmsf3NoiseCardIds(),
+    brotherRouletteSlots: normalizeMmsf3BrotherRouletteSlots(undefined),
+    sssLevels: normalizeMmsf3SssLevels(undefined),
+    nfb: "",
+    mergeNoiseTarget: "",
+    whiteCardSetId: DEFAULT_MMSF3_WHITE_CARD_SET_ID,
+    megaCards: [],
+    gigaCards: [],
+    teamSize: 0,
+    rezonCards: [],
+    rivalNoise: "",
+    rouletteNotes: "",
+    notes: "",
+  };
+}
+
+function normalizeRouletteValue(value: string | null | undefined) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeMmsf3RezonCards(values: string[] | undefined) {
+  return (values ?? []).map((item) => item.trim()).filter(Boolean).slice(0, 1);
+}
+
+function syncOwnedSourceEntries(
+  entries: BuildCardEntry[],
+  sources: BuildSourceEntry[],
+  resolveKnownSources: (name: string) => string[],
+) {
+  const groupedExistingEntries = new Map<string, BuildSourceEntry[]>();
+
+  for (const sourceEntry of sources) {
+    const name = sourceEntry.name.trim();
+    if (!name) {
+      continue;
+    }
+
+    const grouped = groupedExistingEntries.get(name) ?? [];
+    grouped.push(sourceEntry);
+    groupedExistingEntries.set(name, grouped);
+  }
+
+  const nextEntries: BuildSourceEntry[] = [];
+
+  for (const name of uniqueStrings(entries.map((entry) => entry.name.trim()).filter(Boolean))) {
+    const existingEntries = [...(groupedExistingEntries.get(name) ?? [])];
+    const pullExistingEntry = (predicate: (entry: BuildSourceEntry) => boolean) => {
+      const matchIndex = existingEntries.findIndex(predicate);
+      if (matchIndex === -1) {
+        return null;
+      }
+      return existingEntries.splice(matchIndex, 1)[0] ?? null;
+    };
+
+    const knownSources = uniqueStrings(resolveKnownSources(name).map((source) => source.trim()).filter(Boolean));
+
+    if (knownSources.length > 0) {
+      for (const source of knownSources) {
+        const matchedEntry =
+          pullExistingEntry((entry) => entry.source.trim() === source) ?? pullExistingEntry((entry) => !entry.source.trim());
+
+        nextEntries.push(
+          matchedEntry
+            ? { ...matchedEntry, name, source }
+            : {
+                id: createId(),
+                name,
+                source,
+                notes: "",
+                isOwned: false,
+              },
+        );
+      }
+
+      for (const entry of existingEntries) {
+        nextEntries.push({ ...entry, name });
+      }
+
+      continue;
+    }
+
+    if (existingEntries.length > 0) {
+      for (const entry of existingEntries) {
+        nextEntries.push({ ...entry, name });
+      }
+
+      continue;
+    }
+
+    nextEntries.push({
+      id: createId(),
+      name,
+      source: "",
+      notes: "",
+      isOwned: false,
+    });
+  }
+
+  return nextEntries;
+}
+
+function getMissingOwnedSourceNames(
+  entries: BuildCardEntry[],
+  sources: BuildSourceEntry[],
+  resolveKnownSources: (name: string) => string[],
+) {
+  const normalizedSourceEntries = syncOwnedSourceEntries(entries, sources, resolveKnownSources);
+  const ownedNames = new Set(
+    normalizedSourceEntries
+      .filter((entry) => entry.isOwned)
+      .map((entry) => entry.name.trim())
+      .filter(Boolean),
+  );
+
+  return uniqueStrings(entries.map((entry) => entry.name.trim()).filter(Boolean)).filter((name) => !ownedNames.has(name));
+}
+
+export function normalizeMmsf3AbilitySources(
+  abilities: BuildCardEntry[],
+  abilitySources: BuildSourceEntry[],
+  version: BuildRecord["version"],
+) {
+  const normalizedAbilities = normalizeMmsf3AbilityEntries(abilities, version);
+  const trackedAbilities = normalizedAbilities.filter((entry) => isMmsf3AbilitySourceTracked(entry.name, version));
+
+  return syncOwnedSourceEntries(trackedAbilities, abilitySources, getMmsf3AbilitySources);
+}
+
+export function getMissingMmsf3AbilitySourceNames(state: Pick<NormalizedMmsf3State, "abilities" | "abilitySources">, version: BuildRecord["version"]) {
+  const trackedAbilities = state.abilities.filter((entry) => isMmsf3AbilitySourceTracked(entry.name, version));
+  return getMissingOwnedSourceNames(trackedAbilities, state.abilitySources, getMmsf3AbilitySources);
+}
+
+export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefined, defaults?: Mmsf3Sections) {
+  const baseSections = defaults ?? createDefaultMmsf3Sections();
+  const nextSections = { ...(rawSections ?? {}) };
+  const legacyWhiteCards = (nextSections.whiteCards ?? []).map((item) => item.trim()).filter(Boolean);
+
+  delete nextSections.whiteCards;
+  delete nextSections.noiseRate;
+
+  const legacyWhiteCardsNote = legacyWhiteCards.length > 0 ? `旧ホワイトカード入力: ${legacyWhiteCards.join(" / ")}` : "";
+  const rouletteNotes =
+    legacyWhiteCardsNote && !nextSections.rouletteNotes?.includes(legacyWhiteCardsNote)
+      ? [nextSections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
+      : (nextSections.rouletteNotes ?? baseSections.rouletteNotes);
+
+  return {
+    ...baseSections,
+    ...nextSections,
+    noise: normalizeRouletteValue(nextSections.noise ?? baseSections.noise),
+    noiseCardIds: normalizeMmsf3NoiseCardIds(nextSections.noiseCardIds ?? baseSections.noiseCardIds),
+    brotherRouletteSlots: normalizeMmsf3BrotherRouletteSlots(nextSections.brotherRouletteSlots, {
+      whiteCardSetId: nextSections.whiteCardSetId ?? baseSections.whiteCardSetId,
+      gigaCards: nextSections.gigaCards ?? baseSections.gigaCards,
+      megaCards: nextSections.megaCards ?? baseSections.megaCards,
+      rezonCards: nextSections.rezonCards ?? baseSections.rezonCards,
+    }),
+    sssLevels: normalizeMmsf3SssLevels(nextSections.sssLevels ?? baseSections.sssLevels),
+    whiteCardSetId: normalizeRouletteValue(nextSections.whiteCardSetId ?? baseSections.whiteCardSetId) || DEFAULT_MMSF3_WHITE_CARD_SET_ID,
+    rezonCards: normalizeMmsf3RezonCards(nextSections.rezonCards ?? baseSections.rezonCards),
+    rouletteNotes,
+  };
+}
+
+export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  const normalizedAbilities = normalizeMmsf3AbilityEntries(build.commonSections.abilities, build.version);
+  const normalizedAbilitySources = normalizeMmsf3AbilitySources(
+    normalizedAbilities,
+    build.commonSections.abilitySources,
+    build.version,
+  );
+  const normalizedSections = normalizeMmsf3Sections(build.gameSpecificSections.mmsf3, build.gameSpecificSections.mmsf3);
+
+  return {
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      abilities: normalizedAbilities,
+      abilitySources: normalizedAbilitySources,
+    },
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3:
+        normalizedSections.noise === "ブライノイズ"
+          ? {
+              ...normalizedSections,
+              brotherRouletteSlots: normalizeMmsf3BrotherRouletteSlots(undefined),
+            }
+          : normalizedSections,
+    },
+  };
+}
+
+export function getNormalizedMmsf3State(build: BuildRecord): NormalizedMmsf3State {
+  if (build.game !== "mmsf3") {
+    throw new Error("getNormalizedMmsf3State can only be used with MMSF3 builds.");
+  }
+
+  const normalizedBuild = normalizeMmsf3BuildRecord(build);
+  const sections = normalizedBuild.gameSpecificSections.mmsf3;
+
+  return {
+    noise: sections.noise,
+    playerRezonCard: sections.rezonCards[0] ?? "",
+    whiteCardSetId: sections.whiteCardSetId,
+    noiseCardIds: sections.noiseCardIds,
+    abilities: normalizedBuild.commonSections.abilities,
+    abilitySources: normalizedBuild.commonSections.abilitySources,
+    brotherRouletteSlots: sections.brotherRouletteSlots,
+    sssLevels: sections.sssLevels,
+  };
+}
+
+export function updateMmsf3Noise(build: BuildRecord, noise: string) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  const nextBuild: BuildRecord = {
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        noise,
+      },
+    },
+  };
+
+  return normalizeMmsf3BuildRecord(nextBuild);
+}
+
+export function updateMmsf3PlayerRezonCard(build: BuildRecord, playerRezonCard: string) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        rezonCards: playerRezonCard ? [playerRezonCard] : [],
+      },
+    },
+  });
+}
+
+export function updateMmsf3WhiteCardSetId(build: BuildRecord, whiteCardSetId: string) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        whiteCardSetId,
+      },
+    },
+  });
+}
+
+export function updateMmsf3NoiseCardIds(build: BuildRecord, noiseCardIds: string[]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        noiseCardIds: normalizeMmsf3NoiseCardIds(noiseCardIds),
+      },
+    },
+  });
+}
+
+export function updateMmsf3AbilityEntries(build: BuildRecord, abilities: BuildCardEntry[]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      abilities,
+    },
+  });
+}
+
+export function updateMmsf3AbilitySources(build: BuildRecord, abilitySources: BuildSourceEntry[]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      abilitySources,
+    },
+  });
+}
+
+export function updateMmsf3BrotherRouletteSlots(build: BuildRecord, brotherRouletteSlots: Mmsf3Sections["brotherRouletteSlots"]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        brotherRouletteSlots,
+      },
+    },
+  });
+}
+
+export function updateMmsf3SssLevels(build: BuildRecord, sssLevels: string[]) {
+  if (build.game !== "mmsf3") {
+    return build;
+  }
+
+  return normalizeMmsf3BuildRecord({
+    ...build,
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf3: {
+        ...build.gameSpecificSections.mmsf3,
+        sssLevels,
+      },
+    },
+  });
+}
+
+export function validateMmsf3BuildState(build: BuildRecord, state = getNormalizedMmsf3State(build)) {
+  const errors: string[] = [];
+  const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
+  const abilityValidation = getMmsf3AbilitySelectionErrors(state.abilities, state.noise);
+
+  errors.push(...folderValidation.errors);
+  errors.push(...abilityValidation.errors);
+  errors.push(...getMmsf3NoiseCardSelectionErrors(state.noiseCardIds));
+  errors.push(...getMmsf3SssSelectionErrors(state.sssLevels));
+
+  if (state.noise !== "ブライノイズ") {
+    errors.push(...getMmsf3BrotherRouletteSelectionErrors(state.brotherRouletteSlots));
+  }
+
+  if (!getMmsf3WhiteCardSetOption(state.whiteCardSetId)) {
+    errors.push("ホワイトカードが不正です。");
+  }
+
+  if (state.playerRezonCard && !getMmsf3RezonCardOptionByLabel(state.playerRezonCard)) {
+    errors.push("レゾンカードが不正です。");
+  }
+
+  return {
+    errors,
+    folderValidation,
+    abilityValidation,
+  };
+}

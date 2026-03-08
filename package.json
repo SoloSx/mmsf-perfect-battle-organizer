@@ -13,6 +13,7 @@
     "lint": "eslint .",
     "check": "pnpm lint && pnpm build",
     "check:auto": "sh ./scripts/check-auto.sh",
+    "test:unit": "sh ./scripts/with-local-node.sh pnpm exec tsx --test tests/unit/**/*.test.ts",
     "test:e2e": "sh ./scripts/with-local-node.sh pnpm exec playwright test",
     "test:e2e:headed": "sh ./scripts/with-local-node.sh pnpm exec playwright test --headed",
     "test:e2e:install": "sh ./scripts/with-local-node.sh pnpm exec playwright install chromium",
@@ -44,6 +45,7 @@
     "eslint-config-next": "16.1.6",
     "serve": "14.2.5",
     "tailwindcss": "^4.2.1",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

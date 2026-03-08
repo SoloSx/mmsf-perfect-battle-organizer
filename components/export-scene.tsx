@@ -2,7 +2,17 @@
 
 import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
+import { getNormalizedMmsf3State } from "@/lib/mmsf3-build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3-noise-hand";
+import {
+  getMmsf3GigaCardOption,
+  getMmsf3MegaCardOption,
+  getMmsf3NoiseOption,
+  getMmsf3RezonCardOption,
+  getMmsf3SssLevelOption,
+  getMmsf3WhiteCardSetOption,
+  MMSF3_BROTHER_ROULETTE_POSITIONS,
+} from "@/lib/mmsf3-roulette-options";
 import { MASTER_DATA } from "@/lib/seed-data";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
@@ -28,8 +38,6 @@ function getSpecialNotes(build: BuildRecord) {
       ].filter(Boolean);
     case "mmsf3":
       return [
-        build.gameSpecificSections.mmsf3.mergeNoiseTarget,
-        build.gameSpecificSections.mmsf3.rouletteNotes,
         build.gameSpecificSections.mmsf3.notes,
       ].filter(Boolean);
   }
@@ -82,9 +90,19 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
 }
 
 function getMmsf3SystemSnapshotLines(build: BuildRecord) {
-  const evaluation = evaluateNoiseHand(build.gameSpecificSections.mmsf3.noiseCardIds);
-  const selectedCount = build.gameSpecificSections.mmsf3.noiseCardIds.filter(Boolean).length;
-  const lines = [build.gameSpecificSections.mmsf3.noise || build.gameSpecificSections.mmsf3.nfb || "ノイズ情報未設定"];
+  const state = getNormalizedMmsf3State(build);
+  const evaluation = evaluateNoiseHand(state.noiseCardIds);
+  const selectedCount = state.noiseCardIds.filter(Boolean).length;
+  const lines = [state.noise || "ノイズ情報未設定"];
+  const whiteCardLabel = getMmsf3WhiteCardSetOption(state.whiteCardSetId)?.label;
+
+  if (state.playerRezonCard) {
+    lines.push(`レゾンカード: ${state.playerRezonCard}`);
+  }
+
+  if (whiteCardLabel && whiteCardLabel !== "なし") {
+    lines.push(`ホワイトカード: ${whiteCardLabel}`);
+  }
 
   if (evaluation.errors.length > 0) {
     return [...lines, ...evaluation.errors];
@@ -104,6 +122,36 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   }
 
   return lines;
+}
+
+function getMmsf3BrotherRouletteLines(build: BuildRecord) {
+  const state = getNormalizedMmsf3State(build);
+
+  if (state.noise === "ブライノイズ") {
+    return [];
+  }
+
+  return state.brotherRouletteSlots
+    .map((slot) => {
+      const positionLabel = MMSF3_BROTHER_ROULETTE_POSITIONS.find((position) => position.key === slot.position)?.label ?? slot.position;
+      const whiteCardLabel = getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label;
+      const parts = [
+        getMmsf3NoiseOption(slot.noise)?.label,
+        getMmsf3RezonCardOption(slot.rezon)?.label,
+        whiteCardLabel && whiteCardLabel !== "なし" ? whiteCardLabel : "",
+        getMmsf3GigaCardOption(slot.gigaCard)?.label,
+        getMmsf3MegaCardOption(slot.megaCard)?.label,
+      ].filter(Boolean);
+
+      return parts.length > 0 ? `${positionLabel}: ${parts.join(" / ")}` : null;
+    })
+    .filter((line): line is string => Boolean(line));
+}
+
+function getMmsf3SssLines(build: BuildRecord) {
+  return getNormalizedMmsf3State(build).sssLevels
+    .map((value, index) => (value ? `SSS ${String(index + 1).padStart(2, "0")}: ${getMmsf3SssLevelOption(value)?.label ?? value}` : null))
+    .filter((line): line is string => Boolean(line));
 }
 
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
@@ -128,7 +176,10 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
     return tiles;
   }, []);
   const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean).slice(0, 8);
-  const brothers = build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
+  const brothers =
+    build.game === "mmsf3"
+      ? [...getMmsf3SssLines(build), ...getMmsf3BrotherRouletteLines(build)].slice(0, 6)
+      : build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
   const notes = [...MASTER_DATA.versionHighlights[build.version], ...getSpecialNotes(build)].slice(0, 6);
   const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];
 
@@ -263,7 +314,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 <div className="rounded-[24px] bg-white/8 p-4">
                   <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Brothers</p>
                   <ul className="mt-3 space-y-2 text-sm leading-6 text-white/82">
-                    {brothers.length > 0 ? brothers.map((item) => <li key={item}>• {item}</li>) : <li>• ブラザー未設定</li>}
+                    {brothers.length > 0
+                      ? brothers.map((item) => <li key={item}>• {item}</li>)
+                      : <li>• {build.game === "mmsf3" ? "ブラザールーレット未設定" : "ブラザー未設定"}</li>}
                   </ul>
                 </div>
                 <div className="rounded-[24px] bg-white/8 p-4">

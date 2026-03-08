@@ -3,8 +3,6 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { normalizeToken } from "@/lib/utils";
 
-const MAX_VISIBLE_OPTIONS = 12;
-
 export type SearchableSelectOption = {
   value: string;
   label: string;
@@ -77,10 +75,7 @@ export function SearchableSelectInput({
     return [...exact, ...startsWith, ...includes];
   }, [isFiltering, normalizedOptions, normalizedQuery, options]);
 
-  const visibleOptions = useMemo(
-    () => (isFiltering ? filteredOptions.slice(0, MAX_VISIBLE_OPTIONS) : filteredOptions),
-    [filteredOptions, isFiltering],
-  );
+  const visibleOptions = filteredOptions;
   const activeOptionIndex = useMemo(() => {
     if (!isOpen || visibleOptions.length === 0) {
       return -1;
@@ -201,7 +196,7 @@ export function SearchableSelectInput({
         <div
           id={listId}
           role="listbox"
-          className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-30 max-h-72 overflow-y-auto rounded-2xl border border-white/12 bg-slate-950/96 p-2 shadow-[0_18px_48px_rgba(15,23,42,0.55)] backdrop-blur-xl"
+          className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 max-h-72 overflow-y-auto rounded-2xl border border-white/12 bg-slate-950/96 p-2 shadow-[0_18px_48px_rgba(15,23,42,0.55)] backdrop-blur-xl"
         >
           {visibleOptions.length > 0 ? (
             visibleOptions.map((option, index) => {
@@ -229,9 +224,6 @@ export function SearchableSelectInput({
             })
           ) : (
             <div className="px-3 py-2 text-sm text-white/55">候補がありません。</div>
-          )}
-          {isFiltering && filteredOptions.length > MAX_VISIBLE_OPTIONS && (
-            <div className="px-3 pt-2 text-xs text-white/45">{filteredOptions.length}件中{MAX_VISIBLE_OPTIONS}件を表示しています。</div>
           )}
         </div>
       )}

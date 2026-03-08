@@ -9,10 +9,14 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
-import { DEFAULT_MMSF3_WHITE_CARD_SET_ID } from "@/lib/mmsf3-roulette-options";
-import { normalizeMmsf3NoiseCardIds } from "@/lib/mmsf3-noise-cards";
+import {
+  createDefaultMmsf3Sections,
+  normalizeMmsf3BuildRecord,
+  normalizeMmsf3Sections,
+} from "@/lib/mmsf3-build-state";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
+  BrotherProfile,
   BuildCardEntry,
   BuildRecord,
   CommonSections,
@@ -81,6 +85,17 @@ function normalizeBuildSourceEntry(entry: CommonSections["cardSources"][number])
   };
 }
 
+function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
+  return {
+    id: entry.id,
+    name: entry.name ?? "",
+    kind: entry.kind ?? "story",
+    favoriteCards: (entry.favoriteCards ?? []).map((item) => item.trim()).filter(Boolean),
+    rezonCard: entry.rezonCard ?? "",
+    notes: entry.notes ?? "",
+  };
+}
+
 function createDefaultGameSpecificSections(): GameSpecificSections {
   return {
     mmsf1: {
@@ -102,39 +117,33 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       notes: "",
     },
     mmsf3: {
-      noise: "",
-      noiseRate: 0,
-      pgms: [],
-      noiseAbilities: [],
-      noiseCardIds: normalizeMmsf3NoiseCardIds(),
-      nfb: "",
-      mergeNoiseTarget: "",
-      whiteCardSetId: DEFAULT_MMSF3_WHITE_CARD_SET_ID,
-      megaCards: [],
-      gigaCards: [],
-      teamSize: 0,
-      rezonCards: [],
-      rivalNoise: "",
-      rouletteNotes: "",
-      notes: "",
+      ...createDefaultMmsf3Sections(),
     },
   };
 }
 
 function createBuild(game: GameId = "mmsf1"): BuildRecord {
   const timestamp = nowIso();
+  const version = getDefaultVersionForGame(game);
+  const commonSections = createDefaultCommonSections();
 
-  return {
+  const build = {
     id: createId(),
     title: "",
     game,
-    version: getDefaultVersionForGame(game),
-    commonSections: createDefaultCommonSections(),
+    version,
+    commonSections,
     gameSpecificSections: createDefaultGameSpecificSections(),
     strategyTemplateId: null,
     createdAt: timestamp,
     updatedAt: timestamp,
   };
+
+  if (game === "mmsf3") {
+    return normalizeMmsf3BuildRecord(build);
+  }
+
+  return build;
 }
 
 function normalizeTemplate(template: StrategyTemplate): StrategyTemplate {
@@ -152,19 +161,13 @@ function normalizeTemplate(template: StrategyTemplate): StrategyTemplate {
 function normalizeBuild(build: BuildRecord): BuildRecord {
   const legacyMmsf3Sections = (build.gameSpecificSections?.mmsf3 ?? {}) as Partial<BuildRecord["gameSpecificSections"]["mmsf3"]> & {
     whiteCards?: string[];
+    noiseRate?: number;
   };
-  const { whiteCards: legacyWhiteCards = [], ...nextMmsf3Sections } = legacyMmsf3Sections;
-  const preservedLegacyWhiteCards = legacyWhiteCards.map((item) => item.trim()).filter(Boolean);
-  const legacyWhiteCardsNote =
-    preservedLegacyWhiteCards.length > 0 ? `旧ホワイトカード入力: ${preservedLegacyWhiteCards.join(" / ")}` : "";
-  const normalizedRouletteNotes =
-    legacyWhiteCardsNote && !nextMmsf3Sections.rouletteNotes?.includes(legacyWhiteCardsNote)
-      ? [nextMmsf3Sections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
-      : (nextMmsf3Sections.rouletteNotes ?? "");
   const normalizedOverview = build.commonSections?.overview || build.commonSections?.strategyNote || "";
   const normalizedStrategyNote = build.commonSections?.strategyNote || build.commonSections?.overview || "";
+  const normalizedAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
 
-  return {
+  const normalizedBuild = {
     ...createBuild(build.game),
     ...build,
     commonSections: {
@@ -174,24 +177,25 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       strategyNote: normalizedStrategyNote,
       cards: (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
       cardSources: (build.commonSections?.cardSources ?? []).map((entry) => normalizeBuildSourceEntry(entry as CommonSections["cardSources"][number])),
-      abilities: (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
+      abilities: normalizedAbilities,
       abilitySources: (build.commonSections?.abilitySources ?? []).map((entry) =>
         normalizeBuildSourceEntry(entry as CommonSections["abilitySources"][number]),
       ),
+      brothers: (build.commonSections?.brothers ?? []).map((entry) => normalizeBrotherProfile(entry as BrotherProfile)),
     },
     gameSpecificSections: {
       ...createDefaultGameSpecificSections(),
       ...build.gameSpecificSections,
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,
-        ...nextMmsf3Sections,
-        noiseCardIds: normalizeMmsf3NoiseCardIds(nextMmsf3Sections.noiseCardIds),
-        rouletteNotes: normalizedRouletteNotes,
+        ...normalizeMmsf3Sections(legacyMmsf3Sections, createDefaultGameSpecificSections().mmsf3),
       },
     },
     createdAt: build.createdAt || nowIso(),
     updatedAt: build.updatedAt || nowIso(),
   };
+
+  return normalizeMmsf3BuildRecord(normalizedBuild);
 }
 
 export function AppDataProvider({ children }: { children: ReactNode }) {
