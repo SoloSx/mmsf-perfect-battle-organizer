@@ -60,10 +60,7 @@ test("mmsf3 editor shows folder validation", async ({ page }) => {
   const validationPanel = page
     .getByText("バリデーション", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel')][1]");
-  const totalCardText = validationPanel.getByText("8 / 30", { exact: true });
-
-  await expect(totalCardText).toBeVisible();
-  await expect(totalCardText).toHaveClass(/text-red-200\/90/);
+  await expect(validationPanel).toContainText("カード総数: 8 / 30");
 });
 
 test("mmsf3 editor validates version-exclusive giga cards for player and brother settings", async ({ page }) => {
@@ -128,6 +125,41 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
   await redJokerTopLeftInputs.nth(5).click();
   await redJokerTopLeftInputs.nth(5).fill("ウィング");
   await expect(redJokerTopLeftCard.getByRole("option", { name: "ウィングブレード" })).toHaveCount(0);
+});
+
+test("mmsf3 editor expands mega and giga limits from class-up abilities without changing the 30 card cap", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem(
+      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      JSON.stringify({
+        game: "mmsf3",
+        version: "black-ace",
+        commonSections: {
+          cards: [
+            { id: "m1", name: "スペードマグネッツ", quantity: 1, notes: "", isRegular: false },
+            { id: "m2", name: "ダイヤアイスバーン", quantity: 1, notes: "", isRegular: false },
+            { id: "m3", name: "クラブストロング", quantity: 1, notes: "", isRegular: false },
+            { id: "m4", name: "クイーンヴァルゴ", quantity: 1, notes: "", isRegular: false },
+            { id: "m5", name: "ジャックコーヴァス", quantity: 1, notes: "", isRegular: false },
+            { id: "m6", name: "オヒュカスクイーン", quantity: 1, notes: "", isRegular: false },
+            { id: "g1", name: "ウィングブレード", quantity: 1, notes: "", isRegular: false },
+            { id: "g2", name: "ダークネスホール", quantity: 1, notes: "", isRegular: false },
+          ],
+          abilities: [
+            { id: "a1", name: "メガクラス+1 (440P)", quantity: 440, notes: "", isRegular: false },
+            { id: "a2", name: "ギガクラス+1 (750P)", quantity: 750, notes: "", isRegular: false },
+          ],
+        },
+      }),
+    );
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  await expect(page.getByText("メガカードは合計", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("ギガカードはフォルダに", { exact: false })).toHaveCount(0);
+  await expect(page.getByText("カード総数: 8 / 30")).toBeVisible();
 });
 
 test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => {

@@ -27,12 +27,18 @@ function addCardTotal(map: Map<string, ClassifiedCardTotal>, token: string, labe
   map.set(token, { label, quantity });
 }
 
-export function validateMmsf3FolderCards(entries: BuildCardEntry[], version: VersionId) {
+export function validateMmsf3FolderCards(
+  entries: BuildCardEntry[],
+  version: VersionId,
+  classBonuses: { megaBonus?: number; gigaBonus?: number } = {},
+) {
   const mmsf3Version = version as Extract<VersionId, "black-ace" | "red-joker">;
   const errors: string[] = [];
   const standardTotals = new Map<string, ClassifiedCardTotal>();
   const megaTotals = new Map<string, ClassifiedCardTotal>();
   const unknownCards = new Set<string>();
+  const megaLimit = 5 + (classBonuses.megaBonus ?? 0);
+  const gigaLimit = 1 + (classBonuses.gigaBonus ?? 0);
   let megaTotal = 0;
   let gigaTotal = 0;
 
@@ -75,8 +81,8 @@ export function validateMmsf3FolderCards(entries: BuildCardEntry[], version: Ver
     }
   }
 
-  if (megaTotal > 5) {
-    errors.push("メガカードは合計5枚までです。");
+  if (megaTotal > megaLimit) {
+    errors.push(`メガカードは合計${megaLimit}枚までです。`);
   }
 
   for (const { label, quantity } of megaTotals.values()) {
@@ -85,8 +91,8 @@ export function validateMmsf3FolderCards(entries: BuildCardEntry[], version: Ver
     }
   }
 
-  if (gigaTotal > 1) {
-    errors.push("ギガカードはフォルダに1枚までです。");
+  if (gigaTotal > gigaLimit) {
+    errors.push(`ギガカードはフォルダに${gigaLimit}枚までです。`);
   }
 
   if (unknownCards.size > 0) {

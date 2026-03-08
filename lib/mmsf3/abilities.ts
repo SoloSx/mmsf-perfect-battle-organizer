@@ -44,6 +44,8 @@ const abilityByNormalizedName = new Map<string, Mmsf3AbilityOption[]>();
 const abilityByNameAndCost = new Map<string, Mmsf3AbilityOption>();
 const BLACK_ACE_DEFAULT_ABILITY_NAME = "エースPGM";
 const RED_JOKER_DEFAULT_ABILITY_NAME = "ジョーカーPGM";
+const MEGA_CLASS_UP_ABILITY_NAME = "メガクラス+1";
+const GIGA_CLASS_UP_ABILITY_NAME = "ギガクラス+1";
 
 for (const option of MMSF3_ABILITY_OPTIONS) {
   abilityByLabel.set(option.label, option);
@@ -240,4 +242,27 @@ export function getMmsf3AbilitySelectionErrors(entries: BuildCardEntry[], noise:
   }
 
   return { errors, totalCost, limit };
+}
+
+export function getMmsf3FolderClassBonuses(entries: BuildCardEntry[]) {
+  let megaBonus = 0;
+  let gigaBonus = 0;
+
+  for (const entry of entries.map((item) => normalizeMmsf3AbilityEntry(item))) {
+    const ability = getMmsf3AbilityByLabel(entry.name);
+    if (!ability) {
+      continue;
+    }
+
+    if (ability.name === MEGA_CLASS_UP_ABILITY_NAME) {
+      megaBonus += 1;
+      continue;
+    }
+
+    if (ability.name === GIGA_CLASS_UP_ABILITY_NAME) {
+      gigaBonus += 1;
+    }
+  }
+
+  return { megaBonus, gigaBonus };
 }

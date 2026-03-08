@@ -1,4 +1,5 @@
 import {
+  getMmsf3FolderClassBonuses,
   getMmsf3AbilitySources,
   getMmsf3AbilitySelectionErrors,
   isMmsf3AbilitySourceTracked,
@@ -437,7 +438,11 @@ export function updateMmsf3SssLevels(build: BuildRecord, sssLevels: string[]) {
 
 export function validateMmsf3BuildState(build: BuildRecord, state = getNormalizedMmsf3State(build)) {
   const errors: string[] = [];
-  const folderValidation = validateMmsf3FolderCards(build.commonSections.cards, build.version);
+  const folderValidation = validateMmsf3FolderCards(
+    build.commonSections.cards,
+    build.version,
+    getMmsf3FolderClassBonuses(state.abilities),
+  );
   const abilityValidation = getMmsf3AbilitySelectionErrors(state.abilities, state.noise, state.sssSlotCount);
 
   errors.push(...folderValidation.errors);

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { getMmsf3AbilitySelectionErrors } from "@/lib/mmsf3/abilities";
+import { getMmsf3AbilitySelectionErrors, getMmsf3FolderClassBonuses } from "@/lib/mmsf3/abilities";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3/battle-rules";
 import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3/brother-roulette-state";
 import {
@@ -282,6 +282,30 @@ test("validateMmsf3FolderCards rejects version-exclusive giga cards from the oth
       "ギガカード「ウィングブレード」はレッドジョーカーでは使用できません。",
     ),
   );
+});
+
+test("validateMmsf3FolderCards allows extra mega and giga slots from class-up abilities", () => {
+  const classBonuses = getMmsf3FolderClassBonuses([
+    { id: "a1", name: "メガクラス+1/440", quantity: 440, notes: "", isRegular: false },
+    { id: "a2", name: "ギガクラス+1/750", quantity: 750, notes: "", isRegular: false },
+  ]);
+
+  const result = validateMmsf3FolderCards(
+    [
+      { id: "m1", name: "スペードマグネッツ", quantity: 1, notes: "", isRegular: false },
+      { id: "m2", name: "ダイヤアイスバーン", quantity: 1, notes: "", isRegular: false },
+      { id: "m3", name: "クラブストロング", quantity: 1, notes: "", isRegular: false },
+      { id: "m4", name: "クイーンヴァルゴ", quantity: 1, notes: "", isRegular: false },
+      { id: "m5", name: "ジャックコーヴァス", quantity: 1, notes: "", isRegular: false },
+      { id: "m6", name: "オヒュカスクイーン", quantity: 1, notes: "", isRegular: false },
+      { id: "g1", name: "ウィングブレード", quantity: 1, notes: "", isRegular: false },
+      { id: "g2", name: "ダークネスホール", quantity: 1, notes: "", isRegular: false },
+    ],
+    "black-ace",
+    classBonuses,
+  );
+
+  assert.deepEqual(result.errors, []);
 });
 
 test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga cards from the other version", () => {
