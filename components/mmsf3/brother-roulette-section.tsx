@@ -63,7 +63,7 @@ function DisabledSssSection({
       <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
         ブライノイズではブラザーは設定できませんが、SSSは設定できます。
       </div>
-      <div className="rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4">
+      <div className="rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(87,60,180,0.24),rgba(56,189,248,0.12),rgba(255,255,255,0.04))] p-4 shadow-[0_18px_40px_rgba(24,24,72,0.18)]">
         <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">シークレットサテライトサーバー</p>
         <div className="mt-4 grid gap-4 md:grid-cols-3">
           {Array.from({ length: 3 }, (_, index) => (
@@ -113,7 +113,7 @@ function BrotherSlotCard({
   const brotherSlotPatch: Partial<Mmsf3BrotherRouletteSlot> = { slotType: "brother", sssLevel: "" };
 
   return (
-    <div className="relative z-0 overflow-visible rounded-[24px] border border-white/10 bg-[linear-gradient(160deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-4 focus-within:z-10">
+    <div className="relative z-0 overflow-visible rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(87,60,180,0.24),rgba(56,189,248,0.12),rgba(255,255,255,0.04))] p-4 shadow-[0_18px_40px_rgba(24,24,72,0.18)] focus-within:z-10">
       <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">{positionLabel}</p>
 
       <div className="mt-4 grid gap-3">
@@ -250,7 +250,7 @@ export function Mmsf3BrotherRouletteSection({
   };
 
   return (
-    <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
+    <div className="glass-panel-soft relative z-0 overflow-visible bg-[linear-gradient(135deg,rgba(42,26,98,0.28),rgba(31,58,147,0.18),rgba(255,255,255,0.03))] p-6 focus-within:z-30">
       <label className="text-sm font-semibold text-white">ブラザー情報</label>
       <p className="mt-1 text-xs leading-5 text-white/52">SSS はブラザー枠の中で最大3枠まで設定でき、1枠ごとにアビリティ上限が 140P 下がります。</p>
       <div className="mt-4 grid gap-4">
