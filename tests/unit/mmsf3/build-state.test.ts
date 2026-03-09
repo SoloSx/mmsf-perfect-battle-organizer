@@ -45,6 +45,7 @@ function createBaseBuild(overrides: Partial<BuildRecord> = {}): BuildRecord {
         enhancement: "",
         warRockWeapon: "",
         warRockWeaponSources: [],
+        kokuuNoKakera: false,
         notes: "",
       },
       mmsf3: createDefaultMmsf3Sections(),

@@ -99,22 +99,40 @@ export function Mmsf2BrotherSection({
   onChange,
   cardSuggestions,
   isDisabled,
+  kokuuNoKakera,
+  onKokuuNoKakeraChange,
 }: {
   entries: BrotherProfile[];
   onChange: (entries: BrotherProfile[]) => void;
   cardSuggestions: string[];
   isDisabled: boolean;
+  kokuuNoKakera: boolean;
+  onKokuuNoKakeraChange: (value: boolean) => void;
 }) {
   const slots = ensureSixSlots(entries);
+  const brotherInputDisabled = isDisabled || kokuuNoKakera;
 
   return (
     <div className="glass-panel-soft relative z-0 overflow-visible bg-[linear-gradient(135deg,rgba(42,26,98,0.28),rgba(31,58,147,0.18),rgba(255,255,255,0.03))] p-6 focus-within:z-30">
       <label className="text-sm font-semibold text-white">ブラザー情報</label>
       <p className="mt-1 text-xs leading-5 text-white/52">各ブラザーのバージョンと FAV カード（4枚必須）を設定できます。</p>
       <div className="mt-4 grid gap-4">
+        <label className="flex cursor-pointer items-center gap-3">
+          <input
+            type="checkbox"
+            checked={kokuuNoKakera}
+            onChange={(event) => onKokuuNoKakeraChange(event.target.checked)}
+            className="h-5 w-5 rounded border-white/20 bg-white/10 accent-cyan-400"
+          />
+          <span className="text-sm text-white/80">虚空のカケラを装備する</span>
+        </label>
         {isDisabled ? (
           <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
             ブライ強化ではブラザーは設定できません。
+          </div>
+        ) : kokuuNoKakera ? (
+          <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
+            虚空のカケラ装備中はブラザーの FAV・バージョンは設定できません。
           </div>
         ) : (
           <div className="grid gap-4 xl:grid-cols-2">

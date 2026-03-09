@@ -1061,6 +1061,14 @@ export function BuildEditorPage() {
         onChange={(entries) => updateCommon("brothers", entries)}
         cardSuggestions={cardSuggestions}
         isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
+        kokuuNoKakera={draft.gameSpecificSections.mmsf2.kokuuNoKakera}
+        onKokuuNoKakeraChange={(value) =>
+          setDraft((current) =>
+            current
+              ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, kokuuNoKakera: value } } }
+              : current,
+          )
+        }
       />
     ) : draft.game === "mmsf1" ? (
       <Mmsf1BrotherSection

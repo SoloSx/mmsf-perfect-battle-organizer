@@ -133,6 +133,7 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       enhancement: "",
       warRockWeapon: "",
       warRockWeaponSources: [],
+      kokuuNoKakera: false,
       notes: "",
     },
     mmsf3: {

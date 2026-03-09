@@ -118,6 +118,7 @@ export interface Mmsf2Sections {
   enhancement: string;
   warRockWeapon: string;
   warRockWeaponSources: BuildSourceEntry[];
+  kokuuNoKakera: boolean;
   notes: string;
 }
 
