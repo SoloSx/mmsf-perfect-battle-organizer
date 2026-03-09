@@ -429,6 +429,9 @@ function CardListEditor({
   allowRegularSelection = false,
   regularLabel = "REG",
   regularLimit = 1,
+  hideAddButton = false,
+  hideQuantity = false,
+  hideDelete = false,
 }: {
   title: string;
   entries: BuildCardEntry[];
@@ -437,6 +440,9 @@ function CardListEditor({
   allowRegularSelection?: boolean;
   regularLabel?: string;
   regularLimit?: number;
+  hideAddButton?: boolean;
+  hideQuantity?: boolean;
+  hideDelete?: boolean;
 }) {
   const total = entries.reduce((sum, entry) => sum + entry.quantity, 0);
   const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
@@ -447,14 +453,14 @@ function CardListEditor({
         <label className="text-sm font-semibold text-white">{title}</label>
         <div className="flex items-center gap-3 text-xs text-white/45">
           {allowRegularSelection ? <span>{regularLabel} {regularCount}/{regularLimit}</span> : null}
-          <span>合計 {total}</span>
+          {!hideQuantity && <span>合計 {total}</span>}
         </div>
       </div>
       <div className="mt-4 space-y-3">
         {entries.map((entry) => (
           <div
             key={entry.id}
-            className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${BATTLE_CARD_ROW_GRID_CLASS}`}
+            className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${hideQuantity && hideDelete ? "" : hideQuantity ? "min-[1180px]:grid-cols-[minmax(0,1fr)_112px]" : BATTLE_CARD_ROW_GRID_CLASS}`}
           >
             <SearchableSuggestionInput
               value={entry.name}
@@ -463,20 +469,22 @@ function CardListEditor({
               placeholder="カード名"
               className="field-shell"
             />
-            <input
-              type="number"
-              min={1}
-              max={99}
-              value={entry.quantity}
-              onChange={(event) =>
-                onChange(
-                  entries.map((item) =>
-                    item.id === entry.id ? { ...item, quantity: Math.max(1, Number(event.target.value || 1)) } : item,
-                  ),
-                )
-              }
-              className="field-shell"
-            />
+            {!hideQuantity && (
+              <input
+                type="number"
+                min={1}
+                max={99}
+                value={entry.quantity}
+                onChange={(event) =>
+                  onChange(
+                    entries.map((item) =>
+                      item.id === entry.id ? { ...item, quantity: Math.max(1, Number(event.target.value || 1)) } : item,
+                    ),
+                  )
+                }
+                className="field-shell"
+              />
+            )}
             {allowRegularSelection ? (
               <button
                 type="button"
@@ -505,22 +513,26 @@ function CardListEditor({
               >
                 {regularLabel}
               </button>
-            ) : (
+            ) : !hideQuantity ? (
               <div aria-hidden="true" className="hidden min-[1180px]:block" />
+            ) : null}
+            {!hideDelete && (
+              <button
+                type="button"
+                className="danger-button w-full justify-center"
+                onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
+              >
+                削除
+              </button>
             )}
-            <button
-              type="button"
-              className="danger-button w-full justify-center"
-              onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
-            >
-              削除
-            </button>
           </div>
         ))}
       </div>
-      <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyCard()])}>
-        行を追加
-      </button>
+      {!hideAddButton && (
+        <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyCard()])}>
+          行を追加
+        </button>
+      )}
     </div>
   );
 }
@@ -718,8 +730,11 @@ export function BuildEditorPage() {
         return current;
       }
 
+      const allCards = current.game === "mmsf2"
+        ? [...current.commonSections.cards, ...current.gameSpecificSections.mmsf2.starCards]
+        : current.commonSections.cards;
       const nextCardSources = syncSourceEntries(
-        current.commonSections.cards,
+        allCards,
         current.commonSections.cardSources,
         (name) => getKnownCardSources(current.game, name, current.version),
       );
@@ -770,8 +785,11 @@ export function BuildEditorPage() {
     ...getSourceSuggestions(draft.game, draft.version),
     ...MASTER_DATA.sourceTagsByGame[draft.game],
   ]);
+  const allCardEntries = draft.game === "mmsf2"
+    ? [...draft.commonSections.cards, ...draft.gameSpecificSections.mmsf2.starCards]
+    : draft.commonSections.cards;
   const missingCardSourceNames = getMissingSourceNames(
-    draft.commonSections.cards,
+    allCardEntries,
     draft.commonSections.cardSources,
     (name) => getKnownCardSources(draft.game, name, draft.version),
   );
@@ -811,8 +829,11 @@ export function BuildEditorPage() {
         return current;
       }
 
+      const allCards = current.game === "mmsf2"
+        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards]
+        : entries;
       const nextCardSources = syncSourceEntries(
-        entries,
+        allCards,
         current.commonSections.cardSources,
         (name) => getKnownCardSources(current.game, name, current.version),
       );
@@ -1010,18 +1031,29 @@ export function BuildEditorPage() {
       />
 
       {draft.game === "mmsf2" && (
-        <TagEditor
-          label="スターカード"
-          values={draft.gameSpecificSections.mmsf2.starCards}
-          onChange={(values) =>
-            setDraft((current) =>
-              current
-                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, starCards: values } } }
-                : current,
-            )
+        <CardListEditor
+          title="スターカード"
+          entries={draft.gameSpecificSections.mmsf2.starCards}
+          onChange={(entries) =>
+            setDraft((current) => {
+              if (!current) return current;
+              const allCards = [...current.commonSections.cards, ...entries];
+              const nextCardSources = syncSourceEntries(
+                allCards,
+                current.commonSections.cardSources,
+                (name) => getKnownCardSources(current.game, name, current.version),
+              );
+              return {
+                ...current,
+                commonSections: { ...current.commonSections, cardSources: nextCardSources },
+                gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, starCards: entries } },
+              };
+            })
           }
           suggestions={mmsf2StandardCardSuggestions}
-          maxItems={3}
+          hideAddButton
+          hideQuantity
+          hideDelete
         />
       )}
 

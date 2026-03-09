@@ -117,6 +117,32 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
   };
 }
 
+function createEmptyStarCards(): BuildCardEntry[] {
+  return Array.from({ length: 3 }, () => ({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }));
+}
+
+function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
+  if (!Array.isArray(raw) || raw.length === 0) {
+    return createEmptyStarCards();
+  }
+  // Migrate legacy string[] to BuildCardEntry[]
+  if (typeof raw[0] === "string") {
+    const entries = (raw as string[]).map((name) => ({
+      id: createId(),
+      name: name.trim(),
+      quantity: 1,
+      notes: "",
+      isRegular: false,
+    }));
+    // Pad to 3 rows
+    while (entries.length < 3) {
+      entries.push({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false });
+    }
+    return entries;
+  }
+  return (raw as BuildCardEntry[]).map((entry) => normalizeBuildCardEntry(entry));
+}
+
 function createDefaultGameSpecificSections(): GameSpecificSections {
   return {
     mmsf1: {
@@ -129,7 +155,11 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       notes: "",
     },
     mmsf2: {
-      starCards: [],
+      starCards: [
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
+      ],
       enhancement: "",
       warRockWeapon: "",
       warRockWeaponSources: [],
@@ -214,6 +244,7 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       mmsf2: {
         ...createDefaultGameSpecificSections().mmsf2,
         ...(build.gameSpecificSections?.mmsf2 ?? {}),
+        starCards: normalizeMmsf2StarCards((build.gameSpecificSections?.mmsf2 as { starCards?: unknown })?.starCards),
       },
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,

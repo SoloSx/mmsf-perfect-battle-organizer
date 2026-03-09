@@ -79,26 +79,27 @@ export function validateMmsf2FolderCards(entries: BuildCardEntry[], version: Ver
   return { errors };
 }
 
-export function validateMmsf2StarCards(starCards: string[], version: VersionId) {
+export function validateMmsf2StarCards(starCards: BuildCardEntry[], version: VersionId) {
   const errors: string[] = [];
+  const filledCards = starCards.filter((entry) => entry.name.trim());
 
-  if (starCards.length > 3) {
+  if (filledCards.length > 3) {
     errors.push("スターカードは3枚までです。");
   }
 
   const seen = new Set<string>();
-  for (const card of starCards) {
-    const token = normalizeToken(card);
+  for (const entry of filledCards) {
+    const token = normalizeToken(entry.name);
     if (seen.has(token)) {
-      errors.push(`スターカード「${card}」が重複しています。`);
+      errors.push(`スターカード「${entry.name}」が重複しています。`);
     }
     seen.add(token);
   }
 
-  for (const card of starCards) {
-    const section = getCardSection("mmsf2", card, version);
+  for (const entry of filledCards) {
+    const section = getCardSection("mmsf2", entry.name, version);
     if (section === "mega" || section === "giga") {
-      errors.push(`スターカード「${card}」はスタンダードカード（★1）のみ指定できます。`);
+      errors.push(`スターカード「${entry.name}」はスタンダードカード（★1）のみ指定できます。`);
     }
   }
 

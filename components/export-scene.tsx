@@ -311,7 +311,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];
   const mmsf1SystemSnapshotLines = build.game === "mmsf1" ? getMmsf1SystemSnapshotLines(build) : [];
   const mmsf2SystemSnapshotLines = build.game === "mmsf2" ? getMmsf2SystemSnapshotLines(build) : [];
-  const mmsf2StarCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.starCards : [];
+  const mmsf2StarCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.starCards.map((entry) => entry.name).filter(Boolean) : [];
   const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);

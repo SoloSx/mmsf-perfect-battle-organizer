@@ -114,7 +114,7 @@ export interface Mmsf1Sections {
 }
 
 export interface Mmsf2Sections {
-  starCards: string[];
+  starCards: BuildCardEntry[];
   enhancement: string;
   warRockWeapon: string;
   warRockWeaponSources: BuildSourceEntry[];
