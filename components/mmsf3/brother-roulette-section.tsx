@@ -197,7 +197,7 @@ function BrotherSlotCard({
               />
             </div>
 
-            <div className="grid gap-3 md:grid-cols-2">
+            <div className="grid gap-3">
               <div className="grid gap-2">
                 <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ギガカード</p>
                 <SearchableSelectInput
