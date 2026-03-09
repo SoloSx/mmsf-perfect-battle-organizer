@@ -55,7 +55,7 @@ export function TagEditor({
         />
         <button
           type="button"
-          className="secondary-button"
+          className="secondary-button shrink-0"
           onClick={() => {
             if (input.trim()) {
               addValue(input.trim());

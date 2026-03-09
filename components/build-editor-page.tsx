@@ -15,7 +15,8 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
-import { Mmsf1EditorSections } from "@/components/mmsf1/editor-sections";
+import { Mmsf1BrotherSection } from "@/components/mmsf1/brother-section";
+import { Mmsf1EditorSections, Mmsf1WarRockSection } from "@/components/mmsf1/editor-sections";
 import { Mmsf2BrotherSection } from "@/components/mmsf2/brother-section";
 import { Mmsf2EditorSections, Mmsf2WarRockSection } from "@/components/mmsf2/editor-sections";
 import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3/editor-sections";
@@ -234,7 +235,15 @@ function getRequiredFieldErrors(build: BuildRecord) {
       errors.push("アビリティ入手方法の未入力行があります。");
     }
 
-    if (build.game === "mmsf2") {
+    if (build.game === "mmsf1") {
+      for (const brother of build.commonSections.brothers) {
+        const filledFavCount = brother.favoriteCards.filter((card) => card.trim()).length;
+        if (filledFavCount > 0 && filledFavCount < 6) {
+          errors.push("各ブラザーの FAV カードは6枚指定してください。");
+          break;
+        }
+      }
+    } else if (build.game === "mmsf2") {
       for (const brother of build.commonSections.brothers) {
         const filledFavCount = brother.favoriteCards.filter((card) => card.trim()).length;
         if (filledFavCount > 0 && filledFavCount < 4) {
@@ -380,7 +389,11 @@ function validateBuild(build: BuildRecord) {
     errors.push(`カード総数は ${rule.folderLimit} 枚以内にしてください。`);
   }
 
-  if (build.game === "mmsf2") {
+  if (build.game === "mmsf1") {
+    if (regularCardCount !== 6 && build.commonSections.cards.some((entry) => entry.name.trim())) {
+      errors.push("FAV カードは6枚指定してください。");
+    }
+  } else if (build.game === "mmsf2") {
     if (regularCardCount !== 4 && build.commonSections.cards.some((entry) => entry.name.trim())) {
       errors.push("FAV カードは4枚指定してください。");
     }
@@ -770,13 +783,21 @@ export function BuildEditorPage() {
         draft.commonSections.abilitySources,
         (name) => getKnownCardSources(draft.game, name, draft.version),
       );
+  const mmsf1or2WeaponName =
+    draft.game === "mmsf1" ? draft.gameSpecificSections.mmsf1.warRockWeapon.trim()
+    : draft.game === "mmsf2" ? draft.gameSpecificSections.mmsf2.warRockWeapon.trim()
+    : "";
+  const mmsf1or2WeaponSources =
+    draft.game === "mmsf1" ? draft.gameSpecificSections.mmsf1.warRockWeaponSources
+    : draft.game === "mmsf2" ? draft.gameSpecificSections.mmsf2.warRockWeaponSources
+    : [];
   const missingWarRockWeaponSourceNames =
     draft.game === "mmsf3" && normalizedMmsf3State
       ? getMissingMmsf3WarRockWeaponSourceNames(normalizedMmsf3State)
-      : draft.game === "mmsf2" && draft.gameSpecificSections.mmsf2.warRockWeapon.trim()
+      : mmsf1or2WeaponName
         ? getMissingSourceNames(
-            [{ name: draft.gameSpecificSections.mmsf2.warRockWeapon }],
-            draft.gameSpecificSections.mmsf2.warRockWeaponSources,
+            [{ name: mmsf1or2WeaponName }],
+            mmsf1or2WeaponSources,
             () => [],
           )
         : [];
@@ -834,9 +855,22 @@ export function BuildEditorPage() {
       <p className="text-sm font-semibold text-white">ロックマン</p>
 
       {draft.game === "mmsf1" && (
-        <Mmsf1EditorSections
+        <>
+          <Mmsf1EditorSections
+            state={draft.gameSpecificSections.mmsf1}
+            onEnhancementChange={(value) =>
+              setDraft((current) =>
+                current
+                  ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, enhancement: value } } }
+                  : current,
+              )
+            }
+          />
+          <Mmsf1WarRockSection
           state={draft.gameSpecificSections.mmsf1}
           warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf1}
+          sourceSuggestions={sourceSuggestions}
+          missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
           onWarRockWeaponChange={(value) =>
             setDraft((current) =>
               current
@@ -844,28 +878,15 @@ export function BuildEditorPage() {
                 : current,
             )
           }
-          onBrotherBandModeChange={(value) =>
+          onWarRockWeaponSourcesChange={(entries) =>
             setDraft((current) =>
               current
-                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, brotherBandMode: value } } }
-                : current,
-            )
-          }
-          onVersionFeatureChange={(value) =>
-            setDraft((current) =>
-              current
-                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, versionFeature: value } } }
-                : current,
-            )
-          }
-          onCrossBrotherNotesChange={(value) =>
-            setDraft((current) =>
-              current
-                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, crossBrotherNotes: value } } }
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeaponSources: entries } } }
                 : current,
             )
           }
         />
+        </>
       )}
 
       {draft.game === "mmsf2" && (
@@ -984,8 +1005,8 @@ export function BuildEditorPage() {
         onChange={updateCards}
         suggestions={cardSuggestions}
         allowRegularSelection
-        regularLabel={draft.game === "mmsf2" ? "FAV" : "REG"}
-        regularLimit={draft.game === "mmsf2" ? 4 : 1}
+        regularLabel={draft.game === "mmsf1" || draft.game === "mmsf2" ? "FAV" : "REG"}
+        regularLimit={draft.game === "mmsf1" ? 6 : draft.game === "mmsf2" ? 4 : 1}
       />
 
       {draft.game === "mmsf2" && (
@@ -1040,6 +1061,13 @@ export function BuildEditorPage() {
         onChange={(entries) => updateCommon("brothers", entries)}
         cardSuggestions={cardSuggestions}
         isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
+      />
+    ) : draft.game === "mmsf1" ? (
+      <Mmsf1BrotherSection
+        entries={draft.commonSections.brothers}
+        onChange={(entries) => updateCommon("brothers", entries)}
+        cardSuggestions={cardSuggestions}
+        isDisabled={draft.gameSpecificSections.mmsf1.enhancement !== ""}
       />
     ) : (
       <BrotherListEditor

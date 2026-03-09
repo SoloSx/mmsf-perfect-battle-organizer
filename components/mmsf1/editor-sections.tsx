@@ -1,51 +1,83 @@
 "use client";
 
 import { SearchableSelectInput } from "@/components/searchable-select-input";
-import type { Mmsf1Sections } from "@/lib/types";
+import { SourceListEditor } from "@/components/source-list-editor";
+import type { BuildSourceEntry, Mmsf1Sections } from "@/lib/types";
+
+const ENHANCEMENT_OPTIONS = [
+  { value: "", label: "強化なし" },
+  { value: "fire_leo", label: "ファイアレオ" },
+  { value: "ice_pegasus", label: "アイスペガサス" },
+  { value: "green_dragon", label: "グリーンドラゴン" },
+];
 
 export function Mmsf1EditorSections({
   state,
+  onEnhancementChange,
+}: {
+  state: Mmsf1Sections;
+  onEnhancementChange: (value: string) => void;
+}) {
+  return (
+    <div className="mt-4 grid gap-2">
+      <label className="text-xs font-semibold tracking-[0.24em] text-white/42">強化On</label>
+      <SearchableSelectInput
+        value={state.enhancement}
+        onChange={onEnhancementChange}
+        options={ENHANCEMENT_OPTIONS}
+        placeholder="強化Onを選択"
+        className="field-shell min-h-[52px] w-full"
+      />
+    </div>
+  );
+}
+
+export function Mmsf1WarRockSection({
+  state,
   warRockWeapons,
+  sourceSuggestions,
+  missingWarRockWeaponSourceNames,
   onWarRockWeaponChange,
-  onBrotherBandModeChange,
-  onVersionFeatureChange,
-  onCrossBrotherNotesChange,
+  onWarRockWeaponSourcesChange,
 }: {
   state: Mmsf1Sections;
   warRockWeapons: string[];
+  sourceSuggestions: string[];
+  missingWarRockWeaponSourceNames: string[];
   onWarRockWeaponChange: (value: string) => void;
-  onBrotherBandModeChange: (value: string) => void;
-  onVersionFeatureChange: (value: string) => void;
-  onCrossBrotherNotesChange: (value: string) => void;
+  onWarRockWeaponSourcesChange: (entries: BuildSourceEntry[]) => void;
 }) {
-  const weaponOptions = warRockWeapons.map((item) => ({ value: item, label: item }));
+  const weaponOptions = [
+    { value: "", label: "未選択" },
+    ...warRockWeapons.map((item) => ({ value: item, label: item })),
+  ];
 
   return (
     <div className="mt-4 grid gap-4">
-      <SearchableSelectInput
-        value={state.warRockWeapon}
-        onChange={onWarRockWeaponChange}
-        options={weaponOptions}
-        placeholder="ウォーロック装備を選択"
-        className="field-shell"
-      />
-      <input
-        value={state.brotherBandMode}
-        onChange={(event) => onBrotherBandModeChange(event.target.value)}
-        placeholder="ブラザーバンド運用メモ"
-        className="field-shell"
-      />
-      <textarea
-        value={state.versionFeature}
-        onChange={(event) => onVersionFeatureChange(event.target.value)}
-        placeholder="版差・特殊仕様"
-        className="field-shell min-h-28"
-      />
-      <textarea
-        value={state.crossBrotherNotes}
-        onChange={(event) => onCrossBrotherNotesChange(event.target.value)}
-        placeholder="クロスブラザーバンド系メモ"
-        className="field-shell min-h-28"
+      <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+        <div className="grid gap-2">
+          <label className="text-sm font-semibold text-white">ウォーロック装備</label>
+          <SearchableSelectInput
+            value={state.warRockWeapon}
+            onChange={onWarRockWeaponChange}
+            options={weaponOptions}
+            placeholder="ウォーロック装備を検索"
+            displayValue={state.warRockWeapon}
+            className="field-shell min-h-[52px] w-full"
+          />
+        </div>
+      </div>
+      <SourceListEditor
+        title="ウォーロック装備入手方法"
+        entries={state.warRockWeaponSources}
+        onChange={onWarRockWeaponSourcesChange}
+        game="mmsf1"
+        version="pegasus"
+        nameSuggestions={warRockWeapons}
+        sourceSuggestions={sourceSuggestions}
+        missingNames={missingWarRockWeaponSourceNames}
+        useKnownSourceSuggestions
+        actionMode="owned"
       />
     </div>
   );

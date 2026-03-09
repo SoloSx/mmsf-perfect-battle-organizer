@@ -55,7 +55,7 @@ function createDefaultCommonSections(): CommonSections {
   return {
     overview: "",
     tags: [],
-    cards: [],
+    cards: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
     cardSources: [],
     abilities: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
     abilitySources: [],
@@ -120,7 +120,9 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
 function createDefaultGameSpecificSections(): GameSpecificSections {
   return {
     mmsf1: {
+      enhancement: "",
       warRockWeapon: "",
+      warRockWeaponSources: [],
       brotherBandMode: "",
       versionFeature: "",
       crossBrotherNotes: "",
@@ -182,7 +184,10 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
   };
   const normalizedOverview = build.commonSections?.overview || build.commonSections?.strategyNote || "";
   const normalizedStrategyNote = build.commonSections?.strategyNote || build.commonSections?.overview || "";
-  const normalizedAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
+  const rawAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
+  const normalizedAbilities = rawAbilities.length > 0
+    ? rawAbilities
+    : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
 
   const normalizedBuild = {
     ...createBuild(build.game),
@@ -192,7 +197,9 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       ...build.commonSections,
       overview: normalizedOverview,
       strategyNote: normalizedStrategyNote,
-      cards: (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry)),
+      cards: (build.commonSections?.cards ?? []).length > 0
+        ? (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry))
+        : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
       cardSources: (build.commonSections?.cardSources ?? []).map((entry) => normalizeBuildSourceEntry(entry as CommonSections["cardSources"][number])),
       abilities: normalizedAbilities,
       abilitySources: (build.commonSections?.abilitySources ?? []).map((entry) =>

@@ -104,7 +104,9 @@ export interface CommonSections {
 }
 
 export interface Mmsf1Sections {
+  enhancement: string;
   warRockWeapon: string;
+  warRockWeaponSources: BuildSourceEntry[];
   brotherBandMode: string;
   versionFeature: string;
   crossBrotherNotes: string;

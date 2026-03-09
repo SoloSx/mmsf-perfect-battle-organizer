@@ -32,7 +32,9 @@ function createBaseBuild(overrides: Partial<BuildRecord> = {}): BuildRecord {
     },
     gameSpecificSections: {
       mmsf1: {
+        enhancement: "",
         warRockWeapon: "",
+        warRockWeaponSources: [],
         brotherBandMode: "",
         versionFeature: "",
         crossBrotherNotes: "",
