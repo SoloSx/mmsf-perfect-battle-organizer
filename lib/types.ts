@@ -112,14 +112,10 @@ export interface Mmsf1Sections {
 }
 
 export interface Mmsf2Sections {
-  tribeNotes: string;
-  brotherType: string;
-  kizunaTarget: number;
-  bestCombo: string;
-  legendCards: string[];
-  blankCards: string[];
-  waveCommandCards: string[];
+  starCards: string[];
+  enhancement: string;
   warRockWeapon: string;
+  warRockWeaponSources: BuildSourceEntry[];
   notes: string;
 }
 
@@ -190,9 +186,7 @@ export interface VersionRuleSet {
     brothers?: number;
     megaCards?: number;
     gigaCards?: number;
-    legendCards?: number;
-    blankCards?: number;
-    waveCommandCards?: number;
+    starCards?: number;
   };
   accent: {
     from: string;

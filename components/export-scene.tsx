@@ -122,6 +122,33 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   return lines;
 }
 
+function getMmsf1SystemSnapshotLines(build: BuildRecord) {
+  const s = build.gameSpecificSections.mmsf1;
+  const lines: string[] = [s.warRockWeapon || "ウォーロック装備未設定"];
+  if (s.brotherBandMode) lines.push(s.brotherBandMode);
+  if (s.versionFeature) lines.push(s.versionFeature);
+  if (s.crossBrotherNotes) lines.push(s.crossBrotherNotes);
+  return lines;
+}
+
+function getMmsf2EnhancementLabel(value: string) {
+  const map: Record<string, string> = {
+    berserker: "ベルセルク",
+    shinobi: "シノビ",
+    dinosaur: "ダイナソー",
+    burai: "ブライ",
+  };
+  return map[value] ?? null;
+}
+
+function getMmsf2SystemSnapshotLines(build: BuildRecord) {
+  const s = build.gameSpecificSections.mmsf2;
+  const enhancementLabel = getMmsf2EnhancementLabel(s.enhancement);
+  const lines: string[] = [enhancementLabel ? `強化: ${enhancementLabel}` : "強化なし"];
+  if (s.warRockWeapon) lines.push(s.warRockWeapon);
+  return lines;
+}
+
 function getMmsf3WhiteCardNames(build: BuildRecord) {
   const state = getNormalizedMmsf3State(build);
   const whiteCardLabel = getMmsf3WhiteCardSetOption(state.whiteCardSetId)?.label ?? "";
@@ -282,6 +309,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       ? getMmsf3BrotherRouletteLines(build).slice(0, 6)
       : build.commonSections.brothers.map((entry) => entry.name).filter(Boolean).slice(0, 6);
   const mmsf3SystemSnapshotLines = build.game === "mmsf3" ? getMmsf3SystemSnapshotLines(build) : [];
+  const mmsf1SystemSnapshotLines = build.game === "mmsf1" ? getMmsf1SystemSnapshotLines(build) : [];
+  const mmsf2SystemSnapshotLines = build.game === "mmsf2" ? getMmsf2SystemSnapshotLines(build) : [];
+  const mmsf2StarCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.starCards : [];
   const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
@@ -329,19 +359,20 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
             <div className="space-y-3">
               <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Rockman</p>
-                {build.game === "mmsf3" ? (
-                  <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
-                    {mmsf3SystemSnapshotLines.map((line, index) => (
+                <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+                  {build.game === "mmsf3" &&
+                    mmsf3SystemSnapshotLines.map((line, index) => (
                       <li key={`${line}-${index}`}>• {line}</li>
                     ))}
-                  </ul>
-                ) : (
-                  <p className="mt-2 text-sm leading-5 text-white/80">
-                    {build.game === "mmsf1" && (build.gameSpecificSections.mmsf1.warRockWeapon || "ウォーロック装備未設定")}
-                    {build.game === "mmsf2" &&
-                      (build.gameSpecificSections.mmsf2.bestCombo || build.gameSpecificSections.mmsf2.tribeNotes || "トライブ情報未設定")}
-                  </p>
-                )}
+                  {build.game === "mmsf1" &&
+                    mmsf1SystemSnapshotLines.map((line, index) => (
+                      <li key={`${line}-${index}`}>• {line}</li>
+                    ))}
+                  {build.game === "mmsf2" &&
+                    mmsf2SystemSnapshotLines.map((line, index) => (
+                      <li key={`${line}-${index}`}>• {line}</li>
+                    ))}
+                </ul>
               </div>
               <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
@@ -418,6 +449,31 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
 
                     return (
                       <div key={`${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                        {asset ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                        ) : (
+                          <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                            <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ) : null}
+            {mmsf2StarCards.length > 0 ? (
+              <div className="mt-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Star Cards</p>
+                <div
+                  className="mt-2 grid gap-0"
+                  style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                >
+                  {mmsf2StarCards.map((cardName, index) => {
+                    const asset = findCardAssetByName(build.game, cardName, build.version);
+                    return (
+                      <div key={`star-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
                         {asset ? (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />

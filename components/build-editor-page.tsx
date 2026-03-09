@@ -15,9 +15,13 @@ import {
 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { ExportScene } from "@/components/export-scene";
+import { Mmsf1EditorSections } from "@/components/mmsf1/editor-sections";
+import { Mmsf2BrotherSection } from "@/components/mmsf2/brother-section";
+import { Mmsf2EditorSections, Mmsf2WarRockSection } from "@/components/mmsf2/editor-sections";
 import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3/editor-sections";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
+import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
@@ -38,7 +42,8 @@ import {
   updateMmsf3WhiteCardSetId,
   validateMmsf3BuildState,
 } from "@/lib/mmsf3/build-state";
-import { getCardSuggestions, getKnownCardSources, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
+import { getCardSection, getCardSuggestions, getKnownCardSources, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
+import { validateMmsf2FolderCards, validateMmsf2StarCards } from "@/lib/mmsf2/battle-rules";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,
@@ -170,9 +175,13 @@ function isFolderValidationError(error: string) {
   return (
     error.includes("カード総数") ||
     error.includes("REG カード") ||
+    error.includes("FAV カード") ||
     error.includes("ノーマルカード") ||
     error.includes("メガカード") ||
     error.includes("ギガカード") ||
+    error.includes("メガ+ギガカード") ||
+    error.includes("同名カード") ||
+    error.includes("スターカード") ||
     error.includes("カード種別を判定できないカードがあります") ||
     error.includes("対戦構築カードを1件以上入力してください。") ||
     error.includes("対戦構築カードの未入力行があります。")
@@ -225,7 +234,15 @@ function getRequiredFieldErrors(build: BuildRecord) {
       errors.push("アビリティ入手方法の未入力行があります。");
     }
 
-    if (build.commonSections.brothers.some((entry) => hasIncompleteBrotherProfile(entry))) {
+    if (build.game === "mmsf2") {
+      for (const brother of build.commonSections.brothers) {
+        const filledFavCount = brother.favoriteCards.filter((card) => card.trim()).length;
+        if (filledFavCount > 0 && filledFavCount < 4) {
+          errors.push("各ブラザーの FAV カードは4枚指定してください。");
+          break;
+        }
+      }
+    } else if (build.commonSections.brothers.some((entry) => hasIncompleteBrotherProfile(entry))) {
       errors.push("ブラザー情報の未入力行があります。");
     }
   }
@@ -363,11 +380,22 @@ function validateBuild(build: BuildRecord) {
     errors.push(`カード総数は ${rule.folderLimit} 枚以内にしてください。`);
   }
 
-  if (regularCardCount > 1) {
+  if (build.game === "mmsf2") {
+    if (regularCardCount !== 4 && build.commonSections.cards.some((entry) => entry.name.trim())) {
+      errors.push("FAV カードは4枚指定してください。");
+    }
+  } else if (regularCardCount > 1) {
     errors.push("REG カードは1枚だけ指定してください。");
   }
 
   errors.push(...getRequiredFieldErrors(build));
+
+  if (build.game === "mmsf2") {
+    const mmsf2FolderValidation = validateMmsf2FolderCards(build.commonSections.cards, build.version);
+    errors.push(...mmsf2FolderValidation.errors);
+    const mmsf2StarValidation = validateMmsf2StarCards(build.gameSpecificSections.mmsf2.starCards, build.version);
+    errors.push(...mmsf2StarValidation.errors);
+  }
 
   if (build.game === "mmsf3") {
     const state = getNormalizedMmsf3State(build);
@@ -379,88 +407,6 @@ function validateBuild(build: BuildRecord) {
   return { errors, totalCards, hasFolderErrors };
 }
 
-function TagEditor({
-  label,
-  values,
-  onChange,
-  suggestions,
-  maxItems,
-  placeholder,
-}: {
-  label: string;
-  values: string[];
-  onChange: (values: string[]) => void;
-  suggestions?: string[];
-  maxItems?: number;
-  placeholder?: string;
-}) {
-  const [input, setInput] = useState("");
-  const listId = useId();
-
-  const addValue = (value: string) => {
-    const next = clampList([...values, value], maxItems);
-    onChange(next);
-    setInput("");
-  };
-
-  return (
-    <div className="glass-panel-soft bg-white/[0.035]">
-      <div className="flex items-center justify-between gap-3">
-        <label className="text-sm font-semibold text-white">{label}</label>
-        {typeof maxItems === "number" && <span className="text-xs text-white/45">{values.length}/{maxItems}</span>}
-      </div>
-      <div className="mt-3 flex gap-2">
-        <input
-          list={listId}
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              event.preventDefault();
-              if (input.trim()) {
-                addValue(input.trim());
-              }
-            }
-          }}
-          placeholder={placeholder ?? "値を追加"}
-          className="field-shell flex-1"
-        />
-        <button
-          type="button"
-          className="secondary-button"
-          onClick={() => {
-            if (input.trim()) {
-              addValue(input.trim());
-            }
-          }}
-        >
-          追加
-        </button>
-        <datalist id={listId}>
-          {suggestions?.map((suggestion) => (
-            <option key={suggestion} value={suggestion} />
-          ))}
-        </datalist>
-      </div>
-      <div className="mt-3 flex flex-wrap gap-2">
-        {values.length > 0 ? (
-          values.map((value) => (
-            <button
-              key={value}
-              type="button"
-              className="chip"
-              onClick={() => onChange(values.filter((item) => item !== value))}
-            >
-              {value} ×
-            </button>
-          ))
-        ) : (
-          <span className="text-xs text-white/45">未登録</span>
-        )}
-      </div>
-    </div>
-  );
-}
 
 function CardListEditor({
   title,
@@ -468,12 +414,16 @@ function CardListEditor({
   onChange,
   suggestions,
   allowRegularSelection = false,
+  regularLabel = "REG",
+  regularLimit = 1,
 }: {
   title: string;
   entries: BuildCardEntry[];
   onChange: (entries: BuildCardEntry[]) => void;
   suggestions: string[];
   allowRegularSelection?: boolean;
+  regularLabel?: string;
+  regularLimit?: number;
 }) {
   const total = entries.reduce((sum, entry) => sum + entry.quantity, 0);
   const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
@@ -483,7 +433,7 @@ function CardListEditor({
       <div className="flex items-center justify-between">
         <label className="text-sm font-semibold text-white">{title}</label>
         <div className="flex items-center gap-3 text-xs text-white/45">
-          {allowRegularSelection ? <span>REG {regularCount}/1</span> : null}
+          {allowRegularSelection ? <span>{regularLabel} {regularCount}/{regularLimit}</span> : null}
           <span>合計 {total}</span>
         </div>
       </div>
@@ -523,16 +473,24 @@ function CardListEditor({
                     ? "border-red-300/70 bg-red-500/15 text-red-100"
                     : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
                 } w-full justify-center`}
-                onClick={() =>
-                  onChange(
-                    entries.map((item) => ({
-                      ...item,
-                      isRegular: item.id === entry.id ? !item.isRegular : false,
-                    })),
-                  )
-                }
+                onClick={() => {
+                  if (regularLimit <= 1) {
+                    onChange(
+                      entries.map((item) => ({
+                        ...item,
+                        isRegular: item.id === entry.id ? !item.isRegular : false,
+                      })),
+                    );
+                  } else {
+                    onChange(
+                      entries.map((item) =>
+                        item.id === entry.id ? { ...item, isRegular: !item.isRegular } : item,
+                      ),
+                    );
+                  }
+                }}
               >
-                REG
+                {regularLabel}
               </button>
             ) : (
               <div aria-hidden="true" className="hidden min-[1180px]:block" />
@@ -815,7 +773,13 @@ export function BuildEditorPage() {
   const missingWarRockWeaponSourceNames =
     draft.game === "mmsf3" && normalizedMmsf3State
       ? getMissingMmsf3WarRockWeaponSourceNames(normalizedMmsf3State)
-      : [];
+      : draft.game === "mmsf2" && draft.gameSpecificSections.mmsf2.warRockWeapon.trim()
+        ? getMissingSourceNames(
+            [{ name: draft.gameSpecificSections.mmsf2.warRockWeapon }],
+            draft.gameSpecificSections.mmsf2.warRockWeaponSources,
+            () => [],
+          )
+        : [];
 
   const updateCommon = <K extends keyof CommonSections>(key: K, value: CommonSections[K]) => {
     setDraft((current) => (current ? { ...current, commonSections: { ...current.commonSections, [key]: value } } : current));
@@ -870,251 +834,73 @@ export function BuildEditorPage() {
       <p className="text-sm font-semibold text-white">ロックマン</p>
 
       {draft.game === "mmsf1" && (
-        <div className="mt-4 grid gap-4">
-          <select
-            value={draft.gameSpecificSections.mmsf1.warRockWeapon}
-            onChange={(event) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeapon: event.target.value },
-                      },
-                    }
-                  : current,
-              )
-            }
-            className="field-shell"
-          >
-            <option value="">ウォーロック装備を選択</option>
-            {MASTER_DATA.warRockWeaponsByGame.mmsf1.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-          <input
-            value={draft.gameSpecificSections.mmsf1.brotherBandMode}
-            onChange={(event) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf1: { ...current.gameSpecificSections.mmsf1, brotherBandMode: event.target.value },
-                      },
-                    }
-                  : current,
-              )
-            }
-            placeholder="ブラザーバンド運用メモ"
-            className="field-shell"
-          />
-          <textarea
-            value={draft.gameSpecificSections.mmsf1.versionFeature}
-            onChange={(event) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf1: { ...current.gameSpecificSections.mmsf1, versionFeature: event.target.value },
-                      },
-                    }
-                  : current,
-              )
-            }
-            placeholder="版差・特殊仕様"
-            className="field-shell min-h-28"
-          />
-          <textarea
-            value={draft.gameSpecificSections.mmsf1.crossBrotherNotes}
-            onChange={(event) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf1: { ...current.gameSpecificSections.mmsf1, crossBrotherNotes: event.target.value },
-                      },
-                    }
-                  : current,
-              )
-            }
-            placeholder="クロスブラザーバンド系メモ"
-            className="field-shell min-h-28"
-          />
-        </div>
+        <Mmsf1EditorSections
+          state={draft.gameSpecificSections.mmsf1}
+          warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf1}
+          onWarRockWeaponChange={(value) =>
+            setDraft((current) =>
+              current
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeapon: value } } }
+                : current,
+            )
+          }
+          onBrotherBandModeChange={(value) =>
+            setDraft((current) =>
+              current
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, brotherBandMode: value } } }
+                : current,
+            )
+          }
+          onVersionFeatureChange={(value) =>
+            setDraft((current) =>
+              current
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, versionFeature: value } } }
+                : current,
+            )
+          }
+          onCrossBrotherNotesChange={(value) =>
+            setDraft((current) =>
+              current
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, crossBrotherNotes: value } } }
+                : current,
+            )
+          }
+        />
       )}
 
       {draft.game === "mmsf2" && (
-        <div className="mt-4 grid gap-4">
-          <textarea
-            value={draft.gameSpecificSections.mmsf2.tribeNotes}
-            onChange={(event) =>
+        <>
+          <Mmsf2EditorSections
+            state={draft.gameSpecificSections.mmsf2}
+            onEnhancementChange={(value) =>
               setDraft((current) =>
                 current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, tribeNotes: event.target.value },
-                      },
-                    }
+                  ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, enhancement: value } } }
                   : current,
               )
             }
-            placeholder="トライブ関連メモ"
-            className="field-shell min-h-28"
           />
-          <div className="grid gap-4 md:grid-cols-[1fr_220px]">
-            <input
-              value={draft.gameSpecificSections.mmsf2.brotherType}
-              onChange={(event) =>
-                setDraft((current) =>
-                  current
-                    ? {
-                        ...current,
-                        gameSpecificSections: {
-                          ...current.gameSpecificSections,
-                          mmsf2: { ...current.gameSpecificSections.mmsf2, brotherType: event.target.value },
-                        },
-                      }
-                    : current,
-                )
-              }
-              placeholder="ブラザー種別メモ"
-              className="field-shell"
-            />
-            <input
-              type="number"
-              min={0}
-              value={draft.gameSpecificSections.mmsf2.kizunaTarget}
-              onChange={(event) =>
-                setDraft((current) =>
-                  current
-                    ? {
-                        ...current,
-                        gameSpecificSections: {
-                          ...current.gameSpecificSections,
-                          mmsf2: {
-                            ...current.gameSpecificSections.mmsf2,
-                            kizunaTarget: Number(event.target.value || 0),
-                          },
-                        },
-                      }
-                    : current,
-                )
-              }
-              placeholder="キズナ目標"
-              className="field-shell"
-            />
-          </div>
-          <input
-            value={draft.gameSpecificSections.mmsf2.bestCombo}
-            onChange={(event) =>
+          <Mmsf2WarRockSection
+            state={draft.gameSpecificSections.mmsf2}
+            warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf2}
+            sourceSuggestions={sourceSuggestions}
+            missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
+            onWarRockWeaponChange={(value) =>
               setDraft((current) =>
                 current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, bestCombo: event.target.value },
-                      },
-                    }
+                  ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeapon: value } } }
                   : current,
               )
             }
-            placeholder="ベストコンボ"
-            className="field-shell"
+            onWarRockWeaponSourcesChange={(entries) =>
+              setDraft((current) =>
+                current
+                  ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeaponSources: entries } } }
+                  : current,
+              )
+            }
           />
-          <TagEditor
-            label="レジェンドカード"
-            values={draft.gameSpecificSections.mmsf2.legendCards}
-            onChange={(values) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, legendCards: clampList(values, 6) },
-                      },
-                    }
-                  : current,
-              )
-            }
-            suggestions={cardSuggestions}
-            maxItems={6}
-          />
-          <TagEditor
-            label="ブランクカード"
-            values={draft.gameSpecificSections.mmsf2.blankCards}
-            onChange={(values) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, blankCards: clampList(values, 6) },
-                      },
-                    }
-                  : current,
-              )
-            }
-            suggestions={cardSuggestions}
-            maxItems={6}
-          />
-          <TagEditor
-            label="ウェーブコマンドカード"
-            values={draft.gameSpecificSections.mmsf2.waveCommandCards}
-            onChange={(values) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, waveCommandCards: clampList(values, 6) },
-                      },
-                    }
-                  : current,
-              )
-            }
-            suggestions={cardSuggestions}
-            maxItems={6}
-          />
-          <select
-            value={draft.gameSpecificSections.mmsf2.warRockWeapon}
-            onChange={(event) =>
-              setDraft((current) =>
-                current
-                  ? {
-                      ...current,
-                      gameSpecificSections: {
-                        ...current.gameSpecificSections,
-                        mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeapon: event.target.value },
-                      },
-                    }
-                  : current,
-              )
-            }
-            className="field-shell"
-          >
-            <option value="">ウォーロック装備を選択</option>
-            {MASTER_DATA.warRockWeaponsByGame.mmsf2.map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </div>
+        </>
       )}
 
       {draft.game === "mmsf3" && (
@@ -1181,6 +967,13 @@ export function BuildEditorPage() {
     </div>
   );
 
+  const mmsf2StandardCardSuggestions = draft.game === "mmsf2"
+    ? cardSuggestions.filter((name) => {
+        const section = getCardSection("mmsf2", name, draft.version);
+        return section === "standard" || section === null;
+      })
+    : [];
+
   const battleCardsSection = (
     <div className="glass-panel grid gap-4">
       <p className="text-sm font-semibold text-white">フォルダー</p>
@@ -1191,7 +984,25 @@ export function BuildEditorPage() {
         onChange={updateCards}
         suggestions={cardSuggestions}
         allowRegularSelection
+        regularLabel={draft.game === "mmsf2" ? "FAV" : "REG"}
+        regularLimit={draft.game === "mmsf2" ? 4 : 1}
       />
+
+      {draft.game === "mmsf2" && (
+        <TagEditor
+          label="スターカード"
+          values={draft.gameSpecificSections.mmsf2.starCards}
+          onChange={(values) =>
+            setDraft((current) =>
+              current
+                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, starCards: values } } }
+                : current,
+            )
+          }
+          suggestions={mmsf2StandardCardSuggestions}
+          maxItems={3}
+        />
+      )}
 
       <SourceListEditor
         title="カード入手方法"
@@ -1223,6 +1034,13 @@ export function BuildEditorPage() {
           isDisabled={normalizedMmsf3State.noise === "ブライノイズ"}
         />
       ) : null
+    ) : draft.game === "mmsf2" ? (
+      <Mmsf2BrotherSection
+        entries={draft.commonSections.brothers}
+        onChange={(entries) => updateCommon("brothers", entries)}
+        cardSuggestions={cardSuggestions}
+        isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
+      />
     ) : (
       <BrotherListEditor
         entries={draft.commonSections.brothers}
@@ -1366,7 +1184,7 @@ export function BuildEditorPage() {
               <p className="mt-1 text-sm text-white/60">構築名、作品、概要、タグをまとめて編集します。</p>
             </div>
 
-            <div className="mt-4 grid gap-4 md:grid-cols-[1.1fr_0.45fr_0.45fr]">
+            <div className="mt-4 grid items-start gap-4 md:grid-cols-[minmax(0,1.1fr)_0.45fr_0.45fr]">
               <input
                 value={draft.title}
                 onChange={(event) => setDraft((current) => (current ? { ...current, title: event.target.value } : current))}
@@ -1412,19 +1230,13 @@ export function BuildEditorPage() {
                   </option>
                 ))}
               </select>
-            </div>
-
-            <div className="mt-4 grid gap-6 2xl:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)]">
-              <div className="min-w-0">
-                <textarea
-                  value={draft.commonSections.overview}
-                  onChange={(event) => updateCommon("overview", event.target.value)}
-                  placeholder="構築全体の概要、環境、狙い"
-                  className="field-shell min-h-48 w-full"
-                />
-              </div>
-
-              <div className="grid min-w-0 gap-4">
+              <textarea
+                value={draft.commonSections.overview}
+                onChange={(event) => updateCommon("overview", event.target.value)}
+                placeholder="構築全体の概要、環境、狙い"
+                className="field-shell min-h-48 w-full"
+              />
+              <div className="md:col-span-2">
                 <TagEditor
                   label="構築タグ"
                   values={draft.commonSections.tags}

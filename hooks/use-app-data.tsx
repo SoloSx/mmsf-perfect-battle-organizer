@@ -57,7 +57,7 @@ function createDefaultCommonSections(): CommonSections {
     tags: [],
     cards: [],
     cardSources: [],
-    abilities: [],
+    abilities: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
     abilitySources: [],
     brothers: [],
     strategyName: "",
@@ -127,14 +127,10 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       notes: "",
     },
     mmsf2: {
-      tribeNotes: "",
-      brotherType: "",
-      kizunaTarget: 0,
-      bestCombo: "",
-      legendCards: [],
-      blankCards: [],
-      waveCommandCards: [],
+      starCards: [],
+      enhancement: "",
       warRockWeapon: "",
+      warRockWeaponSources: [],
       notes: "",
     },
     mmsf3: {
@@ -207,6 +203,10 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
     gameSpecificSections: {
       ...createDefaultGameSpecificSections(),
       ...build.gameSpecificSections,
+      mmsf2: {
+        ...createDefaultGameSpecificSections().mmsf2,
+        ...(build.gameSpecificSections?.mmsf2 ?? {}),
+      },
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,
         ...normalizeMmsf3Sections(legacyMmsf3Sections, createDefaultGameSpecificSections().mmsf3),
