@@ -37,7 +37,7 @@ export function TagEditor({
         <label className="text-sm font-semibold text-white">{label}</label>
         {typeof maxItems === "number" && <span className="text-xs text-white/45">{values.length}/{maxItems}</span>}
       </div>
-      <div className="mt-3 flex gap-2">
+      <div className="mt-3">
         <input
           list={listId}
           value={input}
@@ -50,20 +50,9 @@ export function TagEditor({
               }
             }
           }}
-          placeholder={placeholder ?? "値を追加"}
-          className="field-shell flex-1"
+          placeholder={placeholder ? `${placeholder}（Enterで追加）` : "値を追加（Enterで追加）"}
+          className="field-shell w-full"
         />
-        <button
-          type="button"
-          className="secondary-button shrink-0"
-          onClick={() => {
-            if (input.trim()) {
-              addValue(input.trim());
-            }
-          }}
-        >
-          追加
-        </button>
         <datalist id={listId}>
           {suggestions?.map((suggestion) => (
             <option key={suggestion} value={suggestion} />

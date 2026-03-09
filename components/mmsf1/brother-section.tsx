@@ -1,7 +1,7 @@
 "use client";
 
-import { useId } from "react";
 import { SearchableSelectInput } from "@/components/searchable-select-input";
+import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { VERSIONS_BY_GAME, VERSION_LABELS } from "@/lib/rules";
 import type { BrotherProfile } from "@/lib/types";
 
@@ -43,7 +43,6 @@ function BrotherCard({
   cardSuggestions: string[];
   onChange: (patch: Partial<BrotherProfile>) => void;
 }) {
-  const favListId = useId();
   const filledFavCount = entry.favoriteCards.filter((c) => c.trim()).length;
 
   return (
@@ -70,25 +69,20 @@ function BrotherCard({
           </div>
           <div className="grid gap-2">
             {Array.from({ length: FAV_COUNT }, (_, index) => (
-              <input
+              <SearchableSuggestionInput
                 key={`fav-${index}`}
-                list={favListId}
                 value={entry.favoriteCards[index] ?? ""}
-                onChange={(event) => {
+                onChange={(value) => {
                   const next = Array.from({ length: FAV_COUNT }, (_, i) => entry.favoriteCards[i] ?? "");
-                  next[index] = event.target.value;
+                  next[index] = value;
                   onChange({ favoriteCards: next });
                 }}
+                suggestions={cardSuggestions}
                 placeholder={`FAV カード ${index + 1}`}
                 className="field-shell min-h-[44px]"
               />
             ))}
           </div>
-          <datalist id={favListId}>
-            {cardSuggestions.map((suggestion) => (
-              <option key={suggestion} value={suggestion} />
-            ))}
-          </datalist>
         </div>
       </div>
     </div>

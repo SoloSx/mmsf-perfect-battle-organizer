@@ -124,6 +124,7 @@ export function SearchableSelectInput({
         aria-expanded={isOpen}
         aria-activedescendant={activeOptionIndex >= 0 ? `${listId}-option-${activeOptionIndex}` : undefined}
         value={isOpen ? query : (displayValue ?? selectedOption?.label ?? "")}
+        style={{ paddingRight: "2.5rem" }}
         onFocus={(event) => {
           const input = event.currentTarget;
           setIsOpen(true);
@@ -193,6 +194,18 @@ export function SearchableSelectInput({
         placeholder={placeholder}
         className={className}
       />
+      <svg
+        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/80"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
       {isOpen && (
         <div
           id={listId}

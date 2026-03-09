@@ -53,7 +53,7 @@ export function Mmsf3RockmanSection({
           </option>
         ))}
       </select>
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4">
         <div className="grid gap-2">
           <label className="text-sm font-semibold text-white">レゾンカード</label>
           <SearchableSelectInput

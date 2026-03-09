@@ -20,6 +20,7 @@ import { Mmsf1EditorSections, Mmsf1WarRockSection } from "@/components/mmsf1/edi
 import { Mmsf2BrotherSection } from "@/components/mmsf2/brother-section";
 import { Mmsf2EditorSections, Mmsf2WarRockSection } from "@/components/mmsf2/editor-sections";
 import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3/editor-sections";
+import { SearchableSelectInput } from "@/components/searchable-select-input";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
 import { TagEditor } from "@/components/tag-editor";
@@ -340,6 +341,8 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
     return normalizeMmsf3BuildRecord({
       ...baseBuild,
       ...parsed,
+      game: baseBuild.game,
+      version: baseBuild.version,
       commonSections: {
         ...baseBuild.commonSections,
         ...(parsed.commonSections ?? {}),
@@ -1259,10 +1262,10 @@ export function BuildEditorPage() {
                 placeholder="構築名"
                 className="field-shell"
               />
-              <select
+              <SearchableSelectInput
                 value={draft.game}
-                onChange={(event) => {
-                  const nextGame = event.target.value as GameId;
+                onChange={(value) => {
+                  const nextGame = value as GameId;
                   setDraft((current) =>
                     current
                       ? normalizeMmsf3BuildRecord({
@@ -1273,31 +1276,23 @@ export function BuildEditorPage() {
                       : current,
                   );
                 }}
-                className="field-shell"
-              >
-                {Object.entries(GAME_LABELS).map(([value, label]) => (
-                  <option key={value} value={value}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-              <select
+                options={Object.entries(GAME_LABELS).map(([value, label]) => ({ value, label }))}
+                placeholder="ゲームタイトル"
+                className="field-shell min-h-[52px] w-full"
+              />
+              <SearchableSelectInput
                 value={draft.version}
-                onChange={(event) =>
+                onChange={(value) =>
                   setDraft((current) =>
                     current
-                      ? normalizeMmsf3BuildRecord({ ...current, version: event.target.value as BuildRecord["version"] })
+                      ? normalizeMmsf3BuildRecord({ ...current, version: value as BuildRecord["version"] })
                       : current,
                   )
                 }
-                className="field-shell"
-              >
-                {VERSIONS_BY_GAME[draft.game].map((version) => (
-                  <option key={version} value={version}>
-                    {VERSION_LABELS[version]}
-                  </option>
-                ))}
-              </select>
+                options={VERSIONS_BY_GAME[draft.game].map((version) => ({ value: version, label: VERSION_LABELS[version] }))}
+                placeholder="バージョン"
+                className="field-shell min-h-[52px] w-full"
+              />
               <textarea
                 value={draft.commonSections.overview}
                 onChange={(event) => updateCommon("overview", event.target.value)}

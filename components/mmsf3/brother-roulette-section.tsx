@@ -173,28 +173,30 @@ function BrotherSlotCard({
               />
             </div>
 
-            <div className="grid gap-2">
-              <p className="text-xs font-semibold tracking-[0.24em] text-white/42">レゾンカード</p>
-              <SearchableSelectInput
-                value={slot.rezon}
-                onChange={(value) => onChange({ rezon: value })}
-                options={MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS}
-                placeholder="レゾンカードを検索"
-                displayValue={getMmsf3RezonCardOption(slot.rezon)?.label ?? ""}
-                className="field-shell min-h-[52px] w-full"
-              />
-            </div>
+            <div className="grid grid-cols-1 gap-3">
+              <div className="grid gap-2">
+                <p className="text-xs font-semibold tracking-[0.24em] text-white/42">レゾンカード</p>
+                <SearchableSelectInput
+                  value={slot.rezon}
+                  onChange={(value) => onChange({ rezon: value })}
+                  options={MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS}
+                  placeholder="レゾンカードを検索"
+                  displayValue={getMmsf3RezonCardOption(slot.rezon)?.label ?? ""}
+                  className="field-shell min-h-[52px] w-full"
+                />
+              </div>
 
-            <div className="grid gap-2">
-              <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ホワイトカード</p>
-              <SearchableSelectInput
-                value={slot.whiteCardSetId}
-                onChange={(value) => onChange({ whiteCardSetId: value })}
-                options={MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS}
-                placeholder="ホワイトカードを検索"
-                displayValue={getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label ?? ""}
-                className="field-shell min-h-[52px] w-full"
-              />
+              <div className="grid gap-2">
+                <p className="text-xs font-semibold tracking-[0.24em] text-white/42">ホワイトカード</p>
+                <SearchableSelectInput
+                  value={slot.whiteCardSetId}
+                  onChange={(value) => onChange({ whiteCardSetId: value })}
+                  options={MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS}
+                  placeholder="ホワイトカードを検索"
+                  displayValue={getMmsf3WhiteCardSetOption(slot.whiteCardSetId)?.label ?? ""}
+                  className="field-shell min-h-[52px] w-full"
+                />
+              </div>
             </div>
 
             <div className="grid gap-3">
