@@ -124,7 +124,7 @@ export function Mmsf2BrotherSection({
             onChange={(event) => onKokuuNoKakeraChange(event.target.checked)}
             className="h-5 w-5 rounded border-white/20 bg-white/10 accent-cyan-400"
           />
-          <span className="text-sm text-white/80">コクウノカケラを装備する</span>
+          <span className="text-sm text-white/80">コクウのカケラを装備する</span>
         </label>
         {isDisabled ? (
           <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
@@ -132,7 +132,7 @@ export function Mmsf2BrotherSection({
           </div>
         ) : kokuuNoKakera ? (
           <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
-            コクウノカケラ装備中はブラザーの FAV・バージョンは設定できません。
+            コクウのカケラ装備中はブラザーの FAV・バージョンは設定できません。
           </div>
         ) : (
           <div className="grid gap-4 xl:grid-cols-2">
