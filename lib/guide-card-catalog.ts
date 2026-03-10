@@ -9,6 +9,11 @@ const sectionLookup = new Map<string, GuideCardCatalogEntry["section"]>();
 const displayOrderLookup = new Map<string, number>();
 const sourceDescriptionsByGame = (catalog.sourceDescriptionsByGame ?? {}) as Partial<Record<GameId, Record<string, string>>>;
 
+function extractMmsf2BlankCardContentKey(name: string) {
+  const match = name.match(/^[SMG]-\d+\s+(.+)$/u);
+  return match?.[1]?.trim() ?? null;
+}
+
 for (const [index, entry] of guideCardCatalogEntries.entries()) {
   const versionKey = entry.version ?? "*";
   const token = normalizeToken(entry.name);
@@ -16,6 +21,16 @@ for (const [index, entry] of guideCardCatalogEntries.entries()) {
   const displayOrderKey = `${entry.game}:${versionKey}:${token}`;
   if (!displayOrderLookup.has(displayOrderKey)) {
     displayOrderLookup.set(displayOrderKey, index);
+  }
+
+  if (entry.game === "mmsf2" && entry.section === "blank") {
+    const blankContentKey = extractMmsf2BlankCardContentKey(entry.name);
+    if (blankContentKey) {
+      const blankDisplayOrderKey = `${entry.game}:${versionKey}:${normalizeToken(blankContentKey)}`;
+      if (!displayOrderLookup.has(blankDisplayOrderKey)) {
+        displayOrderLookup.set(blankDisplayOrderKey, index);
+      }
+    }
   }
 }
 
@@ -134,7 +149,7 @@ export function getCardSourceNameSuggestions(game: GameId, version?: VersionId) 
     uniqueStrings(
       guideCardCatalogEntries
         .filter((entry) => entry.game === game && matchesVersion(entry, version))
-        .map((entry) => entry.name),
+        .map((entry) => (game === "mmsf2" && entry.section === "blank" ? extractMmsf2BlankCardContentKey(entry.name) ?? entry.name : entry.name)),
     ),
     version,
   );
@@ -153,14 +168,10 @@ export function getMmsf2StarCardSuggestions(version?: VersionId) {
 }
 
 export function getMmsf2BlankCardSuggestions(version?: VersionId) {
-  return sortCardSuggestions(
-    "mmsf2",
-    uniqueStrings(
-      guideCardCatalogEntries
-        .filter((entry) => entry.game === "mmsf2" && entry.section === "blank" && matchesVersion(entry, version))
-        .map((entry) => entry.name),
-    ),
-    version,
+  return uniqueStrings(
+    guideCardCatalogEntries
+      .filter((entry) => entry.game === "mmsf2" && entry.section === "blank" && matchesVersion(entry, version))
+      .map((entry) => extractMmsf2BlankCardContentKey(entry.name) ?? entry.name),
   );
 }
 
@@ -168,7 +179,18 @@ export function getKnownCardSources(game: GameId, name: string, version?: Versio
   const tokens = buildLookupTokens(name);
 
   const matched = guideCardCatalogEntries.filter(
-    (entry) => entry.game === game && matchesVersion(entry, version) && tokens.includes(normalizeToken(entry.name)),
+    (entry) =>
+      entry.game === game &&
+      matchesVersion(entry, version) &&
+      (
+        tokens.includes(normalizeToken(entry.name)) ||
+        (game === "mmsf2" &&
+          entry.section === "blank" &&
+          (() => {
+            const blankContentKey = extractMmsf2BlankCardContentKey(entry.name);
+            return blankContentKey ? tokens.includes(normalizeToken(blankContentKey)) : false;
+          })())
+      ),
   );
 
   return uniqueStrings(matched.flatMap((entry) => entry.details));

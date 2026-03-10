@@ -10,6 +10,7 @@ import {
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
 import { normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
+import { getMmsf2BlankCardDefinition } from "@/lib/mmsf2/folder-cards";
 import {
   createDefaultMmsf3Sections,
   normalizeMmsf3BuildRecord,
@@ -153,7 +154,14 @@ function normalizeMmsf2BlankCards(raw: unknown): BuildCardEntry[] {
     return createEmptyBlankCards();
   }
 
-  return (raw as BuildCardEntry[]).map((entry) => normalizeBuildCardEntry(entry));
+  return (raw as BuildCardEntry[]).map((entry) => {
+    const normalizedEntry = normalizeBuildCardEntry(entry);
+    const blankDefinition = getMmsf2BlankCardDefinition(normalizedEntry.name);
+
+    return blankDefinition
+      ? { ...normalizedEntry, name: blankDefinition.contentKey }
+      : normalizedEntry;
+  });
 }
 
 function createDefaultGameSpecificSections(): GameSpecificSections {

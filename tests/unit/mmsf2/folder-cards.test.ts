@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { getKnownCardSources, getMmsf2BlankCardSuggestions } from "@/lib/guide-card-catalog";
 import {
   getMmsf2BlankCardDefinition,
   MMSF2_BLANK_CARD_DEFINITIONS,
@@ -21,6 +22,20 @@ test("blank card definitions normalize class type and duplicate key", () => {
   assert.equal(definition.classType, "giga");
   assert.equal(definition.contentKey, "ジェミニサンダー");
   assert.equal(definition.duplicateKey, `blank:${normalizeToken("ジェミニサンダー")}`);
+});
+
+test("MMSF2 blank card suggestions hide management IDs in the UI", () => {
+  const suggestions = getMmsf2BlankCardSuggestions("berserker");
+
+  assert.equal(suggestions[0], "プラズマスプレッド");
+  assert.equal(suggestions.at(-1), "ファントムスラッシュ");
+  assert.ok(suggestions.every((suggestion) => !/^[SMG]-\d+\s/u.test(suggestion)));
+});
+
+test("known source lookup resolves MMSF2 blank cards by their card name", () => {
+  const sources = getKnownCardSources("mmsf2", "プラズマスプレッド", "berserker");
+
+  assert.ok(sources.includes("ウェーブコマンドカード"));
 });
 
 test("resolveMmsf2FolderCard normalizes normal, star, and blank entries into the same shape", () => {

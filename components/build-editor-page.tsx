@@ -33,6 +33,7 @@ import {
   getMmsf2AbilitySources,
   normalizeMmsf2AbilityEntries,
 } from "@/lib/mmsf2/abilities";
+import { getMmsf2BlankCardDefinition } from "@/lib/mmsf2/folder-cards";
 import {
   getMissingMmsf3AbilitySourceNames,
   getMissingMmsf3WarRockWeaponSourceNames,
@@ -60,7 +61,13 @@ import {
   getSourceSuggestions,
   sortCardSuggestions,
 } from "@/lib/guide-card-catalog";
-import { validateMmsf2FolderCards, validateMmsf2StarCards } from "@/lib/mmsf2/battle-rules";
+import {
+  getMmsf2BlankCardTotalLimit,
+  getMmsf2NormalCardTotalLimit,
+  validateMmsf2FolderCards,
+  validateMmsf2FolderTotal,
+  validateMmsf2StarCards,
+} from "@/lib/mmsf2/battle-rules";
 import { getMmsf2WarRockWeaponSources } from "@/lib/mmsf2/war-rock-weapons";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
@@ -126,6 +133,37 @@ function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
     notes: entry.notes ?? "",
     isRegular: Boolean(entry.isRegular),
   };
+}
+
+function normalizeMmsf2BlankCardEntries(entries: BuildCardEntry[]) {
+  return entries.map((entry) => {
+    const normalizedEntry = normalizeBuildCardEntry(entry);
+    const blankDefinition = getMmsf2BlankCardDefinition(normalizedEntry.name);
+
+    return blankDefinition
+      ? { ...normalizedEntry, name: blankDefinition.contentKey }
+      : normalizedEntry;
+  });
+}
+
+function createMmsf2BlankCardDraftEntries(
+  entries: BuildCardEntry[],
+  blankCardSlotLimit: number,
+  preserveFilledOverflow = false,
+) {
+  const normalizedEntries = normalizeMmsf2BlankCardEntries(entries);
+  const filledEntries = normalizedEntries.filter((entry) => entry.name.trim());
+  const emptyEntry = normalizedEntries.find((entry) => !entry.name.trim()) ?? buildEmptyCard();
+  const preservedFilledEntries =
+    preserveFilledOverflow || filledEntries.length <= blankCardSlotLimit
+      ? filledEntries
+      : filledEntries.slice(0, blankCardSlotLimit);
+
+  if (preservedFilledEntries.length < blankCardSlotLimit) {
+    return [...preservedFilledEntries, emptyEntry];
+  }
+
+  return preservedFilledEntries;
 }
 
 function haveSameCardEntries(left: BuildCardEntry[], right: BuildCardEntry[]) {
@@ -425,6 +463,11 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
           (parsed.gameSpecificSections?.mmsf2 as { defaultTribeAbilityEnabled?: boolean } | undefined)?.defaultTribeAbilityEnabled ?? baseBuild.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
         )
       : restoredAbilities;
+    const normalizedMmsf2BlankCards = baseBuild.game === "mmsf2"
+      ? normalizeMmsf2BlankCardEntries(
+          (parsed.gameSpecificSections?.mmsf2 as { blankCards?: BuildCardEntry[] } | undefined)?.blankCards ?? baseBuild.gameSpecificSections.mmsf2.blankCards,
+        )
+      : baseBuild.gameSpecificSections.mmsf2.blankCards;
 
     return normalizeMmsf3BuildRecord({
       ...baseBuild,
@@ -452,6 +495,7 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
         mmsf2: {
           ...baseBuild.gameSpecificSections.mmsf2,
           ...(parsed.gameSpecificSections?.mmsf2 ?? {}),
+          blankCards: normalizedMmsf2BlankCards,
         },
         mmsf3: {
           ...baseBuild.gameSpecificSections.mmsf3,
@@ -467,14 +511,18 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
 function validateBuild(build: BuildRecord) {
   const errors: string[] = [];
   const rule = getVersionRuleSet(build.version);
-  const totalCards = build.commonSections.cards.reduce((sum, entry) => sum + (Number.isFinite(entry.quantity) ? entry.quantity : 0), 0);
+  const trackedCards = build.game === "mmsf2" ? getMmsf2TrackedCards(build) : build.commonSections.cards;
+  const totalCards = trackedCards.reduce(
+    (sum, entry) => sum + (entry.name.trim() && Number.isFinite(entry.quantity) ? entry.quantity : 0),
+    0,
+  );
   const regularCardCount = build.commonSections.cards.filter((entry) => entry.name.trim() && entry.isRegular).length;
 
   if (!VERSIONS_BY_GAME[build.game].includes(build.version)) {
     errors.push("作品とバージョンの組み合わせが一致していません。");
   }
 
-  if (totalCards > rule.folderLimit) {
+  if (totalCards > rule.folderLimit && build.game !== "mmsf2") {
     errors.push(`カード総数は ${rule.folderLimit} 枚以内にしてください。`);
   }
 
@@ -493,6 +541,13 @@ function validateBuild(build: BuildRecord) {
   errors.push(...getRequiredFieldErrors(build));
 
   if (build.game === "mmsf2") {
+    const mmsf2FolderTotalValidation = validateMmsf2FolderTotal(
+      build.commonSections.cards,
+      build.gameSpecificSections.mmsf2.starCards,
+      build.gameSpecificSections.mmsf2.blankCards,
+      rule.folderLimit,
+    );
+    errors.push(...mmsf2FolderTotalValidation.errors);
     const mmsf2FolderValidation = validateMmsf2FolderCards(build.commonSections.cards, build.version);
     errors.push(...mmsf2FolderValidation.errors);
     const mmsf2StarValidation = validateMmsf2StarCards(build.gameSpecificSections.mmsf2.starCards, build.version);
@@ -528,6 +583,8 @@ function CardListEditor({
   hideAddButton = false,
   hideQuantity = false,
   hideDelete = false,
+  maxEntries,
+  totalLimit,
 }: {
   title: string;
   entries: BuildCardEntry[];
@@ -539,9 +596,13 @@ function CardListEditor({
   hideAddButton?: boolean;
   hideQuantity?: boolean;
   hideDelete?: boolean;
+  maxEntries?: number;
+  totalLimit?: number;
 }) {
-  const total = entries.reduce((sum, entry) => sum + entry.quantity, 0);
+  const total = entries.reduce((sum, entry) => sum + (entry.name.trim() ? entry.quantity : 0), 0);
   const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
+  const canAddMoreEntries = typeof maxEntries === "number" ? entries.length < maxEntries : true;
+  const canAddMoreTotal = typeof totalLimit === "number" ? total < totalLimit : true;
 
   return (
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
@@ -549,11 +610,19 @@ function CardListEditor({
         <label className="text-sm font-semibold text-white">{title}</label>
         <div className="flex items-center gap-3 text-xs text-white/45">
           {allowRegularSelection ? <span>{regularLabel} {regularCount}/{regularLimit}</span> : null}
-          {!hideQuantity && <span>合計 {total}</span>}
+          {!hideQuantity && <span>合計 {total}{typeof totalLimit === "number" ? `/${totalLimit}` : ""}</span>}
+          {typeof maxEntries === "number" ? <span>行 {entries.length}/{maxEntries}</span> : null}
         </div>
       </div>
       <div className="mt-4 space-y-3">
-        {entries.map((entry) => (
+        {entries.map((entry) => {
+          const otherEntriesTotal = entries.reduce(
+            (sum, item) => sum + (item.id !== entry.id && item.name.trim() ? item.quantity : 0),
+            0,
+          );
+          const maxQuantity = typeof totalLimit === "number" ? Math.max(1, totalLimit - otherEntriesTotal) : 99;
+
+          return (
           <div
             key={entry.id}
             className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${hideQuantity && hideDelete ? "" : hideQuantity ? "min-[1180px]:grid-cols-[minmax(0,1fr)_112px]" : BATTLE_CARD_ROW_GRID_CLASS}`}
@@ -569,12 +638,14 @@ function CardListEditor({
               <input
                 type="number"
                 min={1}
-                max={99}
+                max={maxQuantity}
                 value={entry.quantity}
                 onChange={(event) =>
                   onChange(
                     entries.map((item) =>
-                      item.id === entry.id ? { ...item, quantity: Math.max(1, Number(event.target.value || 1)) } : item,
+                      item.id === entry.id
+                        ? { ...item, quantity: Math.max(1, Math.min(maxQuantity, Number(event.target.value || 1))) }
+                        : item,
                     ),
                   )
                 }
@@ -622,9 +693,10 @@ function CardListEditor({
               </button>
             )}
           </div>
-        ))}
+          );
+        })}
       </div>
-      {!hideAddButton && (
+      {!hideAddButton && canAddMoreEntries && canAddMoreTotal && (
         <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyCard()])}>
           行を追加
         </button>
@@ -1001,8 +1073,16 @@ export function BuildEditorPage() {
         return current;
       }
 
+      const normalizedBlankCards =
+        current.game === "mmsf2"
+          ? createMmsf2BlankCardDraftEntries(
+              current.gameSpecificSections.mmsf2.blankCards,
+              getMmsf2BlankCardTotalLimit(entries, current.gameSpecificSections.mmsf2.starCards, getVersionRuleSet(current.version).folderLimit),
+              true,
+            )
+          : [];
       const allCards = current.game === "mmsf2"
-        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards, ...current.gameSpecificSections.mmsf2.blankCards]
+        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards, ...normalizedBlankCards]
         : entries;
       const nextCardSources = syncSourceEntries(
         allCards,
@@ -1017,6 +1097,16 @@ export function BuildEditorPage() {
           cards: entries,
           cardSources: nextCardSources,
         },
+        gameSpecificSections:
+          current.game === "mmsf2"
+            ? {
+                ...current.gameSpecificSections,
+                mmsf2: {
+                  ...current.gameSpecificSections.mmsf2,
+                  blankCards: normalizedBlankCards,
+                },
+              }
+            : current.gameSpecificSections,
       };
     });
   };
@@ -1051,7 +1141,11 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const allCards = [...current.commonSections.cards, ...current.gameSpecificSections.mmsf2.starCards, ...entries];
+      const normalizedBlankCards = createMmsf2BlankCardDraftEntries(
+        entries,
+        getMmsf2BlankCardTotalLimit(current.commonSections.cards, current.gameSpecificSections.mmsf2.starCards, getVersionRuleSet(current.version).folderLimit),
+      );
+      const allCards = [...current.commonSections.cards, ...current.gameSpecificSections.mmsf2.starCards, ...normalizedBlankCards];
       const nextCardSources = syncSourceEntries(
         allCards,
         current.commonSections.cardSources,
@@ -1068,7 +1162,7 @@ export function BuildEditorPage() {
           ...current.gameSpecificSections,
           mmsf2: {
             ...current.gameSpecificSections.mmsf2,
-            blankCards: entries,
+            blankCards: normalizedBlankCards,
           },
         },
       };
@@ -1270,6 +1364,15 @@ export function BuildEditorPage() {
         entries={draft.commonSections.cards}
         onChange={updateCards}
         suggestions={cardSuggestions}
+        totalLimit={
+          draft.game === "mmsf2"
+            ? getMmsf2NormalCardTotalLimit(
+                draft.gameSpecificSections.mmsf2.starCards,
+                draft.gameSpecificSections.mmsf2.blankCards,
+                versionRule.folderLimit,
+              )
+            : undefined
+        }
         allowRegularSelection
         regularLabel={draft.game === "mmsf1" || draft.game === "mmsf2" ? "FAV" : "REG"}
         regularLimit={draft.game === "mmsf1" ? 6 : draft.game === "mmsf2" ? 4 : 1}
@@ -1282,7 +1385,12 @@ export function BuildEditorPage() {
           onChange={(entries) =>
             setDraft((current) => {
               if (!current) return current;
-              const allCards = [...current.commonSections.cards, ...entries, ...current.gameSpecificSections.mmsf2.blankCards];
+              const normalizedBlankCards = createMmsf2BlankCardDraftEntries(
+                current.gameSpecificSections.mmsf2.blankCards,
+                getMmsf2BlankCardTotalLimit(current.commonSections.cards, entries, getVersionRuleSet(current.version).folderLimit),
+                true,
+              );
+              const allCards = [...current.commonSections.cards, ...entries, ...normalizedBlankCards];
               const nextCardSources = syncSourceEntries(
                 allCards,
                 current.commonSections.cardSources,
@@ -1291,7 +1399,14 @@ export function BuildEditorPage() {
               return {
                 ...current,
                 commonSections: { ...current.commonSections, cardSources: nextCardSources },
-                gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, starCards: entries } },
+                gameSpecificSections: {
+                  ...current.gameSpecificSections,
+                  mmsf2: {
+                    ...current.gameSpecificSections.mmsf2,
+                    starCards: entries,
+                    blankCards: normalizedBlankCards,
+                  },
+                },
               };
             })
           }
@@ -1308,6 +1423,7 @@ export function BuildEditorPage() {
           entries={draft.gameSpecificSections.mmsf2.blankCards}
           onChange={updateMmsf2BlankCards}
           suggestions={mmsf2BlankCardSuggestions}
+          hideAddButton
           hideQuantity
         />
       )}

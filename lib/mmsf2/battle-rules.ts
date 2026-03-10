@@ -19,6 +19,62 @@ function addCardTotal(map: Map<string, ClassifiedCardTotal>, token: string, labe
   map.set(token, { label, quantity });
 }
 
+export function getMmsf2FilledCardEntryCount(entries: BuildCardEntry[]) {
+  return entries.filter((entry) => entry.name.trim()).length;
+}
+
+export function getMmsf2CardQuantityTotal(entries: BuildCardEntry[]) {
+  return entries.reduce(
+    (sum, entry) => sum + (entry.name.trim() && Number.isFinite(entry.quantity) ? Math.max(1, entry.quantity) : 0),
+    0,
+  );
+}
+
+export function getMmsf2NormalCardTotalLimit(starCards: BuildCardEntry[], blankCards: BuildCardEntry[], folderLimit = 30) {
+  return Math.max(0, folderLimit - getMmsf2FilledCardEntryCount(starCards) - getMmsf2FilledCardEntryCount(blankCards));
+}
+
+export function getMmsf2BlankCardTotalLimit(folderCards: BuildCardEntry[], starCards: BuildCardEntry[], folderLimit = 30) {
+  return Math.max(0, folderLimit - getMmsf2CardQuantityTotal(folderCards) - getMmsf2FilledCardEntryCount(starCards));
+}
+
+export function validateMmsf2FolderTotal(
+  folderCards: BuildCardEntry[],
+  starCards: BuildCardEntry[],
+  blankCards: BuildCardEntry[],
+  folderLimit = 30,
+) {
+  const errors: string[] = [];
+  const folderCardTotal = getMmsf2CardQuantityTotal(folderCards);
+  const starCardTotal = getMmsf2FilledCardEntryCount(starCards);
+  const blankCardTotal = getMmsf2FilledCardEntryCount(blankCards);
+  const total = folderCardTotal + starCardTotal + blankCardTotal;
+  const normalCardLimit = getMmsf2NormalCardTotalLimit(starCards, blankCards, folderLimit);
+  const blankCardLimit = getMmsf2BlankCardTotalLimit(folderCards, starCards, folderLimit);
+
+  if (folderCardTotal > normalCardLimit) {
+    errors.push(`対戦構築カードは ${normalCardLimit} 枚までです。`);
+  }
+
+  if (blankCardTotal > blankCardLimit) {
+    errors.push(`ブランクカードは ${blankCardLimit} 枚までです。`);
+  }
+
+  if (total > folderLimit) {
+    errors.push(`カード総数は ${folderLimit} 枚以内にしてください。`);
+  }
+
+  return {
+    errors,
+    total,
+    folderCardTotal,
+    starCardTotal,
+    blankCardTotal,
+    normalCardLimit,
+    blankCardLimit,
+  };
+}
+
 export function validateMmsf2FolderCards(entries: BuildCardEntry[], version: VersionId) {
   const errors: string[] = [];
   const cardTotals = new Map<string, ClassifiedCardTotal>();
