@@ -1,3 +1,5 @@
+import { MMSF2_ABILITY_NAMES } from "@/lib/mmsf2/abilities";
+import { MMSF2_WAR_ROCK_WEAPON_NAMES } from "@/lib/mmsf2/war-rock-weapons";
 import type { MasterDataIndex, StrategyTemplate } from "@/lib/types";
 import { createId } from "@/lib/utils";
 
@@ -97,15 +99,7 @@ export const MASTER_DATA: MasterDataIndex = {
       "コレクトバイザー",
     ],
     mmsf2: [
-      "HP+500",
-      "ファーストバリア",
-      "アンダーシャツ",
-      "メガフォルダ1",
-      "ギガフォルダ1",
-      "エアシューズ",
-      "クイックゲージ",
-      "コレクトバイザー",
-      "ゼニーサーチング",
+      ...MMSF2_ABILITY_NAMES,
     ],
     mmsf3: [
       "HP+50",
@@ -167,18 +161,7 @@ export const MASTER_DATA: MasterDataIndex = {
       "コレクトバイザー",
       "カイザーナックル",
     ],
-    mmsf2: [
-      "スルドイキバ",
-      "クイックリング",
-      "コブラノキバ",
-      "マシンガンクロー",
-      "パラライザー",
-      "バブルハンド",
-      "タイタングローブ",
-      "カイザーナックル",
-      "コレクトバイザー",
-      "インパクトブレス",
-    ],
+    mmsf2: MMSF2_WAR_ROCK_WEAPON_NAMES,
   },
   brothersByGame: {
     mmsf1: ["ルナ", "ゴン太", "キザマロ", "ミソラ", "リアルブラザー", "クロスブラザー"],
@@ -197,7 +180,7 @@ export const MASTER_DATA: MasterDataIndex = {
   },
   sourceTagsByGame: {
     mmsf1: ["初期装備", "電波商人", "サブカード商人", "カードトレーダー", "暗号メール", "クロスブラザーバンド", "ウェーブロード"],
-    mmsf2: ["初期装備", "電波商人", "カードトレーダー", "ショップ", "イベント", "限定配信", "ウェーブロード", "レジェンドマスター"],
+    mmsf2: ["初期装備", "電波商人", "カードトレーダー", "ショップ", "イベント", "限定配信", "ウェーブロード", "ウェーブコマンドカード", "レジェンドマスター"],
     mmsf3: ["初期所持", "電波商人", "ショップ", "HELPポップアップ", "Gウイルス戦", "ノイズウェーブ", "サテライトサーバー", "チーム共有"],
   },
   tribes: ["ベルセルクトライブ", "シノビトライブ", "ダイナソートライブ", "トライブキング"],

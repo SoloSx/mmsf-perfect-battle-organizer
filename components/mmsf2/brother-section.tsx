@@ -3,8 +3,7 @@
 import { SearchableSelectInput } from "@/components/searchable-select-input";
 import { SearchableSuggestionInput } from "@/components/searchable-suggestion-input";
 import { VERSIONS_BY_GAME, VERSION_LABELS } from "@/lib/rules";
-import type { BrotherProfile } from "@/lib/types";
-import { createId } from "@/lib/utils";
+import type { BrotherProfile, VersionId } from "@/lib/types";
 
 const MMSF2_VERSION_OPTIONS = VERSIONS_BY_GAME.mmsf2.map((version) => ({
   value: version,
@@ -34,15 +33,16 @@ function ensureSixSlots(entries: BrotherProfile[]): BrotherProfile[] {
 function BrotherCard({
   entry,
   positionLabel,
-  cardSuggestions,
+  getCardSuggestionsForVersion,
   onChange,
 }: {
   entry: BrotherProfile;
   positionLabel: string;
-  cardSuggestions: string[];
+  getCardSuggestionsForVersion: (version: VersionId | "") => string[];
   onChange: (patch: Partial<BrotherProfile>) => void;
 }) {
   const filledFavCount = entry.favoriteCards.filter((c) => c.trim()).length;
+  const cardSuggestions = getCardSuggestionsForVersion((entry.rezonCard as VersionId | "") ?? "");
 
   return (
     <div className="relative z-0 overflow-visible rounded-[24px] border border-cyan-300/14 bg-[linear-gradient(160deg,rgba(87,60,180,0.24),rgba(56,189,248,0.12),rgba(255,255,255,0.04))] p-4 shadow-[0_18px_40px_rgba(24,24,72,0.18)] focus-within:z-10">
@@ -91,14 +91,14 @@ function BrotherCard({
 export function Mmsf2BrotherSection({
   entries,
   onChange,
-  cardSuggestions,
+  getCardSuggestionsForVersion,
   isDisabled,
   kokuuNoKakera,
   onKokuuNoKakeraChange,
 }: {
   entries: BrotherProfile[];
   onChange: (entries: BrotherProfile[]) => void;
-  cardSuggestions: string[];
+  getCardSuggestionsForVersion: (version: VersionId | "") => string[];
   isDisabled: boolean;
   kokuuNoKakera: boolean;
   onKokuuNoKakeraChange: (value: boolean) => void;
@@ -135,7 +135,7 @@ export function Mmsf2BrotherSection({
                 key={pos.key}
                 entry={slots[index]}
                 positionLabel={pos.label}
-                cardSuggestions={cardSuggestions}
+                getCardSuggestionsForVersion={getCardSuggestionsForVersion}
                 onChange={(patch) => {
                   const nextSlots = slots.map((slot, i) =>
                     i === index ? { ...slot, ...patch, id: pos.key, name: pos.key } : slot,

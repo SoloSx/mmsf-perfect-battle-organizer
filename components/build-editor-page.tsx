@@ -18,6 +18,7 @@ import { ExportScene } from "@/components/export-scene";
 import { Mmsf1BrotherSection } from "@/components/mmsf1/brother-section";
 import { Mmsf1EditorSections, Mmsf1WarRockSection } from "@/components/mmsf1/editor-sections";
 import { Mmsf2BrotherSection } from "@/components/mmsf2/brother-section";
+import { Mmsf2AbilitySection } from "@/components/mmsf2/ability-section";
 import { Mmsf2EditorSections, Mmsf2WarRockSection } from "@/components/mmsf2/editor-sections";
 import { Mmsf3BrotherRouletteSection, Mmsf3EditorSections } from "@/components/mmsf3/editor-sections";
 import { SearchableSelectInput } from "@/components/searchable-select-input";
@@ -26,6 +27,11 @@ import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSou
 import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
+import {
+  getMmsf2AbilityNameSuggestions,
+  getMmsf2AbilitySources,
+  normalizeMmsf2AbilityEntries,
+} from "@/lib/mmsf2/abilities";
 import {
   getMissingMmsf3AbilitySourceNames,
   getMissingMmsf3WarRockWeaponSourceNames,
@@ -44,8 +50,17 @@ import {
   updateMmsf3WhiteCardSetId,
   validateMmsf3BuildState,
 } from "@/lib/mmsf3/build-state";
-import { getCardSection, getCardSuggestions, getKnownCardSources, getSourceSuggestions, sortCardSuggestions } from "@/lib/guide-card-catalog";
+import {
+  getCardSourceNameSuggestions,
+  getCardSuggestions,
+  getKnownCardSources,
+  getMmsf2BlankCardSuggestions,
+  getMmsf2StarCardSuggestions,
+  getSourceSuggestions,
+  sortCardSuggestions,
+} from "@/lib/guide-card-catalog";
 import { validateMmsf2FolderCards, validateMmsf2StarCards } from "@/lib/mmsf2/battle-rules";
+import { getMmsf2WarRockWeaponSources } from "@/lib/mmsf2/war-rock-weapons";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
   GAME_LABELS,
@@ -84,6 +99,24 @@ function buildEmptyCard(): BuildCardEntry {
   return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
 }
 
+function getMmsf2TrackedCards(build: BuildRecord) {
+  return [...build.commonSections.cards, ...build.gameSpecificSections.mmsf2.starCards, ...build.gameSpecificSections.mmsf2.blankCards];
+}
+
+function syncMmsf2WarRockWeaponSources(weaponName: string, sources: CommonSections["cardSources"]) {
+  const trimmedWeaponName = weaponName.trim();
+
+  if (!trimmedWeaponName) {
+    return [];
+  }
+
+  return syncSourceEntries(
+    [{ name: trimmedWeaponName }],
+    sources,
+    getMmsf2WarRockWeaponSources,
+  );
+}
+
 function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
   return {
     id: entry.id,
@@ -92,6 +125,29 @@ function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
     notes: entry.notes ?? "",
     isRegular: Boolean(entry.isRegular),
   };
+}
+
+function haveSameCardEntries(left: BuildCardEntry[], right: BuildCardEntry[]) {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  for (let index = 0; index < left.length; index += 1) {
+    const leftEntry = left[index];
+    const rightEntry = right[index];
+
+    if (
+      leftEntry.id !== rightEntry.id ||
+      leftEntry.name !== rightEntry.name ||
+      leftEntry.quantity !== rightEntry.quantity ||
+      leftEntry.notes !== rightEntry.notes ||
+      leftEntry.isRegular !== rightEntry.isRegular
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function normalizeBuildSourceEntry(entry: CommonSections["abilitySources"][number]): CommonSections["abilitySources"][number] {
@@ -150,6 +206,17 @@ function hasIncompleteBrotherProfile(entry: BrotherProfile) {
   }
 
   return !entry.name.trim();
+}
+
+function isMmsf2BrotherFavoriteCardValid(cardName: string, brotherVersion: string) {
+  const trimmedName = cardName.trim();
+  const trimmedVersion = brotherVersion.trim() as VersionId | "";
+
+  if (!trimmedName || !trimmedVersion) {
+    return true;
+  }
+
+  return getCardSuggestions("mmsf2", trimmedVersion).includes(trimmedName);
 }
 
 function hasIncompleteBrotherRouletteSlot(slot: Mmsf3BrotherRouletteSlot) {
@@ -252,6 +319,15 @@ function getRequiredFieldErrors(build: BuildRecord) {
           break;
         }
       }
+
+      for (const brother of build.commonSections.brothers) {
+        const invalidCard = brother.favoriteCards.find((card) => !isMmsf2BrotherFavoriteCardValid(card, brother.rezonCard));
+        if (invalidCard) {
+          const versionLabel = VERSION_LABELS[brother.rezonCard as VersionId] ?? brother.rezonCard;
+          errors.push(`ブラザーの FAV カード「${invalidCard}」は${versionLabel}版では使えません。`);
+          break;
+        }
+      }
     } else if (build.commonSections.brothers.some((entry) => hasIncompleteBrotherProfile(entry))) {
       errors.push("ブラザー情報の未入力行があります。");
     }
@@ -338,6 +414,13 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
 
   try {
     const parsed = JSON.parse(rawDraft) as Partial<BuildRecord>;
+    const restoredAbilities = (parsed.commonSections?.abilities ?? baseBuild.commonSections.abilities).map((entry) =>
+      normalizeBuildCardEntry(entry as BuildCardEntry),
+    );
+    const normalizedAbilities = baseBuild.game === "mmsf2"
+      ? normalizeMmsf2AbilityEntries(restoredAbilities, baseBuild.version)
+      : restoredAbilities;
+
     return normalizeMmsf3BuildRecord({
       ...baseBuild,
       ...parsed,
@@ -349,9 +432,7 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
         brothers: (parsed.commonSections?.brothers ?? baseBuild.commonSections.brothers).map((entry) =>
           normalizeBrotherProfile(entry as BrotherProfile),
         ),
-        abilities: (parsed.commonSections?.abilities ?? baseBuild.commonSections.abilities).map((entry) =>
-          normalizeBuildCardEntry(entry as BuildCardEntry),
-        ),
+        abilities: normalizedAbilities,
         abilitySources: (parsed.commonSections?.abilitySources ?? baseBuild.commonSections.abilitySources).map((entry) =>
           normalizeBuildSourceEntry(entry as CommonSections["abilitySources"][number]),
         ),
@@ -733,9 +814,7 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const allCards = current.game === "mmsf2"
-        ? [...current.commonSections.cards, ...current.gameSpecificSections.mmsf2.starCards]
-        : current.commonSections.cards;
+      const allCards = current.game === "mmsf2" ? getMmsf2TrackedCards(current) : current.commonSections.cards;
       const nextCardSources = syncSourceEntries(
         allCards,
         current.commonSections.cardSources,
@@ -755,6 +834,65 @@ export function BuildEditorPage() {
       };
     });
   }, [draft?.game, draft?.version, draft?.commonSections.cards]);
+
+  useEffect(() => {
+    setDraft((current) => {
+      if (!current || current.game !== "mmsf2") {
+        return current;
+      }
+
+      const normalizedAbilities = normalizeMmsf2AbilityEntries(current.commonSections.abilities, current.version);
+      const nextAbilitySources = syncSourceEntries(
+        normalizedAbilities,
+        current.commonSections.abilitySources,
+        (name) => getMmsf2AbilitySources(name, current.version),
+      );
+
+      if (
+        haveSameCardEntries(current.commonSections.abilities, normalizedAbilities) &&
+        haveSameSourceEntries(current.commonSections.abilitySources, nextAbilitySources)
+      ) {
+        return current;
+      }
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          abilities: normalizedAbilities,
+          abilitySources: nextAbilitySources,
+        },
+      };
+    });
+  }, [draft?.game, draft?.version, draft?.commonSections.abilities]);
+
+  useEffect(() => {
+    setDraft((current) => {
+      if (!current || current.game !== "mmsf2") {
+        return current;
+      }
+
+      const nextWeaponSources = syncMmsf2WarRockWeaponSources(
+        current.gameSpecificSections.mmsf2.warRockWeapon,
+        current.gameSpecificSections.mmsf2.warRockWeaponSources,
+      );
+
+      if (haveSameSourceEntries(current.gameSpecificSections.mmsf2.warRockWeaponSources, nextWeaponSources)) {
+        return current;
+      }
+
+      return {
+        ...current,
+        gameSpecificSections: {
+          ...current.gameSpecificSections,
+          mmsf2: {
+            ...current.gameSpecificSections.mmsf2,
+            warRockWeaponSources: nextWeaponSources,
+          },
+        },
+      };
+    });
+  }, [draft?.game, draft?.gameSpecificSections.mmsf2.warRockWeapon]);
 
   const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0, hasFolderErrors: false }), [draft]);
   const hasValidationErrors = validation.errors.length > 0;
@@ -779,18 +917,27 @@ export function BuildEditorPage() {
       : sortCardSuggestions(
           draft.game,
           uniqueStrings([...getCardSuggestions(draft.game, draft.version), ...MASTER_DATA.cardsByGame[draft.game]]),
+          draft.version,
+        );
+  const cardSourceNameSuggestions =
+    draft.game === "mmsf3"
+      ? cardSuggestions
+      : sortCardSuggestions(
+          draft.game,
+          uniqueStrings([...getCardSourceNameSuggestions(draft.game, draft.version), ...MASTER_DATA.cardsByGame[draft.game]]),
+          draft.version,
         );
   const abilitySuggestions = MASTER_DATA.abilitiesByGame[draft.game];
   const abilityNameSuggestions =
-    draft.game === "mmsf3" ? MMSF3_ABILITY_OPTIONS.map((option) => option.label) : abilitySuggestions;
+    draft.game === "mmsf3" ? MMSF3_ABILITY_OPTIONS.map((option) => option.label)
+    : draft.game === "mmsf2" ? getMmsf2AbilityNameSuggestions(draft.version)
+    : abilitySuggestions;
   const brotherSuggestions = MASTER_DATA.brothersByGame[draft.game];
   const sourceSuggestions = uniqueStrings([
     ...getSourceSuggestions(draft.game, draft.version),
     ...MASTER_DATA.sourceTagsByGame[draft.game],
   ]);
-  const allCardEntries = draft.game === "mmsf2"
-    ? [...draft.commonSections.cards, ...draft.gameSpecificSections.mmsf2.starCards]
-    : draft.commonSections.cards;
+  const allCardEntries = draft.game === "mmsf2" ? getMmsf2TrackedCards(draft) : draft.commonSections.cards;
   const missingCardSourceNames = getMissingSourceNames(
     allCardEntries,
     draft.commonSections.cardSources,
@@ -799,11 +946,17 @@ export function BuildEditorPage() {
   const missingAbilitySourceNames =
     draft.game === "mmsf3" && normalizedMmsf3State
       ? getMissingMmsf3AbilitySourceNames(normalizedMmsf3State, draft.version)
+      : draft.game === "mmsf2"
+        ? getMissingSourceNames(
+            draft.commonSections.abilities,
+            draft.commonSections.abilitySources,
+            (name) => getMmsf2AbilitySources(name, draft.version),
+          )
       : getMissingSourceNames(
-        draft.commonSections.abilities,
-        draft.commonSections.abilitySources,
-        (name) => getKnownCardSources(draft.game, name, draft.version),
-      );
+          draft.commonSections.abilities,
+          draft.commonSections.abilitySources,
+          (name) => getKnownCardSources(draft.game, name, draft.version),
+        );
   const mmsf1or2WeaponName =
     draft.game === "mmsf1" ? draft.gameSpecificSections.mmsf1.warRockWeapon.trim()
     : draft.game === "mmsf2" ? draft.gameSpecificSections.mmsf2.warRockWeapon.trim()
@@ -819,7 +972,7 @@ export function BuildEditorPage() {
         ? getMissingSourceNames(
             [{ name: mmsf1or2WeaponName }],
             mmsf1or2WeaponSources,
-            () => [],
+            draft.game === "mmsf2" ? getMmsf2WarRockWeaponSources : () => [],
           )
         : [];
 
@@ -833,7 +986,7 @@ export function BuildEditorPage() {
       }
 
       const allCards = current.game === "mmsf2"
-        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards]
+        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards, ...current.gameSpecificSections.mmsf2.blankCards]
         : entries;
       const nextCardSources = syncSourceEntries(
         allCards,
@@ -858,8 +1011,32 @@ export function BuildEditorPage() {
       }
 
       const nextAbilitySources = syncSourceEntries(
-        entries,
+        current.game === "mmsf2" ? normalizeMmsf2AbilityEntries(entries, current.version) : entries,
         current.commonSections.abilitySources,
+        (name) => current.game === "mmsf2" ? getMmsf2AbilitySources(name, current.version) : getKnownCardSources(current.game, name, current.version),
+      );
+      const nextAbilities = current.game === "mmsf2" ? normalizeMmsf2AbilityEntries(entries, current.version) : entries;
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          abilities: nextAbilities,
+          abilitySources: nextAbilitySources,
+        },
+      };
+    });
+  };
+  const updateMmsf2BlankCards = (entries: BuildCardEntry[]) => {
+    setDraft((current) => {
+      if (!current || current.game !== "mmsf2") {
+        return current;
+      }
+
+      const allCards = [...current.commonSections.cards, ...current.gameSpecificSections.mmsf2.starCards, ...entries];
+      const nextCardSources = syncSourceEntries(
+        allCards,
+        current.commonSections.cardSources,
         (name) => getKnownCardSources(current.game, name, current.version),
       );
 
@@ -867,8 +1044,14 @@ export function BuildEditorPage() {
         ...current,
         commonSections: {
           ...current.commonSections,
-          abilities: entries,
-          abilitySources: nextAbilitySources,
+          cardSources: nextCardSources,
+        },
+        gameSpecificSections: {
+          ...current.gameSpecificSections,
+          mmsf2: {
+            ...current.gameSpecificSections.mmsf2,
+            blankCards: entries,
+          },
         },
       };
     });
@@ -930,10 +1113,24 @@ export function BuildEditorPage() {
             warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf2}
             sourceSuggestions={sourceSuggestions}
             missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
+            resolveKnownSources={getMmsf2WarRockWeaponSources}
             onWarRockWeaponChange={(value) =>
               setDraft((current) =>
                 current
-                  ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, warRockWeapon: value } } }
+                  ? {
+                    ...current,
+                    gameSpecificSections: {
+                      ...current.gameSpecificSections,
+                      mmsf2: {
+                        ...current.gameSpecificSections.mmsf2,
+                        warRockWeapon: value,
+                        warRockWeaponSources: syncMmsf2WarRockWeaponSources(
+                          value,
+                          current.gameSpecificSections.mmsf2.warRockWeaponSources,
+                        ),
+                      },
+                    },
+                  }
                   : current,
               )
             }
@@ -983,7 +1180,20 @@ export function BuildEditorPage() {
         ) : null
       )}
 
-      {draft.game !== "mmsf3" && (
+      {draft.game === "mmsf2" && (
+        <Mmsf2AbilitySection
+          entries={draft.commonSections.abilities}
+          abilitySources={draft.commonSections.abilitySources}
+          version={draft.version}
+          abilityNameSuggestions={abilityNameSuggestions}
+          sourceSuggestions={sourceSuggestions}
+          missingAbilitySourceNames={missingAbilitySourceNames}
+          onAbilitiesChange={updateAbilities}
+          onAbilitySourcesChange={(entries) => updateCommon("abilitySources", entries)}
+        />
+      )}
+
+      {draft.game === "mmsf1" && (
         <div className="mt-4 grid gap-4">
           <CardListEditor
             title="アビリティ"
@@ -1012,12 +1222,8 @@ export function BuildEditorPage() {
     </div>
   );
 
-  const mmsf2StandardCardSuggestions = draft.game === "mmsf2"
-    ? cardSuggestions.filter((name) => {
-        const section = getCardSection("mmsf2", name, draft.version);
-        return section === "standard" || section === null;
-      })
-    : [];
+  const mmsf2StarCardSuggestions = draft.game === "mmsf2" ? getMmsf2StarCardSuggestions(draft.version) : [];
+  const mmsf2BlankCardSuggestions = draft.game === "mmsf2" ? getMmsf2BlankCardSuggestions(draft.version) : [];
 
   const battleCardsSection = (
     <div className="glass-panel grid gap-4">
@@ -1040,7 +1246,7 @@ export function BuildEditorPage() {
           onChange={(entries) =>
             setDraft((current) => {
               if (!current) return current;
-              const allCards = [...current.commonSections.cards, ...entries];
+              const allCards = [...current.commonSections.cards, ...entries, ...current.gameSpecificSections.mmsf2.blankCards];
               const nextCardSources = syncSourceEntries(
                 allCards,
                 current.commonSections.cardSources,
@@ -1053,10 +1259,20 @@ export function BuildEditorPage() {
               };
             })
           }
-          suggestions={mmsf2StandardCardSuggestions}
+          suggestions={mmsf2StarCardSuggestions}
           hideAddButton
           hideQuantity
           hideDelete
+        />
+      )}
+
+      {draft.game === "mmsf2" && (
+        <CardListEditor
+          title="ブランクカード"
+          entries={draft.gameSpecificSections.mmsf2.blankCards}
+          onChange={updateMmsf2BlankCards}
+          suggestions={mmsf2BlankCardSuggestions}
+          hideQuantity
         />
       )}
 
@@ -1066,7 +1282,7 @@ export function BuildEditorPage() {
         onChange={(entries) => updateCommon("cardSources", entries)}
         game={draft.game}
         version={draft.version}
-        nameSuggestions={cardSuggestions}
+        nameSuggestions={cardSourceNameSuggestions}
         sourceSuggestions={sourceSuggestions}
         missingNames={missingCardSourceNames}
         useKnownSourceSuggestions
@@ -1094,7 +1310,7 @@ export function BuildEditorPage() {
       <Mmsf2BrotherSection
         entries={draft.commonSections.brothers}
         onChange={(entries) => updateCommon("brothers", entries)}
-        cardSuggestions={cardSuggestions}
+        getCardSuggestionsForVersion={(version) => getCardSuggestions("mmsf2", (version || draft.version) as VersionId)}
         isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
         kokuuNoKakera={draft.gameSpecificSections.mmsf2.kokuuNoKakera}
         onKokuuNoKakeraChange={(value) =>

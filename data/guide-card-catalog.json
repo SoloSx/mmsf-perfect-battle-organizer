@@ -2480,9 +2480,7 @@
       "version": null,
       "name": "キャノン",
       "details": [
-        "★３：ＢＩＧＷＡＶＥ",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
     },
@@ -2493,9 +2491,7 @@
       "version": null,
       "name": "プラスキャノン",
       "details": [
-        "ゴン太のへやの電波（固定）\nドンブラー湖１の電波\n（固定、ナナイロホタテガイの左下の崖のくぼみを掘る）\nゴン太のへやの電波（ランダム）\nコダマタウンのスカイウェーブ（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)ミソラフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
     },
@@ -2506,9 +2502,7 @@
       "version": null,
       "name": "ヘビーキャノン",
       "details": [
-        "ナンスカの電波（固定）\nナンスカいせき２の電波（ランダム）\n★３：裏ＴＫタワー２の電波の電波商人（要ゴールドカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
     },
@@ -2517,11 +2511,9 @@
       "section": "standard",
       "number": 4,
       "version": null,
-      "name": "プラズマガン１",
+      "name": "プラズマガン1",
       "details": [
-        "ＴＫタワーの電波２（ランダム）\nヤエバリゾートの電波（ランダム）\n★１：ヤエバリゾートの電波（固定）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
     },
@@ -2530,11 +2522,9 @@
       "section": "standard",
       "number": 5,
       "version": null,
-      "name": "プラズマガン２",
+      "name": "プラズマガン2",
       "details": [
-        "ドンブラー湖１の電波\n（固定、電波に入ってすぐの４つ並んだサンゴの右を掘る）\nコダマタウンのスカイウェーブ（ランダム）\nドンブラー村の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ドンブラー湖1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
     },
@@ -2543,11 +2533,9 @@
       "section": "standard",
       "number": 6,
       "version": null,
-      "name": "プラズマガン３",
+      "name": "プラズマガン3",
       "details": [
-        "へいしの間（固定）\n人助け：「ピカヤマ　パブロウ」\n★３：裏ＴＫタワー２の電波の電波商人（要プラチナカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)へいしの間"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
     },
@@ -2556,11 +2544,9 @@
       "section": "standard",
       "number": 7,
       "version": null,
-      "name": "エアスプレッド１",
+      "name": "エアスプレッド1",
       "details": [
-        "ロッポンドーヒルズの電波（固定）\nヒルズ前どおりの電波（ランダム）\nロッポンドーヒルズの電波（ランダム）\n★２：通信対戦をはじめて遊んだ時にもらえる",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
     },
@@ -2569,11 +2555,9 @@
       "section": "standard",
       "number": 8,
       "version": null,
-      "name": "エアスプレッド２",
+      "name": "エアスプレッド2",
       "details": [
-        "ゲレンデ１の電波（固定）\nリゾートホテルの電波（ランダム）\nグルメタウンの電波（ランダム）\nコダマタウンのスカイウェーブ（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ゲレンデ1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
     },
@@ -2582,11 +2566,9 @@
       "section": "standard",
       "number": 9,
       "version": null,
-      "name": "エアスプレッド３",
+      "name": "エアスプレッド3",
       "details": [
-        "ドッシーのいりえの電波（固定）\nドンブラー村のスカイウェーブ（ランダム）\nドンブラー湖２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ドッシーのいりえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
     },
@@ -2595,11 +2577,10 @@
       "section": "standard",
       "number": 10,
       "version": null,
-      "name": "レーダーミサイル１",
+      "name": "レーダーミサイル1",
       "details": [
-        "ＴＫタワーの電波１（固定）\nドンブラー湖２の電波\n（固定、ウニが３つ並んだ下の穴の手前の崖を掘る）\nリゾートホテルの電波（ランダム）\nグルメタウンの電波（ランダム）\nゲレンデ２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)TKタワー1の電波",
+        "(ラ)ゲレンデ2の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
     },
@@ -2608,11 +2589,9 @@
       "section": "standard",
       "number": 11,
       "version": null,
-      "name": "レーダーミサイル２",
+      "name": "レーダーミサイル2",
       "details": [
-        "こわれたリフトの電波（固定）\nコダマタウンのスカイウェーブ（ランダム）\nドッシーのいりえの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)こわれたリフトの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
     },
@@ -2621,11 +2600,9 @@
       "section": "standard",
       "number": 12,
       "version": null,
-      "name": "レーダーミサイル３",
+      "name": "レーダーミサイル3",
       "details": [
-        "ムーたいりく（固定）\n★１：じげんのハザマ１（固定）\nゆりかごの間（ランダム）\n人助け：「イケツラ　モテツグ」\n★３：裏ＴＫタワー２の電波の電波商人（要プラチナカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(サ)イケツラ モテツグの依頼"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
     },
@@ -2634,11 +2611,9 @@
       "section": "standard",
       "number": 13,
       "version": null,
-      "name": "シンクロフック１",
+      "name": "シンクロフック1",
       "details": [
-        "ヤエバリゾートの電波（固定）\nショッピングプラザの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ヤエバリゾートの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
     },
@@ -2647,11 +2622,9 @@
       "section": "standard",
       "number": 14,
       "version": null,
-      "name": "シンクロフック２",
+      "name": "シンクロフック2",
       "details": [
-        "ＢＩＧＷＡＶＥの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)BIGWAVEの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
     },
@@ -2660,11 +2633,9 @@
       "section": "standard",
       "number": 15,
       "version": null,
-      "name": "シンクロフック３",
+      "name": "シンクロフック3",
       "details": [
-        "ナンスカのスカイウェーブの電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ゴールドカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカのスカイウェーブ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
     },
@@ -2673,11 +2644,9 @@
       "section": "standard",
       "number": 16,
       "version": null,
-      "name": "ミニグレネード１",
+      "name": "ミニグレネード1",
       "details": [
-        "ヒルズ前どおりの電波（ランダム）\nショッピングプラザの電波（ランダム）\nグルメタウンの電波（ランダム）\n★１：通信対戦で１０回勝利した時にもらえる",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
     },
@@ -2686,11 +2655,9 @@
       "section": "standard",
       "number": 17,
       "version": null,
-      "name": "ミニグレネード２",
+      "name": "ミニグレネード2",
       "details": [
-        "ドンブラー村のスカイウェーブ（ランダム）\nドッシーのいりえの電波（ランダム）\nドンブラー湖１の電波（ランダム）\n★３：ドンブラー村の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ドンブラーのスカイウェーブ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
     },
@@ -2699,11 +2666,9 @@
       "section": "standard",
       "number": 18,
       "version": null,
-      "name": "ミニグレネード３",
+      "name": "ミニグレネード3",
       "details": [
-        "ナンスカちじょうえの電波（ランダム）\nナンスカいせき１の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
     },
@@ -2714,9 +2679,7 @@
       "version": null,
       "name": "ヒートグレネード",
       "details": [
-        "ＢＩＧＷＡＶＥ",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
     },
@@ -2727,9 +2690,7 @@
       "version": null,
       "name": "グリーングレネード",
       "details": [
-        "★３：裏ナンスカのちじょうえの電波（固定）\nナンスカちじょうえの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
     },
@@ -2740,9 +2701,7 @@
       "version": null,
       "name": "アイスグレネード",
       "details": [
-        "★１：じげんのハザマ１（固定）\nバミューダラビリンスの電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
     },
@@ -2753,9 +2712,7 @@
       "version": null,
       "name": "ソード",
       "details": [
-        "コダマタウンの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
     },
@@ -2766,9 +2723,7 @@
       "version": null,
       "name": "ワイドソード",
       "details": [
-        "ショッピングプラザの電波（ランダム）\nＴＫタワーの電波１（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
     },
@@ -2779,9 +2734,7 @@
       "version": null,
       "name": "ロングソード",
       "details": [
-        "イヌごやの電波（固定）\nコダマタウンの電波（ランダム）\nスバルのへやの電波（ランダム）\nいいんちょうのへやの電波（ランダム）\nロッポンドーヒルズの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
     },
@@ -2792,9 +2745,7 @@
       "version": null,
       "name": "ホワイトメテオ",
       "details": [
-        "フランクフルトやの電波（固定）\nドンブラー湖１の電波（固定）\nゆりかごの間（ランダム）\n★１：通信対戦で３０回勝利した時にもらえる",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
     },
@@ -2805,9 +2756,7 @@
       "version": null,
       "name": "シルバーメテオ",
       "details": [
-        "バミューダラビリンス（固定）\nへいしの間（ランダム）\n人助け：「ナンスカ・リズ・ムンスカ」\n★３：裏ＴＫタワー２の電波の電波商人（要ゴールドカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
     },
@@ -2818,9 +2767,7 @@
       "version": null,
       "name": "グレートアックス",
       "details": [
-        "じげんのハザマ１の電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ブラックカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)じげんのハザマ1"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
     },
@@ -2831,9 +2778,7 @@
       "version": null,
       "name": "ダブルストーン",
       "details": [
-        "ナンスカちじょうえの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S028DoubleStone.gif"
     },
@@ -2844,9 +2789,8 @@
       "version": null,
       "name": "ガーディアン",
       "details": [
-        "じげんのハザマ１（固定）\nじげんのハザマ１の電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ブラックカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)じげんのハザマ1",
+        "(ミ):じげんのはざま１"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
     },
@@ -2857,9 +2801,7 @@
       "version": null,
       "name": "オーラ",
       "details": [
-        "裏ＴＫタワー２の電波（固定）\n裏ドッシーのいりえの電波（ランダム）\n裏ナンスカいせき２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(鍵)裏TKタワーの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S030Aura.gif"
     },
@@ -2868,11 +2810,9 @@
       "section": "standard",
       "number": 31,
       "version": null,
-      "name": "グランドウェーブ１",
+      "name": "グランドウェーブ1",
       "details": [
-        "コダマタウンの電波（固定）\nコダマタウンの電波（ランダム）\nスバルのリビングの電波（ランダム）\nいいんちょうのへやの電波（ランダム）\nキザマロのへやの電波（ランダム）\nヒルズ前どおりの電波（ランダム）\nロッポンドーヒルズの電波（ランダム）\nＴＫタワーの電波１（ランダム）",
-        "メットリオ",
-        "コダマタウンの電波\nイヌごやの電波\nあかポストの電波\nカンバンの電波\nスバルのリビングの電波\nテレビの電波\nスバルのへやの電波\nパソコンの電波\nいいんちょうのへやの電波\nオシャレタンスの電波\nゴン太のへやの電波\nＢＩＧＷＡＶＥの電波\nワゴンセールの電波\nヒルズ前どおりの電波\n電波ひょうしきの電波\nロッポンドーヒルズの電波\nメガ・ディスプレイの電波\nショッピングプラザの電波\nカンシカメラの電波\nえいがかんの電波\nＴＫタワーの電波１\nＴＫタワーの電波２\nふんすいデンパの電波\nわすれさられたこおりのぞうの電波\nあんないパネルの電波"
+        "(敵)メットリオ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
     },
@@ -2881,10 +2821,9 @@
       "section": "standard",
       "number": 32,
       "version": null,
-      "name": "グランドウェーブ２",
+      "name": "グランドウェーブ2",
       "details": [
-        "メットリオ２",
-        "コダマタウンの電波\nオンスイプールの電波\nスバルのリビングの電波\nスバルのへやの電波\nいいんちょうのへやの電波\nゴン太のへやの電波\nごちゃごちゃハコの電波\nふみだいの電波\nＢＩＧＷＡＶＥの電波\nヒルズ前どおりの電波\nロッポンドーヒルズの電波\nＴＫタワーの電波２\nカンリシステムの電波\nコダマタウンのスカイウェーブ\nドンブラー村のスカイウェーブ\nドンブラー湖１の電波\nドンブラー湖２の電波\nナンスカのスカイウェーブ\nナンスカの電波"
+        "(敵)メットリオ2"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
     },
@@ -2893,10 +2832,9 @@
       "section": "standard",
       "number": 33,
       "version": null,
-      "name": "グランドウェーブ３",
+      "name": "グランドウェーブ3",
       "details": [
-        "メットリオ３",
-        "裏コダマタウンの電波\nじげんのハザマ１"
+        "(敵)メットリオ3"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
     },
@@ -2905,11 +2843,9 @@
       "section": "standard",
       "number": 34,
       "version": null,
-      "name": "マッドバルカン１",
+      "name": "マッドバルカン1",
       "details": [
-        "ヒルズ前どおりの電波（固定）\nロッポンドーヒルズの電波（ランダム）\nえいがかんの電波（ランダム）\nＴＫタワーの電波１（ランダム）\nＴＫタワーの電波２（ランダム）\nショッピングプラザの電波の電波商人",
-        "バルカナ",
-        "コダマタウンの電波\nあかポストの電波\nカンバンの電波\nスバルのリビングの電波\nスバルのへやの電波\nパソコンの電波\nいいんちょうのへやの電波\nキザマロのへやの電波\nＢＩＧＷＡＶＥの電波\nワゴンセールの電波\n電波ひょうしきの電波\nロッポンドーヒルズの電波\nメガ・ディスプレイの電波\nショッピングプラザの電波\nカンシカメラの電波\nえいがかんの電波\nＴＫタワーの電波１\nふるいそうがんきょうの電波\nＴＫタワーの電波２\nＴＫアンテナの電波"
+        "(敵)バルカナ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
     },
@@ -2918,11 +2854,9 @@
       "section": "standard",
       "number": 35,
       "version": null,
-      "name": "マッドバルカン２",
+      "name": "マッドバルカン2",
       "details": [
-        "キザマロのへやの電波（ランダム）",
-        "バルガンナー",
-        "コダマタウンの電波\nスバルのへやの電波\nごちゃごちゃハコの電波\nキザマロのへやの電波\nＢＩＧＷＡＶＥの電波\nロッポンドーヒルズの電波\nＴＫタワーの電波１\nＴＫタワーの電波２\nドンブラー村のスカイウェーブ\nドンブラー湖２の電波\nナンスカのスカイウェーブ\nバミューダラビリンス"
+        "(敵)バルガンナー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
     },
@@ -2931,10 +2865,10 @@
       "section": "standard",
       "number": 36,
       "version": null,
-      "name": "マッドバルカン３",
+      "name": "マッドバルカン3",
       "details": [
-        "バルスナイパー",
-        "裏ドンブラー湖の電波\n裏ゲレンデ２の電波\n裏ナンスカいせき２の電波"
+        "(敵)バルスナイパー",
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
     },
@@ -2943,10 +2877,9 @@
       "section": "standard",
       "number": 37,
       "version": null,
-      "name": "デスサイズ１",
+      "name": "デスサイズ1",
       "details": [
-        "キルミィ",
-        "コダマタウンの電波\nスバルのリビングの電波\nスバルのへやの電波\nいいんちょうのへやの電波\nごちゃごちゃハコの電波\nふるいそうがんきょうの電波\nびじゅつかんの電波\nカンリシステムの電波\nいじげん\nコダマタウンのスカイウェーブ\nドンブラー村のスカイウェーブ\nナンスカのスカイウェーブ\nナンスカの電波\nいじげん"
+        "(敵)キルミィ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
     },
@@ -2955,10 +2888,9 @@
       "section": "standard",
       "number": 38,
       "version": null,
-      "name": "デスサイズ２",
+      "name": "デスサイズ2",
       "details": [
-        "キルジョーカー",
-        "いじげん\nオリヒメのアジトの電波\nてんくうのだいかいだん\nムーたいりく\nしんかんのぞうの電波\nへいしの間\nゆりかごの間\nモンショウの電波"
+        "(敵)キルジョーカー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
     },
@@ -2967,10 +2899,10 @@
       "section": "standard",
       "number": 39,
       "version": null,
-      "name": "デスサイズ３",
+      "name": "デスサイズ3",
       "details": [
-        "キルデーモン",
-        "裏ロッポンドーヒルズの電波\nこわれたディスプレイの電波\nじげんのハザマ２"
+        "(敵)キルデーモン",
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
     },
@@ -2979,11 +2911,9 @@
       "section": "standard",
       "number": 40,
       "version": null,
-      "name": "オロロンハット１",
+      "name": "オロロンハット1",
       "details": [
-        "ＴＫタワーの電波２（固定）\nキザマロのへやの電波（ランダム）",
-        "オロロン",
-        "パソコンの電波\nロッポンドーヒルズの電波\nＴＫタワーの電波１\nふるいそうがんきょうの電波\nＴＫタワーの電波２\nＴＫアンテナの電波"
+        "(敵)オロロン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
     },
@@ -2992,10 +2922,9 @@
       "section": "standard",
       "number": 41,
       "version": null,
-      "name": "オロロンハット２",
+      "name": "オロロンハット2",
       "details": [
-        "オルルン",
-        "ロッポンドーヒルズの電波\nＴＫタワーの電波１\nＴＫタワーの電波２\nバミューダラビリンス\nてんくうのだいかいだん"
+        "(敵)オルルン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
     },
@@ -3004,10 +2933,9 @@
       "section": "standard",
       "number": 42,
       "version": null,
-      "name": "オロロンハット３",
+      "name": "オロロンハット3",
       "details": [
-        "オリリン",
-        "裏ＴＫタワー２の電波\n裏ドッシーのいりえの電波\n裏ナンスカいせき２の電波"
+        "(敵)オリリン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
     },
@@ -3016,11 +2944,9 @@
       "section": "standard",
       "number": 43,
       "version": null,
-      "name": "ジェットスキー１",
+      "name": "ジェットスキー1",
       "details": [
-        "びじゅつかんの電波（ランダム）\nヤエバリゾートの電波（ランダム）\nゲレンデ１の電波（ランダム）\nショッピングプラザの電波の電波商人",
-        "ラビジェット",
-        "オシャレタンスの電波\nヤエバリゾートの電波\nふんすいデンパの電波\nユキダルマの電波\nグルメタウンの電波\nわすれさられたこおりのぞうの電波\nゲレンデ１の電波\nゲレンデ２の電波"
+        "(敵)ラビジェット"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
     },
@@ -3029,10 +2955,9 @@
       "section": "standard",
       "number": 44,
       "version": null,
-      "name": "ジェットスキー２",
+      "name": "ジェットスキー2",
       "details": [
-        "ラビロケット",
-        "ヤエバリゾートの電波\nきょだいてっぱんの電波\nゲレンデ２の電波\nドンブラー村の電波\nてんぼうだいの電波\nそうがんきょうの電波\nドッシーのいりえの電波\nカンシひつじの電波"
+        "(敵)ラビロケット"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
     },
@@ -3041,10 +2966,9 @@
       "section": "standard",
       "number": 45,
       "version": null,
-      "name": "ジェットスキー３",
+      "name": "ジェットスキー3",
       "details": [
-        "ラビニトロ",
-        "裏ＴＫタワー２の電波\n裏ナンスカいせき２の電波"
+        "(敵)ラビニトロ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
     },
@@ -3053,11 +2977,9 @@
       "section": "standard",
       "number": 46,
       "version": null,
-      "name": "モエリング１",
+      "name": "モエリング1",
       "details": [
-        "ロッポンドーヒルズの電波（固定）\nスバルのリビングの電波（ランダム）\nスバルのへやの電波（ランダム）\nロッポンドーヒルズの電波（ランダム）\nＴＫタワーの電波２（ランダム）",
-        "モエローダー",
-        "パソコンの電波\nヒルズ前どおりの電波\n電波ひょうしきの電波\nメガ・ディスプレイの電波\nショッピングプラザの電波\nカンシカメラの電波\nえいがかんの電波\nＴＫタワーの電波１\nＴＫタワーの電波２\nＴＫアンテナの電波"
+        "(敵)モエローダー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
     },
@@ -3066,10 +2988,9 @@
       "section": "standard",
       "number": 47,
       "version": null,
-      "name": "モエリング２",
+      "name": "モエリング2",
       "details": [
-        "モエモーター",
-        "ヒルズ前どおりの電波\nＴＫタワーの電波２\nコダマタウンのスカイウェーブ\nフランクフルトやの電波"
+        "(敵)モエモーター"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
     },
@@ -3078,10 +2999,9 @@
       "section": "standard",
       "number": 48,
       "version": null,
-      "name": "モエリング３",
+      "name": "モエリング3",
       "details": [
-        "モエバイカー",
-        "裏ロッポンドーヒルズの電波\nこわれたディスプレイの電波\n裏ナンスカいせき２の電波"
+        "(敵)モエバイカー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
     },
@@ -3090,11 +3010,9 @@
       "section": "standard",
       "number": 49,
       "version": null,
-      "name": "ダバフレイム１",
+      "name": "ダバフレイム1",
       "details": [
-        "ナンスカの電波（ランダム）\nナンスカちじょうえの電波（ランダム）",
-        "ダバダンス",
-        "ナンスカいせき１の電波\nしょくだいの電波\nナンスカいせき２の電波\nバミューダラビリンス"
+        "(敵)ダバダンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
     },
@@ -3103,10 +3021,9 @@
       "section": "standard",
       "number": 50,
       "version": null,
-      "name": "ダバフレイム２",
+      "name": "ダバフレイム2",
       "details": [
-        "ピョコダンス",
-        "ムーたいりく\nへいしの間\nゆりかごの間"
+        "(敵)ピョコダンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
     },
@@ -3115,10 +3032,9 @@
       "section": "standard",
       "number": 51,
       "version": null,
-      "name": "ダバフレイム３",
+      "name": "ダバフレイム3",
       "details": [
-        "ジャカダンス",
-        "裏ナンスカのちじょうえの電波\n裏ドッシーのいりえの電波"
+        "(敵)ジャカダンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
     },
@@ -3127,11 +3043,9 @@
       "section": "standard",
       "number": 52,
       "version": null,
-      "name": "ヒートアッパー１",
+      "name": "ヒートアッパー1",
       "details": [
-        "ゴン太のへやの電波（ランダム）\nＢＩＧＷＡＶＥの電波（ランダム）",
-        "ドッカーン",
-        "コダマタウンの電波\nごちゃごちゃハコの電波\nふるいそうがんきょうの電波\nびじゅつかんの電波\nいじげん\nきょだいてっぱんの電波\nドンブラー村のスカイウェーブ\nドンブラー村の電波\nナンスカの電波\nナンスカいせき２の電波"
+        "(敵)ドッカーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
     },
@@ -3140,10 +3054,9 @@
       "section": "standard",
       "number": 53,
       "version": null,
-      "name": "ヒートアッパー２",
+      "name": "ヒートアッパー2",
       "details": [
-        "ドッゴーン",
-        "へいしの間\nゆりかごの間"
+        "(敵)ドッゴーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
     },
@@ -3152,10 +3065,9 @@
       "section": "standard",
       "number": 54,
       "version": null,
-      "name": "ヒートアッパー３",
+      "name": "ヒートアッパー3",
       "details": [
-        "スッガーン",
-        "裏ナンスカのちじょうえの電波\n裏ドッシーのいりえの電波\nとまったふうしゃの電波"
+        "(敵)ズッガーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
     },
@@ -3164,11 +3076,9 @@
       "section": "standard",
       "number": 55,
       "version": null,
-      "name": "ボボボンボム１",
+      "name": "ボボボンボム1",
       "details": [
-        "じげんのハザマ１（ランダム）",
-        "ボボン",
-        "じげんのハザマ１"
+        "(敵)ボボン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
     },
@@ -3177,10 +3087,9 @@
       "section": "standard",
       "number": 56,
       "version": null,
-      "name": "ボボボンボム２",
+      "name": "ボボボンボム2",
       "details": [
-        "ボボボン",
-        "裏ドンブラー湖の電波"
+        "(敵)ボボボン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
     },
@@ -3189,10 +3098,9 @@
       "section": "standard",
       "number": 57,
       "version": null,
-      "name": "ボボボンボム３",
+      "name": "ボボボンボム3",
       "details": [
-        "ボボボボン",
-        "じげんのハザマ２"
+        "(敵)ボボボボン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
     },
@@ -3201,11 +3109,9 @@
       "section": "standard",
       "number": 58,
       "version": null,
-      "name": "チェインバブル１",
+      "name": "チェインバブル1",
       "details": [
-        "ドンブラー湖１の電波\n（固定、いかだの場所に出る洞窟の左下の洞窟入り口を掘る）\nてんぼうだいの電波（ランダム）\n裏ドッシーのいりえの電波（ランダム）",
-        "サワニガー",
-        "ドンブラー村の電波\nクックドゥドゥルドゥの電波\nフランクフルトやの電波\nてんぼうだいの電波\nドッシーのいりえの電波\nドンブラー湖１の電波\nドンブラー湖２の電波"
+        "(敵)サワガニー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
     },
@@ -3214,10 +3120,9 @@
       "section": "standard",
       "number": 59,
       "version": null,
-      "name": "チェインバブル２",
+      "name": "チェインバブル2",
       "details": [
-        "カワニガー",
-        "ドンブラー村の電波\nてんぼうだいの電波\nドッシーのいりえの電波\nドンブラー湖１の電波"
+        "(敵)カワニガー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
     },
@@ -3226,10 +3131,9 @@
       "section": "standard",
       "number": 60,
       "version": null,
-      "name": "チェインバブル３",
+      "name": "チェインバブル3",
       "details": [
-        "ウミニガー",
-        "裏ナンスカのちじょうえの電波\n裏ドッシーのいりえの電波"
+        "(敵)ウミニガー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
     },
@@ -3238,11 +3142,9 @@
       "section": "standard",
       "number": 61,
       "version": null,
-      "name": "ネバーレイン１",
+      "name": "ネバーレイン1",
       "details": [
-        "ムーたいりく（ランダム）",
-        "ネバーラ",
-        "ヒルズ前どおりの電波\nロッポンドーヒルズの電波\nＴＫタワーの電波１\nＴＫタワーの電波２"
+        "(敵)ネバーラ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
     },
@@ -3251,10 +3153,9 @@
       "section": "standard",
       "number": 62,
       "version": null,
-      "name": "ネバーレイン２",
+      "name": "ネバーレイン2",
       "details": [
-        "ベターラ",
-        "裏コダマタウンの電波\nこわれたバスていの電波"
+        "(敵)ベターラ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
     },
@@ -3263,10 +3164,9 @@
       "section": "standard",
       "number": 63,
       "version": null,
-      "name": "ネバーレイン３",
+      "name": "ネバーレイン3",
       "details": [
-        "ヌチャーラ",
-        "裏ロッポンドーヒルズの電波\n裏ドンブラー湖の電波\nじげんのハザマ２"
+        "(敵)ヌチャーラ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
     },
@@ -3275,11 +3175,9 @@
       "section": "standard",
       "number": 64,
       "version": null,
-      "name": "スノーボール１",
+      "name": "スノーボール1",
       "details": [
-        "びじゅつかんの電波（ランダム）",
-        "スノーゴロン",
-        "ゲレンデ１の電波\nこわれたリフトの電波\nゲレンデ２の電波"
+        "(敵)スノーゴロン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
     },
@@ -3288,10 +3186,9 @@
       "section": "standard",
       "number": 65,
       "version": null,
-      "name": "スノーボール２",
+      "name": "スノーボール2",
       "details": [
-        "スノーゴロドン",
-        "ゲレンデ１の電波\nゲレンデ２の電波"
+        "(敵)スノーゴロドン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
     },
@@ -3300,10 +3197,9 @@
       "section": "standard",
       "number": 66,
       "version": null,
-      "name": "スノーボール３",
+      "name": "スノーボール3",
       "details": [
-        "スノーゴロリンガ",
-        "裏ゲレンデ２の電波\n裏ドッシーのいりえの電波"
+        "(敵)スノーゴロリンガ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
     },
@@ -3312,10 +3208,9 @@
       "section": "standard",
       "number": 67,
       "version": null,
-      "name": "ピラニアキッス１",
+      "name": "ピラニアキッス1",
       "details": [
-        "ピラニッシュ",
-        "オンスイプールの電波\nドンブラー湖１の電波\nドンブラー湖２の電波\nオウのカンムリの電波\nミスター・タコさんの電波"
+        "(敵)ピラニッシュ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
     },
@@ -3324,10 +3219,9 @@
       "section": "standard",
       "number": 68,
       "version": null,
-      "name": "ピラニアキッス２",
+      "name": "ピラニアキッス2",
       "details": [
-        "ピラニヤン",
-        "ドンブラー湖１の電波\nドンブラー湖２の電波\nちんぼつせんの電波\n裏ドンブラー湖の電波"
+        "(敵)ピラニヤン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
     },
@@ -3336,10 +3230,9 @@
       "section": "standard",
       "number": 69,
       "version": null,
-      "name": "ピラニアキッス３",
+      "name": "ピラニアキッス3",
       "details": [
-        "ピラニッガ",
-        "裏ドンブラー湖の電波"
+        "(敵)ピラニッガ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
     },
@@ -3348,11 +3241,9 @@
       "section": "standard",
       "number": 70,
       "version": null,
-      "name": "ボルティックアイ１",
+      "name": "ボルティックアイ1",
       "details": [
-        "グルメタウンの電波（ランダム）\nゲレンデ１の電波（ランダム）\nドンブラー村の電波（ランダム）",
-        "アイズ",
-        "ごちゃごちゃハコの電波\nびじゅつかんの電波\nカンリシステムの電波\nグルメタウンの電波\nわすれさられたこおりのぞうの電波\nリゾートホテルの電波\nしゅくはくモニターの電波\nあんないパネルの電波\nスウィートルームの電波\nてんがいベッドの電波\nゲレンデ１の電波\nゲレンデ２の電波\nてんぼうだいの電波\nそうがんきょうの電波\nドンブラー湖１の電波\nドンブラー湖２の電波"
+        "(敵)アイズ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
     },
@@ -3361,10 +3252,9 @@
       "section": "standard",
       "number": 71,
       "version": null,
-      "name": "ボルティックアイ２",
+      "name": "ボルティックアイ2",
       "details": [
-        "ガードアイ",
-        "ムーたいりく\nしんかんのぞうの電波\nへいしの間"
+        "(敵)ガードアイ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
     },
@@ -3373,10 +3263,9 @@
       "section": "standard",
       "number": 72,
       "version": null,
-      "name": "ボルティックアイ３",
+      "name": "ボルティックアイ3",
       "details": [
-        "プロテクトアイ",
-        "裏ドッシーのいりえの電波\n裏ナンスカいせき２の電波"
+        "(敵)プロテクトアイ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
     },
@@ -3385,10 +3274,9 @@
       "section": "standard",
       "number": 73,
       "version": null,
-      "name": "ホタルゲリ１",
+      "name": "ホタルゲリ1",
       "details": [
-        "ホタロー",
-        "ドンブラー村の電波\nてんぼうだいの電波\nドッシーのいりえの電波\nバミューダラビリンス"
+        "(敵)ホタロー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
     },
@@ -3397,10 +3285,9 @@
       "section": "standard",
       "number": 74,
       "version": null,
-      "name": "ホタルゲリ２",
+      "name": "ホタルゲリ2",
       "details": [
-        "ホタリーン",
-        "エランドの電波\nモンショウの電波"
+        "(敵)ホタリーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
     },
@@ -3409,10 +3296,9 @@
       "section": "standard",
       "number": 75,
       "version": null,
-      "name": "ホタルゲリ３",
+      "name": "ホタルゲリ3",
       "details": [
-        "ホタリッガ",
-        "裏ゲレンデ２の電波\n裏ＴＫタワー２の電波"
+        "(敵)ホタリッガ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
     },
@@ -3421,11 +3307,9 @@
       "section": "standard",
       "number": 76,
       "version": null,
-      "name": "ステルスレーザー１",
+      "name": "ステルスレーザー1",
       "details": [
-        "ゆりかごの間（ランダム）",
-        "ステルス",
-        "バミューダラビリンス\nてんくうのだいかいだん\nオリヒメのアジトの電波"
+        "(敵)ステルス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S076StealthLaser1.gif"
     },
@@ -3434,10 +3318,9 @@
       "section": "standard",
       "number": 77,
       "version": null,
-      "name": "ステルスレーザー２",
+      "name": "ステルスレーザー2",
       "details": [
-        "メガステルス",
-        "裏ナンスカのちじょうえの電波"
+        "(敵)メガステルス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
     },
@@ -3446,10 +3329,9 @@
       "section": "standard",
       "number": 78,
       "version": null,
-      "name": "ステルスレーザー３",
+      "name": "ステルスレーザー3",
       "details": [
-        "ギガステルス",
-        "じげんのハザマ２"
+        "(敵)ギガステルス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
     },
@@ -3458,11 +3340,9 @@
       "section": "standard",
       "number": 79,
       "version": null,
-      "name": "マミーハンド１",
+      "name": "マミーハンド1",
       "details": [
-        "てんくうのだいかいだん（ランダム）",
-        "エレミーラ",
-        "ゆりかごの間"
+        "(敵)エレミーラ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
     },
@@ -3471,10 +3351,9 @@
       "section": "standard",
       "number": 80,
       "version": null,
-      "name": "マミーハンド２",
+      "name": "マミーハンド2",
       "details": [
-        "エレマミー",
-        "じげんのハザマ１"
+        "(敵)エレマミー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
     },
@@ -3483,10 +3362,9 @@
       "section": "standard",
       "number": 81,
       "version": null,
-      "name": "マミーハンド３",
+      "name": "マミーハンド3",
       "details": [
-        "エレファラオ",
-        "裏ＴＫタワー２の電波"
+        "(敵)エレファラオ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
     },
@@ -3495,11 +3373,9 @@
       "section": "standard",
       "number": 82,
       "version": null,
-      "name": "モジャランス１",
+      "name": "モジャランス1",
       "details": [
-        "リゾートホテルの電波（ランダム）\nスウィートルームの電波（ランダム）\nゲレンデ１の電波（ランダム）",
-        "モジャヘイ",
-        "ごちゃごちゃハコの電波\nワゴンセールの電波\nびじゅつかんの電波\nヤエバリゾートの電波\nふんすいデンパの電波\nユキダルマの電波\nグルメタウンの電波\nわすれさられたこおりのぞうの電波\nリゾートホテルの電波\nしゅくはくモニターの電波\nあんないパネルの電波\nスウィートルームの電波\nてんがいベッドの電波\nゲレンデ１の電波\nゲレンデ２の電波\nドッシーのいりえの電波\nナンスカちじょうえの電波\nナンスカいせき１の電波\nナンスカいせき２の電波"
+        "(敵)モジャヘイ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
     },
@@ -3508,10 +3384,9 @@
       "section": "standard",
       "number": 83,
       "version": null,
-      "name": "モジャランス２",
+      "name": "モジャランス2",
       "details": [
-        "モジャグンソウ",
-        "ナンスカいせき１の電波\nナンスカいせき２の電波\nせいなるほのおの電波"
+        "(敵)モジャグンソウ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
     },
@@ -3520,10 +3395,9 @@
       "section": "standard",
       "number": 84,
       "version": null,
-      "name": "モジャランス３",
+      "name": "モジャランス3",
       "details": [
-        "モジャゲンスイ",
-        "裏コダマタウンの電波\nこわれたバスていの電波\nじげんのハザマ１\nナンスカノオトメの電脳\nじげんのハザマ２"
+        "(敵)モジャゲンスイ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
     },
@@ -3532,11 +3406,9 @@
       "section": "standard",
       "number": 85,
       "version": null,
-      "name": "ヘンゲノジュツ１",
+      "name": "ヘンゲノジュツ1",
       "details": [
-        "ドンブラー湖１の電波\n（固定、水門を開ける手前の坂を下りたところを掘る）\nてんぼうだいの電波（ランダム）",
-        "ヌッキー",
-        "ドンブラー村の電波\nクックドゥドゥルドゥの電波\nフランクフルトやの電波\nてんぼうだいの電波\nそうがんきょうの電波\nドッシーのいりえの電波\nカンシひつじの電波"
+        "(敵)ヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
     },
@@ -3545,10 +3417,9 @@
       "section": "standard",
       "number": 86,
       "version": null,
-      "name": "ヘンゲノジュツ２",
+      "name": "ヘンゲノジュツ2",
       "details": [
-        "マネヌッキー",
-        "ふみだいの電波\nきょだいてっぱんの電波"
+        "(敵)マネヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
     },
@@ -3557,10 +3428,9 @@
       "section": "standard",
       "number": 87,
       "version": null,
-      "name": "ヘンゲノジュツ３",
+      "name": "ヘンゲノジュツ3",
       "details": [
-        "バケヌッキー",
-        "裏ゲレンデ２の電波\n裏ナンスカのちじょうえの電波\nナンスカノオトメの電脳"
+        "(敵)バケヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
     },
@@ -3569,10 +3439,9 @@
       "section": "standard",
       "number": 88,
       "version": null,
-      "name": "コガラシ１",
+      "name": "コガラシ1",
       "details": [
-        "コガラシマル",
-        "バミューダラビリンス\nてんくうのだいかいだん"
+        "(敵)コガラシマル"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
     },
@@ -3581,10 +3450,9 @@
       "section": "standard",
       "number": 89,
       "version": null,
-      "name": "コガラシ２",
+      "name": "コガラシ2",
       "details": [
-        "タツマキマル",
-        "こわれたバスていの電波\nとまったふうしゃの電波\nナンスカノオトメの電脳"
+        "(敵)タツマキマル"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
     },
@@ -3593,10 +3461,9 @@
       "section": "standard",
       "number": 90,
       "version": null,
-      "name": "コガラシ３",
+      "name": "コガラシ3",
       "details": [
-        "フウジンマル",
-        "裏ロッポンドーヒルズの電波\n裏ナンスカのちじょうえの電波"
+        "(敵)フウジンマル"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
     },
@@ -3605,11 +3472,9 @@
       "section": "standard",
       "number": 91,
       "version": null,
-      "name": "ニドラッシュ１",
+      "name": "ニドラッシュ1",
       "details": [
-        "ドンブラー村のスカイウェーブ（ランダム）\nナンスカのスカイウェーブ（ランダム）",
-        "フラッター",
-        "オンスイプールの電波\nふみだいの電波\nＴＫタワーの電波２\nコダマタウンのスカイウェーブ\nドンブラー村のスカイウェーブ\nドンブラー村の電波\nドッシーのいりえの電波\nナンスカのスカイウェーブ\nこだいトンボの電波"
+        "(敵)フラッター"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
     },
@@ -3618,10 +3483,9 @@
       "section": "standard",
       "number": 92,
       "version": null,
-      "name": "ニドラッシュ２",
+      "name": "ニドラッシュ2",
       "details": [
-        "フラッタリオン",
-        "バミューダラビリンス\nてんくうのだいかいだん"
+        "(敵)フラッタリオン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
     },
@@ -3630,10 +3494,9 @@
       "section": "standard",
       "number": 93,
       "version": null,
-      "name": "ニドラッシュ３",
+      "name": "ニドラッシュ3",
       "details": [
-        "フラッタライザー",
-        "じげんのハザマ１\n裏ドッシーのいりえの電波\nとまったふうしゃの電波\nナンスカノオトメの電脳"
+        "(敵)フラッタライザー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
     },
@@ -3644,8 +3507,7 @@
       "version": null,
       "name": "グリーンカーペット",
       "details": [
-        "カカペット",
-        "スバルのリビングの電波\nナンスカの電波\nムーのぞうの電波\nナンスカちじょうえの電波\nこだいトンボの電波\nナンスカいせき１の電波\nしょくだいの電波\nナンスカいせき２の電波\n裏ゲレンデ２の電波"
+        "(敵)カカペット"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
     },
@@ -3656,9 +3518,7 @@
       "version": null,
       "name": "ブルーカーペット",
       "details": [
-        "ナンスカのスカイウェーブ（ランダム）\nナンスカいせき１の電波（ランダム）",
-        "カカペーニョ",
-        "裏ロッポンドーヒルズの電波\n裏ゲレンデ２の電波\nじげんのハザマ２"
+        "(敵)カカペーニョ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
     },
@@ -3669,8 +3529,7 @@
       "version": null,
       "name": "パープルカーペット",
       "details": [
-        "カカペギロ",
-        "じげんのハザマ２"
+        "(敵)カカペギロ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
     },
@@ -3679,11 +3538,9 @@
       "section": "standard",
       "number": 97,
       "version": null,
-      "name": "ケサランパサラン１",
+      "name": "ケサランパサラン1",
       "details": [
-        "ドンブラー村のスカイウェーブ（固定）\nドンブラー村のスカイウェーブ（ランダム）",
-        "パサラン",
-        "ふみだいの電波\nコダマタウンのスカイウェーブ\nてんぼうだいの電波\nナンスカのスカイウェーブ"
+        "(敵)パサラン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
     },
@@ -3692,10 +3549,9 @@
       "section": "standard",
       "number": 98,
       "version": null,
-      "name": "ケサランパサラン２",
+      "name": "ケサランパサラン2",
       "details": [
-        "フワラン",
-        "てんぼうだいの電波\nオウのカンムリの電波\nちんぼつせんの電波\nミスター・タコさんの電波\nナンスカのスカイウェーブ\nナンスカの電波\nナンスカちじょうえの電波\nバミューダラビリンス\nオリヒメのアジトの電波"
+        "(敵)フワラン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
     },
@@ -3704,10 +3560,9 @@
       "section": "standard",
       "number": 99,
       "version": null,
-      "name": "ケサランパサラン３",
+      "name": "ケサランパサラン3",
       "details": [
-        "ポワラン",
-        "裏ドンブラー湖の電波\n裏ナンスカいせき２の電波"
+        "(敵)ポワラン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
     },
@@ -3716,10 +3571,9 @@
       "section": "standard",
       "number": 100,
       "version": null,
-      "name": "ハンマーウェポン１",
+      "name": "ハンマーウェポン1",
       "details": [
-        "ハンマリー",
-        "ムーたいりく\nへいしの間"
+        "(敵)ハンマリー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
     },
@@ -3728,10 +3582,9 @@
       "section": "standard",
       "number": 101,
       "version": null,
-      "name": "ハンマーウェポン２",
+      "name": "ハンマーウェポン2",
       "details": [
-        "ハンマリオ",
-        "裏ロッポンドーヒルズの電波\nこわれたディスプレイの電波"
+        "(敵)ハンマリオ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
     },
@@ -3740,10 +3593,9 @@
       "section": "standard",
       "number": 102,
       "version": null,
-      "name": "ハンマーウェポン３",
+      "name": "ハンマーウェポン3",
       "details": [
-        "ハンマリドン",
-        "じげんのハザマ２"
+        "(敵)ハンマリドン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
     },
@@ -3754,9 +3606,7 @@
       "version": null,
       "name": "ジャングルストーム",
       "details": [
-        "裏コダマタウンの電波（ランダム）\nじげんのハザマ１（ランダム）",
-        "ニョロフーン",
-        "裏コダマタウンの電波\nこわれたバスていの電波"
+        "(敵)ニョロフーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
     },
@@ -3767,8 +3617,7 @@
       "version": null,
       "name": "スノーストーム",
       "details": [
-        "ニョロバーン",
-        "裏ゲレンデ２の電波"
+        "(敵)ニョロバーン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
     },
@@ -3779,8 +3628,7 @@
       "version": null,
       "name": "ポイズンストーム",
       "details": [
-        "ニョロフンガー",
-        "じげんのハザマ２"
+        "(敵)ニョロフンガー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
     },
@@ -3791,9 +3639,7 @@
       "version": null,
       "name": "エレキスラッシュ",
       "details": [
-        "ドンブラー湖１の電波（ランダム）\nへいしの間（ランダム）",
-        "モノソード",
-        "ドンブラー湖１の電波\nドンブラー湖２の電波\nオウのカンムリの電波\nミスター・タコさんの電波\nナンスカの電波\nナンスカちじょうえの電波"
+        "(敵)モノソード"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
     },
@@ -3804,8 +3650,7 @@
       "version": null,
       "name": "ウッドスラッシュ",
       "details": [
-        "モノソーディン",
-        "ちんぼつせんの電波\nムーのぞうの電波\nしょくだいの電波"
+        "(敵)モノソーディン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
     },
@@ -3816,8 +3661,7 @@
       "version": null,
       "name": "ファイアスラッシュ",
       "details": [
-        "モノソーディル",
-        "裏コダマタウンの電波\n裏ＴＫタワー２の電波"
+        "(敵)モノソーディル"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
     },
@@ -3826,10 +3670,9 @@
       "section": "standard",
       "number": 109,
       "version": null,
-      "name": "モアイフォール１",
+      "name": "モアイフォール1",
       "details": [
-        "モアイアン",
-        "ナンスカの電波\nでんりゅうイワの電波\nムーのぞうの電波\nナンスカちじょうえの電波\nこだいトンボの電波\nナンスカいせき１の電波\nしょくだいの電波\nナンスカいせき２の電波"
+        "(敵)モアイアン"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
     },
@@ -3838,10 +3681,9 @@
       "section": "standard",
       "number": 110,
       "version": null,
-      "name": "モアイフォール２",
+      "name": "モアイフォール2",
       "details": [
-        "ストーンヘッド",
-        "ナンスカの電波\nナンスカちじょうえの電波\nナンスカいせき１の電波\nナンスカいせき２の電波\nせいなるほのおの電波"
+        "(敵)ストーンフェイス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
     },
@@ -3850,10 +3692,9 @@
       "section": "standard",
       "number": 111,
       "version": null,
-      "name": "モアイフォール３",
+      "name": "モアイフォール3",
       "details": [
-        "ジャイアントフェイス",
-        "裏ドンブラー湖の電波\n裏ナンスカのちじょうえの電波"
+        "(敵)ジャイアントフェイス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
     },
@@ -3862,10 +3703,9 @@
       "section": "standard",
       "number": 112,
       "version": null,
-      "name": "ブラックホール１",
+      "name": "ブラックホール1",
       "details": [
-        "ヘルブラック",
-        "へいしの間\nゆりかごの間\nモンショウの電波"
+        "(敵)ヘルブラック"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S112BlackHole1.gif"
     },
@@ -3874,10 +3714,9 @@
       "section": "standard",
       "number": 113,
       "version": null,
-      "name": "ブラックホール２",
+      "name": "ブラックホール2",
       "details": [
-        "キラーブラック",
-        "じげんのハザマ１"
+        "(敵)キラーブラック"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S113BlackHole2.gif"
     },
@@ -3886,10 +3725,9 @@
       "section": "standard",
       "number": 114,
       "version": null,
-      "name": "ブラックホール３",
+      "name": "ブラックホール3",
       "details": [
-        "デビルブラック",
-        "裏ＴＫタワー２の電波"
+        "(敵)デビルブラック"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S114BlackHole3.gif"
     },
@@ -3898,10 +3736,9 @@
       "section": "standard",
       "number": 115,
       "version": null,
-      "name": "ベルセルクソード１",
+      "name": "ベルセルクソード1",
       "details": [
-        "バサリカ",
-        "ふみだいの電波\nコダマタウンのスカイウェーブ\nてんぼうだいの電波\nナンスカのスカイウェーブ"
+        "(敵)バサリカ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
     },
@@ -3910,10 +3747,9 @@
       "section": "standard",
       "number": 116,
       "version": null,
-      "name": "ベルセルクソード２",
+      "name": "ベルセルクソード2",
       "details": [
-        "バサリグル",
-        "ムーたいりく"
+        "(敵)バサリグル"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
     },
@@ -3922,10 +3758,9 @@
       "section": "standard",
       "number": 117,
       "version": null,
-      "name": "ベルセルクソード３",
+      "name": "ベルセルクソード3",
       "details": [
-        "バサリッガー",
-        "裏ナンスカいせき２の電波\nじげんのハザマ２"
+        "(敵)バサリッガー"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
     },
@@ -3936,9 +3771,7 @@
       "version": null,
       "name": "タイフーンダンス",
       "details": [
-        "ナンスカちじょうえの電波の電波商人\n★１：通信対戦で５０回勝利した時にもらえる\n★３：裏ＴＫタワー２の電波の電波商人（要プラチナカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
     },
@@ -3947,11 +3780,9 @@
       "section": "standard",
       "number": 119,
       "version": null,
-      "name": "アトミックマイン１",
+      "name": "アトミックマイン1",
       "details": [
-        "ナンスカいせき１の電波（固定）\nナンスカちじょうえの電波の電波商人\n★１：通信対戦で１００回戦闘した時にもらえる",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
     },
@@ -3960,11 +3791,9 @@
       "section": "standard",
       "number": 120,
       "version": null,
-      "name": "アトミックマイン２",
+      "name": "アトミックマイン2",
       "details": [
-        "ゆりかごの間（ランダム）\n裏ドッシーのいりえの電波（ランダム）\nバミューダラビリンスの電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
     },
@@ -3973,11 +3802,9 @@
       "section": "standard",
       "number": 121,
       "version": null,
-      "name": "アトミックマイン３",
+      "name": "アトミックマイン3",
       "details": [
-        "★１：ナンスカ・オサ・アガメ\nじげんのハザマ１（固定）\nじげんのハザマ１（ランダム）\nじげんのハザマ１の電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ブラックカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)じげんのハザマ1"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
     },
@@ -3988,9 +3815,7 @@
       "version": null,
       "name": "パラライズステージ",
       "details": [
-        "そうがんきょうの電波（固定）\nドッシーのいりえの電波（ランダム）\n裏コダマタウンの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)そうがんきょうの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S122ParalyseStage.gif"
     },
@@ -4001,9 +3826,7 @@
       "version": null,
       "name": "ゼツエンステージ",
       "details": [
-        "ナンスカのスカイウェーブ（ランダム）\nナンスカいせき１の電波（ランダム）\nナンスカいせき２の電波（ランダム）\nムーたいりく（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ナンスカいせき2の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S123ZetsuenStage.gif"
     },
@@ -4012,11 +3835,9 @@
       "section": "standard",
       "number": 124,
       "version": null,
-      "name": "リカバリー１０",
+      "name": "リカバリー10",
       "details": [
-        "コダマタウンの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S124Recovery10.gif"
     },
@@ -4025,11 +3846,9 @@
       "section": "standard",
       "number": 125,
       "version": null,
-      "name": "リカバリー３０",
+      "name": "リカバリー30",
       "details": [
-        "ヒルズ前どおりの電波（固定）\nエア・ディスプレイの電波（固定）\nヒルズ前どおりの電波（ランダム）\nスバルのリビングの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ショッピングプラザの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S125Recovery30.gif"
     },
@@ -4038,11 +3857,9 @@
       "section": "standard",
       "number": 126,
       "version": null,
-      "name": "リカバリー５０",
+      "name": "リカバリー50",
       "details": [
-        "ゲレンデ２の電波（固定）\nびじゅつかんの電波（ランダム）\nスウィートルームの電波（ランダム）\nショッピングプラザの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S126Recovery50.gif"
     },
@@ -4051,11 +3868,9 @@
       "section": "standard",
       "number": 127,
       "version": null,
-      "name": "リカバリー８０",
+      "name": "リカバリー80",
       "details": [
-        "コダマタウンのスカイウェーブ（固定）\nドンブラー湖２の電波（固定、人魚の下を掘る）\nドンブラー村の電波（ランダム）\nてんぼうだいの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S127Recovery80.gif"
     },
@@ -4064,11 +3879,9 @@
       "section": "standard",
       "number": 128,
       "version": null,
-      "name": "リカバリー１２０",
+      "name": "リカバリー120",
       "details": [
-        "ナンスカのスカイウェーブ（ランダム）\nナンスカの電波（ランダム）\nナンスカいせき２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ナンスカのスカイウェーブ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S128Recovery120.gif"
     },
@@ -4077,11 +3890,9 @@
       "section": "standard",
       "number": 129,
       "version": null,
-      "name": "リカバリー１５０",
+      "name": "リカバリー150",
       "details": [
-        "バミューダラビリンスの電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S129Recovery150.gif"
     },
@@ -4090,11 +3901,9 @@
       "section": "standard",
       "number": 130,
       "version": null,
-      "name": "リカバリー２００",
+      "name": "リカバリー200",
       "details": [
-        "せいなるほのおの電波（固定）\nゆりかごの間（固定）\nへいしの間（ランダム）\nゆりかごの間（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ゆりかごの間"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S130Recovery200.gif"
     },
@@ -4103,11 +3912,9 @@
       "section": "standard",
       "number": 131,
       "version": null,
-      "name": "リカバリー３００",
+      "name": "リカバリー300",
       "details": [
-        "裏コダマタウンの電波（固定）\nじげんのハザマ１（固定）\nナンスカノオトメの電脳（固定）\n人助け：「響　ミソラ」",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)裏コダマタウンの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S131Recovery300.gif"
     },
@@ -4118,9 +3925,7 @@
       "version": null,
       "name": "バリア",
       "details": [
-        "コダマタウンの電波（ランダム）\nえいがかんの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S132Barrier.gif"
     },
@@ -4131,9 +3936,7 @@
       "version": null,
       "name": "スーパーバリア",
       "details": [
-        "ナンスカのスカイウェーブ（固定）\nナンスカのスカイウェーブ（ランダム）\nへいしの間（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ナンスカのスカイウェーブ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S133SuperBarrier.gif"
     },
@@ -4144,9 +3947,8 @@
       "version": null,
       "name": "アタックパネル",
       "details": [
-        "いいんちょうのへやの電波（固定）\nヤエバリゾートの電波（固定）\nショッピングプラザの電波（ランダム）\nびじゅつかんの電波（ランダム）\nリゾートホテルの電波（ランダム）\nグルメタウンの電波（ランダム）\nゲレンデ１の電波（ランダム）\nゲレンデ２の電波（ランダム）\nコダマタウンのスカイウェーブ（ランダム）\nナンスカのスカイウェーブ（ランダム）\n人助け：「あいざわ　らぶえ」",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)いいんちょうの部屋の電波",
+        "(暗)あんごうメール"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S134AttackPanel.gif"
     },
@@ -4157,9 +3959,7 @@
       "version": null,
       "name": "フクヘイパネル",
       "details": [
-        "ドンブラー湖２の電波（固定、タコのいるすぐ左を掘る）\nドンブラー村のスカイウェーブ（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S135FukeheiPanel.gif"
     },
@@ -4170,9 +3970,7 @@
       "version": null,
       "name": "バスターパネル",
       "details": [
-        "ナンスカいせき１の電波（固定）\nへいしの間（ランダム）\n裏ＴＫタワー２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ナンスカいせき1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S136BusterPanel.gif"
     },
@@ -4183,9 +3981,7 @@
       "version": null,
       "name": "インビジブル",
       "details": [
-        "えいがかんの電波（固定）\nゲレンデ２の電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S137Invisible.gif"
     },
@@ -4196,9 +3992,7 @@
       "version": null,
       "name": "ホイッスル",
       "details": [
-        "キザマロのへやの電波（固定）\nキザマロのへやの電波（ランダム）\n人助け：「ヒロイ　カネ」",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ギザマロの部屋"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S138Whistle.gif"
     },
@@ -4209,9 +4003,7 @@
       "version": null,
       "name": "ボムライザー",
       "details": [
-        "てんぼうだいの電波の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)てんぼうだいの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
     },
@@ -4222,9 +4014,7 @@
       "version": null,
       "name": "エリアイーター",
       "details": [
-        "ＢＩＧＷＡＶＥ",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S140AreaEater.gif"
     },
@@ -4235,9 +4025,7 @@
       "version": null,
       "name": "セイレイノイカリ",
       "details": [
-        "バミューダラビリンスの電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要プラチナカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
     },
@@ -4248,9 +4036,7 @@
       "version": null,
       "name": "シラハドリ",
       "details": [
-        "ナンスカちじょうえの電波の電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ゴールドカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)ナンスカちじょうえの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
     },
@@ -4261,9 +4047,7 @@
       "version": null,
       "name": "ドクリンゴ",
       "details": [
-        "バミューダラビリンスの電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)バミューダラビリンス"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S143DokuRingo.gif"
     },
@@ -4274,9 +4058,7 @@
       "version": null,
       "name": "ウラギリノススメ",
       "details": [
-        "じげんのハザマ１の電波商人",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)じげんのハザマ1"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S144UragiriNoSusume.gif"
     },
@@ -4287,9 +4069,7 @@
       "version": null,
       "name": "ギガマイン",
       "details": [
-        "じげんのハザマ１の電波商人\n★３：裏ＴＫタワー２の電波の電波商人（要ブラックカード）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(店)じげんのハザマ1"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
     },
@@ -4300,9 +4080,7 @@
       "version": null,
       "name": "クサムラステージ",
       "details": [
-        "コダマタウンの電波（ランダム）\nスバルのリビングの電波（ランダム）\nスバルのへやの電波（ランダム）\nＴＫタワーの電波２（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ラ)コダマタウンの電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S146KusamuraStage.gif"
     },
@@ -4313,9 +4091,7 @@
       "version": null,
       "name": "アイスステージ",
       "details": [
-        "ゲレンデ１の電波（固定）\nスウィートルームの電波（ランダム）\nヤエバリゾートの電波（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(ミ)ゲレンデ1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S147IceStage.gif"
     },
@@ -4326,9 +4102,7 @@
       "version": null,
       "name": "ホーリーパネル",
       "details": [
-        "てんくうのだいかいだん\n（要オープンロック、\n階段の左端の途中に\n見えない通路があり、その先）\n裏ドンブラー湖の電波（固定）\n人助け：「星河　あかね」",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(サ)スバルの母の依頼報酬"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S148HolyStage.gif"
     },
@@ -4339,9 +4113,7 @@
       "version": null,
       "name": "マヒプラス",
       "details": [
-        "スバルのリビングの電波（固定）\nスバルのへやの電波（ランダム）\nいいんちょうのへやの電波（ランダム）\nゴン太のへやの電波（ランダム）\nＢＩＧＷＡＶＥの電波（ランダム）\nショッピングプラザの電波（ランダム）\nＴＫタワーの電波１（ランダム）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S149MahiPlus.gif"
     },
@@ -4350,11 +4122,9 @@
       "section": "standard",
       "number": 150,
       "version": null,
-      "name": "アタック＋１０",
+      "name": "アタック+10",
       "details": [
-        "テレビの電波（固定）",
-        "所持ウイルスなし",
-        "所持ウイルスなし"
+        "(初)スバルフォルダ"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/S150Attack+10.gif"
     },
@@ -4365,8 +4135,7 @@
       "version": null,
       "name": "ファントムブラック",
       "details": [
-        "ファントム・ブラックＳＰ",
-        "ＴＫタワーの電波２"
+        "(敵)ファントム・ブラックEX/(敵)ファントムブラックSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M01PhantomBlack.gif"
     },
@@ -4375,8 +4144,10 @@
       "section": "mega",
       "number": 2,
       "version": null,
-      "name": "ファントムブラックＥＸ",
-      "details": [],
+      "name": "ファントムブラックEX",
+      "details": [
+        "(敵)ファントム・ブラックEX/(敵)ファントムブラックSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M02PhantomBlackEX.gif"
     },
     {
@@ -4384,8 +4155,10 @@
       "section": "mega",
       "number": 3,
       "version": null,
-      "name": "ファントムブラックＳＰ",
-      "details": [],
+      "name": "ファントムブラックSP",
+      "details": [
+        "(敵)ファントムブラックSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M03PhantomBlackSP.gif"
     },
     {
@@ -4395,8 +4168,7 @@
       "version": null,
       "name": "イエティブリザード",
       "details": [
-        "イエティ・ブリザードＳＰ",
-        "ゲレンデ２の電波"
+        "(敵)イエティ・ブリザードEX/(敵)イエティ・ブリザードSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M04YetiBlizzard.gif"
     },
@@ -4405,8 +4177,10 @@
       "section": "mega",
       "number": 5,
       "version": null,
-      "name": "イエティブリザードＥＸ",
-      "details": [],
+      "name": "イエティブリザードEX",
+      "details": [
+        "(敵)イエティ・ブリザードEX/(敵)イエティ・ブリザードSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M05YetiBlizzardEX.gif"
     },
     {
@@ -4414,8 +4188,10 @@
       "section": "mega",
       "number": 6,
       "version": null,
-      "name": "イエティブリザードＳＰ",
-      "details": [],
+      "name": "イエティブリザードSP",
+      "details": [
+        "(敵)イエティ・ブリザードSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M06YetiBlizzardSP.gif"
     },
     {
@@ -4425,8 +4201,7 @@
       "version": null,
       "name": "ブライ",
       "details": [
-        "ブライＳＰ",
-        "ムーたいりく"
+        "(敵)ブライEX/(敵)ブライSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M07Burai.gif"
     },
@@ -4435,8 +4210,10 @@
       "section": "mega",
       "number": 8,
       "version": null,
-      "name": "ブライＥＸ",
-      "details": [],
+      "name": "ブライEX",
+      "details": [
+        "(敵)ブライEX/(敵)ブライSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M08BuraiEX.gif"
     },
     {
@@ -4444,8 +4221,10 @@
       "section": "mega",
       "number": 9,
       "version": null,
-      "name": "ブライＳＰ",
-      "details": [],
+      "name": "ブライSP",
+      "details": [
+        "(敵)ブライSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M09BuraiSP.gif"
     },
     {
@@ -4455,8 +4234,7 @@
       "version": null,
       "name": "ブラキオウェーブ",
       "details": [
-        "ブラキオ・ウェーブＳＰ",
-        "ドンブラー湖２の電波"
+        "(敵)ブラキオ・ウェーブEX/(敵)ブラキオ・ウェーブSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M10BrachioWave.gif"
     },
@@ -4465,8 +4243,10 @@
       "section": "mega",
       "number": 11,
       "version": null,
-      "name": "ブラキオウェーブＥＸ",
-      "details": [],
+      "name": "ブラキオウェーブEX",
+      "details": [
+        "(敵)ブラキオ・ウェーブEX/(敵)ブラキオ・ウェーブSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M11BrachioWaveEX.gif"
     },
     {
@@ -4474,8 +4254,10 @@
       "section": "mega",
       "number": 12,
       "version": null,
-      "name": "ブラキオウェーブＳＰ",
-      "details": [],
+      "name": "ブラキオウェーブSP",
+      "details": [
+        "(敵)ブラキオ・ウェーブSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M12BrachioWaveSP.gif"
     },
     {
@@ -4485,8 +4267,7 @@
       "version": null,
       "name": "コンドルジオグラフ",
       "details": [
-        "コンドル・ジオグラフＳＰ",
-        "ナンスカいせき２の電波"
+        "(敵)コンドル・ジオグラフEX/(敵)コンドル・ジオグラフSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M13CondorGeograph.gif"
     },
@@ -4495,8 +4276,10 @@
       "section": "mega",
       "number": 14,
       "version": null,
-      "name": "コンドルジオグラフＥＸ",
-      "details": [],
+      "name": "コンドルジオグラフEX",
+      "details": [
+        "(敵)コンドル・ジオグラフEX/(敵)コンドル・ジオグラフSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M14CondorGeographEX.gif"
     },
     {
@@ -4504,8 +4287,10 @@
       "section": "mega",
       "number": 15,
       "version": null,
-      "name": "コンドルジオグラフＳＰ",
-      "details": [],
+      "name": "コンドルジオグラフSP",
+      "details": [
+        "(敵)コンドル・ジオグラフSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M15CondorGeographSP.gif"
     },
     {
@@ -4515,8 +4300,7 @@
       "version": null,
       "name": "エンプティー",
       "details": [
-        "エンプティーＳＰ",
-        "バミューダラビリンス\n（ただし、オリヒメのアジトへのワープポイントがある場所\n（エンプティーＥＸがいた場所）のみ）"
+        "(敵)エンプティーEX/(敵)エンプティーSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M16Empty.gif"
     },
@@ -4525,8 +4309,10 @@
       "section": "mega",
       "number": 17,
       "version": null,
-      "name": "エンプティーＥＸ",
-      "details": [],
+      "name": "エンプティーEX",
+      "details": [
+        "(敵)エンプティーEX/(敵)エンプティーSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M17EmptyEX.gif"
     },
     {
@@ -4534,8 +4320,10 @@
       "section": "mega",
       "number": 18,
       "version": null,
-      "name": "エンプティーＳＰ",
-      "details": [],
+      "name": "エンプティーSP",
+      "details": [
+        "(敵)エンプティーSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M18EmptySP.gif"
     },
     {
@@ -4545,8 +4333,7 @@
       "version": null,
       "name": "オックスファイア",
       "details": [
-        "オックス・ファイアＳＰ",
-        "グルメタウンの電波"
+        "(敵)オックス・ファイアEX/(敵)オックス・ファイアSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M19OxFire.gif"
     },
@@ -4555,8 +4342,10 @@
       "section": "mega",
       "number": 20,
       "version": null,
-      "name": "オックスファイアＥＸ",
-      "details": [],
+      "name": "オックスファイアEX",
+      "details": [
+        "(敵)オックス・ファイアEX/(敵)オックス・ファイアSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M20OxFireEX.gif"
     },
     {
@@ -4564,8 +4353,10 @@
       "section": "mega",
       "number": 21,
       "version": null,
-      "name": "オックスファイアＳＰ",
-      "details": [],
+      "name": "オックスファイアSP",
+      "details": [
+        "(敵)オックス・ファイアSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M21OxFireSP.gif"
     },
     {
@@ -4575,8 +4366,7 @@
       "version": null,
       "name": "ハープノート",
       "details": [
-        "ハープ・ノートＳＰ",
-        "ナンスカのスカイウェーブ"
+        "(敵)ハープ・ノートEX/(敵)ハープ・ノートSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M22HarpNote.gif"
     },
@@ -4585,8 +4375,10 @@
       "section": "mega",
       "number": 23,
       "version": null,
-      "name": "ハープノートＥＸ",
-      "details": [],
+      "name": "ハープノートEX",
+      "details": [
+        "(敵)ハープ・ノートEX/(敵)ハープ・ノートSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M23HarpNoteEX.gif"
     },
     {
@@ -4594,8 +4386,10 @@
       "section": "mega",
       "number": 24,
       "version": null,
-      "name": "ハープノートＳＰ",
-      "details": [],
+      "name": "ハープノートSP",
+      "details": [
+        "(敵)ハープ・ノートSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M24HarpNoteSP.gif"
     },
     {
@@ -4605,8 +4399,7 @@
       "version": null,
       "name": "オヒュカスクイーン",
       "details": [
-        "オヒュカス・クイーンＳＰ",
-        "えいがかんの電波"
+        "(敵)オヒュカス・クイーンEX/(敵)オヒュカス・クイーンSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M25OphiuchusQueen.gif"
     },
@@ -4615,8 +4408,10 @@
       "section": "mega",
       "number": 26,
       "version": null,
-      "name": "オヒュカスクイーンＥＸ",
-      "details": [],
+      "name": "オヒュカスクイーンEX",
+      "details": [
+        "(敵)オヒュカス・クイーンEX/(敵)オヒュカス・クイーンSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M26OphiuchusQueenEX.gif"
     },
     {
@@ -4624,8 +4419,10 @@
       "section": "mega",
       "number": 27,
       "version": null,
-      "name": "オヒュカスクイーンＳＰ",
-      "details": [],
+      "name": "オヒュカスクイーンSP",
+      "details": [
+        "(敵)オヒュカス・クイーンSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M27OphiuchusQueenSP.gif"
     },
     {
@@ -4635,8 +4432,7 @@
       "version": null,
       "name": "ジェミニスパーク",
       "details": [
-        "ジェミニ・スパークＳＰ",
-        "ナンスカいせき２の電波"
+        "(敵)ジェミニ・スパークEX/(敵)ジェミニ・スパークSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M28GeminiSpark.gif"
     },
@@ -4645,8 +4441,10 @@
       "section": "mega",
       "number": 29,
       "version": null,
-      "name": "ジェミニスパークＥＸ",
-      "details": [],
+      "name": "ジェミニスパークEX",
+      "details": [
+        "(敵)ジェミニ・スパークEX/(敵)ジェミニ・スパークSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M29GeminiSparkEX.gif"
     },
     {
@@ -4654,8 +4452,10 @@
       "section": "mega",
       "number": 30,
       "version": null,
-      "name": "ジェミニスパークＳＰ",
-      "details": [],
+      "name": "ジェミニスパークSP",
+      "details": [
+        "(敵)ジェミニ・スパークSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M30GeminiSparkSP.gif"
     },
     {
@@ -4665,8 +4465,7 @@
       "version": null,
       "name": "キャンサーバブル",
       "details": [
-        "キャンサー・バブルＳＰ",
-        "ゲレンデ１の電波"
+        "(敵)キャンサー・バブルEX/(敵)キャンサー・バブルSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M31CancerBubble.gif"
     },
@@ -4675,8 +4474,10 @@
       "section": "mega",
       "number": 32,
       "version": null,
-      "name": "キャンサーバブルＥＸ",
-      "details": [],
+      "name": "キャンサーバブルEX",
+      "details": [
+        "(敵)キャンサー・バブルEX/(敵)キャンサー・バブルSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M32CancerBubbleEX.gif"
     },
     {
@@ -4684,8 +4485,10 @@
       "section": "mega",
       "number": 33,
       "version": null,
-      "name": "キャンサーバブルＳＰ",
-      "details": [],
+      "name": "キャンサーバブルSP",
+      "details": [
+        "(敵)キャンサー・バブルSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M33CancerBubbleSP.gif"
     },
     {
@@ -4695,8 +4498,7 @@
       "version": null,
       "name": "ゴートカンフー",
       "details": [
-        "ゴート・カンフーＳＰ",
-        "ドッシーのいりえの電波"
+        "(敵)ゴート・カンフーEX/(敵)ゴート・カンフーSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M34GoatKungfu.gif"
     },
@@ -4705,8 +4507,10 @@
       "section": "mega",
       "number": 35,
       "version": null,
-      "name": "ゴートカンフーＥＸ",
-      "details": [],
+      "name": "ゴートカンフーEX",
+      "details": [
+        "(敵)ゴート・カンフーEX/(敵)ゴート・カンフーSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M35GoatKungfuEX.gif"
     },
     {
@@ -4714,8 +4518,10 @@
       "section": "mega",
       "number": 36,
       "version": null,
-      "name": "ゴートカンフーＳＰ",
-      "details": [],
+      "name": "ゴートカンフーSP",
+      "details": [
+        "(敵)ゴート・カンフーSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M36GoatKungfuSP.gif"
     },
     {
@@ -4725,8 +4531,7 @@
       "version": null,
       "name": "オリガジェネラル",
       "details": [
-        "オリガ・ジェネラルＳＰ",
-        "じげんのハザマ１"
+        "(敵)オリガ・ジェネラルEX/(敵)オリガ・ジェネラルSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M37AurigaGeneral.gif"
     },
@@ -4735,8 +4540,10 @@
       "section": "mega",
       "number": 38,
       "version": null,
-      "name": "オリガジェネラルＥＸ",
-      "details": [],
+      "name": "オリガジェネラルEX",
+      "details": [
+        "(敵)オリガ・ジェネラルEX/(敵)オリガ・ジェネラルSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M38AurigaGeneralEX.gif"
     },
     {
@@ -4744,8 +4551,10 @@
       "section": "mega",
       "number": 39,
       "version": null,
-      "name": "オリガジェネラルＳＰ",
-      "details": [],
+      "name": "オリガジェネラルSP",
+      "details": [
+        "(敵)オリガ・ジェネラルSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M39AurigaGeneralSP.gif"
     },
     {
@@ -4755,8 +4564,7 @@
       "version": null,
       "name": "アポロンフレイム",
       "details": [
-        "アポロン・フレイムＳＰ",
-        "じげんのハザマ２"
+        "(敵)アポロン・フレイムEX/(敵)アポロン・フレイムSP"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M40ApolloFlame.gif"
     },
@@ -4765,8 +4573,10 @@
       "section": "mega",
       "number": 41,
       "version": null,
-      "name": "アポロンフレイムＥＸ",
-      "details": [],
+      "name": "アポロンフレイムEX",
+      "details": [
+        "(敵)アポロン・フレイムEX/(敵)アポロン・フレイムSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M41ApolloFlameEX.gif"
     },
     {
@@ -4774,9 +4584,22 @@
       "section": "mega",
       "number": 42,
       "version": null,
-      "name": "アポロンフレイムＳＰ",
-      "details": [],
+      "name": "アポロンフレイムSP",
+      "details": [
+        "(敵)アポロン・フレイムSP"
+      ],
       "assetLocalPath": "/assets/cards/SF2/Cards/M42ApolloFlameSP.gif"
+    },
+    {
+      "game": "mmsf2",
+      "section": "mega",
+      "number": 0,
+      "version": null,
+      "name": "キンググランジャー",
+      "details": [
+        "(配)4/24～5/14 DSステーション"
+      ],
+      "assetLocalPath": null
     },
     {
       "game": "mmsf2",
@@ -4785,7 +4608,7 @@
       "version": "berserker",
       "name": "ジェミニサンダー",
       "details": [
-        "じげんのハザマ１\n電波商人から買う"
+        "(店)じげんのハザマ1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif"
     },
@@ -4796,7 +4619,7 @@
       "version": "berserker",
       "name": "ブライブレイク",
       "details": [
-        "じげんのハザマ２\n裏世界の電波体を全て倒すと開く扉の先"
+        "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gb2BuraiBreak.gif"
     },
@@ -4807,7 +4630,7 @@
       "version": "berserker",
       "name": "サウザンドキック",
       "details": [
-        "クリア後\n裏世界でアポロンフレイムを倒した後、コダマタウンに戻ると\nレジェンドマスター・シンからメールで送られてくる。"
+        "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gb3ThousandKick.gif"
     },
@@ -4818,7 +4641,7 @@
       "version": "berserker",
       "name": "ポイズンファラオ",
       "details": [
-        "BIGWAVEで買う"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gb4PoisonPharaoh.gif"
     },
@@ -4829,7 +4652,7 @@
       "version": "berserker",
       "name": "ナダレダイコ",
       "details": [
-        "ストーリー終盤で天地さんからメールで送られてくる。"
+        "(メ)最終話･天地さんから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gb5NadareDeiko.gif"
     },
@@ -4840,7 +4663,7 @@
       "version": "shinobi",
       "name": "ゴルゴンアイ",
       "details": [
-        "じげんのハザマ１\n電波商人から買う"
+        "(店)じげんのハザマ1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gs1GorgonEye.gif"
     },
@@ -4851,7 +4674,7 @@
       "version": "shinobi",
       "name": "ゲキリュウウェーブ",
       "details": [
-        "じげんのハザマ２\n裏世界の電波体を全て倒すと開く扉の先"
+        "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gs2GekiryuuWave.gif"
     },
@@ -4862,7 +4685,7 @@
       "version": "shinobi",
       "name": "バスターマックス",
       "details": [
-        "クリア後\n裏世界でアポロンフレイムを倒した後、コダマタウンに戻ると\nレジェンドマスター・シンからメールで送られてくる。"
+        "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gs3BusterMAX.gif"
     },
@@ -4873,7 +4696,7 @@
       "version": "shinobi",
       "name": "ダークネスホール",
       "details": [
-        "BIGWAVEで買う"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gs4DarknessHole.gif"
     },
@@ -4884,7 +4707,7 @@
       "version": "shinobi",
       "name": "フライングインパクト",
       "details": [
-        "ストーリー終盤で天地さんからメールで送られてくる。"
+        "(メ)最終話･天地さんから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gs5FlyingImpact.gif"
     },
@@ -4895,7 +4718,7 @@
       "version": "dinosaur",
       "name": "オックスタックル",
       "details": [
-        "じげんのハザマ１\n電波商人から買う"
+        "(店)じげんのハザマ1の電波"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gd1OxTackle.gif"
     },
@@ -4906,7 +4729,7 @@
       "version": "dinosaur",
       "name": "エンプティーマジック",
       "details": [
-        "じげんのハザマ２\n裏世界の電波体を全て倒すと開く扉の先"
+        "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gd2EmptyMagic.gif"
     },
@@ -4915,9 +4738,9 @@
       "section": "giga",
       "number": 3,
       "version": "dinosaur",
-      "name": "ノーマル＋５０",
+      "name": "ノーマル+50",
       "details": [
-        "クリア後\n裏世界でアポロンフレイムを倒した後、コダマタウンに戻ると\nレジェンドマスター・シンからメールで送られてくる。"
+        "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gd3Normal+50.gif"
     },
@@ -4928,7 +4751,7 @@
       "version": "dinosaur",
       "name": "ブレイクカウントボム",
       "details": [
-        "BIGWAVEで買う"
+        "(店)BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gd4BreakCountBomb.gif"
     },
@@ -4939,9 +4762,5001 @@
       "version": "dinosaur",
       "name": "ファントムスラッシュ",
       "details": [
-        "ストーリー終盤で天地さんからメールで送られてくる。"
+        "(メ)最終話・天地さんから"
       ],
       "assetLocalPath": "/assets/cards/SF2/Cards/Gd5PhantomSlash.gif"
+    },
+    {
+      "game": "mmsf2",
+      "section": "giga",
+      "number": 0,
+      "version": null,
+      "name": "ラ・ムー",
+      "details": [
+        "(配)夏期WHF"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 1,
+      "version": null,
+      "name": "キャノン★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 2,
+      "version": null,
+      "name": "キャノン★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 3,
+      "version": null,
+      "name": "キャノン★3",
+      "details": [
+        "(店)BIGWAVE"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 4,
+      "version": null,
+      "name": "プラスキャノン★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 5,
+      "version": null,
+      "name": "プラスキャノン★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 6,
+      "version": null,
+      "name": "プラスキャノン★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 7,
+      "version": null,
+      "name": "ヘビーキャノン★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 8,
+      "version": null,
+      "name": "ヘビーキャノン★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 9,
+      "version": null,
+      "name": "ヘビーキャノン★3",
+      "details": [
+        "(店)裏TKタワー2:ゴールド"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 10,
+      "version": null,
+      "name": "プラズマガン1★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 11,
+      "version": null,
+      "name": "プラズマガン1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 12,
+      "version": null,
+      "name": "プラズマガン1★3",
+      "details": [
+        "(金)コダマタウンの電波"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 13,
+      "version": null,
+      "name": "プラズマガン2★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 14,
+      "version": null,
+      "name": "プラズマガン2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 15,
+      "version": null,
+      "name": "プラズマガン2★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 16,
+      "version": null,
+      "name": "プラズマガン3★1",
+      "details": [
+        "(ミ)じげんのハザマ１:隠し通路"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 17,
+      "version": null,
+      "name": "プラズマガン3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 18,
+      "version": null,
+      "name": "プラズマガン3★3",
+      "details": [
+        "(店)裏TKタワー2:プラチナ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 19,
+      "version": null,
+      "name": "エアスプレッド1★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 20,
+      "version": null,
+      "name": "エアスプレッド1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 21,
+      "version": null,
+      "name": "エアスプレッド1★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 22,
+      "version": null,
+      "name": "エアスプレッド2★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 23,
+      "version": null,
+      "name": "エアスプレッド2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 24,
+      "version": null,
+      "name": "エアスプレッド2★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 25,
+      "version": null,
+      "name": "エアスプレッド3★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 26,
+      "version": null,
+      "name": "エアスプレッド3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 27,
+      "version": null,
+      "name": "エアスプレッド3★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 28,
+      "version": null,
+      "name": "レーダーミサイル1★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 29,
+      "version": null,
+      "name": "レーダーミサイル1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 30,
+      "version": null,
+      "name": "レーダーミサイル1★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 31,
+      "version": null,
+      "name": "レーダーミサイル2★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 32,
+      "version": null,
+      "name": "レーダーミサイル2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 33,
+      "version": null,
+      "name": "レーダーミサイル2★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 34,
+      "version": null,
+      "name": "レーダーミサイル3★1",
+      "details": [
+        "(ミ)じげんのハザマ1:イェティIF、ブラキオIF、キャンサーIFの封印の扉の奥"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 35,
+      "version": null,
+      "name": "レーダーミサイル3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 36,
+      "version": null,
+      "name": "レーダーミサイル3★3",
+      "details": [
+        "(店)裏TKタワー2:プラチナ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 37,
+      "version": null,
+      "name": "シンクロフック1★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 38,
+      "version": null,
+      "name": "シンクロフック1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 39,
+      "version": null,
+      "name": "シンクロフック1★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 40,
+      "version": null,
+      "name": "シンクロフック2★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 41,
+      "version": null,
+      "name": "シンクロフック2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 42,
+      "version": null,
+      "name": "シンクロフック2★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 43,
+      "version": null,
+      "name": "シンクロフック3★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 44,
+      "version": null,
+      "name": "シンクロフック3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 45,
+      "version": null,
+      "name": "シンクロフック3★3",
+      "details": [
+        "(店)裏TKタワー2:ゴールド"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 46,
+      "version": null,
+      "name": "ミニグレネード1★1",
+      "details": [
+        "(通)Wi-Fi対戦で10戦"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 47,
+      "version": null,
+      "name": "ミニグレネード1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 48,
+      "version": null,
+      "name": "ミニグレネード1★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 49,
+      "version": null,
+      "name": "ミニグレネード2★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 50,
+      "version": null,
+      "name": "ミニグレネード2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 51,
+      "version": null,
+      "name": "ミニグレネード2★3",
+      "details": [
+        "(金)ドンブラー村のスカイウェーブ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 52,
+      "version": null,
+      "name": "ミニグレネード3★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 53,
+      "version": null,
+      "name": "ミニグレネード3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 54,
+      "version": null,
+      "name": "ミニグレネード3★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 55,
+      "version": null,
+      "name": "ヒートグレネード★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 56,
+      "version": null,
+      "name": "ヒートグレネード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 57,
+      "version": null,
+      "name": "ヒートグレネード★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 58,
+      "version": null,
+      "name": "グリーングレネード★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 59,
+      "version": null,
+      "name": "グリーングレネード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 60,
+      "version": null,
+      "name": "グリーングレネード★3",
+      "details": [
+        "(ミ)裏ナンスカちじょうえ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 61,
+      "version": null,
+      "name": "アイスグレネード★1",
+      "details": [
+        "(ミ)じげんのハザマ1:イェティIF、ブラキオIF、キャンサーIFの封印の扉の奥"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 62,
+      "version": null,
+      "name": "アイスグレネード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 63,
+      "version": null,
+      "name": "アイスグレネード★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 64,
+      "version": null,
+      "name": "ソード★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 65,
+      "version": null,
+      "name": "ソード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 66,
+      "version": null,
+      "name": "ソード★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 67,
+      "version": null,
+      "name": "ワイドソード★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 68,
+      "version": null,
+      "name": "ワイドソード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 69,
+      "version": null,
+      "name": "ワイドソード★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 70,
+      "version": null,
+      "name": "ロングソード★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 71,
+      "version": null,
+      "name": "ロングソード★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 72,
+      "version": null,
+      "name": "ロングソード★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 73,
+      "version": null,
+      "name": "ホワイトメテオ★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 74,
+      "version": null,
+      "name": "ホワイトメテオ★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 75,
+      "version": null,
+      "name": "ホワイトメテオ★3",
+      "details": [
+        "(ミ)じげんのハザマ2:通信対戦50戦以上で開く扉の奥"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 76,
+      "version": null,
+      "name": "シルバーメテオ★1",
+      "details": [
+        "(暗)あんごうメール"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 77,
+      "version": null,
+      "name": "シルバーメテオ★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 78,
+      "version": null,
+      "name": "シルバーメテオ★3",
+      "details": [
+        "(店)裏TKタワー2:ゴールド"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 79,
+      "version": null,
+      "name": "グレートアックス★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 80,
+      "version": null,
+      "name": "グレートアックス★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 81,
+      "version": null,
+      "name": "グレートアックス★3",
+      "details": [
+        "(店)裏TKタワー2:ブラック"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 82,
+      "version": null,
+      "name": "ガーディアン★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 83,
+      "version": null,
+      "name": "ガーディアン★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 84,
+      "version": null,
+      "name": "ガーディアン★3",
+      "details": [
+        "(店)裏TKタワー2:ブラック"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 85,
+      "version": null,
+      "name": "グランドウェーブ1★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 86,
+      "version": null,
+      "name": "グランドウェーブ1★2",
+      "details": [
+        "(敵)メットリオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 87,
+      "version": null,
+      "name": "グランドウェーブ1★3",
+      "details": [
+        "(敵)メットリオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 88,
+      "version": null,
+      "name": "グランドウェーブ2★1",
+      "details": [
+        "(敵)メットリオ2G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 89,
+      "version": null,
+      "name": "グランドウェーブ2★2",
+      "details": [
+        "(敵)メットリオ2G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 90,
+      "version": null,
+      "name": "グランドウェーブ2★3",
+      "details": [
+        "(敵)メットリオ2G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 91,
+      "version": null,
+      "name": "グランドウェーブ3★1",
+      "details": [
+        "(敵)メットリオ3G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 92,
+      "version": null,
+      "name": "グランドウェーブ3★2",
+      "details": [
+        "(敵)メットリオ3G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 93,
+      "version": null,
+      "name": "グランドウェーブ3★3",
+      "details": [
+        "(敵)メットリオ3G"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 94,
+      "version": null,
+      "name": "マッドバルカン1★1",
+      "details": [
+        "(敵)バルカナG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 95,
+      "version": null,
+      "name": "マッドバルカン1★2",
+      "details": [
+        "(敵)バルカナG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 96,
+      "version": null,
+      "name": "マッドバルカン1★3",
+      "details": [
+        "(敵)バルカナG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 97,
+      "version": null,
+      "name": "マッドバルカン2★1",
+      "details": [
+        "(敵)バルガンナーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 98,
+      "version": null,
+      "name": "マッドバルカン2★2",
+      "details": [
+        "(敵)バルガンナーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 99,
+      "version": null,
+      "name": "マッドバルカン2★3",
+      "details": [
+        "(敵)バルガンナーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 100,
+      "version": null,
+      "name": "マッドバルカン3★1",
+      "details": [
+        "(敵)バルスナイパーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 101,
+      "version": null,
+      "name": "マッドバルカン3★2",
+      "details": [
+        "(敵)バルスナイパーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 102,
+      "version": null,
+      "name": "マッドバルカン3★3",
+      "details": [
+        "(敵)バルスナイパーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 103,
+      "version": null,
+      "name": "デスサイズ1★1",
+      "details": [
+        "(敵)キルミィG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 104,
+      "version": null,
+      "name": "デスサイズ1★2",
+      "details": [
+        "(敵)キルミィG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 105,
+      "version": null,
+      "name": "デスサイズ1★3",
+      "details": [
+        "(敵)キルミィG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 106,
+      "version": null,
+      "name": "デスサイズ2★1",
+      "details": [
+        "(敵)キルジョーカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 107,
+      "version": null,
+      "name": "デスサイズ2★2",
+      "details": [
+        "(敵)キルジョーカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 108,
+      "version": null,
+      "name": "デスサイズ2★3",
+      "details": [
+        "(敵)キルジョーカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 109,
+      "version": null,
+      "name": "デスサイズ3★1",
+      "details": [
+        "(敵)キルデーモンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 110,
+      "version": null,
+      "name": "デスサイズ3★2",
+      "details": [
+        "(敵)キルデーモンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 111,
+      "version": null,
+      "name": "デスサイズ3★3",
+      "details": [
+        "(敵)キルデーモンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 112,
+      "version": null,
+      "name": "オロロンハット1★1",
+      "details": [
+        "(敵)オロロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 113,
+      "version": null,
+      "name": "オロロンハット1★2",
+      "details": [
+        "(敵)オロロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 114,
+      "version": null,
+      "name": "オロロンハット1★3",
+      "details": [
+        "(敵)オロロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 115,
+      "version": null,
+      "name": "オロロンハット2★1",
+      "details": [
+        "(敵)オルルンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 116,
+      "version": null,
+      "name": "オロロンハット2★2",
+      "details": [
+        "(敵)オルルンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 117,
+      "version": null,
+      "name": "オロロンハット2★3",
+      "details": [
+        "(敵)オルルンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 118,
+      "version": null,
+      "name": "オロロンハット3★1",
+      "details": [
+        "(敵)オリリンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 119,
+      "version": null,
+      "name": "オロロンハット3★2",
+      "details": [
+        "(敵)オリリンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 120,
+      "version": null,
+      "name": "オロロンハット3★3",
+      "details": [
+        "(敵)オリリンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 121,
+      "version": null,
+      "name": "ジェットスキー1★1",
+      "details": [
+        "(敵)ラビジェットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 122,
+      "version": null,
+      "name": "ジェットスキー1★2",
+      "details": [
+        "(敵)ラビジェットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 123,
+      "version": null,
+      "name": "ジェットスキー1★3",
+      "details": [
+        "(敵)ラビジェットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 124,
+      "version": null,
+      "name": "ジェットスキー2★1",
+      "details": [
+        "(敵)ラビロケットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 125,
+      "version": null,
+      "name": "ジェットスキー2★2",
+      "details": [
+        "(敵)ラビロケットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 126,
+      "version": null,
+      "name": "ジェットスキー2★3",
+      "details": [
+        "(敵)ラビロケットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 127,
+      "version": null,
+      "name": "ジェットスキー3★1",
+      "details": [
+        "(敵)ラビニトロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 128,
+      "version": null,
+      "name": "ジェットスキー3★2",
+      "details": [
+        "(敵)ラビニトロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 129,
+      "version": null,
+      "name": "ジェットスキー3★3",
+      "details": [
+        "(敵)ラビニトロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 130,
+      "version": null,
+      "name": "モエリング1★1",
+      "details": [
+        "(敵)モエローダーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 131,
+      "version": null,
+      "name": "モエリング1★2",
+      "details": [
+        "(敵)モエローダーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 132,
+      "version": null,
+      "name": "モエリング1★3",
+      "details": [
+        "(敵)モエローダーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 133,
+      "version": null,
+      "name": "モエリング2★1",
+      "details": [
+        "(敵)モエモーターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 134,
+      "version": null,
+      "name": "モエリング2★2",
+      "details": [
+        "(敵)モエモーターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 135,
+      "version": null,
+      "name": "モエリング2★3",
+      "details": [
+        "(敵)モエモーターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 136,
+      "version": null,
+      "name": "モエリング3★1",
+      "details": [
+        "(敵)モエバイカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 137,
+      "version": null,
+      "name": "モエリング3★2",
+      "details": [
+        "(敵)モエバイカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 138,
+      "version": null,
+      "name": "モエリング3★3",
+      "details": [
+        "(敵)モエバイカーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 139,
+      "version": null,
+      "name": "ダバフレイム1★1",
+      "details": [
+        "(敵)ダバダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 140,
+      "version": null,
+      "name": "ダバフレイム1★2",
+      "details": [
+        "(敵)ダバダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 141,
+      "version": null,
+      "name": "ダバフレイム1★3",
+      "details": [
+        "(敵)ダバダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 142,
+      "version": null,
+      "name": "ダバフレイム2★1",
+      "details": [
+        "(敵)ピョコダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 143,
+      "version": null,
+      "name": "ダバフレイム2★2",
+      "details": [
+        "(敵)ピョコダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 144,
+      "version": null,
+      "name": "ダバフレイム2★3",
+      "details": [
+        "(敵)ピョコダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 145,
+      "version": null,
+      "name": "ダバフレイム3★1",
+      "details": [
+        "(敵)ジャカダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 146,
+      "version": null,
+      "name": "ダバフレイム3★2",
+      "details": [
+        "(敵)ジャカダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 147,
+      "version": null,
+      "name": "ダバフレイム3★3",
+      "details": [
+        "(敵)ジャカダンスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 148,
+      "version": null,
+      "name": "ヒートアッパー1★1",
+      "details": [
+        "(敵)ドッカーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 149,
+      "version": null,
+      "name": "ヒートアッパー1★2",
+      "details": [
+        "(敵)ドッカーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 150,
+      "version": null,
+      "name": "ヒートアッパー1★3",
+      "details": [
+        "(敵)ドッカーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 151,
+      "version": null,
+      "name": "ヒートアッパー2★1",
+      "details": [
+        "(敵)ドッゴーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 152,
+      "version": null,
+      "name": "ヒートアッパー2★2",
+      "details": [
+        "(敵)ドッゴーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 153,
+      "version": null,
+      "name": "ヒートアッパー2★3",
+      "details": [
+        "(敵)ドッゴーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 154,
+      "version": null,
+      "name": "ヒートアッパー3★1",
+      "details": [
+        "(敵)ズッガーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 155,
+      "version": null,
+      "name": "ヒートアッパー3★2",
+      "details": [
+        "(敵)ズッガーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 156,
+      "version": null,
+      "name": "ヒートアッパー3★3",
+      "details": [
+        "(敵)ズッガーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 157,
+      "version": null,
+      "name": "ボボボンボム1★1",
+      "details": [
+        "(敵)ボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 158,
+      "version": null,
+      "name": "ボボボンボム1★2",
+      "details": [
+        "(敵)ボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 159,
+      "version": null,
+      "name": "ボボボンボム1★3",
+      "details": [
+        "(敵)ボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 160,
+      "version": null,
+      "name": "ボボボンボム2★1",
+      "details": [
+        "(敵)ボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 161,
+      "version": null,
+      "name": "ボボボンボム2★2",
+      "details": [
+        "(敵)ボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 162,
+      "version": null,
+      "name": "ボボボンボム2★3",
+      "details": [
+        "(敵)ボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 163,
+      "version": null,
+      "name": "ボボボンボム3★1",
+      "details": [
+        "(敵)ボボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 164,
+      "version": null,
+      "name": "ボボボンボム3★2",
+      "details": [
+        "(敵)ボボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 165,
+      "version": null,
+      "name": "ボボボンボム3★3",
+      "details": [
+        "(敵)ボボボボンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 166,
+      "version": null,
+      "name": "チェインバブル1★1",
+      "details": [
+        "(敵)サワガニーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 167,
+      "version": null,
+      "name": "チェインバブル1★2",
+      "details": [
+        "(敵)サワガニーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 168,
+      "version": null,
+      "name": "チェインバブル1★3",
+      "details": [
+        "(敵)サワガニーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 169,
+      "version": null,
+      "name": "チェインバブル2★1",
+      "details": [
+        "(敵)カワニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 170,
+      "version": null,
+      "name": "チェインバブル2★2",
+      "details": [
+        "(敵)カワニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 171,
+      "version": null,
+      "name": "チェインバブル2★3",
+      "details": [
+        "(敵)カワニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 172,
+      "version": null,
+      "name": "チェインバブル3★1",
+      "details": [
+        "(敵)ウミニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 173,
+      "version": null,
+      "name": "チェインバブル3★2",
+      "details": [
+        "(敵)ウミニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 174,
+      "version": null,
+      "name": "チェインバブル3★3",
+      "details": [
+        "(敵)ウミニガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 175,
+      "version": null,
+      "name": "ネバーレイン1★1",
+      "details": [
+        "(敵)ネバーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 176,
+      "version": null,
+      "name": "ネバーレイン1★2",
+      "details": [
+        "(敵)ネバーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 177,
+      "version": null,
+      "name": "ネバーレイン1★3",
+      "details": [
+        "(敵)ネバーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 178,
+      "version": null,
+      "name": "ネバーレイン2★1",
+      "details": [
+        "(敵)ベターラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 179,
+      "version": null,
+      "name": "ネバーレイン2★2",
+      "details": [
+        "(敵)ベターラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 180,
+      "version": null,
+      "name": "ネバーレイン2★3",
+      "details": [
+        "(敵)ベターラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 181,
+      "version": null,
+      "name": "ネバーレイン3★1",
+      "details": [
+        "(敵)ヌチャーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 182,
+      "version": null,
+      "name": "ネバーレイン3★2",
+      "details": [
+        "(敵)ヌチャーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 183,
+      "version": null,
+      "name": "ネバーレイン3★3",
+      "details": [
+        "(敵)ヌチャーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 184,
+      "version": null,
+      "name": "スノーボール1★1",
+      "details": [
+        "(敵)スノーゴロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 185,
+      "version": null,
+      "name": "スノーボール1★2",
+      "details": [
+        "(敵)スノーゴロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 186,
+      "version": null,
+      "name": "スノーボール1★3",
+      "details": [
+        "(敵)スノーゴロンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 187,
+      "version": null,
+      "name": "スノーボール2★1",
+      "details": [
+        "(敵)スノーゴロドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 188,
+      "version": null,
+      "name": "スノーボール2★2",
+      "details": [
+        "(敵)スノーゴロドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 189,
+      "version": null,
+      "name": "スノーボール2★3",
+      "details": [
+        "(敵)スノーゴロドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 190,
+      "version": null,
+      "name": "スノーボール3★1",
+      "details": [
+        "(敵)スノーゴロリンガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 191,
+      "version": null,
+      "name": "スノーボール3★2",
+      "details": [
+        "(敵)スノーゴロリンガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 192,
+      "version": null,
+      "name": "スノーボール3★3",
+      "details": [
+        "(敵)スノーゴロリンガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 193,
+      "version": null,
+      "name": "ピラニアキッス1★1",
+      "details": [
+        "(敵)ピラニッシュG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 194,
+      "version": null,
+      "name": "ピラニアキッス1★2",
+      "details": [
+        "(敵)ピラニッシュG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 195,
+      "version": null,
+      "name": "ピラニアキッス1★3",
+      "details": [
+        "(敵)ピラニッシュG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 196,
+      "version": null,
+      "name": "ピラニアキッス2★1",
+      "details": [
+        "(敵)ピラニヤンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 197,
+      "version": null,
+      "name": "ピラニアキッス2★2",
+      "details": [
+        "(敵)ピラニヤンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 198,
+      "version": null,
+      "name": "ピラニアキッス2★3",
+      "details": [
+        "(敵)ピラニヤンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 199,
+      "version": null,
+      "name": "ピラニアキッス3★1",
+      "details": [
+        "(敵)ピラニッガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 200,
+      "version": null,
+      "name": "ピラニアキッス3★2",
+      "details": [
+        "(敵)ピラニッガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 201,
+      "version": null,
+      "name": "ピラニアキッス3★3",
+      "details": [
+        "(敵)ピラニッガG"
+      ],
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 202,
+      "version": null,
+      "name": "ボルティックアイ1★1",
+      "details": [
+        "(敵)アイズG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 203,
+      "version": null,
+      "name": "ボルティックアイ1★2",
+      "details": [
+        "(敵)アイズG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 204,
+      "version": null,
+      "name": "ボルティックアイ1★3",
+      "details": [
+        "(敵)アイズG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 205,
+      "version": null,
+      "name": "ボルティックアイ2★1",
+      "details": [
+        "(敵)ガードアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 206,
+      "version": null,
+      "name": "ボルティックアイ2★2",
+      "details": [
+        "(敵)ガードアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 207,
+      "version": null,
+      "name": "ボルティックアイ2★3",
+      "details": [
+        "(敵)ガードアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 208,
+      "version": null,
+      "name": "ボルティックアイ3★1",
+      "details": [
+        "(敵)プロテクトアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 209,
+      "version": null,
+      "name": "ボルティックアイ3★2",
+      "details": [
+        "(敵)プロテクトアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 210,
+      "version": null,
+      "name": "ボルティックアイ3★3",
+      "details": [
+        "(敵)プロテクトアイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 211,
+      "version": null,
+      "name": "ホタルゲリ1★1",
+      "details": [
+        "(敵)ホタローG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 212,
+      "version": null,
+      "name": "ホタルゲリ1★2",
+      "details": [
+        "(敵)ホタローG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 213,
+      "version": null,
+      "name": "ホタルゲリ1★3",
+      "details": [
+        "(敵)ホタローG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 214,
+      "version": null,
+      "name": "ホタルゲリ2★1",
+      "details": [
+        "(敵)ホタリーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 215,
+      "version": null,
+      "name": "ホタルゲリ2★2",
+      "details": [
+        "(敵)ホタリーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 216,
+      "version": null,
+      "name": "ホタルゲリ2★3",
+      "details": [
+        "(敵)ホタリーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 217,
+      "version": null,
+      "name": "ホタルゲリ3★1",
+      "details": [
+        "(敵)ホタリッガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 218,
+      "version": null,
+      "name": "ホタルゲリ3★2",
+      "details": [
+        "(敵)ホタリッガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 219,
+      "version": null,
+      "name": "ホタルゲリ3★3",
+      "details": [
+        "(敵)ホタリッガG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 220,
+      "version": null,
+      "name": "ステルスレーザー★11",
+      "details": [
+        "(敵)ステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 221,
+      "version": null,
+      "name": "ステルスレーザー1★2",
+      "details": [
+        "(敵)ステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 222,
+      "version": null,
+      "name": "ステルスレーザー1★3",
+      "details": [
+        "(敵)ステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 223,
+      "version": null,
+      "name": "ステルスレーザー2★1",
+      "details": [
+        "(敵)メガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 224,
+      "version": null,
+      "name": "ステルスレーザー2★2",
+      "details": [
+        "(敵)メガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 225,
+      "version": null,
+      "name": "ステルスレーザー2★3",
+      "details": [
+        "(敵)メガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 226,
+      "version": null,
+      "name": "ステルスレーザー3★1",
+      "details": [
+        "(敵)ギガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 227,
+      "version": null,
+      "name": "ステルスレーザー3★2",
+      "details": [
+        "(敵)ギガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 228,
+      "version": null,
+      "name": "ステルスレーザー3★3",
+      "details": [
+        "(敵)ギガステルスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 229,
+      "version": null,
+      "name": "マミーハンド1★1",
+      "details": [
+        "(敵)エレミーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 230,
+      "version": null,
+      "name": "マミーハンド1★2",
+      "details": [
+        "(敵)エレミーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 231,
+      "version": null,
+      "name": "マミーハンド1★3",
+      "details": [
+        "(敵)エレミーラG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 232,
+      "version": null,
+      "name": "マミーハンド2★1",
+      "details": [
+        "(敵)エレマミーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 233,
+      "version": null,
+      "name": "マミーハンド2★2",
+      "details": [
+        "(敵)エレマミーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 234,
+      "version": null,
+      "name": "マミーハンド2★3",
+      "details": [
+        "(敵)エレマミーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 235,
+      "version": null,
+      "name": "マミーハンド3★1",
+      "details": [
+        "(敵)エレファラオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 236,
+      "version": null,
+      "name": "マミーハンド3★2",
+      "details": [
+        "(敵)エレファラオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 237,
+      "version": null,
+      "name": "マミーハンド3★3",
+      "details": [
+        "(敵)エレファラオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 238,
+      "version": null,
+      "name": "モジャランス1★1",
+      "details": [
+        "(敵)モジャヘイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 239,
+      "version": null,
+      "name": "モジャランス1★2",
+      "details": [
+        "(敵)モジャヘイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 240,
+      "version": null,
+      "name": "モジャランス1★3",
+      "details": [
+        "(敵)モジャヘイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 241,
+      "version": null,
+      "name": "モジャランス2★1",
+      "details": [
+        "(敵)モジャグンソウG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 242,
+      "version": null,
+      "name": "モジャランス2★2",
+      "details": [
+        "(敵)モジャグンソウG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 243,
+      "version": null,
+      "name": "モジャランス2★3",
+      "details": [
+        "(敵)モジャグンソウG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 244,
+      "version": null,
+      "name": "モジャランス3★1",
+      "details": [
+        "(敵)モジャゲンスイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 245,
+      "version": null,
+      "name": "モジャランス3★2",
+      "details": [
+        "(敵)モジャゲンスイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 246,
+      "version": null,
+      "name": "モジャランス3★3",
+      "details": [
+        "(敵)モジャゲンスイG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 247,
+      "version": null,
+      "name": "ヘンゲノジュツ1★1",
+      "details": [
+        "(敵)ヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 248,
+      "version": null,
+      "name": "ヘンゲノジュツ1★2",
+      "details": [
+        "(敵)ヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 249,
+      "version": null,
+      "name": "ヘンゲノジュツ1★3",
+      "details": [
+        "(敵)ヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 250,
+      "version": null,
+      "name": "ヘンゲノジュツ2★1",
+      "details": [
+        "(敵)マネヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 251,
+      "version": null,
+      "name": "ヘンゲノジュツ2★2",
+      "details": [
+        "(敵)マネヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 252,
+      "version": null,
+      "name": "ヘンゲノジュツ2★3",
+      "details": [
+        "(敵)マネヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 253,
+      "version": null,
+      "name": "ヘンゲノジュツ3★1",
+      "details": [
+        "(敵)バケヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 254,
+      "version": null,
+      "name": "ヘンゲノジュツ3★2",
+      "details": [
+        "(敵)バケヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 255,
+      "version": null,
+      "name": "ヘンゲノジュツ3★3",
+      "details": [
+        "(敵)バケヌッキーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 256,
+      "version": null,
+      "name": "コガラシ1★1",
+      "details": [
+        "(敵)コガラシマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 257,
+      "version": null,
+      "name": "コガラシ1★2",
+      "details": [
+        "(敵)コガラシマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 258,
+      "version": null,
+      "name": "コガラシ1★3",
+      "details": [
+        "(敵)コガラシマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 259,
+      "version": null,
+      "name": "コガラシ2★1",
+      "details": [
+        "(敵)タツマキマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 260,
+      "version": null,
+      "name": "コガラシ2★2",
+      "details": [
+        "(敵)タツマキマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 261,
+      "version": null,
+      "name": "コガラシ2★3",
+      "details": [
+        "(敵)タツマキマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 262,
+      "version": null,
+      "name": "コガラシ3★1",
+      "details": [
+        "(敵)フウジンマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 263,
+      "version": null,
+      "name": "コガラシ3★2",
+      "details": [
+        "(敵)フウジンマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 264,
+      "version": null,
+      "name": "コガラシ3★3",
+      "details": [
+        "(敵)フウジンマルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 265,
+      "version": null,
+      "name": "ニドラッシュ1★1",
+      "details": [
+        "(敵)フラッターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 266,
+      "version": null,
+      "name": "ニドラッシュ1★2",
+      "details": [
+        "(敵)フラッターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 267,
+      "version": null,
+      "name": "ニドラッシュ1★3",
+      "details": [
+        "(敵)フラッターG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 268,
+      "version": null,
+      "name": "ニドラッシュ2★1",
+      "details": [
+        "(敵)フラッタリオンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 269,
+      "version": null,
+      "name": "ニドラッシュ2★2",
+      "details": [
+        "(敵)フラッタリオンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 270,
+      "version": null,
+      "name": "ニドラッシュ2★3",
+      "details": [
+        "(敵)フラッタリオンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 271,
+      "version": null,
+      "name": "ニドラッシュ3★1",
+      "details": [
+        "(敵)フラッタライザーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 272,
+      "version": null,
+      "name": "ニドラッシュ3★2",
+      "details": [
+        "(敵)フラッタライザーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 273,
+      "version": null,
+      "name": "ニドラッシュ3★3",
+      "details": [
+        "(敵)フラッタライザーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 274,
+      "version": null,
+      "name": "グリーンカーペット★1",
+      "details": [
+        "(敵)カカペットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 275,
+      "version": null,
+      "name": "グリーンカーペット★2",
+      "details": [
+        "(敵)カカペットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 276,
+      "version": null,
+      "name": "グリーンカーペット★3",
+      "details": [
+        "(敵)カカペットG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 277,
+      "version": null,
+      "name": "ブルーカーペット★1",
+      "details": [
+        "(敵)カカペーニョG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 278,
+      "version": null,
+      "name": "ブルーカーペット★2",
+      "details": [
+        "(敵)カカペーニョG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 279,
+      "version": null,
+      "name": "ブルーカーペット★3",
+      "details": [
+        "(敵)カカペーニョG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 280,
+      "version": null,
+      "name": "パープルカーペット★1",
+      "details": [
+        "(敵)カカペギロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 281,
+      "version": null,
+      "name": "パープルカーペット★2",
+      "details": [
+        "(敵)カカペギロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 282,
+      "version": null,
+      "name": "パープルカーペット★3",
+      "details": [
+        "(敵)カカペギロG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 283,
+      "version": null,
+      "name": "ケサランパサラン1★1",
+      "details": [
+        "(敵)パサランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 284,
+      "version": null,
+      "name": "ケサランパサラン1★2",
+      "details": [
+        "(敵)パサランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 285,
+      "version": null,
+      "name": "ケサランパサラン1★3",
+      "details": [
+        "(敵)パサランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 286,
+      "version": null,
+      "name": "ケサランパサラン2★1",
+      "details": [
+        "(敵)フワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 287,
+      "version": null,
+      "name": "ケサランパサラン2★2",
+      "details": [
+        "(敵)フワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 288,
+      "version": null,
+      "name": "ケサランパサラン2★3",
+      "details": [
+        "(敵)フワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 289,
+      "version": null,
+      "name": "ケサランパサラン3★1",
+      "details": [
+        "(敵)ポワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 290,
+      "version": null,
+      "name": "ケサランパサラン3★2",
+      "details": [
+        "(敵)ポワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 291,
+      "version": null,
+      "name": "ケサランパサラン3★3",
+      "details": [
+        "(敵)ポワランG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 292,
+      "version": null,
+      "name": "ハンマーウェポン1★1",
+      "details": [
+        "(敵)ハンマリーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 293,
+      "version": null,
+      "name": "ハンマーウェポン1★2",
+      "details": [
+        "(敵)ハンマリーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 294,
+      "version": null,
+      "name": "ハンマーウェポン1★3",
+      "details": [
+        "(敵)ハンマリーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 295,
+      "version": null,
+      "name": "ハンマーウェポン2★1",
+      "details": [
+        "(敵)ハンマリオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 296,
+      "version": null,
+      "name": "ハンマーウェポン2★2",
+      "details": [
+        "(敵)ハンマリオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 297,
+      "version": null,
+      "name": "ハンマーウェポン2★3",
+      "details": [
+        "(敵)ハンマリオG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 298,
+      "version": null,
+      "name": "ハンマーウェポン3★1",
+      "details": [
+        "(敵)ハンマリドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 299,
+      "version": null,
+      "name": "ハンマーウェポン3★2",
+      "details": [
+        "(敵)ハンマリドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 300,
+      "version": null,
+      "name": "ハンマーウェポン3★3",
+      "details": [
+        "(敵)ハンマリドンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 301,
+      "version": null,
+      "name": "ジャングルストーム★1",
+      "details": [
+        "(敵)ニョロフーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 302,
+      "version": null,
+      "name": "ジャングルストーム★2",
+      "details": [
+        "(敵)ニョロフーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 303,
+      "version": null,
+      "name": "ジャングルストーム★3",
+      "details": [
+        "(敵)ニョロフーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 304,
+      "version": null,
+      "name": "スノーストーム★1",
+      "details": [
+        "(敵)ニョロバーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 305,
+      "version": null,
+      "name": "スノーストーム★2",
+      "details": [
+        "(敵)ニョロバーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 306,
+      "version": null,
+      "name": "スノーストーム★3",
+      "details": [
+        "(敵)ニョロバーンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 307,
+      "version": null,
+      "name": "ポイズンストーム★1",
+      "details": [
+        "(敵)ニョロフンガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 308,
+      "version": null,
+      "name": "ポイズンストーム★2",
+      "details": [
+        "(敵)ニョロフンガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 309,
+      "version": null,
+      "name": "ポイズンストーム★3",
+      "details": [
+        "(敵)ニョロフンガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 310,
+      "version": null,
+      "name": "エレキスラッシュ★1",
+      "details": [
+        "(敵)モノソードG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 311,
+      "version": null,
+      "name": "エレキスラッシュ★2",
+      "details": [
+        "(敵)モノソードG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 312,
+      "version": null,
+      "name": "エレキスラッシュ★3",
+      "details": [
+        "(敵)モノソードG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 313,
+      "version": null,
+      "name": "ウッドスラッシュ★1",
+      "details": [
+        "(敵)モノソーディンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 314,
+      "version": null,
+      "name": "ウッドスラッシュ★2",
+      "details": [
+        "(敵)モノソーディンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 315,
+      "version": null,
+      "name": "ウッドスラッシュ★3",
+      "details": [
+        "(敵)モノソーディンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 316,
+      "version": null,
+      "name": "ファイアスラッシュ★1",
+      "details": [
+        "(敵)モノソーディルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 317,
+      "version": null,
+      "name": "ファイアスラッシュ★2",
+      "details": [
+        "(敵)モノソーディルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 318,
+      "version": null,
+      "name": "ファイアスラッシュ★3",
+      "details": [
+        "(敵)モノソーディルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 319,
+      "version": null,
+      "name": "モアイフォール1★1",
+      "details": [
+        "(敵)モアイアンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 320,
+      "version": null,
+      "name": "モアイフォール1★2",
+      "details": [
+        "(敵)モアイアンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 321,
+      "version": null,
+      "name": "モアイフォール1★3",
+      "details": [
+        "(敵)モアイアンG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 322,
+      "version": null,
+      "name": "モアイフォール2★1",
+      "details": [
+        "(敵)ストーンフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 323,
+      "version": null,
+      "name": "モアイフォール2★2",
+      "details": [
+        "(敵)ストーンフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 324,
+      "version": null,
+      "name": "モアイフォール2★3",
+      "details": [
+        "(敵)ストーンフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 325,
+      "version": null,
+      "name": "モアイフォール3★1",
+      "details": [
+        "(敵)ジャイアントフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 326,
+      "version": null,
+      "name": "モアイフォール3★2",
+      "details": [
+        "(敵)ジャイアントフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 327,
+      "version": null,
+      "name": "モアイフォール3★3",
+      "details": [
+        "(敵)ジャイアントフェイスG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 328,
+      "version": null,
+      "name": "ベルセルクソード1★1",
+      "details": [
+        "(敵)バサリカG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 329,
+      "version": null,
+      "name": "ベルセルクソード1★2",
+      "details": [
+        "(敵)バサリカG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 330,
+      "version": null,
+      "name": "ベルセルクソード1★3",
+      "details": [
+        "(敵)バサリカG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 331,
+      "version": null,
+      "name": "ベルセルクソード2★1",
+      "details": [
+        "(敵)バサリグルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 332,
+      "version": null,
+      "name": "ベルセルクソード2★2",
+      "details": [
+        "(敵)バサリグルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 333,
+      "version": null,
+      "name": "ベルセルクソード2★3",
+      "details": [
+        "(敵)バサリグルG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 334,
+      "version": null,
+      "name": "ベルセルクソード3★1",
+      "details": [
+        "(敵)バサリッガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 335,
+      "version": null,
+      "name": "ベルセルクソード3★2",
+      "details": [
+        "(敵)バサリッガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 336,
+      "version": null,
+      "name": "ベルセルクソード3★3",
+      "details": [
+        "(敵)バサリッガーG"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 337,
+      "version": null,
+      "name": "タイフーンダンス★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 338,
+      "version": null,
+      "name": "タイフーンダンス★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 339,
+      "version": null,
+      "name": "タイフーンダンス★3",
+      "details": [
+        "(店)裏TKタワー2:プラチナ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 340,
+      "version": null,
+      "name": "アトミックマイン1★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 341,
+      "version": null,
+      "name": "アトミックマイン1★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 342,
+      "version": null,
+      "name": "アトミックマイン1★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 343,
+      "version": null,
+      "name": "アトミックマイン2★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 344,
+      "version": null,
+      "name": "アトミックマイン2★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 345,
+      "version": null,
+      "name": "アトミックマイン2★3",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 346,
+      "version": null,
+      "name": "アトミックマイン3★1",
+      "details": [
+        "ナンスカ・オサ・アガメの依頼報酬"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 347,
+      "version": null,
+      "name": "アトミックマイン3★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 348,
+      "version": null,
+      "name": "アトミックマイン3★3",
+      "details": [
+        "(店)裏TKタワー2:ブラック"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 349,
+      "version": null,
+      "name": "ボムライザー★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 350,
+      "version": null,
+      "name": "ボムライザー★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 351,
+      "version": null,
+      "name": "ボムライザー★3",
+      "details": [
+        "(金)ナンスカのスカイウェーブ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 352,
+      "version": null,
+      "name": "セイレイノイカリ★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 353,
+      "version": null,
+      "name": "セイレイノイカリ★2",
+      "details": [
+        "(ミ)じげんのハザマ2:ブラザー6人で開く扉の奥"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 354,
+      "version": null,
+      "name": "セイレイノイカリ★3",
+      "details": [
+        "(店)裏TKタワー2:プラチナ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 355,
+      "version": null,
+      "name": "シラハドリ★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 356,
+      "version": null,
+      "name": "シラハドリ★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 357,
+      "version": null,
+      "name": "シラハドリ★3",
+      "details": [
+        "(店)裏TKタワー2:ゴールド"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 358,
+      "version": null,
+      "name": "ギガマイン★1",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 359,
+      "version": null,
+      "name": "ギガマイン★2",
+      "details": [],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "star",
+      "number": 360,
+      "version": null,
+      "name": "ギガマイン★3",
+      "details": [
+        "(店)裏TKタワー2:プラチナ"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 1,
+      "version": null,
+      "name": "S-1 プラズマスプレッド",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 2,
+      "version": null,
+      "name": "S-2 インパクトフック",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 3,
+      "version": null,
+      "name": "S-3 サーチミサイル",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 4,
+      "version": null,
+      "name": "S-4 デストロイアッパー",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 5,
+      "version": null,
+      "name": "S-5 エレキグレネード",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 6,
+      "version": null,
+      "name": "S-6 ソニックソード",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 7,
+      "version": null,
+      "name": "S-7 ジャイアントアックス",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 8,
+      "version": null,
+      "name": "S-8 アイスメテオ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 9,
+      "version": null,
+      "name": "S-9 グリーンメテオ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 10,
+      "version": null,
+      "name": "S-10 ゼツエンメテオ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 11,
+      "version": null,
+      "name": "S-11 カウントボム",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 12,
+      "version": null,
+      "name": "S-12 パルスノイズ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 13,
+      "version": null,
+      "name": "S-13 ウォリアーブラッド",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 14,
+      "version": null,
+      "name": "S-14 ムラマサブレード",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 15,
+      "version": null,
+      "name": "S-15 ゼツメツメテオ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 16,
+      "version": null,
+      "name": "S-16 オールポイズン",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 17,
+      "version": null,
+      "name": "S-17 ファイア+30",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 18,
+      "version": null,
+      "name": "S-18 アクア+30",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 19,
+      "version": null,
+      "name": "S-19 エレキ+30",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 20,
+      "version": null,
+      "name": "S-20 ウッド+30",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 21,
+      "version": null,
+      "name": "S-21 パワーソング",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 22,
+      "version": null,
+      "name": "S-22 クエイクソング",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 23,
+      "version": null,
+      "name": "S-23 トリップソング",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 1,
+      "version": null,
+      "name": "M-1 ファントムブラック",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 2,
+      "version": null,
+      "name": "M-2 ファントムブラックEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 3,
+      "version": null,
+      "name": "M-3 ファントムブラックSP",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 4,
+      "version": null,
+      "name": "M-4 イエティブリザード",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 5,
+      "version": null,
+      "name": "M-5 イエティブリザードEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 6,
+      "version": null,
+      "name": "M-6 イエティブリザードSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 7,
+      "version": null,
+      "name": "M-7 ブライ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 8,
+      "version": null,
+      "name": "M-8 ブライEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 9,
+      "version": null,
+      "name": "M-9 ブライSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 10,
+      "version": null,
+      "name": "M-10 ブラキオウェーブ",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 11,
+      "version": null,
+      "name": "M-11 ブラキオウェーブEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 12,
+      "version": null,
+      "name": "M-12 ブラキオウェーブSP",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 13,
+      "version": null,
+      "name": "M-13 コンドルジオグラフ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 14,
+      "version": null,
+      "name": "M-14 コンドルジオグラフEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 15,
+      "version": null,
+      "name": "M-15 コンドルジオグラフSP",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 16,
+      "version": null,
+      "name": "M-16 エンプティー",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 17,
+      "version": null,
+      "name": "M-17 エンプティーEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 18,
+      "version": null,
+      "name": "M-18 エンプティーSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 19,
+      "version": null,
+      "name": "M-19 オックスファイア",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 20,
+      "version": null,
+      "name": "M-20 オックスファイアEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 21,
+      "version": null,
+      "name": "M-21 オックスファイアSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 22,
+      "version": null,
+      "name": "M-22 ハープノート",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 23,
+      "version": null,
+      "name": "M-23 ハープノートEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 24,
+      "version": null,
+      "name": "M-24 ハープノートSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 25,
+      "version": null,
+      "name": "M-25 オヒュカスクイーン",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 26,
+      "version": null,
+      "name": "M-26 オヒュカスクイーンEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 27,
+      "version": null,
+      "name": "M-27 オヒュカスクイーンSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 28,
+      "version": null,
+      "name": "M-28 ジェミニスパーク",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 29,
+      "version": null,
+      "name": "M-29 ジェミニスパークEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 30,
+      "version": null,
+      "name": "M-30 ジェミニスパークSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 31,
+      "version": null,
+      "name": "M-31 キャンサーバブル",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 32,
+      "version": null,
+      "name": "M-32 キャンサーバブルEX",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 33,
+      "version": null,
+      "name": "M-33 キャンサーバブルSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 34,
+      "version": null,
+      "name": "M-34 ゴートカンフー",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 35,
+      "version": null,
+      "name": "M-35 ゴートカンフーEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 36,
+      "version": null,
+      "name": "M-36 ゴートカンフーSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 37,
+      "version": null,
+      "name": "M-37 オリガジェネラル",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 38,
+      "version": null,
+      "name": "M-38 オリガジェネラルEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 39,
+      "version": null,
+      "name": "M-39 オリガジェネラルSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 40,
+      "version": null,
+      "name": "M-40 アポロンフレイム",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 41,
+      "version": null,
+      "name": "M-41 アポロンフレイムEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 42,
+      "version": null,
+      "name": "M-42 アポロンフレイムSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 43,
+      "version": null,
+      "name": "M-43 ブライソード",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 44,
+      "version": null,
+      "name": "M-44 ブライソードEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 45,
+      "version": null,
+      "name": "M-45 ブライソードSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 46,
+      "version": null,
+      "name": "M-46 キグナスウイング",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 47,
+      "version": null,
+      "name": "M-47 キグナスウイングEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 48,
+      "version": null,
+      "name": "M-48 キグナスウイングSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 49,
+      "version": null,
+      "name": "M-49 リブラバランス",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 50,
+      "version": null,
+      "name": "M-50 リブラバランスEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 51,
+      "version": null,
+      "name": "M-51 リブラバランスSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 52,
+      "version": null,
+      "name": "M-52 ウルフフォレスト",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 53,
+      "version": null,
+      "name": "M-53 ウルフフォレストEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 54,
+      "version": null,
+      "name": "M-54 ウルフフォレストSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 55,
+      "version": null,
+      "name": "M-55 クラウンサンダー",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 56,
+      "version": null,
+      "name": "M-56 クラウンサンダーEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 57,
+      "version": null,
+      "name": "M-57 クラウンサンダーSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 58,
+      "version": null,
+      "name": "M-58 ペガサスマジック",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 59,
+      "version": null,
+      "name": "M-59 ペガサスマジックEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 60,
+      "version": null,
+      "name": "M-60 ペガサスマジックSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 61,
+      "version": null,
+      "name": "M-61 レオキングダム",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 62,
+      "version": null,
+      "name": "M-62 レオキングダムEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 63,
+      "version": null,
+      "name": "M-63 レオキングダムSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 64,
+      "version": null,
+      "name": "M-64 ドラゴンスカイ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 65,
+      "version": null,
+      "name": "M-65 ドラゴンスカイEX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 66,
+      "version": null,
+      "name": "M-66 ドラゴンスカイSP",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 1,
+      "version": null,
+      "name": "G-1 ペガサスマジックGX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 2,
+      "version": null,
+      "name": "G-2 レオキングダムGX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 3,
+      "version": null,
+      "name": "G-3 ドラゴンスカイGX",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 4,
+      "version": null,
+      "name": "G-4 ジェミニサンダー",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 5,
+      "version": null,
+      "name": "G-5 ブライブレイク",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 6,
+      "version": null,
+      "name": "G-6 サウザンドキック",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 7,
+      "version": null,
+      "name": "G-7 ポイズンファラオ",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 8,
+      "version": null,
+      "name": "G-8 ナダレダイコ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 9,
+      "version": null,
+      "name": "G-9 ゴルゴンアイ",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 10,
+      "version": null,
+      "name": "G-10 ゲキリュウウェーブ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 11,
+      "version": null,
+      "name": "G-11 バスターマックス",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 12,
+      "version": null,
+      "name": "G-12 ダークネスホール",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 13,
+      "version": null,
+      "name": "G-13 フライングインパクト",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 14,
+      "version": null,
+      "name": "G-14 オックスタックル",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 15,
+      "version": null,
+      "name": "G-15 エンプティーマジック",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 16,
+      "version": null,
+      "name": "G-16 ノーマル+50",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 17,
+      "version": null,
+      "name": "G-17 ブレイクカウントボム",
+      "details": [
+        "メガ・ギガ・ブースターPart1"
+      ],
+      "assetLocalPath": null
+    },
+    {
+      "game": "mmsf2",
+      "section": "blank",
+      "number": 18,
+      "version": null,
+      "name": "G-18 ファントムスラッシュ",
+      "details": [
+        "ウェーブコマンドカード"
+      ],
+      "assetLocalPath": null
     },
     {
       "game": "mmsf3",

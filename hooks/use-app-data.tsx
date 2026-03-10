@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
+import { normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
 import {
   createDefaultMmsf3Sections,
   normalizeMmsf3BuildRecord,
@@ -121,6 +122,10 @@ function createEmptyStarCards(): BuildCardEntry[] {
   return Array.from({ length: 3 }, () => ({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }));
 }
 
+function createEmptyBlankCards(): BuildCardEntry[] {
+  return [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
+}
+
 function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
   if (!Array.isArray(raw) || raw.length === 0) {
     return createEmptyStarCards();
@@ -143,6 +148,14 @@ function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
   return (raw as BuildCardEntry[]).map((entry) => normalizeBuildCardEntry(entry));
 }
 
+function normalizeMmsf2BlankCards(raw: unknown): BuildCardEntry[] {
+  if (!Array.isArray(raw) || raw.length === 0) {
+    return createEmptyBlankCards();
+  }
+
+  return (raw as BuildCardEntry[]).map((entry) => normalizeBuildCardEntry(entry));
+}
+
 function createDefaultGameSpecificSections(): GameSpecificSections {
   return {
     mmsf1: {
@@ -160,6 +173,7 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
         { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
         { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
       ],
+      blankCards: createEmptyBlankCards(),
       enhancement: "",
       warRockWeapon: "",
       warRockWeaponSources: [],
@@ -217,7 +231,9 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
   const normalizedStrategyNote = build.commonSections?.strategyNote || build.commonSections?.overview || "";
   const rawAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
   const normalizedAbilities = rawAbilities.length > 0
-    ? rawAbilities
+    ? build.game === "mmsf2"
+      ? normalizeMmsf2AbilityEntries(rawAbilities, build.version)
+      : rawAbilities
     : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
 
   const normalizedBuild = {
@@ -245,6 +261,7 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
         ...createDefaultGameSpecificSections().mmsf2,
         ...(build.gameSpecificSections?.mmsf2 ?? {}),
         starCards: normalizeMmsf2StarCards((build.gameSpecificSections?.mmsf2 as { starCards?: unknown })?.starCards),
+        blankCards: normalizeMmsf2BlankCards((build.gameSpecificSections?.mmsf2 as { blankCards?: unknown })?.blankCards),
       },
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,

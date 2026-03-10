@@ -312,6 +312,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf1SystemSnapshotLines = build.game === "mmsf1" ? getMmsf1SystemSnapshotLines(build) : [];
   const mmsf2SystemSnapshotLines = build.game === "mmsf2" ? getMmsf2SystemSnapshotLines(build) : [];
   const mmsf2StarCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.starCards.map((entry) => entry.name).filter(Boolean) : [];
+  const mmsf2BlankCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.blankCards.map((entry) => entry.name).filter(Boolean) : [];
   const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
@@ -485,6 +486,23 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                       </div>
                     );
                   })}
+                </div>
+              </div>
+            ) : null}
+            {mmsf2BlankCards.length > 0 ? (
+              <div className="mt-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Blank Cards</p>
+                <div
+                  className="mt-2 grid gap-0"
+                  style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                >
+                  {mmsf2BlankCards.map((cardName, index) => (
+                    <div key={`blank-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                      <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                        <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             ) : null}

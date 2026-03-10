@@ -98,8 +98,8 @@ export function validateMmsf2StarCards(starCards: BuildCardEntry[], version: Ver
 
   for (const entry of filledCards) {
     const section = getCardSection("mmsf2", entry.name, version);
-    if (section === "mega" || section === "giga") {
-      errors.push(`スターカード「${entry.name}」はスタンダードカード（★1）のみ指定できます。`);
+    if (section === "mega" || section === "giga" || section === "blank") {
+      errors.push(`スターカード「${entry.name}」はスターカード一覧のカードのみ指定できます。`);
     }
   }
 

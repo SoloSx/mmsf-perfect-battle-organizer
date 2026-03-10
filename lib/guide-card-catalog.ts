@@ -6,11 +6,17 @@ import { normalizeToken, uniqueStrings } from "@/lib/utils";
 export const guideCardCatalogEntries = catalog.entries as GuideCardCatalogEntry[];
 const sourceDescriptionLookup = new Map<string, string>();
 const sectionLookup = new Map<string, GuideCardCatalogEntry["section"]>();
+const displayOrderLookup = new Map<string, number>();
 const sourceDescriptionsByGame = (catalog.sourceDescriptionsByGame ?? {}) as Partial<Record<GameId, Record<string, string>>>;
 
-for (const entry of guideCardCatalogEntries) {
+for (const [index, entry] of guideCardCatalogEntries.entries()) {
   const versionKey = entry.version ?? "*";
-  sectionLookup.set(`${entry.game}:${versionKey}:${normalizeToken(entry.name)}`, entry.section);
+  const token = normalizeToken(entry.name);
+  sectionLookup.set(`${entry.game}:${versionKey}:${token}`, entry.section);
+  const displayOrderKey = `${entry.game}:${versionKey}:${token}`;
+  if (!displayOrderLookup.has(displayOrderKey)) {
+    displayOrderLookup.set(displayOrderKey, index);
+  }
 }
 
 for (const [game, descriptions] of Object.entries(sourceDescriptionsByGame) as Array<[GameId, Record<string, string>]>) {
@@ -23,7 +29,7 @@ function buildLookupTokens(name: string) {
   const base = normalizeToken(name);
   const tokens = new Set([base]);
 
-  if (/[123]$/.test(base)) {
+  if (!/[★☆]/.test(name) && /[123]$/.test(base)) {
     tokens.add(base.replace(/[123]$/, ""));
   }
 
@@ -46,7 +52,20 @@ function matchesVersion(entry: GuideCardCatalogEntry, version?: VersionId) {
   return entry.version === version;
 }
 
-function compareCardSuggestionNames(game: GameId, left: string, right: string) {
+function getGuideCardDisplayOrder(game: GameId, name: string, version?: VersionId) {
+  const token = normalizeToken(name);
+
+  if (version) {
+    const versionedOrder = displayOrderLookup.get(`${game}:${version}:${token}`);
+    if (typeof versionedOrder === "number") {
+      return versionedOrder;
+    }
+  }
+
+  return displayOrderLookup.get(`${game}:*:${token}`);
+}
+
+function compareCardSuggestionNames(game: GameId, left: string, right: string, version?: VersionId) {
   if (game === "mmsf3") {
     const leftDisplayOrder = getMmsf3CardDisplayOrder(left);
     const rightDisplayOrder = getMmsf3CardDisplayOrder(right);
@@ -64,16 +83,50 @@ function compareCardSuggestionNames(game: GameId, left: string, right: string) {
     }
   }
 
+  const leftDisplayOrder = getGuideCardDisplayOrder(game, left, version);
+  const rightDisplayOrder = getGuideCardDisplayOrder(game, right, version);
+
+  if (typeof leftDisplayOrder === "number" && typeof rightDisplayOrder === "number" && leftDisplayOrder !== rightDisplayOrder) {
+    return leftDisplayOrder - rightDisplayOrder;
+  }
+
+  if (typeof leftDisplayOrder === "number") {
+    return -1;
+  }
+
+  if (typeof rightDisplayOrder === "number") {
+    return 1;
+  }
+
   return left.localeCompare(right, "ja");
 }
 
-export function sortCardSuggestions(game: GameId, suggestions: string[]) {
-  return [...suggestions].sort((left, right) => compareCardSuggestionNames(game, left, right));
+export function sortCardSuggestions(game: GameId, suggestions: string[], version?: VersionId) {
+  return [...suggestions].sort((left, right) => compareCardSuggestionNames(game, left, right, version));
 }
 
 export function getCardSuggestions(game: GameId, version?: VersionId) {
   if (game === "mmsf3") {
     return getMmsf3CardSuggestions(version as Extract<VersionId, "black-ace" | "red-joker"> | undefined);
+  }
+
+  const allowedSections = game === "mmsf2" ? new Set(["standard", "mega", "giga"]) : null;
+
+  return sortCardSuggestions(
+    game,
+    uniqueStrings(
+      guideCardCatalogEntries
+        .filter((entry) => entry.game === game && matchesVersion(entry, version))
+        .filter((entry) => !allowedSections || allowedSections.has(entry.section))
+        .map((entry) => entry.name),
+    ),
+    version,
+  );
+}
+
+export function getCardSourceNameSuggestions(game: GameId, version?: VersionId) {
+  if (game === "mmsf3") {
+    return getCardSuggestions(game, version);
   }
 
   return sortCardSuggestions(
@@ -83,6 +136,31 @@ export function getCardSuggestions(game: GameId, version?: VersionId) {
         .filter((entry) => entry.game === game && matchesVersion(entry, version))
         .map((entry) => entry.name),
     ),
+    version,
+  );
+}
+
+export function getMmsf2StarCardSuggestions(version?: VersionId) {
+  return sortCardSuggestions(
+    "mmsf2",
+    uniqueStrings(
+      guideCardCatalogEntries
+        .filter((entry) => entry.game === "mmsf2" && entry.section === "star" && matchesVersion(entry, version))
+        .map((entry) => entry.name),
+    ),
+    version,
+  );
+}
+
+export function getMmsf2BlankCardSuggestions(version?: VersionId) {
+  return sortCardSuggestions(
+    "mmsf2",
+    uniqueStrings(
+      guideCardCatalogEntries
+        .filter((entry) => entry.game === "mmsf2" && entry.section === "blank" && matchesVersion(entry, version))
+        .map((entry) => entry.name),
+    ),
+    version,
   );
 }
 
