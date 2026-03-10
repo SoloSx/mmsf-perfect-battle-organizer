@@ -36,6 +36,10 @@ test("MMSF1 brother names resolve correctly by kind", () => {
   assert.equal(getMmsf1BrotherForcedVersion("LM・シン", "pegasus"), "LM・シン");
   assert.equal(getMmsf1BrotherForcedVersion("レオ", "pegasus"), "leo");
   assert.equal(getMmsf1BrotherFixedFavoriteCards("LM・シン").length, 6);
+  assert.deepEqual(
+    getMmsf1BrotherFixedFavoriteCards("LM・シン").slice(3),
+    ["ペガサスマジックSP", "レオキングダムSP", "ドラゴンスカイSP"],
+  );
   assert.equal(getMmsf1BrotherFixedFavoriteCards("ボクタイ")[0], "タイヨウジュウＶ３");
 });
 
