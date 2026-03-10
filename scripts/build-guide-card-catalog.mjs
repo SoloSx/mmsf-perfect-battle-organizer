@@ -19,6 +19,10 @@ const CARD_PAGE_FILES = {
   mmsf3: join(rawDir, "__rockman__ryusei__ryusei3__card.htm.html"),
 };
 
+const MODERN_CARD_PAGE_FILES = {
+  mmsf1: join(rawDir, "__chipcom__ryusei__docs__library__mmsf1.html"),
+};
+
 const VERSION_BY_COLOR = {
   mmsf1: {
     lightblue: "pegasus",
@@ -191,6 +195,109 @@ function extractModernMmsf2Cards(game, html) {
         version: section === "giga" ? (gigaVersionByHeading[currentH3] ?? null) : null,
         name: section === "blank" ? `${rawNumber} ${rawName}` : rawName,
         details: section === "blank" && details.length === 0 ? ["ウェーブコマンドカード"] : details,
+      });
+    }
+  }
+
+  return entries;
+}
+
+function extractModernMmsf1Cards(game, html) {
+  const articleHtml = html.match(/<article class="markdown book-article">([\s\S]*?)<\/article>/i)?.[1] ?? html;
+  const tokens = [...articleHtml.matchAll(/<h[23][^>]*>[\s\S]*?<\/h[23]>|<table>[\s\S]*?<\/table>/gi)].map((match) => match[0]);
+  const entries = [];
+
+  let currentH2 = "";
+  let currentH3 = "";
+
+  const megaVersionByPrefix = {
+    P: "pegasus",
+    L: "leo",
+    D: "dragon",
+  };
+
+  const gigaVersionByHeading = {
+    レオ: "leo",
+    ペガサス: "pegasus",
+    ドラゴン: "dragon",
+    不問: null,
+  };
+
+  for (const token of tokens) {
+    if (/^<h2/i.test(token)) {
+      currentH2 = stripHeadingAnchorSuffix(cleanHtmlText(token));
+      currentH3 = "";
+      continue;
+    }
+
+    if (/^<h3/i.test(token)) {
+      currentH3 = stripHeadingAnchorSuffix(cleanHtmlText(token));
+      continue;
+    }
+
+    const rows = extractTableRows(token).map((row) => row.map((cell) => cell.value));
+    if (rows.length < 2) {
+      continue;
+    }
+
+    const header = rows[0];
+    const sourceIndex = header.findIndex((cell) => /^入手/.test(cell));
+    if (sourceIndex === -1) {
+      continue;
+    }
+
+    const section =
+      currentH2 === "スタンダード" ? "standard"
+      : currentH2 === "メガ" ? "mega"
+      : currentH2 === "ギガ" ? "giga"
+      : null;
+
+    if (!section) {
+      continue;
+    }
+
+    for (const row of rows.slice(1)) {
+      if (row.length < 2 || !row[1] || row[1] === "カード名") {
+        continue;
+      }
+
+      const rawNumber = (row[0] ?? "").trim();
+      const rawName = (row[1] ?? "").trim();
+      let number = 0;
+      let version = null;
+
+      if (section === "mega") {
+        const numberMatch = rawNumber.match(/^([PLD])?(\d+)$/i);
+        if (!numberMatch) {
+          continue;
+        }
+
+        const [, rawPrefix, rawNumberValue] = numberMatch;
+        number = Number(rawNumberValue);
+        version = rawPrefix ? (megaVersionByPrefix[rawPrefix.toUpperCase()] ?? null) : null;
+      } else {
+        const numberMatch = rawNumber.match(/^(\d+)$/);
+        if (!numberMatch) {
+          continue;
+        }
+
+        number = Number(numberMatch[1]);
+        version = section === "giga" ? (gigaVersionByHeading[currentH3] ?? null) : null;
+      }
+
+      const details = (row[sourceIndex] ?? "")
+        .split("\n")
+        .map((value) => value.trim())
+        .filter(Boolean)
+        .filter((value) => value !== "***");
+
+      entries.push({
+        game,
+        section,
+        number,
+        version,
+        name: rawName,
+        details,
       });
     }
   }
@@ -423,6 +530,21 @@ function applyMmsf2SourceOverrides(entries) {
   renameMmsf2Entry(281, "パープルカーペット★3", "パープルカーペット★2");
 }
 
+function applyMmsf1SourceOverrides(entries) {
+  const renameEntry = (from, to) => {
+    const matchedEntries = entries.filter((entry) => entry.game === "mmsf1" && entry.name === from);
+    for (const entry of matchedEntries) {
+      entry.name = to;
+    }
+  };
+
+  renameEntry("プラスマガン2", "プラズマガン2");
+  renameEntry("ボルテックアイ1", "ボルティックアイ1");
+  renameEntry("ボルテックアイ2", "ボルティックアイ2");
+  renameEntry("ボルテックアイ3", "ボルティックアイ3");
+  renameEntry("グラビディステージ", "グラビティステージ");
+}
+
 function applyMmsf3SourceOverrides(entries) {
   const acidAceV3 = findCatalogEntry(entries, "mmsf3", "アシッドエースＶ３");
   const acidAceV2 = findCatalogEntry(entries, "mmsf3", "アシッドエースＶ２");
@@ -491,6 +613,30 @@ const sourceDescriptionsByGame = {};
 for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
   const html = readGuideHtml(file);
 
+  if (game === "mmsf1") {
+    const modernHtml = readGuideHtml(MODERN_CARD_PAGE_FILES.mmsf1);
+    const extractedCards = extractModernMmsf1Cards(game, modernHtml);
+
+    for (const card of extractedCards) {
+      const asset =
+        aliases.find(
+          (entry) =>
+            entry.game === game &&
+            entry.version === card.version &&
+            normalizeToken(entry.name) === normalizeToken(card.name),
+        ) ??
+        aliases.find(
+          (entry) => entry.game === game && entry.version === null && normalizeToken(entry.name) === normalizeToken(card.name),
+        ) ??
+        null;
+
+      catalogEntries.push({
+        ...card,
+        assetLocalPath: asset?.assetLocalPath ?? null,
+      });
+    }
+  }
+
   if (game === "mmsf2" && html.includes('class="markdown book-article"')) {
     const extractedCards = extractModernMmsf2Cards(game, html);
 
@@ -518,6 +664,10 @@ for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
 
   for (const section of SECTION_ORDER[game]) {
     if (section === "folder") {
+      continue;
+    }
+
+    if (game === "mmsf1" && section !== "bokutai") {
       continue;
     }
 
@@ -554,6 +704,7 @@ for (const [game, file] of Object.entries(CARD_PAGE_FILES)) {
   }
 }
 
+applyMmsf1SourceOverrides(catalogEntries);
 applyMmsf2SourceOverrides(catalogEntries);
 applyMmsf3SourceOverrides(catalogEntries);
 

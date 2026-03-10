@@ -10,7 +10,7 @@ export type VersionId =
   | "black-ace"
   | "red-joker";
 
-export type BrotherKind = "story" | "auto" | "real" | "event";
+export type BrotherKind = "story" | "auto" | "real" | "event" | "boktai";
 export type NoiseCardMark = "♥" | "♦" | "♠" | "♣" | "★";
 export type NoiseCardRank = "A" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "J" | "Q" | "K";
 export type Mmsf3BrotherRoulettePosition = "top_left" | "top_right" | "mid_left" | "mid_right" | "btm_left" | "btm_right";

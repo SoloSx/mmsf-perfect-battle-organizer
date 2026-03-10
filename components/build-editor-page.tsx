@@ -26,6 +26,8 @@ import { SearchableSuggestionInput } from "@/components/searchable-suggestion-in
 import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
 import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
+import { getDuplicateMmsf1UniqueBrotherNames, normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
+import { getMmsf1WarRockWeaponSources } from "@/lib/mmsf1/war-rock-weapons";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
   getMmsf2AbilityNameSuggestions,
@@ -122,6 +124,20 @@ function syncMmsf2WarRockWeaponSources(weaponName: string, sources: CommonSectio
     [{ name: trimmedWeaponName }],
     sources,
     getMmsf2WarRockWeaponSources,
+  );
+}
+
+function syncMmsf1WarRockWeaponSources(weaponName: string, sources: CommonSections["cardSources"]) {
+  const trimmedWeaponName = weaponName.trim();
+
+  if (!trimmedWeaponName) {
+    return [];
+  }
+
+  return syncSourceEntries(
+    [{ name: trimmedWeaponName }],
+    sources,
+    getMmsf1WarRockWeaponSources,
   );
 }
 
@@ -335,14 +351,23 @@ function getRequiredFieldErrors(build: BuildRecord) {
     }
   } else {
     if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
-      errors.push("アビリティの未入力行があります。");
+      if (build.game === "mmsf2") {
+        errors.push("アビリティの未入力行があります。");
+      }
     }
 
     if (build.commonSections.abilitySources.some((entry) => hasIncompleteSourceEntry(entry))) {
-      errors.push("アビリティ入手方法の未入力行があります。");
+      if (build.game === "mmsf2") {
+        errors.push("アビリティ入手方法の未入力行があります。");
+      }
     }
 
     if (build.game === "mmsf1") {
+      const duplicateBrotherNames = getDuplicateMmsf1UniqueBrotherNames(build.commonSections.brothers);
+      if (duplicateBrotherNames.length > 0) {
+        errors.push(`MMSF1 のブラザー「${duplicateBrotherNames[0]}」は1枠だけ設定できます。`);
+      }
+
       for (const brother of build.commonSections.brothers) {
         const filledFavCount = brother.favoriteCards.filter((card) => card.trim()).length;
         if (filledFavCount > 0 && filledFavCount < 6) {
@@ -393,6 +418,31 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
     rezonCard: entry.rezonCard ?? "",
     notes: entry.notes ?? "",
   };
+}
+
+function haveSameBrotherProfiles(left: BrotherProfile[], right: BrotherProfile[]) {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  for (let index = 0; index < left.length; index += 1) {
+    const leftEntry = left[index];
+    const rightEntry = right[index];
+
+    if (
+      leftEntry.id !== rightEntry.id ||
+      leftEntry.name !== rightEntry.name ||
+      leftEntry.kind !== rightEntry.kind ||
+      leftEntry.rezonCard !== rightEntry.rezonCard ||
+      leftEntry.notes !== rightEntry.notes ||
+      leftEntry.favoriteCards.length !== rightEntry.favoriteCards.length ||
+      leftEntry.favoriteCards.some((card, cardIndex) => card !== rightEntry.favoriteCards[cardIndex])
+    ) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function resolveRequestedGameVersion(requestedGame: string | null, requestedVersion: string | null) {
@@ -921,6 +971,58 @@ export function BuildEditorPage() {
 
   useEffect(() => {
     setDraft((current) => {
+      if (!current || current.game !== "mmsf1") {
+        return current;
+      }
+
+      const normalizedBrothers = current.commonSections.brothers.map((entry) =>
+        normalizeMmsf1BrotherProfile(entry, current.version as Extract<VersionId, "pegasus" | "leo" | "dragon">),
+      );
+
+      if (haveSameBrotherProfiles(current.commonSections.brothers, normalizedBrothers)) {
+        return current;
+      }
+
+      return {
+        ...current,
+        commonSections: {
+          ...current.commonSections,
+          brothers: normalizedBrothers,
+        },
+      };
+    });
+  }, [draft?.game, draft?.version, draft?.commonSections.brothers]);
+
+  useEffect(() => {
+    setDraft((current) => {
+      if (!current || current.game !== "mmsf1") {
+        return current;
+      }
+
+      const nextWeaponSources = syncMmsf1WarRockWeaponSources(
+        current.gameSpecificSections.mmsf1.warRockWeapon,
+        current.gameSpecificSections.mmsf1.warRockWeaponSources,
+      );
+
+      if (haveSameSourceEntries(current.gameSpecificSections.mmsf1.warRockWeaponSources, nextWeaponSources)) {
+        return current;
+      }
+
+      return {
+        ...current,
+        gameSpecificSections: {
+          ...current.gameSpecificSections,
+          mmsf1: {
+            ...current.gameSpecificSections.mmsf1,
+            warRockWeaponSources: nextWeaponSources,
+          },
+        },
+      };
+    });
+  }, [draft?.game, draft?.gameSpecificSections.mmsf1.warRockWeapon]);
+
+  useEffect(() => {
+    setDraft((current) => {
       if (!current || current.game !== "mmsf2") {
         return current;
       }
@@ -1060,7 +1162,7 @@ export function BuildEditorPage() {
         ? getMissingSourceNames(
             [{ name: mmsf1or2WeaponName }],
             mmsf1or2WeaponSources,
-            draft.game === "mmsf2" ? getMmsf2WarRockWeaponSources : () => [],
+            draft.game === "mmsf1" ? getMmsf1WarRockWeaponSources : getMmsf2WarRockWeaponSources,
           )
         : [];
 
@@ -1186,25 +1288,39 @@ export function BuildEditorPage() {
             }
           />
           <Mmsf1WarRockSection
-          state={draft.gameSpecificSections.mmsf1}
-          warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf1}
-          sourceSuggestions={sourceSuggestions}
-          missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
-          onWarRockWeaponChange={(value) =>
-            setDraft((current) =>
-              current
-                ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeapon: value } } }
-                : current,
-            )
-          }
-          onWarRockWeaponSourcesChange={(entries) =>
-            setDraft((current) =>
-              current
+            state={draft.gameSpecificSections.mmsf1}
+            warRockWeapons={MASTER_DATA.warRockWeaponsByGame.mmsf1}
+            sourceSuggestions={sourceSuggestions}
+            missingWarRockWeaponSourceNames={missingWarRockWeaponSourceNames}
+            resolveKnownSources={getMmsf1WarRockWeaponSources}
+            onWarRockWeaponChange={(value) =>
+              setDraft((current) =>
+                current
+                  ? {
+                    ...current,
+                    gameSpecificSections: {
+                      ...current.gameSpecificSections,
+                      mmsf1: {
+                        ...current.gameSpecificSections.mmsf1,
+                        warRockWeapon: value,
+                        warRockWeaponSources: syncMmsf1WarRockWeaponSources(
+                          value,
+                          current.gameSpecificSections.mmsf1.warRockWeaponSources,
+                        ),
+                      },
+                    },
+                  }
+                  : current,
+              )
+            }
+            onWarRockWeaponSourcesChange={(entries) =>
+              setDraft((current) =>
+                current
                 ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf1: { ...current.gameSpecificSections.mmsf1, warRockWeaponSources: entries } } }
                 : current,
-            )
-          }
-        />
+              )
+            }
+          />
         </>
       )}
 
@@ -1323,32 +1439,6 @@ export function BuildEditorPage() {
         />
       )}
 
-      {draft.game === "mmsf1" && (
-        <div className="mt-4 grid gap-4">
-          <CardListEditor
-            title="アビリティ"
-            entries={draft.commonSections.abilities}
-            onChange={updateAbilities}
-            suggestions={abilitySuggestions}
-          />
-
-          <SourceListEditor
-            title="アビリティ入手方法"
-            entries={draft.commonSections.abilitySources}
-            onChange={(entries) => updateCommon("abilitySources", entries)}
-            game={draft.game}
-            version={draft.version}
-            nameSuggestions={abilityNameSuggestions}
-            sourceSuggestions={sourceSuggestions}
-            missingNames={missingAbilitySourceNames}
-            useKnownSourceSuggestions
-            actionMode="owned"
-            resolveKnownSources={(name) =>
-              getKnownCardSources(draft.game, name, draft.version)
-            }
-          />
-        </div>
-      )}
     </div>
   );
 
@@ -1478,7 +1568,8 @@ export function BuildEditorPage() {
         entries={draft.commonSections.brothers}
         onChange={(entries) => updateCommon("brothers", entries)}
         cardSuggestions={cardSuggestions}
-        isDisabled={draft.gameSpecificSections.mmsf1.enhancement !== ""}
+        currentVersion={draft.version as Extract<VersionId, "pegasus" | "leo" | "dragon">}
+        isDisabled={false}
       />
     ) : (
       <BrotherListEditor

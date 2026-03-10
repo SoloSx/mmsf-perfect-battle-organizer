@@ -7,7 +7,7 @@
       "version": null,
       "name": "キャノン",
       "details": [
-        "初期フォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s001_Cannon.png"
     },
@@ -18,7 +18,7 @@
       "version": null,
       "name": "プラスキャノン",
       "details": [
-        "ルナフォルダ\nゴン太のへやの電波（固定）\n１－Ａ教室の電波（固定）"
+        "ミ/ル"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s002_PlusCannon.png"
     },
@@ -29,7 +29,7 @@
       "version": null,
       "name": "ヘビーキャノン",
       "details": [
-        "イベントかいじょうの電波（固定）\nドリームこうえんの（固定）"
+        "イベント会場/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s003_HeavyCannon.png"
     },
@@ -38,9 +38,9 @@
       "section": "standard",
       "number": 4,
       "version": null,
-      "name": "プラズマガン１",
+      "name": "プラズマガン1",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s004_PlasmaGun1.png"
     },
@@ -49,20 +49,20 @@
       "section": "standard",
       "number": 5,
       "version": null,
-      "name": "プラズマガン２",
+      "name": "プラズマガン2",
       "details": [
-        "２Ｆスピーカーの電脳（固定）\nアナコンダロボの電脳２（固定）"
+        "ミ:ほうそうしつの電波"
       ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/s005_PlasmaGun2.png"
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",
       "section": "standard",
       "number": 6,
       "version": null,
-      "name": "プラズマガン３",
+      "name": "プラズマガン3",
       "details": [
-        "ステーションの電脳１（固定）"
+        "ミ:ステーションの電波1/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s006_PlasmaGun3.png"
     },
@@ -71,9 +71,9 @@
       "section": "standard",
       "number": 7,
       "version": null,
-      "name": "ガトリング１",
+      "name": "ガトリング1",
       "details": [
-        "トラックの電脳１（固定）\nぎじうちゅうの電脳２（固定）"
+        "ミ:トラックの電脳1"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s007_Gatling1.png"
     },
@@ -82,9 +82,9 @@
       "section": "standard",
       "number": 8,
       "version": null,
-      "name": "ガトリング２",
+      "name": "ガトリング2",
       "details": [
-        "２Ｆスピーカーの電脳（固定）\n学校の電脳２（固定）\n１０３デパート１Ｆの電波（固定）\nはいきぶつの電脳２（固定）"
+        "ミ:はいきぶつおきばの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s008_Gatling2.png"
     },
@@ -93,9 +93,9 @@
       "section": "standard",
       "number": 9,
       "version": null,
-      "name": "ガトリング３",
+      "name": "ガトリング3",
       "details": [
-        "ゴミしゅうせきじょの電波（固定）"
+        "ミ:ゴミしゅうせきじょの電波/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s009_Gatling3.png"
     },
@@ -106,7 +106,7 @@
       "version": null,
       "name": "エアスプレッド",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s010_AirSpreadGun.png"
     },
@@ -115,9 +115,9 @@
       "section": "standard",
       "number": 11,
       "version": null,
-      "name": "レーダーミサイル１",
+      "name": "レーダーミサイル1",
       "details": [
-        "てんぼうだいの電波（固定）\nぎじうちゅうの電脳２（固定）"
+        "ミ:てんぼうだいの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s011_RadarMissile1.png"
     },
@@ -126,9 +126,9 @@
       "section": "standard",
       "number": 12,
       "version": null,
-      "name": "レーダーミサイル２",
+      "name": "レーダーミサイル2",
       "details": [
-        "５－Ｂ教室の電波（固定）\nはいきぶつの電脳１（固定）"
+        "ミ:5-Bの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s012_RadarMissile2.png"
     },
@@ -137,9 +137,9 @@
       "section": "standard",
       "number": 13,
       "version": null,
-      "name": "レーダーミサイル３",
+      "name": "レーダーミサイル3",
       "details": [
-        "はいきぶつおきば１の電波（固定）\nステーションの電脳２（固定）"
+        "ミ:うちゅうくうかんの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s013_RadarMissile3.png"
     },
@@ -148,9 +148,9 @@
       "section": "standard",
       "number": 14,
       "version": null,
-      "name": "ヒートボール１",
+      "name": "ヒートボール1",
       "details": [
-        "初期フォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s014_HeatBall1.png"
     },
@@ -159,9 +159,9 @@
       "section": "standard",
       "number": 15,
       "version": null,
-      "name": "ヒートボール２",
+      "name": "ヒートボール2",
       "details": [
-        "ルナフォルダ\nぎじうちゅうの電波（固定）\n学校の電脳１（固定）"
+        "ミ:ぎじうちゅうの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s015_HeatBall2.png"
     },
@@ -170,9 +170,9 @@
       "section": "standard",
       "number": 16,
       "version": null,
-      "name": "ヒートボール３",
+      "name": "ヒートボール3",
       "details": [
-        "アナコンダロボの電脳１"
+        "ミ:アナコンダロボの電脳1/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s016_HeatBall3.png"
     },
@@ -181,9 +181,9 @@
       "section": "standard",
       "number": 17,
       "version": null,
-      "name": "アイスメテオ１",
+      "name": "アイスメテオ1",
       "details": [
-        "れいぞうこの電脳（固定）\nけんきゅう室の電波（固定）\n１－Ｂ教室の電波（固定）"
+        "ミ:はいきぶつおきばの電波3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s017_IceMeteor1.png"
     },
@@ -192,9 +192,9 @@
       "section": "standard",
       "number": 18,
       "version": null,
-      "name": "アイスメテオ２",
+      "name": "アイスメテオ2",
       "details": [
-        "学校の電脳２（固定）\nいいんちょうのへやの電波（固定）\nヤシブタウンの電波（固定）\nはいきぶつの電脳３（固定）"
+        "ミ:ヤシブタウンの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s018_IceMeteor2.png"
     },
@@ -203,9 +203,9 @@
       "section": "standard",
       "number": 19,
       "version": null,
-      "name": "アイスメテオ３",
+      "name": "アイスメテオ3",
       "details": [
-        "ドリームアイランドちかの電波（固定）"
+        "ミ:うちゅうくうかんの電波/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s019_IceMeteor3.png"
     },
@@ -216,7 +216,7 @@
       "version": null,
       "name": "スタンナックル",
       "details": [
-        "ＢＩＧＷＡＶＥ"
+        "店:BIGWAVE/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s020_StunKnuckle.png"
     },
@@ -227,7 +227,7 @@
       "version": null,
       "name": "ポイズンナックル",
       "details": [
-        "アマケンがいかんの電波のショップ\nドリームアイランドちかの電波のショップ"
+        "店:アマケンがいかんの電波/店:ドリームアイランドちかの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s021_PoisonKnuckle.png"
     },
@@ -238,7 +238,7 @@
       "version": null,
       "name": "フリーズナックル",
       "details": [
-        "うちゅうくうかんの電波２のショップ"
+        "店:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s022_FreezeKnuckle.png"
     },
@@ -249,7 +249,7 @@
       "version": null,
       "name": "ソード",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s023_Sword.png"
     },
@@ -260,7 +260,7 @@
       "version": null,
       "name": "ワイドソード",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s024_WideSword.png"
     },
@@ -271,7 +271,7 @@
       "version": null,
       "name": "ロングソード",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s025_LongSword.png"
     },
@@ -282,7 +282,7 @@
       "version": null,
       "name": "リュウエンザン",
       "details": [
-        "ＢＩＧＷＡＶＥ"
+        "店:BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s026_Ryuusenzan.png"
     },
@@ -293,7 +293,7 @@
       "version": null,
       "name": "スイゲツザン",
       "details": [
-        "ゴミしゅうせきじょの電波のショップ"
+        "店:ゴミしゅうせきじょの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s027_Suigetsuzan.png"
     },
@@ -304,7 +304,7 @@
       "version": null,
       "name": "ライメイザン",
       "details": [
-        "５－Ｂ教室の電波のショップ"
+        "店:5-Bの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s028_Raimeizan.png"
     },
@@ -315,7 +315,7 @@
       "version": null,
       "name": "タイボクザン",
       "details": [
-        "ドリームアイランドちかの電波のショップ"
+        "店:ドリームアイランドちかの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s029_Taibokuzan.png"
     },
@@ -326,7 +326,7 @@
       "version": null,
       "name": "ブレイクサーベル",
       "details": [
-        "うちゅうくうかんの電波２のショップ\nドリームこうえんの電波\n（要オープンロック）\nうちゅうくうかんの電波２\n（要オープンロック）"
+        "店:うちゅうくうかんの電波2/鍵ドリームこうえんの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s030_BreakSaber.png"
     },
@@ -335,10 +335,9 @@
       "section": "standard",
       "number": 31,
       "version": null,
-      "name": "グランドウェーブ１",
+      "name": "グランドウェーブ1",
       "details": [
-        "メットリオ",
-        "コダマタウンの電波"
+        "敵:メットリオ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s031_GroundWave1.png"
     },
@@ -347,10 +346,9 @@
       "section": "standard",
       "number": 32,
       "version": null,
-      "name": "グランドウェーブ２",
+      "name": "グランドウェーブ2",
       "details": [
-        "メットリオ２",
-        "しょうめんげんかんの電波"
+        "敵:メットリオ2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s032_GroundWave2.png"
     },
@@ -359,10 +357,9 @@
       "section": "standard",
       "number": 33,
       "version": null,
-      "name": "グランドウェーブ３",
+      "name": "グランドウェーブ3",
       "details": [
-        "メットリオ３",
-        "ゴミしゅうせきじょの電波"
+        "敵:メットリオ3/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s033_GroundWave3.png"
     },
@@ -371,11 +368,9 @@
       "section": "standard",
       "number": 34,
       "version": null,
-      "name": "ジェットアタック１",
+      "name": "ジェットアタック1",
       "details": [
-        "コダマタウンの電波のショップ",
-        "クロッカー",
-        "ぎじうちゅうの電脳１"
+        "敵:クロッカー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s034_JetAttack1.png"
     },
@@ -384,10 +379,9 @@
       "section": "standard",
       "number": 35,
       "version": null,
-      "name": "ジェットアタック２",
+      "name": "ジェットアタック2",
       "details": [
-        "クロケット",
-        "けしょうだいの電脳"
+        "敵:クロケット"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s035_JetAttack2.png"
     },
@@ -396,11 +390,9 @@
       "section": "standard",
       "number": 36,
       "version": null,
-      "name": "ジェットアタック３",
+      "name": "ジェットアタック3",
       "details": [
-        "パンダの電脳（固定）",
-        "クローバス",
-        "ゴミしゅうせきじょの電波"
+        "敵:クローバス/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s036_JetAttack3.png"
     },
@@ -409,11 +401,9 @@
       "section": "standard",
       "number": 37,
       "version": null,
-      "name": "パワーボム１",
+      "name": "パワーボム1",
       "details": [
-        "コダマタウンの電波のショップ",
-        "キャノベース",
-        "コダマタウンの電波"
+        "敵:キャノベース"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s037_PowerBomb1.png"
     },
@@ -422,10 +412,9 @@
       "section": "standard",
       "number": 38,
       "version": null,
-      "name": "パワーボム２",
+      "name": "パワーボム2",
       "details": [
-        "メガベース",
-        "１Ｆろうかの電波"
+        "敵:メガベース"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s038_PowerBomb2.png"
     },
@@ -434,10 +423,9 @@
       "section": "standard",
       "number": 39,
       "version": null,
-      "name": "パワーボム３",
+      "name": "パワーボム3",
       "details": [
-        "ギガベース",
-        "はいきぶつおきば２の電波"
+        "敵:ギガベース"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s039_PowerBomb3.png"
     },
@@ -446,10 +434,9 @@
       "section": "standard",
       "number": 40,
       "version": null,
-      "name": "ゴーストパルス１",
+      "name": "ゴーストパルス1",
       "details": [
-        "ナイナイ",
-        "アマケンがいかんの電波"
+        "敵:ナイナイ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s040_GhostPulse1.png"
     },
@@ -458,10 +445,9 @@
       "section": "standard",
       "number": 41,
       "version": null,
-      "name": "ゴーストパルス２",
+      "name": "ゴーストパルス2",
       "details": [
-        "ナイユラ",
-        "たいいくかんの電波"
+        "敵:ナイユラ/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s041_GhostPulse2.png"
     },
@@ -470,10 +456,9 @@
       "section": "standard",
       "number": 42,
       "version": null,
-      "name": "ゴーストパルス３",
+      "name": "ゴーストパルス3",
       "details": [
-        "ナイブレ",
-        "サービスモジュールの電波"
+        "敵:ナイブレ/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s042_GhostPulse3.png"
     },
@@ -482,11 +467,9 @@
       "section": "standard",
       "number": 43,
       "version": null,
-      "name": "モエリング１",
+      "name": "モエリング1",
       "details": [
-        "コダマタウンの電波のショップ",
-        "モエローダー",
-        "トラックの電脳１"
+        "敵:モエローダー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s043_MoeRing1.png"
     },
@@ -495,10 +478,9 @@
       "section": "standard",
       "number": 44,
       "version": null,
-      "name": "モエリング２",
+      "name": "モエリング2",
       "details": [
-        "モエモーター",
-        "ヤシブタウンの電波"
+        "敵:モエモーター"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s044_MoeRing2.png"
     },
@@ -507,10 +489,9 @@
       "section": "standard",
       "number": 45,
       "version": null,
-      "name": "モエリング３",
+      "name": "モエリング3",
       "details": [
-        "モエバイカー",
-        "ステーションの電脳２\nうちゅうくうかんの電波３"
+        "敵:モエバイカー/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s045_MoeRing3.png"
     },
@@ -519,10 +500,9 @@
       "section": "standard",
       "number": 46,
       "version": null,
-      "name": "カウントボム１",
+      "name": "カウントボム1",
       "details": [
-        "デスカウント",
-        "コダマタウンの電波\nＢＩＧＷＡＶＥの電波\nうちゅうくうかんの電波３"
+        "敵:デスカウント/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s046_CountBomb1.png"
     },
@@ -531,10 +511,9 @@
       "section": "standard",
       "number": 47,
       "version": null,
-      "name": "カウントボム２",
+      "name": "カウントボム2",
       "details": [
-        "デスボマー",
-        "ドリームアイランドの電波\nうちゅうくうかんの電波３"
+        "敵:デスボマー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s047_CountBomb2.png"
     },
@@ -543,10 +522,9 @@
       "section": "standard",
       "number": 48,
       "version": null,
-      "name": "カウントボム３",
+      "name": "カウントボム3",
       "details": [
-        "デスプロージョン",
-        "うちゅうくうかんの電波２、３"
+        "敵:デスプロージョン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s048_CountBomb3.png"
     },
@@ -555,11 +533,9 @@
       "section": "standard",
       "number": 49,
       "version": null,
-      "name": "ファイアバズーカ１",
+      "name": "ファイアバズーカ1",
       "details": [
-        "アマケンがいかんの電波のショップ",
-        "イワガンコ",
-        "学校の電脳１"
+        "敵:イワガンコ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s049_FireBazooka1.png"
     },
@@ -568,10 +544,9 @@
       "section": "standard",
       "number": 50,
       "version": null,
-      "name": "ファイアバズーカ２",
+      "name": "ファイアバズーカ2",
       "details": [
-        "ヤマガンコ",
-        "かいぞくせんの電脳"
+        "敵:ヤマガンコ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s050_FireBazooka2.png"
     },
@@ -580,10 +555,9 @@
       "section": "standard",
       "number": 51,
       "version": null,
-      "name": "ファイアバズーカ３",
+      "name": "ファイアバズーカ3",
       "details": [
-        "ミネガンコ",
-        "ステーションの電脳３\nうちゅうくうかんの電波１"
+        "敵:ミネガンコ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s051_FireBazooka3.png"
     },
@@ -592,10 +566,9 @@
       "section": "standard",
       "number": 52,
       "version": null,
-      "name": "テイルバーナー１",
+      "name": "テイルバーナー1",
       "details": [
-        "メラマンダ",
-        "スバルのへやの電波"
+        "敵:メラマンダ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s052_TailBurner1.png"
     },
@@ -604,10 +577,9 @@
       "section": "standard",
       "number": 53,
       "version": null,
-      "name": "テイルバーナー２",
+      "name": "テイルバーナー2",
       "details": [
-        "メラリザード",
-        "ビデオデッキの電脳"
+        "敵:メラリザード"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s053_TailBurner2.png"
     },
@@ -616,10 +588,9 @@
       "section": "standard",
       "number": 54,
       "version": null,
-      "name": "テイルバーナー３",
+      "name": "テイルバーナー3",
       "details": [
-        "メラリオン",
-        "くうちょうモジュールの電波\nうちゅうくうかんの電波３"
+        "敵:メラリオン/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s054_TailBurner3.png"
     },
@@ -628,10 +599,9 @@
       "section": "standard",
       "number": 55,
       "version": null,
-      "name": "ワイドウェーブ１",
+      "name": "ワイドウェーブ1",
       "details": [
-        "プルミン",
-        "アマケンタワーの電脳"
+        "敵:プルミン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s055_WideWave1.png"
     },
@@ -640,10 +610,9 @@
       "section": "standard",
       "number": 56,
       "version": null,
-      "name": "ワイドウェーブ２",
+      "name": "ワイドウェーブ2",
       "details": [
-        "プルッポ",
-        "２Ｆスピーカーの電脳"
+        "敵:プルッポ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s056_WideWave2.png"
     },
@@ -652,10 +621,9 @@
       "section": "standard",
       "number": 57,
       "version": null,
-      "name": "ワイドウェーブ３",
+      "name": "ワイドウェーブ3",
       "details": [
-        "プルポン",
-        "ステーションの電脳１\nうちゅうくうかんの電波３"
+        "敵:プルポン/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s057_WideWave3.png"
     },
@@ -664,11 +632,9 @@
       "section": "standard",
       "number": 58,
       "version": null,
-      "name": "チェインバブル１",
+      "name": "チェインバブル1",
       "details": [
-        "アマケンがいかんの電波のショップ\n２Ｆスピーカーの電脳（固定）",
-        "サワニガー",
-        "学校の電脳１～３"
+        "敵:サワニガー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s058_ChainBubble1.png"
     },
@@ -677,10 +643,9 @@
       "section": "standard",
       "number": 59,
       "version": null,
-      "name": "チェインバブル２",
+      "name": "チェインバブル2",
       "details": [
-        "カワニガー",
-        "ドリームアイランドの電波"
+        "敵:カワニガー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s059_ChainBubble2.png"
     },
@@ -689,10 +654,9 @@
       "section": "standard",
       "number": 60,
       "version": null,
-      "name": "チェインバブル３",
+      "name": "チェインバブル3",
       "details": [
-        "ウミニガー",
-        "ステーションの電脳３\nうちゅうくうかんの電波３"
+        "敵:ウミニガー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s060_ChainBubble3.png"
     },
@@ -703,8 +667,7 @@
       "version": null,
       "name": "グリーンインク",
       "details": [
-        "オクタリン",
-        "たいいくかんの電波"
+        "敵:オクタリン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s061_GreenInk.png"
     },
@@ -715,8 +678,7 @@
       "version": null,
       "name": "ブルーインク",
       "details": [
-        "アイスオクタリン",
-        "ドリームこうえんの電波"
+        "敵:アイスオクタリン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s062_BlueInk.png"
     },
@@ -727,8 +689,7 @@
       "version": null,
       "name": "パープルインク",
       "details": [
-        "ポイズンオクタリン",
-        "ステーションの電脳３"
+        "敵:ポイズンオクタリン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s063_PurpleInk.png"
     },
@@ -737,10 +698,9 @@
       "section": "standard",
       "number": 64,
       "version": null,
-      "name": "ネバーレイン１",
+      "name": "ネバーレイン1",
       "details": [
-        "ネバーラ",
-        "イベントかいじょうの電波"
+        "敵:ネバーラ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s064_NeverRain1.png"
     },
@@ -749,10 +709,9 @@
       "section": "standard",
       "number": 65,
       "version": null,
-      "name": "ネバーレイン２",
+      "name": "ネバーレイン2",
       "details": [
-        "ベターラ",
-        "じっけんモニターの電脳"
+        "敵:ベターラ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s065_NeverRain2.png"
     },
@@ -761,10 +720,9 @@
       "section": "standard",
       "number": 66,
       "version": null,
-      "name": "ネバーレイン３",
+      "name": "ネバーレイン3",
       "details": [
-        "ヌチャーラ",
-        "ステーションの電脳４\nうちゅうくうかんの電波３"
+        "敵:ヌチャーラ/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s066_NeverRain3.png"
     },
@@ -773,10 +731,9 @@
       "section": "standard",
       "number": 67,
       "version": null,
-      "name": "クラウドシュート１",
+      "name": "クラウドシュート1",
       "details": [
-        "ゴロボルタ",
-        "たいいくかんの電波"
+        "敵:ゴロボルタ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s067_CloudShoot1.png"
     },
@@ -785,10 +742,9 @@
       "section": "standard",
       "number": 68,
       "version": null,
-      "name": "クラウドシュート２",
+      "name": "クラウドシュート2",
       "details": [
-        "ゴロスパーク",
-        "ドリームアイランドの電波"
+        "敵:ゴロスパーク"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s068_CloudShoot2.png"
     },
@@ -797,10 +753,9 @@
       "section": "standard",
       "number": 69,
       "version": null,
-      "name": "クラウドシュート３",
+      "name": "クラウドシュート3",
       "details": [
-        "ゴロサンダー",
-        "ステーションの電脳３"
+        "敵:ゴロサンダー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s069_CloudShoot3.png"
     },
@@ -809,10 +764,9 @@
       "section": "standard",
       "number": 70,
       "version": null,
-      "name": "サンダーボール１",
+      "name": "サンダーボール1",
       "details": [
-        "ビリーエース",
-        "アマケンがいかんの電波"
+        "敵:ビリエース"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s070_Thunderball1.png"
     },
@@ -821,10 +775,9 @@
       "section": "standard",
       "number": 71,
       "version": null,
-      "name": "サンダーボール２",
+      "name": "サンダーボール2",
       "details": [
-        "ビリーキング",
-        "たいいくかんの電波"
+        "敵:ビリーキング"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s071_Thunderball2.png"
     },
@@ -833,10 +786,9 @@
       "section": "standard",
       "number": 72,
       "version": null,
-      "name": "サンダーボール３",
+      "name": "サンダーボール3",
       "details": [
-        "ビリージョーカー",
-        "スペースコロニーの電脳\nうちゅうくうかんの電波３"
+        "敵:ビリージョーカー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s072_Thunderball3.png"
     },
@@ -845,47 +797,42 @@
       "section": "standard",
       "number": 73,
       "version": null,
-      "name": "ボルティックアイ１",
+      "name": "ボルティックアイ1",
       "details": [
-        "サービスモジュールの電波（固定）",
-        "アイズ",
-        "スペースコロニーの電脳"
+        "敵:アイズ"
       ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/s073_VoltEye1.png"
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",
       "section": "standard",
       "number": 74,
       "version": null,
-      "name": "ボルティックアイ２",
+      "name": "ボルティックアイ2",
       "details": [
-        "ガードアイ",
-        "うちゅうくうかんの電波１"
+        "敵:ガードアイ"
       ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/s074_VoltEye2.png"
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",
       "section": "standard",
       "number": 75,
       "version": null,
-      "name": "ボルティックアイ３",
+      "name": "ボルティックアイ3",
       "details": [
-        "プロテクトアイ",
-        "うちゅうくうかんの電波１～３"
+        "敵:プロテクトアイ"
       ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/s075_VoltEye3.png"
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",
       "section": "standard",
       "number": 76,
       "version": null,
-      "name": "ホタルゲリ１",
+      "name": "ホタルゲリ1",
       "details": [
-        "ホタロー",
-        "アナコンダロボの電脳１"
+        "敵:ホタロー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s076_Hotarugeri1.png"
     },
@@ -894,11 +841,9 @@
       "section": "standard",
       "number": 77,
       "version": null,
-      "name": "ホタルゲリ２",
+      "name": "ホタルゲリ2",
       "details": [
-        "とうだいの電脳（固定）",
-        "ホタリーン",
-        "はいきぶつの電脳２"
+        "敵:ホタリーン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s077_Hotarugeri2.png"
     },
@@ -907,10 +852,9 @@
       "section": "standard",
       "number": 78,
       "version": null,
-      "name": "ホタルゲリ３",
+      "name": "ホタルゲリ3",
       "details": [
-        "ホタリッガ",
-        "ステーションの電脳４"
+        "敵:ホタリッガ/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s078_Hotarugeri3.png"
     },
@@ -919,10 +863,9 @@
       "section": "standard",
       "number": 79,
       "version": null,
-      "name": "ジャンボハンマー１",
+      "name": "ジャンボハンマー1",
       "details": [
-        "カブホーン",
-        "アナコンダロボの電脳１"
+        "敵:カブホーン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s079_JumboHammer1.png"
     },
@@ -931,10 +874,9 @@
       "section": "standard",
       "number": 80,
       "version": null,
-      "name": "ジャンボハンマー２",
+      "name": "ジャンボハンマー2",
       "details": [
-        "カブハンマー",
-        "じっけんモニターの電脳"
+        "敵:カブハンマー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s080_JumboHammer2.png"
     },
@@ -943,10 +885,9 @@
       "section": "standard",
       "number": 81,
       "version": null,
-      "name": "ジャンボハンマー３",
+      "name": "ジャンボハンマー3",
       "details": [
-        "カブグランド",
-        "ステーションの電脳４"
+        "敵:カブグランド"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s081_JumboHammer3.png"
     },
@@ -955,11 +896,9 @@
       "section": "standard",
       "number": 82,
       "version": null,
-      "name": "モジャランス１",
+      "name": "モジャランス1",
       "details": [
-        "アマケンがいかんの電波のショップ",
-        "モジャヘイ",
-        "ようふくやの電脳"
+        "敵:モジャヘイ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s082_MojaLance1.png"
     },
@@ -968,10 +907,9 @@
       "section": "standard",
       "number": 83,
       "version": null,
-      "name": "モジャランス２",
+      "name": "モジャランス2",
       "details": [
-        "モジャグンソウ",
-        "ボートの電脳"
+        "敵:モジャグンソウ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s083_MojaLance2.png"
     },
@@ -980,10 +918,9 @@
       "section": "standard",
       "number": 84,
       "version": null,
-      "name": "モジャランス３",
+      "name": "モジャランス3",
       "details": [
-        "モジャゲンスイ",
-        "ステーションの電脳４"
+        "敵:モジャゲンスイ/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s084_MojaLance3.png"
     },
@@ -992,11 +929,9 @@
       "section": "standard",
       "number": 85,
       "version": null,
-      "name": "ヘンゲノジュツ１",
+      "name": "ヘンゲノジュツ1",
       "details": [
-        "はいきぶつの電脳１（固定）",
-        "ヌッキー",
-        "はいきぶつの電脳１\nうちゅうくうかんの電波３"
+        "敵:ヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s085_HengeNoJutsu1.png"
     },
@@ -1005,10 +940,9 @@
       "section": "standard",
       "number": 86,
       "version": null,
-      "name": "ヘンゲノジュツ２",
+      "name": "ヘンゲノジュツ2",
       "details": [
-        "マネヌッキー",
-        "きょじゅうモジュールの電波\nうちゅうくうかんの電波３"
+        "敵:マネヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s086_HengeNoJutsu2.png"
     },
@@ -1017,10 +951,9 @@
       "section": "standard",
       "number": 87,
       "version": null,
-      "name": "ヘンゲノジュツ３",
+      "name": "ヘンゲノジュツ3",
       "details": [
-        "バケヌッキー",
-        "うちゅうくうかんの電波１、３"
+        "敵:バケヌッキー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s087_HengeNoJutsu3.png"
     },
@@ -1029,11 +962,9 @@
       "section": "standard",
       "number": 88,
       "version": null,
-      "name": "バルカンシード１",
+      "name": "バルカンシード1",
       "details": [
-        "はいきぶつの電脳１（固定）",
-        "ウリンガ",
-        "ドリームアイランドの電波"
+        "敵:ウリンガ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s088_VulcanSeed1.png"
     },
@@ -1042,10 +973,9 @@
       "section": "standard",
       "number": 89,
       "version": null,
-      "name": "バルカンシード２",
+      "name": "バルカンシード2",
       "details": [
-        "ウリングル",
-        "サービスモジュールの電波"
+        "敵:ウリングル"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s089_VulcanSeed2.png"
     },
@@ -1054,10 +984,9 @@
       "section": "standard",
       "number": 90,
       "version": null,
-      "name": "バルカンシード３",
+      "name": "バルカンシード3",
       "details": [
-        "ウリンゴラー",
-        "うちゅうくうかんの電波１、３"
+        "敵:ウリンブラー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s090_VulcanSeed3.png"
     },
@@ -1066,10 +995,9 @@
       "section": "standard",
       "number": 91,
       "version": null,
-      "name": "ブレイブソード１",
+      "name": "ブレイブソード1",
       "details": [
-        "モノソード",
-        "アマケンがいかんの電波"
+        "敵:モノソード"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s091_BraveSword1.png"
     },
@@ -1078,10 +1006,9 @@
       "section": "standard",
       "number": 92,
       "version": null,
-      "name": "ブレイブソード２",
+      "name": "ブレイブソード2",
       "details": [
-        "モノソーディン",
-        "おおがたビジョンの電脳"
+        "敵:モノソーディン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s092_BraveSword2.png"
     },
@@ -1090,10 +1017,9 @@
       "section": "standard",
       "number": 93,
       "version": null,
-      "name": "ブレイブソード３",
+      "name": "ブレイブソード3",
       "details": [
-        "モノソーディル",
-        "サービスモジュールの電脳"
+        "敵:モノソーディル/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s093_BraveSword3.png"
     },
@@ -1102,11 +1028,9 @@
       "section": "standard",
       "number": 94,
       "version": null,
-      "name": "ジャンクキューブ１",
+      "name": "ジャンクキューブ1",
       "details": [
-        "リサイクルひんの電脳（固定）\nはいきぶつの電脳３（固定）",
-        "ジャンクネス",
-        "ゴミしゅうせきじょの電波"
+        "敵:ジャンクネス"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s094_JunkCube1.png"
     },
@@ -1115,10 +1039,9 @@
       "section": "standard",
       "number": 95,
       "version": null,
-      "name": "ジャンクキューブ２",
+      "name": "ジャンクキューブ2",
       "details": [
-        "ジャンクネス２",
-        "ドリームアイランドちかの電波"
+        "敵:ジャンクネス2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s095_JunkCube2.png"
     },
@@ -1127,10 +1050,9 @@
       "section": "standard",
       "number": 96,
       "version": null,
-      "name": "ジャンクキューブ３",
+      "name": "ジャンクキューブ3",
       "details": [
-        "ジャンクネス３",
-        "うちゅうくうかんの電波２"
+        "敵:ジャンクネス3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s096_JunkCube3.png"
     },
@@ -1139,10 +1061,9 @@
       "section": "standard",
       "number": 97,
       "version": null,
-      "name": "シンクロフック１",
+      "name": "シンクロフック1",
       "details": [
-        "ベルゴング",
-        "ピッチングマシンの電脳"
+        "敵:ベルゴング/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s097_SynchroHook1.png"
     },
@@ -1151,10 +1072,9 @@
       "section": "standard",
       "number": 98,
       "version": null,
-      "name": "シンクロフック２",
+      "name": "シンクロフック2",
       "details": [
-        "ベルジャッジ",
-        "１Ｆスピーカーの電脳"
+        "敵:ベルジャッジ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s098_SynchroHook2.png"
     },
@@ -1163,10 +1083,9 @@
       "section": "standard",
       "number": 99,
       "version": null,
-      "name": "シンクロフック３",
+      "name": "シンクロフック3",
       "details": [
-        "ベルボクサー",
-        "うちゅうくうかんの電波１、２"
+        "敵:ベルボクサー/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s099_SynchroHook3.png"
     },
@@ -1177,9 +1096,7 @@
       "version": null,
       "name": "パワーソング",
       "details": [
-        "ピアノの電脳（固定）",
-        "シシカシュー",
-        "てんぼうだいの電波"
+        "敵:シシカシュー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s100_PowerSong.png"
     },
@@ -1190,8 +1107,7 @@
       "version": null,
       "name": "クエイクソング",
       "details": [
-        "シシンガー",
-        "アマケンがいかんの電波"
+        "敵:シシクラシック"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s101_QuakeSong.png"
     },
@@ -1202,8 +1118,7 @@
       "version": null,
       "name": "トリップソング",
       "details": [
-        "シシディーバ",
-        "１Ｆスピーカーの電脳"
+        "敵:シシディーバ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s102_TripSong.png"
     },
@@ -1212,11 +1127,9 @@
       "section": "standard",
       "number": 103,
       "version": null,
-      "name": "モアイフォール１",
+      "name": "モアイフォール1",
       "details": [
-        "モワイもんの電脳（固定）",
-        "モアイアン",
-        "ヤシブタウンの電波"
+        "敵:モアイアン"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s103_MoaiFall1.png"
     },
@@ -1225,10 +1138,9 @@
       "section": "standard",
       "number": 104,
       "version": null,
-      "name": "モアイフォール２",
+      "name": "モアイフォール2",
       "details": [
-        "ストーンヘッド",
-        "リサイクルひんの電脳"
+        "敵:ストーンヘッド"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s104_MoaiFall2.png"
     },
@@ -1237,10 +1149,9 @@
       "section": "standard",
       "number": 105,
       "version": null,
-      "name": "モアイフォール３",
+      "name": "モアイフォール3",
       "details": [
-        "ジャイアントフェイス",
-        "ステーションの電脳４\nうちゅうくうかんの電波３"
+        "敵:ジャイアントフェイス/暗"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s105_MoaiFall3.png"
     },
@@ -1249,10 +1160,9 @@
       "section": "standard",
       "number": 106,
       "version": null,
-      "name": "ビッグアックス１",
+      "name": "ビッグアックス1",
       "details": [
-        "ビグリッパ",
-        "はいきぶつの電脳１"
+        "敵:ビグリッパ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s106_BigAxe1.png"
     },
@@ -1261,10 +1171,9 @@
       "section": "standard",
       "number": 107,
       "version": null,
-      "name": "ビッグアックス２",
+      "name": "ビッグアックス2",
       "details": [
-        "ビググレート",
-        "はつでんモジュールの電波"
+        "敵:ビググレート"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s107_BigAxe2.png"
     },
@@ -1273,10 +1182,9 @@
       "section": "standard",
       "number": 108,
       "version": null,
-      "name": "ビッグアックス３",
+      "name": "ビッグアックス3",
       "details": [
-        "ビグカイザー",
-        "うちゅうくうかんの電波１、２"
+        "敵:ビグカイザー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s108_BigAxe3.png"
     },
@@ -1285,10 +1193,9 @@
       "section": "standard",
       "number": 109,
       "version": null,
-      "name": "マジクリスタル１",
+      "name": "マジクリスタル1",
       "details": [
-        "マジョネール",
-        "サービスモジュールの電波"
+        "敵:マジョネール"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s109_MagicCrystal1.png"
     },
@@ -1297,10 +1204,9 @@
       "section": "standard",
       "number": 110,
       "version": null,
-      "name": "マジクリスタル２",
+      "name": "マジクリスタル2",
       "details": [
-        "マジョネーレ",
-        "うちゅうくうかんの電波１"
+        "敵:マジョネーレ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s110_MagicCrystal2.png"
     },
@@ -1309,10 +1215,9 @@
       "section": "standard",
       "number": 111,
       "version": null,
-      "name": "マジクリスタル３",
+      "name": "マジクリスタル3",
       "details": [
-        "マジョネーロ",
-        "うちゅうくうかんの電波２、３"
+        "敵:マジョネーロ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s111_MagicCrystal3.png"
     },
@@ -1323,9 +1228,7 @@
       "version": null,
       "name": "ブラックホール1",
       "details": [
-        "ステーションの電脳４（固定）",
-        "ヘルブラック",
-        "きょじゅうモジュールの電波"
+        "敵:ヘルブラック"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s112_BlackHole1.png"
     },
@@ -1334,10 +1237,9 @@
       "section": "standard",
       "number": 113,
       "version": null,
-      "name": "ブラックホール２",
+      "name": "ブラックホール2",
       "details": [
-        "キラーブラック",
-        "うちゅうくうかんの電波１"
+        "敵:キラーブラック"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s113_BlackHole2.png"
     },
@@ -1346,10 +1248,9 @@
       "section": "standard",
       "number": 114,
       "version": null,
-      "name": "ブラックホール３",
+      "name": "ブラックホール3",
       "details": [
-        "デビルブラック",
-        "うちゅうくうかんの電波２、３"
+        "敵:デビルブラック"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s114_BlackHole3.png"
     },
@@ -1358,10 +1259,9 @@
       "section": "standard",
       "number": 115,
       "version": null,
-      "name": "ベルセルクソード１",
+      "name": "ベルセルクソード1",
       "details": [
-        "バサリカ",
-        "サービスモジュールの電脳"
+        "敵:バサリカ"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s115_BerserkSword1.png"
     },
@@ -1370,10 +1270,9 @@
       "section": "standard",
       "number": 116,
       "version": null,
-      "name": "ベルセルクソード２",
+      "name": "ベルセルクソード2",
       "details": [
-        "バサリグル",
-        "うちゅうくうかんの電波１、２"
+        "敵:バサリグル"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s116_BerserkSword2.png"
     },
@@ -1382,10 +1281,9 @@
       "section": "standard",
       "number": 117,
       "version": null,
-      "name": "ベルセルクソード３",
+      "name": "ベルセルクソード3",
       "details": [
-        "バサリッガー",
-        "うちゅうくうかんの電波１、３"
+        "敵:バサリッガー"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s117_BerserkSword3.png"
     },
@@ -1396,7 +1294,7 @@
       "version": null,
       "name": "グリーンバースト",
       "details": [
-        "５－Ｂ教室の電波のショップ"
+        "店:5-B教室の電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s118_GreenBurst.png"
     },
@@ -1407,7 +1305,7 @@
       "version": null,
       "name": "アイスバースト",
       "details": [
-        "ゴミしゅうせきじょの電波のショップ"
+        "店:ゴミしゅうせきじょの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s119_IceBurst.png"
     },
@@ -1418,7 +1316,7 @@
       "version": null,
       "name": "ポイズンバースト",
       "details": [
-        "ドリームアイランドちかの電波のショップ"
+        "店:ドリームアイランドちかの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s120_PoisonBurst.png"
     },
@@ -1429,7 +1327,7 @@
       "version": null,
       "name": "タイフーンダンス",
       "details": [
-        "ドリームアイランドちかの電波のショップ"
+        "店:ドリームアイランドちかの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s121_TyphoonDance.png"
     },
@@ -1440,7 +1338,7 @@
       "version": null,
       "name": "ジャミングパンチ",
       "details": [
-        "うちゅうくうかんの電波１\n（要オープンロック）"
+        "ミ:うちゅうくうかんの電波1"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s122_JammingPunch.png"
     },
@@ -1451,7 +1349,7 @@
       "version": null,
       "name": "ジャミングマシンガン",
       "details": [
-        "アナコンダロボの電脳３\n（要オープンロック）\nうちゅうくうかんの電波２（固定）"
+        "ミ:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s123_JammingPunch.png"
     },
@@ -1462,7 +1360,7 @@
       "version": null,
       "name": "ホイッスル",
       "details": [
-        "キザマロのへやの電波（固定）"
+        "ミ:キザマロのへやの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s124_Whistle.png"
     },
@@ -1473,7 +1371,7 @@
       "version": null,
       "name": "ボムライザー",
       "details": [
-        "５－Ｂ教室の電波のショップ"
+        "店:5-B教室の電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s125_BombRiser.png"
     },
@@ -1484,7 +1382,7 @@
       "version": null,
       "name": "シラハドリ",
       "details": [
-        "ＢＩＧＷＡＶＥ"
+        "店:BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s126_Shirahadori.png"
     },
@@ -1493,9 +1391,9 @@
       "section": "standard",
       "number": 127,
       "version": null,
-      "name": "リカバリー１０",
+      "name": "リカバリー10",
       "details": [
-        "初期フォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s127_Recovery10.png"
     },
@@ -1504,9 +1402,9 @@
       "section": "standard",
       "number": 128,
       "version": null,
-      "name": "リカバリー３０",
+      "name": "リカバリー30",
       "details": [
-        "初期フォルダ\nコダマタウンの電波のショップ"
+        "ラ:てんぼうだいの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s128_Recovery30.png"
     },
@@ -1515,8 +1413,10 @@
       "section": "standard",
       "number": 129,
       "version": null,
-      "name": "リカバリー５０",
-      "details": [],
+      "name": "リカバリー50",
+      "details": [
+        "ミ:1Fろうかの電波/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s129_Recovery50.png"
     },
     {
@@ -1524,9 +1424,9 @@
       "section": "standard",
       "number": 130,
       "version": null,
-      "name": "リカバリー８０",
+      "name": "リカバリー80",
       "details": [
-        "ＢＩＧＷＡＶＥ\nルナフォルダ"
+        "ラ:たいいくかんの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s130_Recovery80.png"
     },
@@ -1535,9 +1435,9 @@
       "section": "standard",
       "number": 131,
       "version": null,
-      "name": "リカバリー１２０",
+      "name": "リカバリー120",
       "details": [
-        "５－Ｂ教室の電波のショップ"
+        "店:5-B教室の電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s131_Recovery120.png"
     },
@@ -1546,9 +1446,9 @@
       "section": "standard",
       "number": 132,
       "version": null,
-      "name": "リカバリー１５０",
+      "name": "リカバリー150",
       "details": [
-        "ゴミしゅうせきじょの電波のショップ\nアナコンダロボの電脳３（固定）"
+        "ミ:アナコンダロボの電脳3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s132_Recovery150.png"
     },
@@ -1557,9 +1457,9 @@
       "section": "standard",
       "number": 133,
       "version": null,
-      "name": "リカバリー２００",
+      "name": "リカバリー200",
       "details": [
-        "ゴミしゅうせきじょの電波（固定）\nはいきぶつの電脳２"
+        "ミ:はいきぶつの電脳2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s133_Recovery200.png"
     },
@@ -1568,9 +1468,9 @@
       "section": "standard",
       "number": 134,
       "version": null,
-      "name": "リカバリー３００",
+      "name": "リカバリー300",
       "details": [
-        "きょじゅうモジュールの電波（固定）"
+        "ミ:きょじゅうモジュールの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s134_Recovery300.png"
     },
@@ -1581,7 +1481,7 @@
       "version": null,
       "name": "バリア",
       "details": [
-        "初期フォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s135_Barrier.png"
     },
@@ -1590,9 +1490,9 @@
       "section": "standard",
       "number": 136,
       "version": null,
-      "name": "バリア１００",
+      "name": "バリア100",
       "details": [
-        "５－Ｂ教室の電波のショップ\n学校の電脳２（固定）"
+        "ミ:学校の電脳2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s136_Barrier100.png"
     },
@@ -1601,9 +1501,9 @@
       "section": "standard",
       "number": 137,
       "version": null,
-      "name": "バリア２００",
+      "name": "バリア200",
       "details": [
-        "うちゅうくうかんの電波１（固定）"
+        "ミ:うちゅうくうかんの電波1"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s137_Barrier200.png"
     },
@@ -1614,7 +1514,7 @@
       "version": null,
       "name": "オーラ",
       "details": [
-        "ステーションの電脳１\n（要オープンロック）"
+        "鍵:ステーションの電脳1"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s138_Aura.png"
     },
@@ -1625,7 +1525,7 @@
       "version": null,
       "name": "インビジブル",
       "details": [
-        "ルナフォルダ\nしょうめんげんかんの電波（固定）"
+        "ミ:しょうめんげんかんの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s139_Invisible.png"
     },
@@ -1636,7 +1536,7 @@
       "version": null,
       "name": "セイレイノイカリ",
       "details": [
-        "ドリームアイランドちかの電波のショップ"
+        "店:ドリームアイランドちかの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s140_SeireiNoIkari.png"
     },
@@ -1647,7 +1547,7 @@
       "version": null,
       "name": "ドクリンゴ",
       "details": [
-        "ゴミしゅうせきじょの電波のショップ"
+        "店:ゴミしゅうせきじょの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s141_DokuRingo.png"
     },
@@ -1658,7 +1558,7 @@
       "version": null,
       "name": "ウラギリノススメ",
       "details": [
-        "うちゅうくうかんの電波２のショップ"
+        "店:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s142_UragiriNoSusume.png"
     },
@@ -1669,7 +1569,7 @@
       "version": null,
       "name": "ギガマイン",
       "details": [
-        "うちゅうくうかんの電波２のショップ"
+        "店:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s143_GigaMine.png"
     },
@@ -1680,7 +1580,7 @@
       "version": null,
       "name": "クサムラステージ",
       "details": [
-        "コダマタウンの電波（固定）"
+        "ミ:コダマタウンの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s144_KuramasaStage.png"
     },
@@ -1691,7 +1591,7 @@
       "version": null,
       "name": "アイスステージ",
       "details": [
-        "ぎじうちゅうの電脳２（固定）"
+        "ミ:ぎじうちゅうの電脳2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s145_IceStage.png"
     },
@@ -1702,9 +1602,9 @@
       "version": null,
       "name": "グラビティステージ",
       "details": [
-        "たいいくかんの電波（固定）"
+        "ミ:たいいくかんの電波"
       ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/s146_GravityStage.png"
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",
@@ -1713,7 +1613,7 @@
       "version": null,
       "name": "ゼツエンステージ",
       "details": [
-        "ドリームアイランドの電波（固定）"
+        "ミ:ドリームアイランドの電波"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s147_ZetsuenStage.png"
     },
@@ -1724,7 +1624,7 @@
       "version": null,
       "name": "ホーリーパネル",
       "details": [
-        "うちゅうくうかんの電波２のショップ\nボートの電脳（固定）\nステーションの電脳３（固定）"
+        "ミ:ステーションの電脳3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s148_HolyPanel.png"
     },
@@ -1735,7 +1635,7 @@
       "version": null,
       "name": "マヒプラス",
       "details": [
-        "初期フォルダ\nルナフォルダ\nスバルのリビングの電波（固定）"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s149_MahiPlus.png"
     },
@@ -1744,9 +1644,9 @@
       "section": "standard",
       "number": 150,
       "version": null,
-      "name": "アタック＋１０",
+      "name": "アタック＋10",
       "details": [
-        "初期フォルダ\nルナフォルダ"
+        "初"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/s150_Attack+10.png"
     },
@@ -1757,8 +1657,7 @@
       "version": null,
       "name": "オックスファイア",
       "details": [
-        "オックス・ファイア",
-        "コダマタウンの電波\nＥＸ出現場所：\n左上のほうの通路の突き当たり"
+        "敵:オックスファイアEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m01_OxFire.png"
     },
@@ -1767,8 +1666,10 @@
       "section": "mega",
       "number": 2,
       "version": null,
-      "name": "オックスファイアＥＸ",
-      "details": [],
+      "name": "オックスファイアEX",
+      "details": [
+        "敵:オックスファイアSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m02_OxFireEX.png"
     },
     {
@@ -1776,8 +1677,10 @@
       "section": "mega",
       "number": 3,
       "version": null,
-      "name": "オックスファイアＳＰ",
-      "details": [],
+      "name": "オックスファイアSP",
+      "details": [
+        "敵:オックスファイアSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m03_OxFireSP.png"
     },
     {
@@ -1787,8 +1690,7 @@
       "version": null,
       "name": "キグナスウイング",
       "details": [
-        "キグナス・ウイング",
-        "けんきゅう室の電波\nＥＸ出現場所：\n右下のほうの通路の途中"
+        "敵:キグナスウイングEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m04_CygnusWing.png"
     },
@@ -1797,8 +1699,10 @@
       "section": "mega",
       "number": 5,
       "version": null,
-      "name": "キグナスウイングＥＸ",
-      "details": [],
+      "name": "キグナスウイングEX",
+      "details": [
+        "敵:キグナスウイングSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m05_CygnusWingEX.png"
     },
     {
@@ -1806,8 +1710,10 @@
       "section": "mega",
       "number": 6,
       "version": null,
-      "name": "キグナスウイングＳＰ",
-      "details": [],
+      "name": "キグナスウイングSP",
+      "details": [
+        "敵:キグナスウイングSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m06_CygnusWingSP.png"
     },
     {
@@ -1817,8 +1723,7 @@
       "version": null,
       "name": "ハープノート",
       "details": [
-        "ハープ・ノート",
-        "てんぼうだいの電波\nＥＸ出現場所：\n上のほうの短い通路の途中"
+        "敵:ハープノートEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m07_HarpNote.png"
     },
@@ -1827,8 +1732,10 @@
       "section": "mega",
       "number": 8,
       "version": null,
-      "name": "ハープノートＥＸ",
-      "details": [],
+      "name": "ハープノートEX",
+      "details": [
+        "敵:ハープノートSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m08_HarpNoteEX.png"
     },
     {
@@ -1836,8 +1743,10 @@
       "section": "mega",
       "number": 9,
       "version": null,
-      "name": "ハープノートＳＰ",
-      "details": [],
+      "name": "ハープノートSP",
+      "details": [
+        "敵:ハープノートSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m09_HarpNoteSP.png"
     },
     {
@@ -1847,8 +1756,7 @@
       "version": null,
       "name": "リブラバランス",
       "details": [
-        "リブラ・バランス",
-        "５－Ａ教室の電波\nＥＸ出現場所：\n左上の通路の突き当たり"
+        "敵:リブラバランスEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m10_LibraBalance.png"
     },
@@ -1857,8 +1765,10 @@
       "section": "mega",
       "number": 11,
       "version": null,
-      "name": "リブラバランスＥＸ",
-      "details": [],
+      "name": "リブラバランスEX",
+      "details": [
+        "敵:リブラバランスSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m11_LibraBalanceEX.png"
     },
     {
@@ -1866,8 +1776,10 @@
       "section": "mega",
       "number": 12,
       "version": null,
-      "name": "リブラバランスＳＰ",
-      "details": [],
+      "name": "リブラバランスSP",
+      "details": [
+        "敵:リブラバランスSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m12_LibraBalanceSP.png"
     },
     {
@@ -1877,8 +1789,7 @@
       "version": null,
       "name": "オヒュカスクイーン",
       "details": [
-        "オヒュカス・クイーン",
-        "ヤシブタウンの電波\nＥＸ出現場所：\n上のほうの通路の途中"
+        "敵:オヒュカスクイーンEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m13_OphiuchisQueen.png"
     },
@@ -1887,8 +1798,10 @@
       "section": "mega",
       "number": 14,
       "version": null,
-      "name": "オヒュカスクイーンＥＸ",
-      "details": [],
+      "name": "オヒュカスクイーンEX",
+      "details": [
+        "敵:オヒュカスクイーンSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m14_OphiuchisQueenEX.png"
     },
     {
@@ -1896,8 +1809,10 @@
       "section": "mega",
       "number": 15,
       "version": null,
-      "name": "オヒュカスクイーンＳＰ",
-      "details": [],
+      "name": "オヒュカスクイーンSP",
+      "details": [
+        "敵:オヒュカスクイーンSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m15_OphiuchisQueenSP.png"
     },
     {
@@ -1907,8 +1822,7 @@
       "version": null,
       "name": "ジェミニスパーク",
       "details": [
-        "ジェミニ・スパーク",
-        "ドリームこうえんの電波\nＥＸ出現場所：\n右のほうの通路の突き当たり"
+        "敵:ジェミニスパークEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m16_GeminiSpark.png"
     },
@@ -1917,8 +1831,10 @@
       "section": "mega",
       "number": 17,
       "version": null,
-      "name": "ジェミニスパークＥＸ",
-      "details": [],
+      "name": "ジェミニスパークEX",
+      "details": [
+        "敵:ジェミニスパークSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m17_GeminiSparkEX.png"
     },
     {
@@ -1926,8 +1842,10 @@
       "section": "mega",
       "number": 18,
       "version": null,
-      "name": "ジェミニスパークＳＰ",
-      "details": [],
+      "name": "ジェミニスパークSP",
+      "details": [
+        "敵:ジェミニスパークSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m18_GeminSparkSP.png"
     },
     {
@@ -1937,8 +1855,7 @@
       "version": null,
       "name": "キャンサーバブル",
       "details": [
-        "キャンサー・バブル",
-        "アマケンげんかんの電波"
+        "敵:キャンサーバブルEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m19_CancerBubble.png"
     },
@@ -1947,8 +1864,10 @@
       "section": "mega",
       "number": 20,
       "version": null,
-      "name": "キャンサーバブルＥＸ",
-      "details": [],
+      "name": "キャンサーバブルEX",
+      "details": [
+        "敵:キャンサーバブルSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m20_CancerBubbleEX.png"
     },
     {
@@ -1956,8 +1875,10 @@
       "section": "mega",
       "number": 21,
       "version": null,
-      "name": "キャンサーバブルＳＰ",
-      "details": [],
+      "name": "キャンサーバブルSP",
+      "details": [
+        "敵:キャンサーバブルSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m21_CancerBubbleSP.png"
     },
     {
@@ -1967,8 +1888,7 @@
       "version": null,
       "name": "ウルフフォレスト",
       "details": [
-        "ウルフ・フォレスト",
-        "イベントかいじょうの電波"
+        "敵:ウルフフォレストEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m22_WolfForest.png"
     },
@@ -1977,8 +1897,10 @@
       "section": "mega",
       "number": 23,
       "version": null,
-      "name": "ウルフフォレストＥＸ",
-      "details": [],
+      "name": "ウルフフォレストEX",
+      "details": [
+        "敵:ウルフフォレストSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m23_WolfForestEX.png"
     },
     {
@@ -1986,8 +1908,10 @@
       "section": "mega",
       "number": 24,
       "version": null,
-      "name": "ウルフフォレストＳＰ",
-      "details": [],
+      "name": "ウルフフォレストSP",
+      "details": [
+        "敵:ウルフフォレストSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m24_WolfForestSP.png"
     },
     {
@@ -1997,8 +1921,7 @@
       "version": null,
       "name": "クラウンサンダー",
       "details": [
-        "クラウン・サンダー",
-        "ゴミしゅうせきじょの電波"
+        "敵:クラウンサンダーEX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m25_CrownThunder.png"
     },
@@ -2007,8 +1930,10 @@
       "section": "mega",
       "number": 26,
       "version": null,
-      "name": "クラウンサンダーＥＸ",
-      "details": [],
+      "name": "クラウンサンダーEX",
+      "details": [
+        "敵:クラウンサンダーSP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m26_CrownThunderEX.png"
     },
     {
@@ -2016,8 +1941,10 @@
       "section": "mega",
       "number": 27,
       "version": null,
-      "name": "クラウンサンダーＳＰ",
-      "details": [],
+      "name": "クラウンサンダーSP",
+      "details": [
+        "敵:クラウンサンダーSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m27_CrownThunderSP.png"
     },
     {
@@ -2027,8 +1954,7 @@
       "version": "pegasus",
       "name": "ペガサスマジック",
       "details": [
-        "ペガサス・マジック",
-        "うちゅうくうかんの電波３\n中央のほうの坂の間の短い通路の先"
+        "敵:ペガサスマジック,同EX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m28p_PegasusMagic.png"
     },
@@ -2037,8 +1963,10 @@
       "section": "mega",
       "number": 29,
       "version": "pegasus",
-      "name": "ペガサスマジックＥＸ",
-      "details": [],
+      "name": "ペガサスマジックEX",
+      "details": [
+        "敵:ペガサスマジックEX,同SP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m29p_PegasusMagicEX.png"
     },
     {
@@ -2046,8 +1974,10 @@
       "section": "mega",
       "number": 30,
       "version": "pegasus",
-      "name": "ペガサスマジックＳＰ",
-      "details": [],
+      "name": "ペガサスマジックSP",
+      "details": [
+        "敵:ペガサスマジックSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m30p_PegasusMagicSP.png"
     },
     {
@@ -2057,8 +1987,7 @@
       "version": "leo",
       "name": "レオキングダム",
       "details": [
-        "レオ・キングダム",
-        "うちゅうくうかんの電波３\n中央のほうの坂の間の短い通路の先"
+        "敵:レオキングダム,同EX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m28l_LeoKingdom.png"
     },
@@ -2067,8 +1996,10 @@
       "section": "mega",
       "number": 29,
       "version": "leo",
-      "name": "レオキングダムＥＸ",
-      "details": [],
+      "name": "レオキングダムEX",
+      "details": [
+        "敵:レオキングダムEX,同SP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m29l_LeoKingdomEX.png"
     },
     {
@@ -2076,8 +2007,10 @@
       "section": "mega",
       "number": 30,
       "version": "leo",
-      "name": "レオキングダムＳＰ",
-      "details": [],
+      "name": "レオキングダムSP",
+      "details": [
+        "敵:レオキングダムSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m30l_LeoKingdomSP.png"
     },
     {
@@ -2087,8 +2020,7 @@
       "version": "dragon",
       "name": "ドラゴンスカイ",
       "details": [
-        "ドラゴン・スカイ",
-        "うちゅうくうかんの電波３\n中央のほうの坂の間の短い通路の先"
+        "敵:ドラゴンスカイ,同EX,同SP"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m28d_DragonSky.png"
     },
@@ -2097,8 +2029,10 @@
       "section": "mega",
       "number": 29,
       "version": "dragon",
-      "name": "ドラゴンスカイＥＸ",
-      "details": [],
+      "name": "ドラゴンスカイEX",
+      "details": [
+        "敵:ドラゴンスカイEX,同SP"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m29d_DragonSkyEX.png"
     },
     {
@@ -2106,73 +2040,20 @@
       "section": "mega",
       "number": 30,
       "version": "dragon",
-      "name": "ドラゴンスカイＳＰ",
-      "details": [],
+      "name": "ドラゴンスカイSP",
+      "details": [
+        "敵:ドラゴンスカイSP/暗"
+      ],
       "assetLocalPath": "/assets/cards/SF1/Cards/m30d_DragonSkySP.png"
     },
     {
       "game": "mmsf1",
       "section": "giga",
       "number": 1,
-      "version": "pegasus",
-      "name": "ペガサスマジックＧＸ",
-      "details": [
-        "ストーリー中に入手"
-      ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/g1p_PegasusMagicGX.png"
-    },
-    {
-      "game": "mmsf1",
-      "section": "giga",
-      "number": 2,
-      "version": "pegasus",
-      "name": "アクア＋５０",
-      "details": [
-        "うちゅうくうかんの電波２\nスタンダードクラスチップを全て集めて扉を開いた後にもらえる"
-      ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/g2p_Aqua+50.png"
-    },
-    {
-      "game": "mmsf1",
-      "section": "giga",
-      "number": 3,
-      "version": "pegasus",
-      "name": "オックスタックル",
-      "details": [
-        "うちゅうくうかんの電波３\n見えない通路の先、要オープンロック"
-      ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/g3p_OxTackle.png"
-    },
-    {
-      "game": "mmsf1",
-      "section": "giga",
-      "number": 4,
-      "version": "pegasus",
-      "name": "ブレイクカウントボム",
-      "details": [
-        "BIGWAVE"
-      ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/g4p_BreakCountBomb.png"
-    },
-    {
-      "game": "mmsf1",
-      "section": "giga",
-      "number": 5,
-      "version": "pegasus",
-      "name": "ダークソード",
-      "details": [
-        "うちゅうくうかん２のショップ"
-      ],
-      "assetLocalPath": "/assets/cards/SF1/Cards/g5p_DarkSword.png"
-    },
-    {
-      "game": "mmsf1",
-      "section": "giga",
-      "number": 1,
       "version": "leo",
-      "name": "レオキングダムＧＸ",
+      "name": "レオキングダムGX",
       "details": [
-        "ストーリー中に入手"
+        "シナリオ上必ず手に入る"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g1l_LeoKingdomGX.png"
     },
@@ -2181,9 +2062,9 @@
       "section": "giga",
       "number": 2,
       "version": "leo",
-      "name": "ファイア＋５０",
+      "name": "ファイア+50",
       "details": [
-        "うちゅうくうかんの電波２\nスタンダードクラスチップを全て集めて扉を開いた後にもらえる"
+        "うちゅうくうかんの電波2 Sコンプで開く扉を開ける"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g2l_Fire+50.png"
     },
@@ -2194,7 +2075,7 @@
       "version": "leo",
       "name": "ジェミニサンダー",
       "details": [
-        "うちゅうくうかんの電波３\n見えない通路の先、要オープンロック"
+        "鍵:うちゅうくうかんの電波3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g3l_GeminiThunder.png"
     },
@@ -2205,7 +2086,7 @@
       "version": "leo",
       "name": "ダークネスホール",
       "details": [
-        "BIGWAVE"
+        "店:BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g4l_DarknessHole.png"
     },
@@ -2216,9 +2097,64 @@
       "version": "leo",
       "name": "ドリームオーラ",
       "details": [
-        "うちゅうくうかん２のショップ"
+        "店:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g5l_DreamAura.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 1,
+      "version": "pegasus",
+      "name": "ペガサスマジックGX",
+      "details": [
+        "シナリオ上必ず手に入る"
+      ],
+      "assetLocalPath": "/assets/cards/SF1/Cards/g1p_PegasusMagicGX.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 2,
+      "version": "pegasus",
+      "name": "アクア+50",
+      "details": [
+        "うちゅうくうかんの電波2 Sコンプで開く扉を開ける"
+      ],
+      "assetLocalPath": "/assets/cards/SF1/Cards/g2p_Aqua+50.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 3,
+      "version": "pegasus",
+      "name": "オックスタックル",
+      "details": [
+        "鍵:うちゅうくうかんの電波3"
+      ],
+      "assetLocalPath": "/assets/cards/SF1/Cards/g3p_OxTackle.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 4,
+      "version": "pegasus",
+      "name": "ブレイクカウントボム",
+      "details": [
+        "店:BIGWAVE"
+      ],
+      "assetLocalPath": "/assets/cards/SF1/Cards/g4p_BreakCountBomb.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 5,
+      "version": "pegasus",
+      "name": "ダークソード",
+      "details": [
+        "店:うちゅうくうかんの電波2"
+      ],
+      "assetLocalPath": "/assets/cards/SF1/Cards/g5p_DarkSword.png"
     },
     {
       "game": "mmsf1",
@@ -2227,7 +2163,7 @@
       "version": "dragon",
       "name": "ドラゴンスカイGX",
       "details": [
-        "ストーリー中に入手"
+        "シナリオ上必ず手に入る"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g1d_DragonSkyGX.png"
     },
@@ -2236,9 +2172,9 @@
       "section": "giga",
       "number": 2,
       "version": "dragon",
-      "name": "ウッド＋５０",
+      "name": "ウッド+50",
       "details": [
-        "うちゅうくうかんの電波２\nスタンダードクラスチップを全て集めて扉を開いた後にもらえる"
+        "うちゅうくうかんの電波2 Sコンプで開く扉を開ける"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g2d_Wood+50.png"
     },
@@ -2249,7 +2185,7 @@
       "version": "dragon",
       "name": "ゴルゴンアイ",
       "details": [
-        "うちゅうくうかんの電波３\n見えない通路の先、要オープンロック"
+        "鍵:うちゅうくうかんの電波3"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g3d_GorgonEye.png"
     },
@@ -2260,7 +2196,7 @@
       "version": "dragon",
       "name": "デストロイミサイル",
       "details": [
-        "BIGWAVE"
+        "店:BIGWAVE"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g4d_DestroyMissile.png"
     },
@@ -2271,9 +2207,20 @@
       "version": "dragon",
       "name": "ポイズンファラオ",
       "details": [
-        "うちゅうくうかん２のショップ"
+        "店:うちゅうくうかんの電波2"
       ],
       "assetLocalPath": "/assets/cards/SF1/Cards/g5d_PoisonPharaoh.png"
+    },
+    {
+      "game": "mmsf1",
+      "section": "giga",
+      "number": 0,
+      "version": null,
+      "name": "アンドロメダ",
+      "details": [
+        "イベント限定配信ギガカード"
+      ],
+      "assetLocalPath": null
     },
     {
       "game": "mmsf1",

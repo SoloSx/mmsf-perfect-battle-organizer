@@ -37,6 +37,7 @@ export function Mmsf1WarRockSection({
   warRockWeapons,
   sourceSuggestions,
   missingWarRockWeaponSourceNames,
+  resolveKnownSources,
   onWarRockWeaponChange,
   onWarRockWeaponSourcesChange,
 }: {
@@ -44,6 +45,7 @@ export function Mmsf1WarRockSection({
   warRockWeapons: string[];
   sourceSuggestions: string[];
   missingWarRockWeaponSourceNames: string[];
+  resolveKnownSources: (name: string) => string[];
   onWarRockWeaponChange: (value: string) => void;
   onWarRockWeaponSourcesChange: (entries: BuildSourceEntry[]) => void;
 }) {
@@ -77,6 +79,7 @@ export function Mmsf1WarRockSection({
         sourceSuggestions={sourceSuggestions}
         missingNames={missingWarRockWeaponSourceNames}
         useKnownSourceSuggestions
+        resolveKnownSources={resolveKnownSources}
         actionMode="owned"
       />
     </div>

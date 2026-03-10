@@ -123,7 +123,22 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
 
 function getMmsf1SystemSnapshotLines(build: BuildRecord) {
   const s = build.gameSpecificSections.mmsf1;
+  const enhancementLabel =
+    s.enhancement === "fire_leo" ? "ファイアレオ"
+    : s.enhancement === "ice_pegasus" ? "アイスペガサス"
+    : s.enhancement === "green_dragon" ? "グリーンドラゴン"
+    : null;
   const lines: string[] = [s.warRockWeapon || "ウォーロック装備未設定"];
+
+  if (enhancementLabel) {
+    lines.unshift(
+      `強化: ${enhancementLabel}`,
+      "スキャナー効果: Lv99",
+      "HP+990 / A+4 / R+4 / C+4 / Gauge+4 / Mega+4 / Giga+4",
+      "アンダーシャツ / スーパーアーマー / ファーストバリア / フロートシューズ",
+    );
+  }
+
   if (s.brotherBandMode) lines.push(s.brotherBandMode);
   if (s.versionFeature) lines.push(s.versionFeature);
   if (s.crossBrotherNotes) lines.push(s.crossBrotherNotes);
@@ -374,16 +389,18 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                     ))}
                 </ul>
               </div>
-              <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
-                <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
-                  {abilities.length > 0 ? (
-                    abilities.map((item) => <li key={item}>• {item}</li>)
-                  ) : (
-                    <li>• アビリティ未設定</li>
-                  )}
-                </ul>
-              </div>
+              {build.game !== "mmsf1" && (
+                <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
+                  <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+                    {abilities.length > 0 ? (
+                      abilities.map((item) => <li key={item}>• {item}</li>)
+                    ) : (
+                      <li>• アビリティ未設定</li>
+                    )}
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         </div>

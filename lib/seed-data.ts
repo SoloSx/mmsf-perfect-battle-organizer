@@ -1,3 +1,5 @@
+import { MMSF1_WAR_ROCK_WEAPON_NAMES } from "@/lib/mmsf1/war-rock-weapons";
+import { MMSF1_BROTHER_NAMES } from "@/lib/mmsf1/brothers";
 import { MMSF2_ABILITY_NAMES } from "@/lib/mmsf2/abilities";
 import { MMSF2_WAR_ROCK_WEAPON_NAMES } from "@/lib/mmsf2/war-rock-weapons";
 import type { MasterDataIndex, StrategyTemplate } from "@/lib/types";
@@ -146,25 +148,11 @@ export const MASTER_DATA: MasterDataIndex = {
     ],
   },
   warRockWeaponsByGame: {
-    mmsf1: [
-      "スルドイキバ",
-      "ヒキサクツメ",
-      "ヤマアラシノハリ",
-      "コブラノキバ",
-      "フラッシュアイ",
-      "ハヤテノウデワ",
-      "パワーリング",
-      "マシンガンクロー",
-      "パラライザー",
-      "ハンマーグローブ",
-      "ゼニーサーチング",
-      "コレクトバイザー",
-      "カイザーナックル",
-    ],
+    mmsf1: MMSF1_WAR_ROCK_WEAPON_NAMES,
     mmsf2: MMSF2_WAR_ROCK_WEAPON_NAMES,
   },
   brothersByGame: {
-    mmsf1: ["ルナ", "ゴン太", "キザマロ", "ミソラ", "リアルブラザー", "クロスブラザー"],
+    mmsf1: MMSF1_BROTHER_NAMES,
     mmsf2: ["ルナ", "ミソラ", "ゴン太", "キザマロ", "オートブラザー", "リアルブラザー", "限定配信ブラザー"],
     mmsf3: [
       "白金ルナ",
