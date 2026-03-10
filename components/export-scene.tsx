@@ -38,6 +38,36 @@ const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
 };
 
 function getExportBackground(build: BuildRecord) {
+  if (build.game === "mmsf1" && build.version === "pegasus") {
+    return [
+      "radial-gradient(circle at 16% 16%, rgba(255,255,255,0.24), transparent 24%)",
+      "radial-gradient(circle at 42% 18%, rgba(196,181,253,0.22), transparent 20%)",
+      "radial-gradient(circle at 72% 52%, rgba(96,165,250,0.24), transparent 24%)",
+      "radial-gradient(circle at 84% 78%, rgba(250,204,21,0.24), transparent 24%)",
+      "linear-gradient(118deg, rgba(18,12,56,0.98) 0%, rgba(37,99,235,0.92) 28%, rgba(76,29,149,0.82) 56%, rgba(30,64,175,0.78) 76%, rgba(250,204,21,0.68) 100%)",
+    ].join(", ");
+  }
+
+  if (build.game === "mmsf1" && build.version === "leo") {
+    return [
+      "radial-gradient(circle at 16% 16%, rgba(255,230,138,0.24), transparent 24%)",
+      "radial-gradient(circle at 38% 18%, rgba(248,113,113,0.22), transparent 20%)",
+      "radial-gradient(circle at 70% 52%, rgba(234,88,12,0.24), transparent 24%)",
+      "radial-gradient(circle at 84% 78%, rgba(168,85,247,0.18), transparent 24%)",
+      "linear-gradient(118deg, rgba(35,8,10,0.98) 0%, rgba(96,24,27,0.92) 24%, rgba(180,57,22,0.82) 52%, rgba(81,36,122,0.74) 74%, rgba(10,38,67,0.86) 100%)",
+    ].join(", ");
+  }
+
+  if (build.game === "mmsf1" && build.version === "dragon") {
+    return [
+      "radial-gradient(circle at 16% 16%, rgba(167,243,208,0.24), transparent 24%)",
+      "radial-gradient(circle at 42% 18%, rgba(74,222,128,0.22), transparent 20%)",
+      "radial-gradient(circle at 72% 52%, rgba(45,212,191,0.24), transparent 24%)",
+      "radial-gradient(circle at 84% 78%, rgba(250,204,21,0.24), transparent 24%)",
+      "linear-gradient(118deg, rgba(4,28,24,0.98) 0%, rgba(7,74,62,0.94) 26%, rgba(5,150,105,0.84) 54%, rgba(21,128,61,0.78) 74%, rgba(15,23,42,0.88) 100%)",
+    ].join(", ");
+  }
+
   if (build.game === "mmsf3" && build.version === "red-joker") {
     return [
       "radial-gradient(circle at 18% 18%, rgba(255,118,163,0.22), transparent 24%)",
@@ -48,20 +78,38 @@ function getExportBackground(build: BuildRecord) {
   }
 
   if (build.game === "mmsf2") {
+    if (build.version === "berserker") {
+      return [
+        "radial-gradient(circle at 16% 16%, rgba(255,255,255,0.24), transparent 24%)",
+        "radial-gradient(circle at 44% 18%, rgba(226,232,240,0.24), transparent 20%)",
+        "radial-gradient(circle at 72% 54%, rgba(59,130,246,0.22), transparent 24%)",
+        "radial-gradient(circle at 84% 80%, rgba(250,204,21,0.28), transparent 24%)",
+        "linear-gradient(118deg, rgba(5,10,24,0.98) 0%, rgba(20,32,70,0.94) 30%, rgba(70,85,110,0.82) 56%, rgba(160,174,192,0.76) 78%, rgba(245,158,11,0.7) 100%)",
+      ].join(", ");
+    }
+
     if (build.version === "shinobi") {
       return [
-        "radial-gradient(circle at 18% 18%, rgba(22,163,74,0.24), transparent 24%)",
-        "radial-gradient(circle at 58% 30%, rgba(190,242,100,0.16), transparent 18%)",
-        "radial-gradient(circle at 72% 58%, rgba(34,197,94,0.22), transparent 24%)",
-        "radial-gradient(circle at 84% 76%, rgba(21,128,61,0.28), transparent 24%)",
-        "linear-gradient(118deg, rgba(2,15,10,0.98) 0%, rgba(7,34,24,0.96) 30%, rgba(16,82,62,0.76) 58%, rgba(8,27,20,0.96) 100%)",
+        "radial-gradient(circle at 16% 16%, rgba(250,204,21,0.24), transparent 24%)",
+        "radial-gradient(circle at 52% 18%, rgba(163,230,53,0.22), transparent 20%)",
+        "radial-gradient(circle at 70% 52%, rgba(56,189,248,0.22), transparent 24%)",
+        "radial-gradient(circle at 84% 78%, rgba(14,165,233,0.26), transparent 24%)",
+        "linear-gradient(118deg, rgba(4,16,20,0.98) 0%, rgba(10,54,64,0.94) 28%, rgba(31,119,109,0.82) 55%, rgba(139,191,47,0.72) 76%, rgba(245,158,11,0.66) 100%)",
+      ].join(", ");
+    }
+
+    if (build.version === "dinosaur") {
+      return [
+        "radial-gradient(circle at 16% 18%, rgba(254,240,138,0.24), transparent 24%)",
+        "radial-gradient(circle at 48% 16%, rgba(251,146,60,0.24), transparent 20%)",
+        "radial-gradient(circle at 72% 48%, rgba(249,115,22,0.24), transparent 24%)",
+        "radial-gradient(circle at 84% 78%, rgba(220,38,38,0.28), transparent 24%)",
+        "linear-gradient(118deg, rgba(30,12,4,0.98) 0%, rgba(91,33,4,0.94) 28%, rgba(154,52,18,0.86) 54%, rgba(194,65,12,0.78) 74%, rgba(255,214,102,0.7) 100%)",
       ].join(", ");
     }
 
     const tribeGlow =
-      build.version === "dinosaur"
-          ? "radial-gradient(circle at 84% 76%, rgba(249,115,22,0.28), transparent 24%)"
-          : "radial-gradient(circle at 84% 76%, rgba(250,204,21,0.22), transparent 24%)";
+      "radial-gradient(circle at 84% 76%, rgba(250,204,21,0.22), transparent 24%)";
 
     return [
       "radial-gradient(circle at 18% 18%, rgba(129,140,248,0.18), transparent 24%)",
@@ -76,6 +124,18 @@ function getExportBackground(build: BuildRecord) {
 }
 
 function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof getVersionRuleSet>) {
+  if (build.game === "mmsf1" && build.version === "pegasus") {
+    return "linear-gradient(135deg, #f8fafc 0%, #60a5fa 28%, #4f46e5 62%, #facc15 100%)";
+  }
+
+  if (build.game === "mmsf1" && build.version === "leo") {
+    return "linear-gradient(135deg, #fde68a 0%, #fb923c 24%, #ef4444 58%, #1d4ed8 100%)";
+  }
+
+  if (build.game === "mmsf1" && build.version === "dragon") {
+    return "linear-gradient(135deg, #bbf7d0 0%, #4ade80 28%, #14b8a6 62%, #facc15 100%)";
+  }
+
   if (build.game === "mmsf3" && build.version === "red-joker") {
     return "linear-gradient(135deg, #ff8fb1 0%, #ff2f68 34%, #ffcc4d 74%, #ff5a36 100%)";
   }
@@ -86,11 +146,11 @@ function getExportAccentBackground(build: BuildRecord, rule: ReturnType<typeof g
 
   switch (build.version) {
     case "berserker":
-      return "linear-gradient(135deg, #ffe08a 0%, #ffb347 48%, #f97316 100%)";
+      return "linear-gradient(135deg, #f8fafc 0%, #94a3b8 28%, #1d4ed8 58%, #facc15 100%)";
     case "shinobi":
-      return "linear-gradient(135deg, #d9f99d 0%, #86efac 34%, #22c55e 72%, #14532d 100%)";
+      return "linear-gradient(135deg, #facc15 0%, #a3e635 24%, #22c55e 48%, #38bdf8 76%, #0f766e 100%)";
     case "dinosaur":
-      return "linear-gradient(135deg, #fde68a 0%, #fb923c 44%, #ef4444 100%)";
+      return "linear-gradient(135deg, #fde68a 0%, #fb923c 26%, #f97316 52%, #dc2626 100%)";
     default:
       return `linear-gradient(135deg, ${rule.accent.from}, ${rule.accent.to})`;
   }
