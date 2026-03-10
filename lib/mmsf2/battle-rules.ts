@@ -1,16 +1,11 @@
 import { getCardSection } from "@/lib/guide-card-catalog";
+import { isMmsf2BattleCardClass } from "@/lib/mmsf2/folder-cards";
 import type { BuildCardEntry, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
-
-type Mmsf2BattleCardClass = "standard" | "mega" | "giga";
 
 interface ClassifiedCardTotal {
   label: string;
   quantity: number;
-}
-
-function isMmsf2BattleCardClass(value: string | null): value is Mmsf2BattleCardClass {
-  return value === "standard" || value === "mega" || value === "giga";
 }
 
 function addCardTotal(map: Map<string, ClassifiedCardTotal>, token: string, label: string, quantity: number) {

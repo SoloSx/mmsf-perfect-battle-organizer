@@ -80,10 +80,10 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
   await firstCardInput.fill("Gメテオ");
   await expect(cardEditor.getByRole("option", { name: "Ｇメテオレーザー" })).toHaveCount(0);
 
-  await firstCardInput.fill("Gメテオレイザー");
+  await firstCardInput.fill("Ｇメテオレーザー");
   await cardEditor.locator("input[type='number']").first().fill("1");
 
-  await expect(page.getByText("ギガカード「Gメテオレイザー」はブラックエースでは使用できません。")).toBeVisible();
+  await expect(page.getByText("ギガカード「Ｇメテオレーザー」はブラックエースでは使用できません。")).toBeVisible();
 
   const brotherEditor = page
     .locator("label", { hasText: "ブラザー情報" })
@@ -96,7 +96,7 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
   await selectBrotherVersion(topLeftCard, "ブラック", "ブラックエース");
   await topLeftInputs.nth(5).click();
   await topLeftInputs.nth(5).fill("Gメテオ");
-  await expect(topLeftCard.getByRole("option", { name: "Gメテオレイザー" })).toHaveCount(0);
+  await expect(topLeftCard.getByRole("option", { name: "Ｇメテオレーザー" })).toHaveCount(0);
 
   await page.goto("/editor?game=mmsf3&version=red-joker");
 
@@ -282,7 +282,7 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
 
   await topLeftInputs.nth(5).click();
   await topLeftInputs.nth(5).fill("Gメテオ");
-  await brotherEditor.getByRole("option", { name: "Gメテオレイザー" }).click();
+  await brotherEditor.getByRole("option", { name: "Ｇメテオレーザー" }).click();
 
   await topLeftInputs.nth(6).click();
   await topLeftInputs.nth(6).fill("アシッド");
@@ -292,7 +292,7 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
   await expect(topLeftInputs.nth(1)).toHaveValue("レッドジョーカー");
   await expect(topLeftInputs.nth(2)).toHaveValue("リブラ");
   await expect(topLeftInputs.nth(3)).toHaveValue("ソード");
-  await expect(topLeftInputs.nth(5)).toHaveValue("Gメテオレイザー");
+  await expect(topLeftInputs.nth(5)).toHaveValue("Ｇメテオレーザー");
   await expect(topLeftInputs.nth(6)).toHaveValue("アシッドエース");
   await expect(topRightInputs.nth(0)).toHaveValue("ブラザー");
 });

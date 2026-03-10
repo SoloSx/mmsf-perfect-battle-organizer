@@ -80,7 +80,7 @@ test("normalizeMmsf3BuildRecord migrates legacy roulette fields into the fixed r
     ...createDefaultMmsf3Sections(),
     whiteCardSetId: "57",
     megaCards: ["アシッドエース"],
-    gigaCards: ["Gメテオレイザー"],
+    gigaCards: ["Ｇメテオレーザー"],
     rezonCards: ["ソード"],
     whiteCards: ["旧セットA"],
     noiseRate: 70,
@@ -283,11 +283,11 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects an invalid brother version"
 
 test("validateMmsf3FolderCards rejects version-exclusive giga cards from the other version", () => {
   const result = validateMmsf3FolderCards(
-    [{ id: "giga-1", name: "Gメテオレイザー", quantity: 1, notes: "", isRegular: false }],
+    [{ id: "giga-1", name: "Ｇメテオレーザー", quantity: 1, notes: "", isRegular: false }],
     "black-ace",
   );
 
-  assert.ok(result.errors.includes("ギガカード「Gメテオレイザー」はブラックエースでは使用できません。"));
+  assert.ok(result.errors.includes("ギガカード「Ｇメテオレーザー」はブラックエースでは使用できません。"));
   assert.ok(
     validateMmsf3FolderCards([{ id: "giga-2", name: "ウィングブレード", quantity: 1, notes: "", isRegular: false }], "red-joker").errors.includes(
       "ギガカード「ウィングブレード」はレッドジョーカーでは使用できません。",
@@ -335,7 +335,7 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga card
     ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
   ]);
 
-  assert.ok(result.includes("左上 のギガカード「Gメテオレイザー」はブラックエースでは設定できません。"));
+  assert.ok(result.includes("左上 のギガカード「Ｇメテオレーザー」はブラックエースでは設定できません。"));
   assert.ok(
     getMmsf3BrotherRouletteSelectionErrors([
       {
