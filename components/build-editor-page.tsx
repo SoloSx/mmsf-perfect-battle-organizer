@@ -26,6 +26,7 @@ import { SearchableSuggestionInput } from "@/components/searchable-suggestion-in
 import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSourceEntries } from "@/components/source-list-editor";
 import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
+import { validateLimitedCardOwnership } from "@/lib/card-ownership-rules";
 import { getDuplicateMmsf1UniqueBrotherNames, normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
 import { getMmsf1WarRockWeaponSources } from "@/lib/mmsf1/war-rock-weapons";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
@@ -610,6 +611,9 @@ function validateBuild(build: BuildRecord) {
     );
     errors.push(...mmsf2AbilityValidation.errors);
   }
+
+  const limitedOwnershipValidation = validateLimitedCardOwnership(build.game, build.commonSections.cards);
+  errors.push(...limitedOwnershipValidation.errors);
 
   if (build.game === "mmsf3") {
     const state = getNormalizedMmsf3State(build);
