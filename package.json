@@ -27,6 +27,7 @@
     "build:guide-card-catalog": "node scripts/build-guide-card-catalog.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^1.6.1",
     "clsx": "2.1.1",
     "html-to-image": "1.11.13",
     "lucide-react": "0.511.0",
