@@ -174,6 +174,10 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
     return [...lines, ...evaluation.errors];
   }
 
+  if (!evaluation.bestHand && evaluation.rolelessBugEffects.length > 0) {
+    lines.push(...evaluation.rolelessBugEffects.map((effect) => `バグ: ${effect}`));
+  }
+
   for (const card of evaluation.selectedCards) {
     lines.push(card.label);
   }

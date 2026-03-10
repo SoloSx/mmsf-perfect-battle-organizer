@@ -27,6 +27,12 @@ const STRAIGHT_PATTERNS: NoiseCardRank[][] = [
   ["10", "J", "Q", "K", "A"],
 ];
 const STRAIGHT_KEY_SET = new Set(STRAIGHT_PATTERNS.map((pattern) => pattern.join(",")));
+const ROLELESS_BUG_EFFECT_BY_SUIT: Record<Exclude<NoiseCardMark, "★">, string> = {
+  "♥": "HP減少",
+  "♦": "異常効果付与",
+  "♠": "ヒビパネル",
+  "♣": "バスター空撃ち",
+};
 
 const HAND_PRIORITY: Record<NoiseHandId, number> = {
   "two-pair": 1,
@@ -158,6 +164,16 @@ function compareCandidateHands(left: NoiseHandResult | null, right: NoiseHandRes
   return 0;
 }
 
+function getRolelessBugEffects(cards: ReturnType<typeof getMmsf3NoiseCardsByIds>) {
+  const presentSuits = new Set(
+    cards
+      .map((card) => card.mark)
+      .filter((mark): mark is Exclude<NoiseCardMark, "★"> => mark !== "★"),
+  );
+
+  return SUITS.filter((suit) => presentSuits.has(suit)).map((suit) => ROLELESS_BUG_EFFECT_BY_SUIT[suit]);
+}
+
 export function evaluateNoiseHand(noiseCardIds: string[]): NoiseHandEvaluation {
   const selectedCards = getMmsf3NoiseCardsByIds(noiseCardIds);
   const errors = getMmsf3NoiseCardSelectionErrors(noiseCardIds);
@@ -174,6 +190,7 @@ export function evaluateNoiseHand(noiseCardIds: string[]): NoiseHandEvaluation {
       bonusEffect: null,
       flushSuit: null,
       jokerSubstitutionNote: null,
+      rolelessBugEffects: [],
       errors,
     };
   }
@@ -186,6 +203,7 @@ export function evaluateNoiseHand(noiseCardIds: string[]): NoiseHandEvaluation {
       bonusEffect: bestHand?.bonusEffect ?? null,
       flushSuit: bestHand?.flushSuit ?? null,
       jokerSubstitutionNote: null,
+      rolelessBugEffects: bestHand ? [] : getRolelessBugEffects(selectedCards),
       errors,
     };
   }
@@ -215,6 +233,7 @@ export function evaluateNoiseHand(noiseCardIds: string[]): NoiseHandEvaluation {
     bonusEffect: bestHand?.bonusEffect ?? null,
     flushSuit: bestHand?.flushSuit ?? null,
     jokerSubstitutionNote,
+    rolelessBugEffects: bestHand ? [] : getRolelessBugEffects(selectedCards),
     errors,
   };
 }

@@ -88,6 +88,7 @@ export interface NoiseHandEvaluation {
   bonusEffect: string | null;
   flushSuit: Exclude<NoiseCardMark, "★"> | null;
   jokerSubstitutionNote: string | null;
+  rolelessBugEffects: string[];
   errors: string[];
 }
 

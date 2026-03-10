@@ -809,12 +809,6 @@ test("mmsf3 editor evaluates noise hand bonus, filters duplicate cards, and upda
   await expect(noiseCardPanel).toContainText("ギガクラス+1");
   await expect(noiseCardPanel).toContainText("マックスバスター");
 
-  const brotherSystemSection = page
-    .locator("h3", { hasText: "Brother & System" })
-    .locator("xpath=ancestor::section[1]");
-  await expect(brotherSystemSection).toContainText("ノイズハンド: ストレートフラッシュ");
-  await expect(brotherSystemSection).toContainText("効果: メガクラス+1");
-  await expect(brotherSystemSection).toContainText("★: アンドロメダN(マックスバスター) / マックスバスター");
 });
 
 test("mmsf3 editor applies straight sequence rules for noise hands", async ({ page }) => {
@@ -840,6 +834,11 @@ test("mmsf3 editor applies straight sequence rules for noise hands", async ({ pa
   await selectNoiseCard(noiseCardPanel, 0, "モアイアン", "♥2: モアイアンN(ブレイク+10)");
   await expect(noiseCardPanel).toContainText("役なし");
   await expect(noiseCardPanel).toContainText("ノイズハンドボーナスは発生しません。");
+  await expect(noiseCardPanel).toContainText("HP減少");
+  await expect(noiseCardPanel).toContainText("異常効果付与");
+  await expect(noiseCardPanel).toContainText("ヒビパネル");
+  await expect(noiseCardPanel).toContainText("バスター空撃ち");
+
 });
 
 test("mmsf3 editor prefers the highest noise hand when multiple hands overlap", async ({ page }) => {

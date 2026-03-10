@@ -64,6 +64,18 @@ function NoiseHandSummary({
         <div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
           <p className="text-lg font-semibold text-white">役なし</p>
           <p>ノイズハンドボーナスは発生しません。</p>
+          {evaluation.rolelessBugEffects.length > 0 ? (
+            <div className="pt-1">
+              <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">バグ効果</p>
+              <ul className="mt-2 flex flex-wrap gap-2">
+                {evaluation.rolelessBugEffects.map((line) => (
+                  <li key={line} className="rounded-full border border-white/12 bg-white/8 px-3 py-1 text-xs font-medium text-white/86">
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null}
         </div>
       )}
     </div>
