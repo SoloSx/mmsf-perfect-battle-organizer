@@ -42,10 +42,12 @@ function createBaseBuild(overrides: Partial<BuildRecord> = {}): BuildRecord {
       },
       mmsf2: {
         starCards: [],
+        blankCards: [],
+        defaultTribeAbilityEnabled: true,
         enhancement: "",
         warRockWeapon: "",
         warRockWeaponSources: [],
-        kokuuNoKakera: false,
+        kokouNoKakera: false,
         notes: "",
       },
       mmsf3: createDefaultMmsf3Sections(),

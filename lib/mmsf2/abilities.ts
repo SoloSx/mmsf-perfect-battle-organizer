@@ -1,5 +1,5 @@
 import type { BuildCardEntry, VersionId } from "@/lib/types";
-import { normalizeToken, uniqueStrings } from "@/lib/utils";
+import { createId, normalizeToken, uniqueStrings } from "@/lib/utils";
 
 type Mmsf2AbilityVersion = Extract<VersionId, "berserker" | "shinobi" | "dinosaur">;
 
@@ -128,6 +128,23 @@ function getOptionsByName(name: string, version?: VersionId) {
   return options.filter((option) => matchesVersion(option, version));
 }
 
+function getMmsf2VersionDefaultAbilityName(version?: VersionId) {
+  switch (version) {
+    case "berserker":
+      return "イナズマケン";
+    case "shinobi":
+      return "フウマシュリケン";
+    case "dinosaur":
+      return "キョウリュウセキ";
+    default:
+      return null;
+  }
+}
+
+function isMmsf2VersionDefaultAbilityName(name: string) {
+  return name === "イナズマケン" || name === "フウマシュリケン" || name === "キョウリュウセキ";
+}
+
 const rawAbilityOptions: RawMmsf2AbilityOption[] = RAW_MMSF2_ABILITY_OPTIONS.split("\n")
   .map((line) => line.trim())
   .filter(Boolean)
@@ -198,6 +215,20 @@ export function getMmsf2AbilityNameSuggestions(version?: VersionId) {
   return MMSF2_ABILITY_OPTIONS.filter((option) => matchesVersion(option, version)).map((option) => option.label);
 }
 
+export function getMmsf2AbilityPointLimit(kokouNoKakera: boolean) {
+  return kokouNoKakera ? 400 : 1300;
+}
+
+export function getMmsf2VersionDefaultAbilityLabel(version?: VersionId) {
+  const defaultName = getMmsf2VersionDefaultAbilityName(version);
+  return defaultName ? getOptionsByName(defaultName, version)[0]?.label ?? null : null;
+}
+
+export function isMmsf2VersionDefaultAbility(label: string, version?: VersionId) {
+  const ability = getMmsf2AbilityByLabel(label, version);
+  return ability ? ability.name === getMmsf2VersionDefaultAbilityName(version) : false;
+}
+
 export function getMmsf2AbilitySources(label: string, version?: VersionId) {
   return getMmsf2AbilityByLabel(label, version)?.sources ?? [];
 }
@@ -223,8 +254,62 @@ export function normalizeMmsf2AbilityEntry(entry: BuildCardEntry, version?: Vers
   return entry;
 }
 
-export function normalizeMmsf2AbilityEntries(entries: BuildCardEntry[], version?: VersionId) {
-  return entries.map((entry) => normalizeMmsf2AbilityEntry(entry, version));
+export function normalizeMmsf2AbilityEntries(entries: BuildCardEntry[], version?: VersionId, defaultTribeAbilityEnabled = false) {
+  const normalizedEntries = entries.map((entry) => normalizeMmsf2AbilityEntry(entry, version));
+  const defaultAbilityName = getMmsf2VersionDefaultAbilityName(version);
+  const keptEntries = normalizedEntries.filter((entry) => {
+    const abilityName = getMmsf2AbilityByLabel(entry.name, version)?.name ?? entry.name.trim();
+    return !isMmsf2VersionDefaultAbilityName(abilityName) || abilityName === defaultAbilityName;
+  });
+
+  if (!defaultAbilityName) {
+    return keptEntries;
+  }
+
+  const existingDefaultEntry = keptEntries.find((entry) => getMmsf2AbilityByLabel(entry.name, version)?.name === defaultAbilityName);
+  const nonDefaultEntries = keptEntries.filter((entry) => getMmsf2AbilityByLabel(entry.name, version)?.name !== defaultAbilityName);
+  if (!defaultTribeAbilityEnabled) {
+    return existingDefaultEntry ? [existingDefaultEntry, ...nonDefaultEntries] : nonDefaultEntries;
+  }
+
+  const defaultAbility = getOptionsByName(defaultAbilityName, version)[0];
+  if (!defaultAbility) {
+    return nonDefaultEntries;
+  }
+
+  return [
+    existingDefaultEntry ?? {
+      id: createId(),
+      name: defaultAbility.label,
+      quantity: defaultAbility.cost,
+      notes: "",
+      isRegular: false,
+    },
+    ...nonDefaultEntries,
+  ];
+}
+
+export function getMmsf2AbilitySelectionErrors(
+  entries: BuildCardEntry[],
+  kokouNoKakera: boolean,
+  version?: VersionId,
+  defaultTribeAbilityEnabled = false,
+) {
+  const selectedEntries = normalizeMmsf2AbilityEntries(entries, version, defaultTribeAbilityEnabled).filter((entry) => entry.name.trim());
+  const errors: string[] = [];
+  const unknownEntries = selectedEntries.filter((entry) => !getMmsf2AbilityByLabel(entry.name, version));
+  const totalCost = selectedEntries.reduce((sum, entry) => sum + (Number.isFinite(entry.quantity) ? entry.quantity : 0), 0);
+  const limit = getMmsf2AbilityPointLimit(kokouNoKakera);
+
+  if (unknownEntries.length > 0) {
+    errors.push("未対応のアビリティ項目があります。");
+  }
+
+  if (totalCost > limit) {
+    errors.push(`アビリティの合計Pは ${limit} 以下にしてください。`);
+  }
+
+  return { errors, totalCost, limit };
 }
 
 export function getMmsf2AbilityOptionsForSlot(entries: BuildCardEntry[], index: number, version?: VersionId) {

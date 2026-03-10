@@ -116,10 +116,11 @@ export interface Mmsf1Sections {
 export interface Mmsf2Sections {
   starCards: BuildCardEntry[];
   blankCards: BuildCardEntry[];
+  defaultTribeAbilityEnabled: boolean;
   enhancement: string;
   warRockWeapon: string;
   warRockWeaponSources: BuildSourceEntry[];
-  kokuuNoKakera: boolean;
+  kokouNoKakera: boolean;
   notes: string;
 }
 

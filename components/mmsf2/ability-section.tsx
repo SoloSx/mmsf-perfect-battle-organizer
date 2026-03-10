@@ -6,7 +6,9 @@ import { SourceListEditor } from "@/components/source-list-editor";
 import {
   getMmsf2AbilityByLabel,
   getMmsf2AbilityOptionsForSlot,
+  getMmsf2AbilitySelectionErrors,
   getMmsf2AbilitySources,
+  isMmsf2VersionDefaultAbility,
 } from "@/lib/mmsf2/abilities";
 import type { BuildCardEntry, BuildSourceEntry, VersionId } from "@/lib/types";
 import { createId } from "@/lib/utils";
@@ -18,34 +20,41 @@ function buildEmptyCard(): BuildCardEntry {
 export function Mmsf2AbilitySection({
   entries,
   abilitySources,
+  defaultTribeAbilityEnabled,
+  kokouNoKakera,
   version,
   abilityNameSuggestions,
   sourceSuggestions,
   missingAbilitySourceNames,
   onAbilitiesChange,
   onAbilitySourcesChange,
+  onDefaultTribeAbilityEnabledChange,
 }: {
   entries: BuildCardEntry[];
   abilitySources: BuildSourceEntry[];
+  defaultTribeAbilityEnabled: boolean;
+  kokouNoKakera: boolean;
   version: VersionId;
   abilityNameSuggestions: string[];
   sourceSuggestions: string[];
   missingAbilitySourceNames: string[];
   onAbilitiesChange: (entries: BuildCardEntry[]) => void;
   onAbilitySourcesChange: (entries: BuildSourceEntry[]) => void;
+  onDefaultTribeAbilityEnabledChange: (value: boolean) => void;
 }) {
-  const totalCost = entries.reduce((sum, entry) => sum + (getMmsf2AbilityByLabel(entry.name, version)?.cost ?? 0), 0);
+  const { totalCost, limit } = getMmsf2AbilitySelectionErrors(entries, kokouNoKakera, version, defaultTribeAbilityEnabled);
 
   return (
     <div className="mt-4 grid gap-4">
       <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
         <div className="flex items-center justify-between gap-3">
           <label className="text-sm font-semibold text-white">アビリティ</label>
-          <span className="text-xs text-white/45">合計P {totalCost}</span>
+          <span className="text-xs text-white/45">合計P {totalCost}/{limit}</span>
         </div>
         <div className="mt-4 space-y-3">
           {entries.map((entry, index) => {
             const selectedAbility = getMmsf2AbilityByLabel(entry.name, version);
+            const isDefaultAbility = isMmsf2VersionDefaultAbility(entry.name, version);
             const options: SearchableSelectOption[] = [
               EMPTY_SEARCHABLE_SELECT_OPTION,
               ...getMmsf2AbilityOptionsForSlot(entries, index, version).map((option) => ({
@@ -81,7 +90,13 @@ export function Mmsf2AbilitySection({
                 <button
                   type="button"
                   className="danger-button w-full justify-center"
-                  onClick={() => onAbilitiesChange(entries.filter((item) => item.id !== entry.id))}
+                  onClick={() => {
+                    if (isDefaultAbility) {
+                      onDefaultTribeAbilityEnabledChange(false);
+                    }
+
+                    onAbilitiesChange(entries.filter((item) => item.id !== entry.id));
+                  }}
                 >
                   削除
                 </button>

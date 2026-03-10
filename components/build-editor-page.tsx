@@ -29,6 +29,7 @@ import { useAppData } from "@/hooks/use-app-data";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
   getMmsf2AbilityNameSuggestions,
+  getMmsf2AbilitySelectionErrors,
   getMmsf2AbilitySources,
   normalizeMmsf2AbilityEntries,
 } from "@/lib/mmsf2/abilities";
@@ -418,7 +419,11 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
       normalizeBuildCardEntry(entry as BuildCardEntry),
     );
     const normalizedAbilities = baseBuild.game === "mmsf2"
-      ? normalizeMmsf2AbilityEntries(restoredAbilities, baseBuild.version)
+      ? normalizeMmsf2AbilityEntries(
+          restoredAbilities,
+          baseBuild.version,
+          (parsed.gameSpecificSections?.mmsf2 as { defaultTribeAbilityEnabled?: boolean } | undefined)?.defaultTribeAbilityEnabled ?? baseBuild.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+        )
       : restoredAbilities;
 
     return normalizeMmsf3BuildRecord({
@@ -492,6 +497,13 @@ function validateBuild(build: BuildRecord) {
     errors.push(...mmsf2FolderValidation.errors);
     const mmsf2StarValidation = validateMmsf2StarCards(build.gameSpecificSections.mmsf2.starCards, build.version);
     errors.push(...mmsf2StarValidation.errors);
+    const mmsf2AbilityValidation = getMmsf2AbilitySelectionErrors(
+      build.commonSections.abilities,
+      build.gameSpecificSections.mmsf2.kokouNoKakera,
+      build.version,
+      build.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+    );
+    errors.push(...mmsf2AbilityValidation.errors);
   }
 
   if (build.game === "mmsf3") {
@@ -841,7 +853,11 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const normalizedAbilities = normalizeMmsf2AbilityEntries(current.commonSections.abilities, current.version);
+      const normalizedAbilities = normalizeMmsf2AbilityEntries(
+        current.commonSections.abilities,
+        current.version,
+        current.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+      );
       const nextAbilitySources = syncSourceEntries(
         normalizedAbilities,
         current.commonSections.abilitySources,
@@ -1010,12 +1026,14 @@ export function BuildEditorPage() {
         return current;
       }
 
+      const nextAbilities = current.game === "mmsf2"
+        ? normalizeMmsf2AbilityEntries(entries, current.version, current.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled)
+        : entries;
       const nextAbilitySources = syncSourceEntries(
-        current.game === "mmsf2" ? normalizeMmsf2AbilityEntries(entries, current.version) : entries,
+        nextAbilities,
         current.commonSections.abilitySources,
         (name) => current.game === "mmsf2" ? getMmsf2AbilitySources(name, current.version) : getKnownCardSources(current.game, name, current.version),
       );
-      const nextAbilities = current.game === "mmsf2" ? normalizeMmsf2AbilityEntries(entries, current.version) : entries;
 
       return {
         ...current,
@@ -1184,12 +1202,30 @@ export function BuildEditorPage() {
         <Mmsf2AbilitySection
           entries={draft.commonSections.abilities}
           abilitySources={draft.commonSections.abilitySources}
+          defaultTribeAbilityEnabled={draft.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled}
+          kokouNoKakera={draft.gameSpecificSections.mmsf2.kokouNoKakera}
           version={draft.version}
           abilityNameSuggestions={abilityNameSuggestions}
           sourceSuggestions={sourceSuggestions}
           missingAbilitySourceNames={missingAbilitySourceNames}
           onAbilitiesChange={updateAbilities}
           onAbilitySourcesChange={(entries) => updateCommon("abilitySources", entries)}
+          onDefaultTribeAbilityEnabledChange={(value) =>
+            setDraft((current) =>
+              current && current.game === "mmsf2"
+                ? {
+                    ...current,
+                    gameSpecificSections: {
+                      ...current.gameSpecificSections,
+                      mmsf2: {
+                        ...current.gameSpecificSections.mmsf2,
+                        defaultTribeAbilityEnabled: value,
+                      },
+                    },
+                  }
+                : current,
+            )
+          }
         />
       )}
 
@@ -1312,11 +1348,11 @@ export function BuildEditorPage() {
         onChange={(entries) => updateCommon("brothers", entries)}
         getCardSuggestionsForVersion={(version) => getCardSuggestions("mmsf2", (version || draft.version) as VersionId)}
         isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
-        kokuuNoKakera={draft.gameSpecificSections.mmsf2.kokuuNoKakera}
-        onKokuuNoKakeraChange={(value) =>
+        kokouNoKakera={draft.gameSpecificSections.mmsf2.kokouNoKakera}
+        onKokouNoKakeraChange={(value) =>
           setDraft((current) =>
             current
-              ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, kokuuNoKakera: value } } }
+              ? { ...current, gameSpecificSections: { ...current.gameSpecificSections, mmsf2: { ...current.gameSpecificSections.mmsf2, kokouNoKakera: value } } }
               : current,
           )
         }
@@ -1501,7 +1537,19 @@ export function BuildEditorPage() {
                 onChange={(value) =>
                   setDraft((current) =>
                     current
-                      ? normalizeMmsf3BuildRecord({ ...current, version: value as BuildRecord["version"] })
+                      ? normalizeMmsf3BuildRecord({
+                          ...current,
+                          version: value as BuildRecord["version"],
+                          gameSpecificSections: current.game === "mmsf2"
+                            ? {
+                                ...current.gameSpecificSections,
+                                mmsf2: {
+                                  ...current.gameSpecificSections.mmsf2,
+                                  defaultTribeAbilityEnabled: true,
+                                },
+                              }
+                            : current.gameSpecificSections,
+                        })
                       : current,
                   )
                 }

@@ -93,18 +93,17 @@ export function Mmsf2BrotherSection({
   onChange,
   getCardSuggestionsForVersion,
   isDisabled,
-  kokuuNoKakera,
-  onKokuuNoKakeraChange,
+  kokouNoKakera,
+  onKokouNoKakeraChange,
 }: {
   entries: BrotherProfile[];
   onChange: (entries: BrotherProfile[]) => void;
   getCardSuggestionsForVersion: (version: VersionId | "") => string[];
   isDisabled: boolean;
-  kokuuNoKakera: boolean;
-  onKokuuNoKakeraChange: (value: boolean) => void;
+  kokouNoKakera: boolean;
+  onKokouNoKakeraChange: (value: boolean) => void;
 }) {
   const slots = ensureSixSlots(entries);
-  const brotherInputDisabled = isDisabled || kokuuNoKakera;
 
   return (
     <div className="glass-panel-soft relative z-0 overflow-visible bg-[linear-gradient(135deg,rgba(42,26,98,0.28),rgba(31,58,147,0.18),rgba(255,255,255,0.03))] p-6 focus-within:z-30">
@@ -114,8 +113,8 @@ export function Mmsf2BrotherSection({
         <label className="flex cursor-pointer items-center gap-3">
           <input
             type="checkbox"
-            checked={kokuuNoKakera}
-            onChange={(event) => onKokuuNoKakeraChange(event.target.checked)}
+            checked={kokouNoKakera}
+            onChange={(event) => onKokouNoKakeraChange(event.target.checked)}
             className="h-5 w-5 rounded border-white/20 bg-white/10 accent-cyan-400"
           />
           <span className="text-sm text-white/80">ここうのカケラを装備する</span>
@@ -124,7 +123,7 @@ export function Mmsf2BrotherSection({
           <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
             ブライ強化ではブラザーは設定できません。
           </div>
-        ) : kokuuNoKakera ? (
+        ) : kokouNoKakera ? (
           <div className="rounded-[24px] border border-amber-300/18 bg-amber-400/8 px-4 py-4 text-sm leading-6 text-amber-50/88">
             ここうのカケラ装備中はブラザーの FAV・バージョンは設定できません。
           </div>

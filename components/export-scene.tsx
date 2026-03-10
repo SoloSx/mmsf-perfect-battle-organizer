@@ -104,7 +104,6 @@ function getExportHeroPanelBackground(build: BuildRecord) {
 function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   const state = getNormalizedMmsf3State(build);
   const evaluation = evaluateNoiseHand(state.noiseCardIds);
-  const selectedCount = state.noiseCardIds.filter(Boolean).length;
   const lines = [state.noise || "ノイズ情報未設定"];
 
   if (state.playerRezonCard) {

@@ -174,10 +174,11 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
         { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
       ],
       blankCards: createEmptyBlankCards(),
+      defaultTribeAbilityEnabled: true,
       enhancement: "",
       warRockWeapon: "",
       warRockWeaponSources: [],
-      kokuuNoKakera: false,
+      kokouNoKakera: false,
       notes: "",
     },
     mmsf3: {
@@ -232,7 +233,11 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
   const rawAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
   const normalizedAbilities = rawAbilities.length > 0
     ? build.game === "mmsf2"
-      ? normalizeMmsf2AbilityEntries(rawAbilities, build.version)
+      ? normalizeMmsf2AbilityEntries(
+          rawAbilities,
+          build.version,
+          Boolean((build.gameSpecificSections?.mmsf2 as Partial<BuildRecord["gameSpecificSections"]["mmsf2"]> | undefined)?.defaultTribeAbilityEnabled ?? true),
+        )
       : rawAbilities
     : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
 
