@@ -150,10 +150,10 @@ test("validateMmsf1FolderCards allows standard cards only up to three copies", (
   );
 });
 
-test("validateMmsf1BrotherFavoriteCards allows up to five mega cards and one giga card in each brother FAV set", () => {
+test("validateMmsf1BrotherFavoriteCards allows at most two mega/giga cards in each brother FAV set", () => {
   assert.deepEqual(
     validateMmsf1BrotherFavoriteCards(
-      [createBrother(["オックスファイアSP", "ペガサスマジックSP", "レオキングダムSP", "ドラゴンスカイSP", "ハープノートSP", "アンドロメダ"])],
+      [createBrother(["オックスファイアSP", "ペガサスマジックSP", "プラズマガン3", "ソード", "キャノン", "インビジブル"])],
       "pegasus",
     ).errors,
     [],
@@ -161,17 +161,9 @@ test("validateMmsf1BrotherFavoriteCards allows up to five mega cards and one gig
 
   assert.deepEqual(
     validateMmsf1BrotherFavoriteCards(
-      [createBrother(["オックスファイアSP", "ペガサスマジックSP", "レオキングダムSP", "ドラゴンスカイSP", "ハープノートSP", "リブラバランスSP"])],
+      [createBrother(["オックスファイアSP", "ペガサスマジックSP", "アンドロメダ", "ソード", "キャノン", "インビジブル"])],
       "pegasus",
     ).errors,
-    ["MMSF1 のブラザー FAV カードでメガカードは5枚までです。"],
-  );
-
-  assert.deepEqual(
-    validateMmsf1BrotherFavoriteCards(
-      [createBrother(["オックスファイアSP", "ペガサスマジックSP", "レオキングダムSP", "ドラゴンスカイSP", "アンドロメダ", "アンドロメダ"])],
-      "pegasus",
-    ).errors,
-    ["MMSF1 のブラザー FAV カードでギガカードは1枚までです。"],
+    ["MMSF1 のブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
   );
 });

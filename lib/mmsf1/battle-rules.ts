@@ -123,16 +123,11 @@ export function validateMmsf1FolderCards(
 export function validateMmsf1BrotherFavoriteCards(entries: BrotherProfile[], version: VersionId) {
   for (const brother of entries) {
     const { megaTotal, gigaTotal } = countMmsf1ClassCards(brother.favoriteCards, version);
+    const megaGigaTotal = megaTotal + gigaTotal;
 
-    if (megaTotal > 5) {
+    if (megaGigaTotal > 2) {
       return {
-        errors: ["MMSF1 のブラザー FAV カードでメガカードは5枚までです。"],
-      };
-    }
-
-    if (gigaTotal > 1) {
-      return {
-        errors: ["MMSF1 のブラザー FAV カードでギガカードは1枚までです。"],
+        errors: ["MMSF1 のブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
       };
     }
   }
