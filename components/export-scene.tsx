@@ -375,8 +375,15 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       return tiles;
     }
 
+    const markedCopies =
+      build.game === "mmsf1" || build.game === "mmsf2"
+        ? Math.max(0, Math.min(copiesToAdd, Math.trunc(entry.favoriteCount ?? (entry.isRegular ? 1 : 0))))
+        : entry.isRegular
+          ? 1
+          : 0;
+
     for (let index = 0; index < copiesToAdd; index += 1) {
-      tiles.push({ name, isRegular: entry.isRegular && index === 0 });
+      tiles.push({ name, isRegular: index < markedCopies });
     }
 
     return tiles;

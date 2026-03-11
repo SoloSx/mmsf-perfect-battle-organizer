@@ -107,7 +107,7 @@ function cloneBuild(build: BuildRecord) {
 }
 
 function buildEmptyCard(): BuildCardEntry {
-  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
+  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 };
 }
 
 function getMmsf2TrackedCards(build: BuildRecord) {
@@ -143,12 +143,21 @@ function syncMmsf1WarRockWeaponSources(weaponName: string, sources: CommonSectio
 }
 
 function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
+  const quantity = Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1;
+  const rawFavoriteCount = entry.favoriteCount;
+  const favoriteCount = typeof rawFavoriteCount === "number" && Number.isFinite(rawFavoriteCount)
+    ? Math.max(0, Math.min(quantity, Math.trunc(rawFavoriteCount)))
+    : entry.isRegular
+      ? 1
+      : 0;
+
   return {
     id: entry.id,
     name: entry.name ?? "",
-    quantity: Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1,
+    quantity,
     notes: entry.notes ?? "",
     isRegular: Boolean(entry.isRegular),
+    favoriteCount,
   };
 }
 
@@ -197,7 +206,8 @@ function haveSameCardEntries(left: BuildCardEntry[], right: BuildCardEntry[]) {
       leftEntry.name !== rightEntry.name ||
       leftEntry.quantity !== rightEntry.quantity ||
       leftEntry.notes !== rightEntry.notes ||
-      leftEntry.isRegular !== rightEntry.isRegular
+      leftEntry.isRegular !== rightEntry.isRegular ||
+      leftEntry.favoriteCount !== rightEntry.favoriteCount
     ) {
       return false;
     }
@@ -500,6 +510,9 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
 
   try {
     const parsed = JSON.parse(rawDraft) as Partial<BuildRecord>;
+    const restoredCards = (parsed.commonSections?.cards ?? baseBuild.commonSections.cards).map((entry) =>
+      normalizeBuildCardEntry(entry as BuildCardEntry),
+    );
     const restoredAbilities = (parsed.commonSections?.abilities ?? baseBuild.commonSections.abilities).map((entry) =>
       normalizeBuildCardEntry(entry as BuildCardEntry),
     );
@@ -524,6 +537,7 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
       commonSections: {
         ...baseBuild.commonSections,
         ...(parsed.commonSections ?? {}),
+        cards: restoredCards,
         brothers: (parsed.commonSections?.brothers ?? baseBuild.commonSections.brothers).map((entry) =>
           normalizeBrotherProfile(entry as BrotherProfile),
         ),
@@ -563,7 +577,13 @@ function validateBuild(build: BuildRecord) {
     (sum, entry) => sum + (entry.name.trim() && Number.isFinite(entry.quantity) ? entry.quantity : 0),
     0,
   );
-  const regularCardCount = build.commonSections.cards.filter((entry) => entry.name.trim() && entry.isRegular).length;
+  const regularCardCount =
+    build.game === "mmsf1" || build.game === "mmsf2"
+      ? build.commonSections.cards.reduce(
+          (sum, entry) => sum + (entry.name.trim() ? Math.max(0, Math.min(entry.quantity, entry.favoriteCount ?? 0)) : 0),
+          0,
+        )
+      : build.commonSections.cards.filter((entry) => entry.name.trim() && entry.isRegular).length;
 
   if (!VERSIONS_BY_GAME[build.game].includes(build.version)) {
     errors.push("作品とバージョンの組み合わせが一致していません。");
@@ -618,7 +638,21 @@ function validateBuild(build: BuildRecord) {
   }
 
   const hasFolderErrors = errors.some(isFolderValidationError);
-  return { errors, totalCards, hasFolderErrors };
+  const cardTotalLabel =
+    build.game === "mmsf2"
+      ? (() => {
+          const normalTotal = build.commonSections.cards.reduce(
+            (sum, entry) => sum + (entry.name.trim() && Number.isFinite(entry.quantity) ? entry.quantity : 0),
+            0,
+          );
+          const starTotal = build.gameSpecificSections.mmsf2.starCards.filter((entry) => entry.name.trim()).length;
+          const blankTotal = build.gameSpecificSections.mmsf2.blankCards.filter((entry) => entry.name.trim()).length;
+          const parts = [normalTotal, starTotal, blankTotal].filter((value) => value > 0);
+          return `${parts.join("+") || "0"} / ${rule.folderLimit}`;
+        })()
+      : `${totalCards} / ${rule.folderLimit}`;
+
+  return { errors, totalCards, hasFolderErrors, cardTotalLabel };
 }
 
 
@@ -650,7 +684,13 @@ function CardListEditor({
   totalLimit?: number;
 }) {
   const total = entries.reduce((sum, entry) => sum + (entry.name.trim() ? entry.quantity : 0), 0);
-  const regularCount = entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
+  const regularCount =
+    regularLimit > 1
+      ? entries.reduce(
+          (sum, entry) => sum + (entry.name.trim() ? Math.max(0, Math.min(entry.quantity, entry.favoriteCount ?? 0)) : 0),
+          0,
+        )
+      : entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
   const canAddMoreEntries = typeof maxEntries === "number" ? entries.length < maxEntries : true;
   const canAddMoreTotal = typeof totalLimit === "number" ? total < totalLimit : true;
 
@@ -673,10 +713,10 @@ function CardListEditor({
           const maxQuantity = typeof totalLimit === "number" ? Math.max(1, totalLimit - otherEntriesTotal) : 99;
 
           return (
-          <div
-            key={entry.id}
-            className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${hideQuantity && hideDelete ? "" : hideQuantity ? "min-[1180px]:grid-cols-[minmax(0,1fr)_112px]" : BATTLE_CARD_ROW_GRID_CLASS}`}
-          >
+            <div
+              key={entry.id}
+              className={`relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 ${hideQuantity && hideDelete ? "" : hideQuantity ? "min-[1180px]:grid-cols-[minmax(0,1fr)_112px]" : BATTLE_CARD_ROW_GRID_CLASS}`}
+            >
             <SearchableSuggestionInput
               value={entry.name}
               onChange={(value) => onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
@@ -694,7 +734,17 @@ function CardListEditor({
                   onChange(
                     entries.map((item) =>
                       item.id === entry.id
-                        ? { ...item, quantity: Math.max(1, Math.min(maxQuantity, Number(event.target.value || 1))) }
+                        ? {
+                            ...item,
+                            quantity: Math.max(1, Math.min(maxQuantity, Number(event.target.value || 1))),
+                            favoriteCount:
+                              regularLimit > 1
+                                ? Math.min(
+                                    item.favoriteCount ?? 0,
+                                    Math.max(1, Math.min(maxQuantity, Number(event.target.value || 1))),
+                                  )
+                                : item.favoriteCount,
+                          }
                         : item,
                     ),
                   )
@@ -703,33 +753,56 @@ function CardListEditor({
               />
             )}
             {allowRegularSelection ? (
-              <button
-                type="button"
-                aria-pressed={entry.isRegular}
-                className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition-colors ${
-                  entry.isRegular
-                    ? "border-red-300/70 bg-red-500/15 text-red-100"
-                    : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
-                } w-full justify-center`}
-                onClick={() => {
-                  if (regularLimit <= 1) {
-                    onChange(
-                      entries.map((item) => ({
-                        ...item,
-                        isRegular: item.id === entry.id ? !item.isRegular : false,
-                      })),
-                    );
-                  } else {
+              regularLimit > 1 ? (
+                <input
+                  type="number"
+                  min={0}
+                  max={entry.quantity}
+                  value={Math.max(0, Math.min(entry.quantity, entry.favoriteCount ?? 0))}
+                  onChange={(event) =>
                     onChange(
                       entries.map((item) =>
-                        item.id === entry.id ? { ...item, isRegular: !item.isRegular } : item,
+                        item.id === entry.id
+                          ? {
+                              ...item,
+                              favoriteCount: Math.max(0, Math.min(item.quantity, Math.trunc(Number(event.target.value || 0)))),
+                            }
+                          : item,
                       ),
-                    );
+                    )
                   }
-                }}
-              >
-                {regularLabel}
-              </button>
+                  aria-label={`${regularLabel}枚数`}
+                  className="field-shell"
+                />
+              ) : (
+                <button
+                  type="button"
+                  aria-pressed={entry.isRegular}
+                  className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition-colors ${
+                    entry.isRegular
+                      ? "border-red-300/70 bg-red-500/15 text-red-100"
+                      : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  } w-full justify-center`}
+                  onClick={() => {
+                    if (regularLimit <= 1) {
+                      onChange(
+                        entries.map((item) => ({
+                          ...item,
+                          isRegular: item.id === entry.id ? !item.isRegular : false,
+                        })),
+                      );
+                    } else {
+                      onChange(
+                        entries.map((item) =>
+                          item.id === entry.id ? { ...item, isRegular: !item.isRegular } : item,
+                        ),
+                      );
+                    }
+                  }}
+                >
+                  {regularLabel}
+                </button>
+              )
             ) : !hideQuantity ? (
               <div aria-hidden="true" className="hidden min-[1180px]:block" />
             ) : null}
@@ -742,7 +815,7 @@ function CardListEditor({
                 削除
               </button>
             )}
-          </div>
+            </div>
           );
         })}
       </div>
@@ -1084,7 +1157,10 @@ export function BuildEditorPage() {
     });
   }, [draft?.game, draft?.gameSpecificSections.mmsf2.warRockWeapon]);
 
-  const validation = useMemo(() => (draft ? validateBuild(draft) : { errors: [], totalCards: 0, hasFolderErrors: false }), [draft]);
+  const validation = useMemo(
+    () => (draft ? validateBuild(draft) : { errors: [], totalCards: 0, hasFolderErrors: false, cardTotalLabel: "0 / 30" }),
+    [draft],
+  );
   const hasValidationErrors = validation.errors.length > 0;
   const statusToneClass =
     status.includes("解消") || status.includes("失敗") || status.includes("エラー")
@@ -1800,14 +1876,14 @@ export function BuildEditorPage() {
                 <p className="text-sm font-semibold text-white">状態</p>
                 {hasValidationErrors ? (
                   <ul className="mt-3 space-y-2 text-sm leading-7 text-red-200/90">
-                    <li>• カード総数: {validation.totalCards} / {versionRule.folderLimit}</li>
+                    <li>• カード総数: {validation.cardTotalLabel}</li>
                     {validation.errors.map((error) => (
                       <li key={error}>• {error}</li>
                     ))}
                   </ul>
                 ) : (
                   <div className="mt-3 space-y-2 text-sm text-emerald-200/90">
-                    <p>カード総数: {validation.totalCards} / {versionRule.folderLimit}</p>
+                    <p>カード総数: {validation.cardTotalLabel}</p>
                     <p>保存可能です。</p>
                   </div>
                 )}

@@ -33,6 +33,7 @@ export interface BuildCardEntry {
   quantity: number;
   notes: string;
   isRegular: boolean;
+  favoriteCount?: number;
 }
 
 export interface BuildSourceEntry {

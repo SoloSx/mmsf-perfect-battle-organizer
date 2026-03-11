@@ -57,9 +57,9 @@ function createDefaultCommonSections(): CommonSections {
   return {
     overview: "",
     tags: [],
-    cards: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
+    cards: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
     cardSources: [],
-    abilities: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
+    abilities: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
     abilitySources: [],
     brothers: [],
     strategyName: "",
@@ -68,12 +68,21 @@ function createDefaultCommonSections(): CommonSections {
 }
 
 function normalizeBuildCardEntry(entry: BuildCardEntry): BuildCardEntry {
+  const quantity = Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1;
+  const rawFavoriteCount = entry.favoriteCount;
+  const favoriteCount = typeof rawFavoriteCount === "number" && Number.isFinite(rawFavoriteCount)
+    ? Math.max(0, Math.min(quantity, Math.trunc(rawFavoriteCount)))
+    : entry.isRegular
+      ? 1
+      : 0;
+
   return {
     id: entry.id,
     name: entry.name ?? "",
-    quantity: Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1,
+    quantity,
     notes: entry.notes ?? "",
     isRegular: Boolean(entry.isRegular),
+    favoriteCount,
   };
 }
 
@@ -120,11 +129,11 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
 }
 
 function createEmptyStarCards(): BuildCardEntry[] {
-  return Array.from({ length: 3 }, () => ({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }));
+  return Array.from({ length: 3 }, () => ({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }));
 }
 
 function createEmptyBlankCards(): BuildCardEntry[] {
-  return [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
+  return [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }];
 }
 
 function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
@@ -139,10 +148,11 @@ function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
       quantity: 1,
       notes: "",
       isRegular: false,
+      favoriteCount: 0,
     }));
     // Pad to 3 rows
     while (entries.length < 3) {
-      entries.push({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false });
+      entries.push({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 });
     }
     return entries;
   }
@@ -177,9 +187,9 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
     },
     mmsf2: {
       starCards: [
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false },
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
+        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
       ],
       blankCards: createEmptyBlankCards(),
       defaultTribeAbilityEnabled: true,
@@ -247,7 +257,7 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
           Boolean((build.gameSpecificSections?.mmsf2 as Partial<BuildRecord["gameSpecificSections"]["mmsf2"]> | undefined)?.defaultTribeAbilityEnabled ?? true),
         )
       : rawAbilities
-    : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }];
+    : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }];
 
   const normalizedBuild = {
     ...createBuild(build.game),
@@ -259,7 +269,7 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
       strategyNote: normalizedStrategyNote,
       cards: (build.commonSections?.cards ?? []).length > 0
         ? (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry))
-        : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false }],
+        : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
       cardSources: (build.commonSections?.cardSources ?? []).map((entry) => normalizeBuildSourceEntry(entry as CommonSections["cardSources"][number])),
       abilities: normalizedAbilities,
       abilitySources: (build.commonSections?.abilitySources ?? []).map((entry) =>
