@@ -1837,15 +1837,6 @@ export function BuildEditorPage() {
           </div>
 
 	          <div className="flex flex-wrap gap-3 self-start 2xl:justify-end">
-	            <div className="min-w-[180px]">
-	              <p className="mb-2 text-[11px] font-semibold tracking-[0.28em] text-white/45">PNG 背景</p>
-	              <SearchableSelectInput
-	                value={pngBackgroundMode}
-	                onChange={(value) => setPngBackgroundMode(value as (typeof PNG_BACKGROUND_OPTIONS)[number]["value"])}
-	                options={[...PNG_BACKGROUND_OPTIONS]}
-	                className="field-shell min-h-[46px] w-full"
-	              />
-	            </div>
 	            <button
 	              type="button"
 	              className="secondary-button whitespace-nowrap"
@@ -1874,9 +1865,9 @@ export function BuildEditorPage() {
                 複製して編集
               </button>
             )}
-            <button
-              type="button"
-              className="clear-action-button whitespace-nowrap"
+	            <button
+	              type="button"
+	              className="clear-action-button whitespace-nowrap"
               onClick={() => {
                 if (validation.errors.length > 0) {
                   setStatus("保存前にエラーを解消してください。");
@@ -1890,12 +1881,20 @@ export function BuildEditorPage() {
                 router.replace(buildEditorHref(saved.game, saved.version, saved.id));
               }}
             >
-              <Save className="mr-2 size-4" />
-              保存
-            </button>
-            <button
-              type="button"
-              className="clear-action-button whitespace-nowrap"
+	              <Save className="mr-2 size-4" />
+	              保存
+	            </button>
+	            <div className="min-w-[160px]">
+	              <SearchableSelectInput
+	                value={pngBackgroundMode}
+	                onChange={(value) => setPngBackgroundMode(value as (typeof PNG_BACKGROUND_OPTIONS)[number]["value"])}
+	                options={[...PNG_BACKGROUND_OPTIONS]}
+	                className="field-shell min-h-[46px] w-full"
+	              />
+	            </div>
+	            <button
+	              type="button"
+	              className="clear-action-button whitespace-nowrap"
               disabled={isPreviewing}
               onClick={async () => {
                 setIsPreviewing(true);
