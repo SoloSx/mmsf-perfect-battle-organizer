@@ -128,6 +128,10 @@ function parseAssetMetadata(entry) {
   const file = basename(entry.localPath);
 
   if (entry.game === "mmsf1") {
+    if (file === "Andromeda.png") {
+      return { section: "giga", number: 0, version: null };
+    }
+
     let match = file.match(/^s(\d{3})_/i);
     if (match) {
       return { section: "standard", number: Number(match[1]), version: null };

@@ -538,6 +538,11 @@ function applyMmsf1SourceOverrides(entries) {
     }
   };
 
+  const andromeda = entries.find((entry) => entry.game === "mmsf1" && entry.name === "アンドロメダ");
+  if (andromeda) {
+    andromeda.assetLocalPath = "/assets/cards/SF1/Cards/Andromeda.png";
+  }
+
   renameEntry("プラスマガン2", "プラズマガン2");
   renameEntry("ボルテックアイ1", "ボルティックアイ1");
   renameEntry("ボルテックアイ2", "ボルティックアイ2");

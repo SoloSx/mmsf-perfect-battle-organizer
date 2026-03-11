@@ -68,6 +68,7 @@ const MMSF1_BOKTAI_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
   リザ: "/assets/cards/SF1/Cards/e16_Liza.png",
   リザv2: "/assets/cards/SF1/Cards/e17_LizaV2.png",
   リザv3: "/assets/cards/SF1/Cards/e18_LizaV3_actual.png",
+  アンドロメダ: "/assets/cards/SF1/Cards/Andromeda.png",
 };
 
 function buildLookupTokens(name: string) {

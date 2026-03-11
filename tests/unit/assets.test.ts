@@ -81,3 +81,10 @@ test("MMSF1 Boktai cards resolve preview assets", () => {
     "/assets/cards/SF1/Cards/e18_LizaV3_actual.png",
   );
 });
+
+test("MMSF1 Andromeda resolves preview asset", () => {
+  assert.equal(
+    findCardAssetByName("mmsf1", "アンドロメダ")?.localPath,
+    "/assets/cards/SF1/Cards/Andromeda.png",
+  );
+});
