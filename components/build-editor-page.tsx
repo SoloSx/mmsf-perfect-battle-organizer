@@ -645,6 +645,7 @@ function validateBuild(build: BuildRecord) {
       build.commonSections.cards,
       build.version,
       build.gameSpecificSections.mmsf1.enhancement,
+      build.commonSections.brothers,
     );
     errors.push(...mmsf1FolderValidation.errors);
     const mmsf1BrotherValidation = validateMmsf1BrotherFavoriteCards(build.commonSections.brothers, build.version);

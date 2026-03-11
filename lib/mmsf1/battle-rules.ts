@@ -26,7 +26,27 @@ function countMmsf1ClassCards(cardNames: string[], version: VersionId) {
   return { megaTotal, gigaTotal };
 }
 
-export function validateMmsf1FolderCards(entries: BuildCardEntry[], version: VersionId, enhancement?: string) {
+function getMmsf1BrotherFolderBonuses(entries: BrotherProfile[]) {
+  let megaBonus = 0;
+  let gigaBonus = 0;
+
+  if (entries.some((entry) => entry.name.trim() === "最小院 キザマロ")) {
+    megaBonus += 1;
+  }
+
+  if (entries.some((entry) => entry.name.trim() === "LM・シン")) {
+    gigaBonus += 1;
+  }
+
+  return { megaBonus, gigaBonus };
+}
+
+export function validateMmsf1FolderCards(
+  entries: BuildCardEntry[],
+  version: VersionId,
+  enhancement?: string,
+  brothers: BrotherProfile[] = [],
+) {
   const errors: string[] = [];
   const { megaTotal, gigaTotal } = entries.reduce(
     (totals, entry) => {
@@ -51,6 +71,9 @@ export function validateMmsf1FolderCards(entries: BuildCardEntry[], version: Ver
     { megaTotal: 0, gigaTotal: 0 },
   );
   const enhancementEnabled = isMmsf1EnhancementEnabled(enhancement);
+  const brotherBonuses = getMmsf1BrotherFolderBonuses(brothers);
+  const megaLimit = (enhancementEnabled ? 9 : 5) + brotherBonuses.megaBonus;
+  const gigaLimit = (enhancementEnabled ? 5 : 1) + brotherBonuses.gigaBonus;
 
   const standardCardTotals = new Map<string, { name: string; quantity: number }>();
   for (const entry of entries) {
@@ -76,16 +99,20 @@ export function validateMmsf1FolderCards(entries: BuildCardEntry[], version: Ver
     }
   }
 
-  if (enhancementEnabled) {
-    if (megaTotal > 6) {
-      errors.push("MMSF1 の強化On時、メガカードは6枚までです。");
-    }
+  if (megaTotal > megaLimit) {
+    errors.push(
+      enhancementEnabled
+        ? `MMSF1 の強化On時、メガカードは${megaLimit}枚までです。`
+        : `MMSF1 のメガカードは${megaLimit}枚までです。`,
+    );
+  }
 
-    if (gigaTotal > 6) {
-      errors.push("MMSF1 の強化On時、ギガカードは6枚までです。");
-    }
-  } else if (megaTotal + gigaTotal > 2) {
-    errors.push("MMSF1 のメガ・ギガカードは合計2枚までです。");
+  if (gigaTotal > gigaLimit) {
+    errors.push(
+      enhancementEnabled
+        ? `MMSF1 の強化On時、ギガカードは${gigaLimit}枚までです。`
+        : `MMSF1 のギガカードは${gigaLimit}枚までです。`,
+    );
   }
 
   return {
@@ -96,11 +123,16 @@ export function validateMmsf1FolderCards(entries: BuildCardEntry[], version: Ver
 export function validateMmsf1BrotherFavoriteCards(entries: BrotherProfile[], version: VersionId) {
   for (const brother of entries) {
     const { megaTotal, gigaTotal } = countMmsf1ClassCards(brother.favoriteCards, version);
-    const megaGigaTotal = megaTotal + gigaTotal;
 
-    if (megaGigaTotal > 2) {
+    if (megaTotal > 5) {
       return {
-        errors: ["MMSF1 のブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
+        errors: ["MMSF1 のブラザー FAV カードでメガカードは5枚までです。"],
+      };
+    }
+
+    if (gigaTotal > 1) {
+      return {
+        errors: ["MMSF1 のブラザー FAV カードでギガカードは1枚までです。"],
       };
     }
   }
