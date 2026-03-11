@@ -71,6 +71,7 @@ import {
   validateMmsf2FolderTotal,
   validateMmsf2StarCards,
 } from "@/lib/mmsf2/battle-rules";
+import { getMmsf2EnhancementEffect } from "@/lib/mmsf2/enhancements";
 import { getMmsf2WarRockWeaponSources } from "@/lib/mmsf2/war-rock-weapons";
 import { MASTER_DATA } from "@/lib/seed-data";
 import {
@@ -608,6 +609,7 @@ function validateBuild(build: BuildRecord) {
   errors.push(...getRequiredFieldErrors(build));
 
   if (build.game === "mmsf2") {
+    const enhancementEffect = getMmsf2EnhancementEffect(build.gameSpecificSections.mmsf2.enhancement);
     const mmsf2FolderTotalValidation = validateMmsf2FolderTotal(
       build.commonSections.cards,
       build.gameSpecificSections.mmsf2.starCards,
@@ -615,7 +617,10 @@ function validateBuild(build: BuildRecord) {
       rule.folderLimit,
     );
     errors.push(...mmsf2FolderTotalValidation.errors);
-    const mmsf2FolderValidation = validateMmsf2FolderCards(build.commonSections.cards, build.version);
+    const mmsf2FolderValidation = validateMmsf2FolderCards(build.commonSections.cards, build.version, {
+      megaCards: (rule.limits.megaCards ?? 2) + (enhancementEffect?.megaBonus ?? 0),
+      gigaCards: (rule.limits.gigaCards ?? 1) + (enhancementEffect?.gigaBonus ?? 0),
+    });
     errors.push(...mmsf2FolderValidation.errors);
     const mmsf2StarValidation = validateMmsf2StarCards(build.gameSpecificSections.mmsf2.starCards, build.version);
     errors.push(...mmsf2StarValidation.errors);

@@ -4,6 +4,7 @@ import {
   getMmsf2BlankCardTotalLimit,
   getMmsf2NormalCardTotalLimit,
   validateMmsf2FolderTotal,
+  validateMmsf2FolderCards,
 } from "@/lib/mmsf2/battle-rules";
 
 function createCard(name: string, quantity = 1) {
@@ -39,4 +40,24 @@ test("validateMmsf2FolderTotal ignores star cards in the 30-card total", () => {
 
   assert.ok(result.errors.includes("対戦構築カードは 20 枚までです。"));
   assert.ok(result.errors.includes("カード総数は 30 枚以内にしてください。"));
+});
+
+test("validateMmsf2FolderCards allows extra mega and giga cards from enhancement bonuses", () => {
+  const result = validateMmsf2FolderCards(
+    [
+      createCard("オックスファイア", 1),
+      createCard("オックスファイアEX", 1),
+      createCard("オックスファイアSP", 1),
+      createCard("オリガジェネラル", 1),
+      createCard("オリガジェネラルEX", 1),
+      createCard("オリガジェネラルSP", 1),
+      createCard("ジェミニサンダー", 1),
+      createCard("ブライブレイク", 1),
+      createCard("サウザンドキック", 1),
+    ],
+    "berserker",
+    { megaCards: 6, gigaCards: 3 },
+  );
+
+  assert.deepEqual(result.errors, []);
 });

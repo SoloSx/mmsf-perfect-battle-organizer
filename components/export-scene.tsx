@@ -16,6 +16,11 @@ import {
   getMmsf3WhiteCardSetOption,
   MMSF3_BROTHER_ROULETTE_POSITIONS,
 } from "@/lib/mmsf3/roulette-data";
+import {
+  getMmsf2EnhancementEffect,
+  getMmsf2EnhancementLabel,
+  getMmsf2EnhancementStatSummary,
+} from "@/lib/mmsf2/enhancements";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
 
@@ -209,22 +214,29 @@ function getMmsf1SystemSnapshotLines(build: BuildRecord) {
   return lines;
 }
 
-function getMmsf2EnhancementLabel(value: string) {
-  const map: Record<string, string> = {
-    berserker: "ベルセルク",
-    shinobi: "シノビ",
-    dinosaur: "ダイナソー",
-    burai: "ブライ",
-  };
-  return map[value] ?? null;
-}
-
 function getMmsf2SystemSnapshotLines(build: BuildRecord) {
   const s = build.gameSpecificSections.mmsf2;
   const enhancementLabel = getMmsf2EnhancementLabel(s.enhancement);
+  const enhancementStatSummary = getMmsf2EnhancementStatSummary(s.enhancement);
   const lines: string[] = [enhancementLabel ? `強化: ${enhancementLabel}` : "強化なし"];
+  if (enhancementStatSummary) lines.push(enhancementStatSummary);
   if (s.warRockWeapon) lines.push(s.warRockWeapon);
   return lines;
+}
+
+function getExportAbilityLines(build: BuildRecord) {
+  const selectedAbilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean);
+
+  if (build.game !== "mmsf2") {
+    return selectedAbilities;
+  }
+
+  const enhancementEffect = getMmsf2EnhancementEffect(build.gameSpecificSections.mmsf2.enhancement);
+  if (!enhancementEffect) {
+    return selectedAbilities;
+  }
+
+  return [...enhancementEffect.grantedAbilities, ...selectedAbilities];
 }
 
 function getMmsf3WhiteCardNames(build: BuildRecord) {
@@ -388,7 +400,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
 
     return tiles;
   }, []);
-  const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean);
+  const abilities = getExportAbilityLines(build);
   const brothers =
     build.game === "mmsf3"
       ? getMmsf3BrotherRouletteLines(build).slice(0, 6)

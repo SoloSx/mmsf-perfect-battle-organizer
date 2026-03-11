@@ -79,12 +79,18 @@ export function validateMmsf2FolderTotal(
   };
 }
 
-export function validateMmsf2FolderCards(entries: BuildCardEntry[], version: VersionId) {
+export function validateMmsf2FolderCards(
+  entries: BuildCardEntry[],
+  version: VersionId,
+  limits: { megaCards?: number; gigaCards?: number } = {},
+) {
   const errors: string[] = [];
   const cardTotals = new Map<string, ClassifiedCardTotal>();
   const unknownCards = new Set<string>();
   let megaTotal = 0;
   let gigaTotal = 0;
+  const megaLimit = limits.megaCards ?? 2;
+  const gigaLimit = limits.gigaCards ?? 1;
 
   for (const entry of entries) {
     const name = entry.name.trim();
@@ -119,12 +125,12 @@ export function validateMmsf2FolderCards(entries: BuildCardEntry[], version: Ver
     }
   }
 
-  if (gigaTotal > 1) {
-    errors.push("ギガカードはフォルダ内1枚までです。");
+  if (gigaTotal > gigaLimit) {
+    errors.push(`ギガカードはフォルダ内${gigaLimit}枚までです。`);
   }
 
-  if (megaTotal + gigaTotal > 2) {
-    errors.push("メガ+ギガカードはフォルダ内合計2枚までです。");
+  if (megaTotal + gigaTotal > megaLimit + gigaLimit) {
+    errors.push(`メガ+ギガカードはフォルダ内合計${megaLimit + gigaLimit}枚までです。`);
   }
 
   if (unknownCards.size > 0) {
