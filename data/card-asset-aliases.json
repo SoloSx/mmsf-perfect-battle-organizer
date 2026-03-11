@@ -153,6 +153,12 @@
     {
       "game": "mmsf1",
       "version": null,
+      "name": "アンドロメダ",
+      "assetLocalPath": "/assets/cards/SF1/Cards/Andromeda.png"
+    },
+    {
+      "game": "mmsf1",
+      "version": null,
       "name": "リュウエンザン",
       "assetLocalPath": "/assets/cards/SF1/Cards/s026_Ryuusenzan.png"
     },
