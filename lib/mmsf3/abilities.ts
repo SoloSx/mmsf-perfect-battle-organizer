@@ -8,12 +8,11 @@ export type Mmsf3AbilityOption = {
   cost: number;
   maxCount: number;
   label: string;
-  legacyLabel: string;
   sources: string[];
   effect: string;
 };
 
-type RawMmsf3AbilityOption = Omit<Mmsf3AbilityOption, "label" | "legacyLabel"> & {
+type RawMmsf3AbilityOption = Omit<Mmsf3AbilityOption, "label"> & {
   label: string;
 };
 
@@ -29,14 +28,9 @@ function buildAbilityDisplayLabel(name: string, cost: number) {
   return `${toDisplayAbilityName(name)}/${cost}`;
 }
 
-function buildAbilityLegacyLabel(name: string, cost: number) {
-  return `${name} (${cost}P)`;
-}
-
 export const MMSF3_ABILITY_OPTIONS = (abilityOptionsData.entries as RawMmsf3AbilityOption[]).map((entry) => ({
   ...entry,
   label: buildAbilityDisplayLabel(entry.name, entry.cost),
-  legacyLabel: buildAbilityLegacyLabel(entry.name, entry.cost),
 }));
 
 const abilityByLabel = new Map<string, Mmsf3AbilityOption>();
@@ -49,7 +43,6 @@ const GIGA_CLASS_UP_ABILITY_NAME = "ギガクラス+1";
 
 for (const option of MMSF3_ABILITY_OPTIONS) {
   abilityByLabel.set(option.label, option);
-  abilityByLabel.set(option.legacyLabel, option);
   abilityByLabel.set(`${option.name}/${option.cost}`, option);
   abilityByLabel.set(`${toFullWidthAll(option.name)}/${option.cost}`, option);
 

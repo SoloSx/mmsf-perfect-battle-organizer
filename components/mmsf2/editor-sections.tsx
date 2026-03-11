@@ -20,7 +20,7 @@ export function Mmsf2EditorSections({
   onEnhancementChange: (value: string) => void;
 }) {
   return (
-    <div className="mt-4 grid gap-2">
+    <div className="relative z-0 mt-4 grid gap-2 overflow-visible focus-within:z-30">
       <label className="text-xs font-semibold tracking-[0.24em] text-white/42">強化On</label>
       <SearchableSelectInput
         value={state.enhancement}
@@ -56,7 +56,7 @@ export function Mmsf2WarRockSection({
 
   return (
     <div className="mt-4 grid gap-4">
-      <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+      <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
         <div className="grid gap-2">
           <label className="text-sm font-semibold text-white">ウォーロック装備</label>
           <SearchableSelectInput

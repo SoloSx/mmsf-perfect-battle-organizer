@@ -95,23 +95,23 @@ export function validateMmsf1FolderCards(
 
   for (const { name, quantity } of standardCardTotals.values()) {
     if (quantity > 3) {
-      errors.push(`MMSF1 の通常カード「${name}」は3枚までです。`);
+      errors.push(`通常カード「${name}」は3枚までです。`);
     }
   }
 
   if (megaTotal > megaLimit) {
     errors.push(
       enhancementEnabled
-        ? `MMSF1 の強化On時、メガカードは${megaLimit}枚までです。`
-        : `MMSF1 のメガカードは${megaLimit}枚までです。`,
+        ? `強化On時、メガカードは${megaLimit}枚までです。`
+        : `メガカードは${megaLimit}枚までです。`,
     );
   }
 
   if (gigaTotal > gigaLimit) {
     errors.push(
       enhancementEnabled
-        ? `MMSF1 の強化On時、ギガカードは${gigaLimit}枚までです。`
-        : `MMSF1 のギガカードは${gigaLimit}枚までです。`,
+        ? `強化On時、ギガカードは${gigaLimit}枚までです。`
+        : `ギガカードは${gigaLimit}枚までです。`,
     );
   }
 
@@ -127,7 +127,7 @@ export function validateMmsf1BrotherFavoriteCards(entries: BrotherProfile[], ver
 
     if (megaGigaTotal > 2) {
       return {
-        errors: ["MMSF1 のブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
+        errors: ["ブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
       };
     }
   }

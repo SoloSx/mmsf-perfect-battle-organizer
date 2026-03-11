@@ -93,7 +93,7 @@ export function NoiseCardEditor({
   const selectedCount = values.filter(Boolean).length;
 
   return (
-    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+    <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
       <div className="flex items-center justify-between gap-3">
         <div>
           <label className="text-sm font-semibold text-white">ノイズドカード</label>
@@ -105,7 +105,7 @@ export function NoiseCardEditor({
         {values.map((value, index) => (
           <div
             key={`noise-card-slot-${index}`}
-            className="relative z-0 rounded-[24px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.1),rgba(150,117,255,0.08),rgba(255,255,255,0.035))] p-3 focus-within:z-10"
+            className="relative z-0 overflow-visible rounded-[24px] border border-white/12 bg-[linear-gradient(160deg,rgba(255,255,255,0.1),rgba(150,117,255,0.08),rgba(255,255,255,0.035))] p-3 focus-within:z-30"
           >
             <div className="mb-3">
               <p className="text-[11px] font-semibold tracking-[0.28em] text-white/45">

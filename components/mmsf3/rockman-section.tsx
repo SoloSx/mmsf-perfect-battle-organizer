@@ -43,16 +43,18 @@ export function Mmsf3RockmanSection({
 
   return (
     <>
-      <SearchableSelectInput
-        value={state.noise}
-        onChange={onNoiseChange}
-        options={MMSF3_PLAYER_NOISE_SELECT_OPTIONS}
-        placeholder="ノイズを検索"
-        displayValue={state.noise}
-        className="field-shell min-h-[52px] w-full"
-      />
+      <div className="relative z-0 overflow-visible focus-within:z-30">
+        <SearchableSelectInput
+          value={state.noise}
+          onChange={onNoiseChange}
+          options={MMSF3_PLAYER_NOISE_SELECT_OPTIONS}
+          placeholder="ノイズを検索"
+          displayValue={state.noise}
+          className="field-shell min-h-[52px] w-full"
+        />
+      </div>
       <div className="grid gap-4">
-        <div className="grid gap-2">
+        <div className="relative z-0 grid gap-2 overflow-visible focus-within:z-30">
           <label className="text-sm font-semibold text-white">レゾンカード</label>
           <SearchableSelectInput
             value={state.playerRezonCard}
@@ -64,7 +66,7 @@ export function Mmsf3RockmanSection({
           />
         </div>
 
-        <div className="grid gap-2">
+        <div className="relative z-0 grid gap-2 overflow-visible focus-within:z-30">
           <label className="text-sm font-semibold text-white">ホワイトカード</label>
           <SearchableSelectInput
             value={state.whiteCardSetId}

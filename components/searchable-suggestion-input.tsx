@@ -107,7 +107,7 @@ export function SearchableSuggestionInput({
   };
 
   return (
-    <div className="relative w-full">
+    <div className="relative z-0 w-full focus-within:z-[70]">
       <input
         ref={inputRef}
         role="combobox"
@@ -202,7 +202,7 @@ export function SearchableSuggestionInput({
         <div
           id={listId}
           role="listbox"
-          className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-30 max-h-72 overflow-y-auto rounded-2xl border border-white/12 bg-slate-950/96 p-2 shadow-[0_18px_48px_rgba(15,23,42,0.55)] backdrop-blur-xl"
+          className="absolute left-0 right-0 top-[calc(100%+0.5rem)] z-50 max-h-72 overflow-y-auto rounded-2xl border border-white/12 bg-slate-950/96 p-2 shadow-[0_18px_48px_rgba(15,23,42,0.55)] backdrop-blur-xl"
         >
           {visibleSuggestions.length > 0 ? (
             visibleSuggestions.map((suggestion, index) => {
