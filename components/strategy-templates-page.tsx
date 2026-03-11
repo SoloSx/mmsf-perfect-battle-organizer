@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { FileJson, Import, Plus, Save, Trash2 } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
 import { useAppData } from "@/hooks/use-app-data";
@@ -21,6 +21,19 @@ const blankTemplate: StrategyTemplate = {
   createdAt: "",
   updatedAt: "",
 };
+
+function cloneTemplate(template: StrategyTemplate): StrategyTemplate {
+  return {
+    ...template,
+    tags: [...template.tags],
+    defaultValues: {
+      strategyName: template.defaultValues?.strategyName ?? "",
+      strategyNote: template.defaultValues?.strategyNote ?? "",
+      overview: template.defaultValues?.overview ?? "",
+      tags: [...(template.defaultValues?.tags ?? [])],
+    },
+  };
+}
 
 function buildExportTimestamp() {
   const now = new Date();
@@ -80,15 +93,6 @@ export function StrategyTemplatesPage() {
   const [form, setForm] = useState<StrategyTemplate>(blankTemplate);
   const [status, setStatus] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const selectedTemplate = useMemo(
-    () => (selectedId === "new" ? blankTemplate : templates.find((item) => item.id === selectedId) ?? blankTemplate),
-    [selectedId, templates],
-  );
-
-  useEffect(() => {
-    setForm(selectedTemplate);
-  }, [selectedTemplate]);
 
   const tagValue = form.tags.join(", ");
   const exportTimestamp = useMemo(() => buildExportTimestamp(), []);
@@ -159,7 +163,9 @@ export function StrategyTemplatesPage() {
 
               const count = importTemplates(normalizedImported);
               setStatus(`${count}件の保存済み戦法を読み込みました。`);
-              setSelectedId(normalizedImported[0]?.id || "new");
+              const nextTemplate = normalizedImported[0] ? cloneTemplate(normalizedImported[0]) : cloneTemplate(blankTemplate);
+              setSelectedId(nextTemplate.id || "new");
+              setForm(nextTemplate);
             } catch {
               setStatus("JSON の読み込みに失敗しました。");
             }
@@ -178,6 +184,7 @@ export function StrategyTemplatesPage() {
               className="secondary-button"
               onClick={() => {
                 setSelectedId("new");
+                setForm(cloneTemplate(blankTemplate));
               }}
             >
               <Plus className="mr-2 size-4" />
@@ -188,12 +195,15 @@ export function StrategyTemplatesPage() {
           <div className="mt-5 space-y-3">
             {templates.map((template) => (
               <button
-                type="button"
-                key={template.id}
-                onClick={() => setSelectedId(template.id)}
-                className={`w-full rounded-3xl border px-4 py-4 text-left ${
-                  selectedId === template.id
-                    ? "border-purple-300/40 bg-gradient-to-r from-purple-500/20 to-cyan-500/15"
+              type="button"
+              key={template.id}
+              onClick={() => {
+                setSelectedId(template.id);
+                setForm(cloneTemplate(template));
+              }}
+              className={`w-full rounded-3xl border px-4 py-4 text-left ${
+                selectedId === template.id
+                  ? "border-purple-300/40 bg-gradient-to-r from-purple-500/20 to-cyan-500/15"
                     : "border-white/10 bg-white/6"
                 }`}
               >
@@ -302,7 +312,9 @@ export function StrategyTemplatesPage() {
                     createdAt: form.createdAt || new Date().toISOString(),
                     updatedAt: new Date().toISOString(),
                   });
+                  setForm(cloneTemplate(template));
                   setSelectedId(template.id);
+                  setStatus(selectedId === "new" ? "保存済み戦法を追加しました。" : "保存済み戦法を上書き保存しました。");
                 }}
               >
                 <Save className="mr-2 size-4" />
