@@ -563,55 +563,59 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 </div>
               </div>
             ) : null}
-            {mmsf2StarCards.length > 0 ? (
-              <div className="mt-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Star Cards</p>
-                <div
-                  className="mt-2 grid gap-0"
-                  style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
-                >
-                  {mmsf2StarCards.map((cardName, index) => {
-                    const asset = findCardAssetByName(build.game, cardName, build.version);
-                    return (
-                      <div key={`star-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
-                        {asset ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
-                        ) : (
-                          <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
-                            <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null}
-            {mmsf2BlankCards.length > 0 ? (
-              <div className="mt-4">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Blank Cards</p>
-                <div
-                  className="mt-2 grid gap-0"
-                  style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
-                >
-                  {mmsf2BlankCards.map((cardName, index) => {
-                    const asset = findCardAssetByName(build.game, cardName, build.version);
+            {mmsf2StarCards.length > 0 || mmsf2BlankCards.length > 0 ? (
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                {mmsf2BlankCards.length > 0 ? (
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Blank Cards</p>
+                    <div
+                      className="mt-2 grid gap-0"
+                      style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                    >
+                      {mmsf2BlankCards.map((cardName, index) => {
+                        const asset = findCardAssetByName(build.game, cardName, build.version);
 
-                    return (
-                      <div key={`blank-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
-                        {asset ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
-                        ) : (
-                          <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
-                            <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                        return (
+                          <div key={`blank-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                            {asset ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                            ) : (
+                              <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                              </div>
+                            )}
                           </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : null}
+                {mmsf2StarCards.length > 0 ? (
+                  <div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Star Cards</p>
+                    <div
+                      className="mt-2 grid gap-0"
+                      style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                    >
+                      {mmsf2StarCards.map((cardName, index) => {
+                        const asset = findCardAssetByName(build.game, cardName, build.version);
+                        return (
+                          <div key={`star-${cardName}-${index}`} className={BATTLE_CARD_FRAME_CLASS}>
+                            {asset ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                            ) : (
+                              <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                              </div>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ) : null}
               </div>
             ) : null}
           </section>
