@@ -49,6 +49,26 @@ const MMSF2_BLANK_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
   "ブレイクカウントボム": "/assets/cards/SF2/Cards/Gd4BreakCountBomb.gif",
   "ファントムスラッシュ": "/assets/cards/SF2/Cards/Gd5PhantomSlash.gif",
 };
+const MMSF1_BOKTAI_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
+  タイヨウジュウ: "/assets/cards/SF1/Cards/e01_TaiyouJuu.png",
+  タイヨウジュウv2: "/assets/cards/SF1/Cards/e02_TaiyouJuuV2.png",
+  タイヨウジュウv3: "/assets/cards/SF1/Cards/e03_TaiyouJuuV3_actual.png",
+  アンコクケン: "/assets/cards/SF1/Cards/e04_AnkokuKen.png",
+  アンコクケンv2: "/assets/cards/SF1/Cards/e05_AnkokuKenV2.png",
+  アンコクケンv3: "/assets/cards/SF1/Cards/e06_AnkokuKenV3_actual.png",
+  アーシュラ: "/assets/cards/SF1/Cards/e07_Ursula.png",
+  アーシュラv2: "/assets/cards/SF1/Cards/e08_UrsulaV2.png",
+  アーシュラv3: "/assets/cards/SF1/Cards/e09_UrsulaV3_actual.png",
+  トーベ: "/assets/cards/SF1/Cards/e10_Tove.png",
+  トーベv2: "/assets/cards/SF1/Cards/e11_ToveV2.png",
+  トーベv3: "/assets/cards/SF1/Cards/e12_ToveV3_actual.png",
+  オトフリート: "/assets/cards/SF1/Cards/e13_Otfried.png",
+  オトフリートv2: "/assets/cards/SF1/Cards/e14_OtfriedV2.png",
+  オトフリートv3: "/assets/cards/SF1/Cards/e15_OtfriedV3_actual.png",
+  リザ: "/assets/cards/SF1/Cards/e16_Liza.png",
+  リザv2: "/assets/cards/SF1/Cards/e17_LizaV2.png",
+  リザv3: "/assets/cards/SF1/Cards/e18_LizaV3_actual.png",
+};
 
 function buildLookupTokens(name: string) {
   const base = normalizeToken(name);
@@ -111,10 +131,18 @@ export function findCardAssetByName(game: GameId, name: string, version?: Versio
       continue;
     }
 
-    return assetManifestEntries.find((entry) => entry.localPath === localized.assetLocalPath);
+    const localizedAsset = assetManifestEntries.find((entry) => entry.localPath === localized.assetLocalPath);
+    if (localizedAsset) {
+      return localizedAsset;
+    }
   }
 
   if (game === "mmsf1") {
+    const boktaiAssetPath = MMSF1_BOKTAI_CARD_ASSET_LOCAL_PATHS[normalizeToken(name)];
+    if (boktaiAssetPath) {
+      return assetManifestEntries.find((entry) => entry.localPath === boktaiAssetPath);
+    }
+
     for (const normalized of buildLookupTokens(name)) {
       const crossVersionAlias = cardAssetAliases.find((entry) => {
         if (entry.game !== "mmsf1") {
@@ -128,7 +156,10 @@ export function findCardAssetByName(game: GameId, name: string, version?: Versio
         continue;
       }
 
-      return assetManifestEntries.find((entry) => entry.localPath === crossVersionAlias.assetLocalPath);
+      const crossVersionAsset = assetManifestEntries.find((entry) => entry.localPath === crossVersionAlias.assetLocalPath);
+      if (crossVersionAsset) {
+        return crossVersionAsset;
+      }
     }
   }
 

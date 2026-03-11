@@ -54,3 +54,30 @@ test("MMSF1 version-locked mega cards resolve preview assets across versions", (
     "/assets/cards/SF1/Cards/g1d_DragonSkyGX.png",
   );
 });
+
+test("MMSF1 Boktai cards resolve preview assets", () => {
+  assert.equal(
+    findCardAssetByName("mmsf1", "タイヨウジュウ")?.localPath,
+    "/assets/cards/SF1/Cards/e01_TaiyouJuu.png",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf1", "アンコクケンＶ２")?.localPath,
+    "/assets/cards/SF1/Cards/e05_AnkokuKenV2.png",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf1", "アーシュラＶ３")?.localPath,
+    "/assets/cards/SF1/Cards/e09_UrsulaV3_actual.png",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf1", "トーベ")?.localPath,
+    "/assets/cards/SF1/Cards/e10_Tove.png",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf1", "オトフリートＶ２")?.localPath,
+    "/assets/cards/SF1/Cards/e14_OtfriedV2.png",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf1", "リザＶ３")?.localPath,
+    "/assets/cards/SF1/Cards/e18_LizaV3_actual.png",
+  );
+});

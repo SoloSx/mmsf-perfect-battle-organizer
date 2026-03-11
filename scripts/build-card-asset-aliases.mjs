@@ -133,6 +133,11 @@ function parseAssetMetadata(entry) {
       return { section: "standard", number: Number(match[1]), version: null };
     }
 
+    match = file.match(/^e(\d{2})_/i);
+    if (match) {
+      return { section: "bokutai", number: Number(match[1]), version: null };
+    }
+
     match = file.match(/^m(\d{2})([pld]?)/i);
     if (match) {
       return {
