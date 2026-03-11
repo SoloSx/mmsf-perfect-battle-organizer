@@ -3,6 +3,8 @@ import { isMmsf2BattleCardClass } from "@/lib/mmsf2/folder-cards";
 import type { BuildCardEntry, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 
+export const MMSF2_BLANK_CARD_LIMIT = 10;
+
 interface ClassifiedCardTotal {
   label: string;
   quantity: number;
@@ -31,11 +33,13 @@ export function getMmsf2CardQuantityTotal(entries: BuildCardEntry[]) {
 }
 
 export function getMmsf2NormalCardTotalLimit(starCards: BuildCardEntry[], blankCards: BuildCardEntry[], folderLimit = 30) {
-  return Math.max(0, folderLimit - getMmsf2FilledCardEntryCount(starCards) - getMmsf2FilledCardEntryCount(blankCards));
+  void starCards;
+  return Math.max(0, folderLimit - getMmsf2FilledCardEntryCount(blankCards));
 }
 
-export function getMmsf2BlankCardTotalLimit(folderCards: BuildCardEntry[], starCards: BuildCardEntry[], folderLimit = 30) {
-  return Math.max(0, folderLimit - getMmsf2CardQuantityTotal(folderCards) - getMmsf2FilledCardEntryCount(starCards));
+export function getMmsf2BlankCardTotalLimit(_folderCards: BuildCardEntry[], starCards: BuildCardEntry[], folderLimit = 30) {
+  void starCards;
+  return Math.max(0, Math.min(MMSF2_BLANK_CARD_LIMIT, folderLimit));
 }
 
 export function validateMmsf2FolderTotal(
@@ -48,7 +52,7 @@ export function validateMmsf2FolderTotal(
   const folderCardTotal = getMmsf2CardQuantityTotal(folderCards);
   const starCardTotal = getMmsf2FilledCardEntryCount(starCards);
   const blankCardTotal = getMmsf2FilledCardEntryCount(blankCards);
-  const total = folderCardTotal + starCardTotal + blankCardTotal;
+  const total = folderCardTotal + blankCardTotal;
   const normalCardLimit = getMmsf2NormalCardTotalLimit(starCards, blankCards, folderLimit);
   const blankCardLimit = getMmsf2BlankCardTotalLimit(folderCards, starCards, folderLimit);
 

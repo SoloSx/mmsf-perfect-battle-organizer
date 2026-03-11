@@ -111,7 +111,7 @@ function buildEmptyCard(): BuildCardEntry {
 }
 
 function getMmsf2TrackedCards(build: BuildRecord) {
-  return [...build.commonSections.cards, ...build.gameSpecificSections.mmsf2.starCards, ...build.gameSpecificSections.mmsf2.blankCards];
+  return [...build.commonSections.cards, ...build.gameSpecificSections.mmsf2.blankCards];
 }
 
 function syncMmsf2WarRockWeaponSources(weaponName: string, sources: CommonSections["cardSources"]) {
@@ -645,9 +645,8 @@ function validateBuild(build: BuildRecord) {
             (sum, entry) => sum + (entry.name.trim() && Number.isFinite(entry.quantity) ? entry.quantity : 0),
             0,
           );
-          const starTotal = build.gameSpecificSections.mmsf2.starCards.filter((entry) => entry.name.trim()).length;
           const blankTotal = build.gameSpecificSections.mmsf2.blankCards.filter((entry) => entry.name.trim()).length;
-          const parts = [normalTotal, starTotal, blankTotal].filter((value) => value > 0);
+          const parts = [normalTotal, blankTotal].filter((value) => value > 0);
           return `${parts.join("+") || "0"} / ${rule.folderLimit}`;
         })()
       : `${totalCards} / ${rule.folderLimit}`;
