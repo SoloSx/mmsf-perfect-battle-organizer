@@ -28,6 +28,7 @@ const BATTLE_CARD_FRAME_CLASS =
   "relative aspect-[4/3] overflow-hidden bg-white/8";
 const EXPORT_CARD_TILE_LIMIT = 30;
 const EXPORT_CARD_GRID_COLUMNS = 10;
+const EXPORT_HALF_CARD_GRID_COLUMNS = 5;
 const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
   "01": "/assets/mmsf3/noises/libra-noise.png",
   "02": "/assets/mmsf3/noises/corvus-noise.png",
@@ -570,7 +571,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Blank Cards</p>
                     <div
                       className="mt-2 grid gap-0"
-                      style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                      style={{ gridTemplateColumns: `repeat(${EXPORT_HALF_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
                     >
                       {mmsf2BlankCards.map((cardName, index) => {
                         const asset = findCardAssetByName(build.game, cardName, build.version);
@@ -596,7 +597,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Star Cards</p>
                     <div
                       className="mt-2 grid gap-0"
-                      style={{ gridTemplateColumns: `repeat(${EXPORT_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
+                      style={{ gridTemplateColumns: `repeat(${EXPORT_HALF_CARD_GRID_COLUMNS}, minmax(0, 1fr))` }}
                     >
                       {mmsf2StarCards.map((cardName, index) => {
                         const asset = findCardAssetByName(build.game, cardName, build.version);
