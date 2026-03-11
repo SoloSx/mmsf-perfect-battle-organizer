@@ -114,6 +114,24 @@ export function findCardAssetByName(game: GameId, name: string, version?: Versio
     return assetManifestEntries.find((entry) => entry.localPath === localized.assetLocalPath);
   }
 
+  if (game === "mmsf1") {
+    for (const normalized of buildLookupTokens(name)) {
+      const crossVersionAlias = cardAssetAliases.find((entry) => {
+        if (entry.game !== "mmsf1") {
+          return false;
+        }
+
+        return normalizeToken(entry.name) === normalized;
+      });
+
+      if (!crossVersionAlias) {
+        continue;
+      }
+
+      return assetManifestEntries.find((entry) => entry.localPath === crossVersionAlias.assetLocalPath);
+    }
+  }
+
   if (game === "mmsf2") {
     const blankDefinition = getMmsf2BlankCardDefinition(name);
     if (blankDefinition) {
