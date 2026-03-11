@@ -320,10 +320,6 @@ function getRequiredFieldErrors(build: BuildRecord) {
     errors.push("構築名を入力してください。");
   }
 
-  if (!build.commonSections.overview.trim()) {
-    errors.push("構築概要を入力してください。");
-  }
-
   const namedCards = build.commonSections.cards.filter((entry) => hasPartialCardEntry(entry));
   if (namedCards.length === 0) {
     errors.push("対戦構築カードを1件以上入力してください。");
