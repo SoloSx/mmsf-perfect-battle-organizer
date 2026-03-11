@@ -545,8 +545,18 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
       : "absolute left-0 top-[96px] h-[55px] w-[74px] object-contain";
   const heroPanelClassName =
     build.game === "mmsf3" && build.version === "red-joker"
-      ? "relative overflow-hidden rounded-[32px] border border-white/15 p-8 pr-12 shadow-[0_0_40px_rgba(0,0,0,0.3)]"
-      : "relative overflow-hidden rounded-[32px] border border-white/15 p-8 shadow-[0_0_40px_rgba(0,0,0,0.3)]";
+      ? `relative overflow-hidden rounded-[32px] p-8 pr-12 ${backgroundEnabled ? "border border-white/15 shadow-[0_0_40px_rgba(0,0,0,0.3)]" : "border border-transparent shadow-none"}`
+      : `relative overflow-hidden rounded-[32px] p-8 ${backgroundEnabled ? "border border-white/15 shadow-[0_0_40px_rgba(0,0,0,0.3)]" : "border border-transparent shadow-none"}`;
+  const infoPanelClassName = backgroundEnabled
+    ? "rounded-[28px] border border-white/12 bg-white/8 p-3.5"
+    : "rounded-[28px] border border-transparent bg-transparent p-0";
+  const contentSectionClassName = backgroundEnabled
+    ? "rounded-[30px] border border-white/12 bg-black/20 p-5 shadow-[0_0_40px_rgba(0,0,0,0.18)]"
+    : "rounded-[30px] border border-transparent bg-transparent p-0 shadow-none";
+  const subSectionClassName = backgroundEnabled
+    ? "flex-1 rounded-[30px] border border-white/12 bg-black/20 p-5"
+    : "flex-1 rounded-[30px] border border-transparent bg-transparent p-0";
+  const heroPanelBackground = backgroundEnabled ? getExportHeroPanelBackground(build) : "transparent";
   const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; isRegular: boolean }>>((tiles, entry) => {
     if (tiles.length >= EXPORT_CARD_TILE_LIMIT) {
       return tiles;
@@ -606,15 +616,17 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
       <div className="grid min-h-[675px] grid-cols-[320px_1fr] gap-6 p-10">
         <div
           className={heroPanelClassName}
-          style={{ background: getExportHeroPanelBackground(build) }}
+          style={{ background: heroPanelBackground }}
         >
-          <div
-            className="absolute inset-x-0 top-0 h-48 opacity-70"
-            style={{
-              background: getExportAccentBackground(build, rule),
-              clipPath: "polygon(0 0, 100% 0, 100% 70%, 0 100%)",
-            }}
-          />
+          {backgroundEnabled ? (
+            <div
+              className="absolute inset-x-0 top-0 h-48 opacity-70"
+              style={{
+                background: getExportAccentBackground(build, rule),
+                clipPath: "polygon(0 0, 100% 0, 100% 70%, 0 100%)",
+              }}
+            />
+          ) : null}
           <div className="relative flex h-full flex-col justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.4em] text-white/80">{GAME_LABELS[build.game]}</p>
@@ -649,7 +661,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
             </div>
 
             <div className="space-y-3">
-              <div className="rounded-[28px] border border-white/12 bg-white/8 p-3.5">
+              <div className={infoPanelClassName}>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Rockman</p>
                 <ul className="mt-2 space-y-0.5 text-[11px] leading-4 text-white/80">
                   {build.game === "mmsf3" &&
@@ -667,7 +679,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
                 </ul>
               </div>
               {build.game !== "mmsf1" && (
-                <div className="rounded-[28px] border border-white/12 bg-white/8 p-3.5">
+                <div className={infoPanelClassName}>
                   <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Abilities</p>
                   <ul className="mt-2 space-y-0.5 text-[11px] leading-4 text-white/80">
                     {abilities.length > 0 ? (
@@ -683,7 +695,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
         </div>
 
         <div className="flex flex-col gap-6">
-          <section className="rounded-[30px] border border-white/12 bg-black/20 p-5 shadow-[0_0_40px_rgba(0,0,0,0.18)]">
+          <section className={contentSectionClassName}>
             <div className="mb-3">
               <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Battle Cards</h3>
             </div>
@@ -814,7 +826,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
             ) : null}
           </section>
 
-          <section className="flex-1 rounded-[30px] border border-white/12 bg-black/20 p-5">
+          <section className={subSectionClassName}>
             <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/80">Brothers</h3>
               {mmsf3BrotherVisualSummary ? (
                 <div className="mt-4 space-y-3">
