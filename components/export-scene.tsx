@@ -564,7 +564,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
               </div>
             ) : null}
             {mmsf2StarCards.length > 0 || mmsf2BlankCards.length > 0 ? (
-              <div className="mt-4 grid gap-4 md:grid-cols-2">
+              <div className="mt-4 grid grid-cols-2 gap-4">
                 {mmsf2BlankCards.length > 0 ? (
                   <div>
                     <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Blank Cards</p>
