@@ -2,13 +2,12 @@
 
 import { SearchableSelectInput } from "@/components/searchable-select-input";
 import { SourceListEditor } from "@/components/source-list-editor";
+import { normalizeMmsf1EnhancementValue } from "@/lib/mmsf1/enhancement";
 import type { BuildSourceEntry, Mmsf1Sections } from "@/lib/types";
 
 const ENHANCEMENT_OPTIONS = [
-  { value: "", label: "強化なし" },
-  { value: "fire_leo", label: "ファイアレオ" },
-  { value: "ice_pegasus", label: "アイスペガサス" },
-  { value: "green_dragon", label: "グリーンドラゴン" },
+  { value: "", label: "強化Off" },
+  { value: "on", label: "強化On" },
 ];
 
 export function Mmsf1EditorSections({
@@ -20,12 +19,12 @@ export function Mmsf1EditorSections({
 }) {
   return (
     <div className="mt-4 grid gap-2">
-      <label className="text-xs font-semibold tracking-[0.24em] text-white/42">強化On</label>
+      <label className="text-xs font-semibold tracking-[0.24em] text-white/42">強化</label>
       <SearchableSelectInput
-        value={state.enhancement}
-        onChange={onEnhancementChange}
+        value={normalizeMmsf1EnhancementValue(state.enhancement)}
+        onChange={(value) => onEnhancementChange(normalizeMmsf1EnhancementValue(value))}
         options={ENHANCEMENT_OPTIONS}
-        placeholder="強化Onを選択"
+        placeholder="強化On/Offを選択"
         className="field-shell min-h-[52px] w-full"
       />
     </div>

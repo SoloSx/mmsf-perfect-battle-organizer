@@ -2,6 +2,7 @@
 
 import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
+import { getMmsf1EnhancementLabel, isMmsf1EnhancementEnabled } from "@/lib/mmsf1/enhancement";
 import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
 import {
@@ -201,16 +202,11 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
 
 function getMmsf1SystemSnapshotLines(build: BuildRecord) {
   const s = build.gameSpecificSections.mmsf1;
-  const enhancementLabel =
-    s.enhancement === "fire_leo" ? "ファイアレオ"
-    : s.enhancement === "ice_pegasus" ? "アイスペガサス"
-    : s.enhancement === "green_dragon" ? "グリーンドラゴン"
-    : null;
   const lines: string[] = [s.warRockWeapon || "ウォーロック装備未設定"];
 
-  if (enhancementLabel) {
+  if (isMmsf1EnhancementEnabled(s.enhancement)) {
     lines.unshift(
-      `強化: ${enhancementLabel}`,
+      `強化: ${getMmsf1EnhancementLabel(s.enhancement)}`,
       "スキャナー効果: Lv99",
       "HP+990 / A+4 / R+4 / C+4 / Gauge+4 / Mega+4 / Giga+4",
       "アンダーシャツ / スーパーアーマー / ファーストバリア / フロートシューズ",

@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
+import { normalizeMmsf1EnhancementValue } from "@/lib/mmsf1/enhancement";
 import { normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
 import { getMmsf2BlankCardDefinition } from "@/lib/mmsf2/folder-cards";
 import {
@@ -285,6 +286,13 @@ function normalizeBuild(build: BuildRecord): BuildRecord {
         ...(build.gameSpecificSections?.mmsf2 ?? {}),
         starCards: normalizeMmsf2StarCards((build.gameSpecificSections?.mmsf2 as { starCards?: unknown })?.starCards),
         blankCards: normalizeMmsf2BlankCards((build.gameSpecificSections?.mmsf2 as { blankCards?: unknown })?.blankCards),
+      },
+      mmsf1: {
+        ...createDefaultGameSpecificSections().mmsf1,
+        ...(build.gameSpecificSections?.mmsf1 ?? {}),
+        enhancement: normalizeMmsf1EnhancementValue(
+          (build.gameSpecificSections?.mmsf1 as { enhancement?: string } | undefined)?.enhancement,
+        ),
       },
       mmsf3: {
         ...createDefaultGameSpecificSections().mmsf3,

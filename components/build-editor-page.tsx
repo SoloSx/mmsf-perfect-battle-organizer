@@ -28,6 +28,7 @@ import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
 import { validateLimitedCardOwnership } from "@/lib/card-ownership-rules";
 import { getDuplicateMmsf1UniqueBrotherNames, normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
+import { normalizeMmsf1EnhancementValue } from "@/lib/mmsf1/enhancement";
 import { getMmsf1WarRockWeaponSources } from "@/lib/mmsf1/war-rock-weapons";
 import { MMSF3_ABILITY_OPTIONS } from "@/lib/mmsf3/abilities";
 import {
@@ -556,6 +557,10 @@ function restoreEditorDraft(baseBuild: BuildRecord, rawDraft: string | null) {
         mmsf1: {
           ...baseBuild.gameSpecificSections.mmsf1,
           ...(parsed.gameSpecificSections?.mmsf1 ?? {}),
+          enhancement: normalizeMmsf1EnhancementValue(
+            (parsed.gameSpecificSections?.mmsf1 as { enhancement?: string } | undefined)?.enhancement ??
+              baseBuild.gameSpecificSections.mmsf1.enhancement,
+          ),
         },
         mmsf2: {
           ...baseBuild.gameSpecificSections.mmsf2,
