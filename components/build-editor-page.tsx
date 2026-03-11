@@ -758,59 +758,72 @@ function CardListEditor({
             )}
             {allowRegularSelection ? (
               regularLimit > 1 ? (
-                <div className="flex items-center gap-2">
-                  <button
-                    type="button"
-                    aria-pressed={(entry.favoriteCount ?? 0) > 0}
-                    className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition-colors ${
-                      (entry.favoriteCount ?? 0) > 0
-                        ? "border-red-300/70 bg-red-500/15 text-red-100"
-                        : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
-                    } min-w-[88px] justify-center`}
-                    onClick={() =>
-                      onChange(
-                        entries.map((item) =>
-                          item.id === entry.id
-                            ? {
-                                ...item,
-                                favoriteCount:
-                                  (item.favoriteCount ?? 0) > 0 ? 0 : Math.min(Math.max(1, item.quantity), regularLimit),
-                              }
-                            : item,
-                        ),
-                      )
-                    }
-                  >
-                    {regularLabel}
-                  </button>
+                <div className="min-w-0">
                   {(entry.favoriteCount ?? 0) > 0 ? (
-                    <input
-                      type="number"
-                      min={1}
-                      max={Math.min(entry.quantity, regularLimit)}
-                      value={Math.max(1, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 1))}
-                      onChange={(event) =>
+                    <div className="field-shell flex items-center gap-2 px-2 py-1.5">
+                      <button
+                        type="button"
+                        aria-pressed
+                        className="rounded-xl border border-red-300/70 bg-red-500/15 px-2.5 py-1 text-sm font-semibold text-red-100 transition-colors"
+                        onClick={() =>
+                          onChange(
+                            entries.map((item) =>
+                              item.id === entry.id
+                                ? {
+                                    ...item,
+                                    favoriteCount: 0,
+                                  }
+                                : item,
+                            ),
+                          )
+                        }
+                      >
+                        {regularLabel}
+                      </button>
+                      <input
+                        type="number"
+                        min={1}
+                        max={Math.min(entry.quantity, regularLimit)}
+                        value={Math.max(1, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 1))}
+                        onChange={(event) =>
+                          onChange(
+                            entries.map((item) =>
+                              item.id === entry.id
+                                ? {
+                                    ...item,
+                                    favoriteCount: Math.max(
+                                      1,
+                                      Math.min(item.quantity, regularLimit, Math.trunc(Number(event.target.value || 1))),
+                                    ),
+                                  }
+                                : item,
+                            ),
+                          )
+                        }
+                        aria-label={`${regularLabel}枚数`}
+                        className="min-w-0 flex-1 border-0 bg-transparent px-1 py-1 text-sm text-white outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                      />
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      aria-pressed={false}
+                      className="field-shell w-full justify-center border-white/12 bg-white/5 text-sm font-semibold text-white/80 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
+                      onClick={() =>
                         onChange(
                           entries.map((item) =>
                             item.id === entry.id
                               ? {
                                   ...item,
-                                  favoriteCount: Math.max(
-                                    1,
-                                    Math.min(item.quantity, regularLimit, Math.trunc(Number(event.target.value || 1))),
-                                  ),
+                                  favoriteCount: Math.min(Math.max(1, item.quantity), regularLimit),
                                 }
                               : item,
                           ),
                         )
                       }
-                      aria-label={`${regularLabel}枚数`}
-                      className="field-shell min-w-0 flex-1"
-                    />
-                  ) : (
-                    <div aria-hidden="true" className="field-shell min-w-0 flex-1 opacity-45">
-                      枚数
-                    </div>
+                    >
+                      {regularLabel}
+                    </button>
                   )}
                 </div>
               ) : (
