@@ -22,6 +22,9 @@ const MMSF1_WAR_ROCK_WEAPONS: Mmsf1WarRockWeaponEntry[] = [
   { name: "ゲンワクノカオリ", sources: ["ステーションの電脳2"] },
   { name: "カイザーナックル", sources: ["うちゅうくうかんの電波3: 「こどくのココロ」で開く扉から来たところ"] },
   { name: "マジックブレス", sources: ["暗号メール"] },
+  { name: "エグゼブラスター", sources: ["ダブルスロットのエグゼイベントで入手"] },
+  { name: "ＦＭブレスレット", sources: ["ボクタイ"] },
+  { name: "リュウセイパワー", sources: ["ボクタイ"] },
 ];
 
 const sourcesByName = new Map(MMSF1_WAR_ROCK_WEAPONS.map((item) => [item.name, item.sources] as const));

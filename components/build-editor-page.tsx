@@ -27,6 +27,7 @@ import { SourceListEditor, getMissingSourceNames, haveSameSourceEntries, syncSou
 import { TagEditor } from "@/components/tag-editor";
 import { useAppData } from "@/hooks/use-app-data";
 import { validateLimitedCardOwnership } from "@/lib/card-ownership-rules";
+import { validateMmsf1BrotherFavoriteCards, validateMmsf1FolderCards } from "@/lib/mmsf1/battle-rules";
 import { getDuplicateMmsf1UniqueBrotherNames, normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
 import { normalizeMmsf1EnhancementValue } from "@/lib/mmsf1/enhancement";
 import { getMmsf1WarRockWeaponSources } from "@/lib/mmsf1/war-rock-weapons";
@@ -639,6 +640,11 @@ function validateBuild(build: BuildRecord) {
       build.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
     );
     errors.push(...mmsf2AbilityValidation.errors);
+  } else if (build.game === "mmsf1") {
+    const mmsf1FolderValidation = validateMmsf1FolderCards(build.commonSections.cards, build.version);
+    errors.push(...mmsf1FolderValidation.errors);
+    const mmsf1BrotherValidation = validateMmsf1BrotherFavoriteCards(build.commonSections.brothers, build.version);
+    errors.push(...mmsf1BrotherValidation.errors);
   }
 
   const limitedOwnershipValidation = validateLimitedCardOwnership(build.game, build.commonSections.cards);
@@ -1387,7 +1393,7 @@ export function BuildEditorPage() {
   };
 
   const rockmanSection = (
-    <div className="glass-panel">
+    <div className="glass-panel relative z-0 overflow-visible focus-within:z-40">
       <p className="text-sm font-semibold text-white">ロックマン</p>
 
       {draft.game === "mmsf1" && (
