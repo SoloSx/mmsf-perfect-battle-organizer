@@ -760,48 +760,30 @@ function CardListEditor({
               regularLimit > 1 ? (
                 <div className="min-w-0">
                   {(entry.favoriteCount ?? 0) > 0 ? (
-                    <div className="field-shell flex items-center gap-2 px-2 py-1.5">
-                      <button
-                        type="button"
-                        aria-pressed
-                        className="rounded-xl border border-red-300/70 bg-red-500/15 px-2.5 py-1 text-sm font-semibold text-red-100 transition-colors"
-                        onClick={() =>
-                          onChange(
-                            entries.map((item) =>
-                              item.id === entry.id
-                                ? {
-                                    ...item,
-                                    favoriteCount: 0,
-                                  }
-                                : item,
-                            ),
-                          )
-                        }
-                      >
-                        {regularLabel}
-                      </button>
+                    <div className="field-shell px-3 py-1.5">
                       <input
                         type="number"
-                        min={1}
+                        min={0}
                         max={Math.min(entry.quantity, regularLimit)}
-                        value={Math.max(1, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 1))}
+                        value={Math.max(0, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 0))}
                         onChange={(event) =>
                           onChange(
                             entries.map((item) =>
                               item.id === entry.id
                                 ? {
                                     ...item,
-                                    favoriteCount: Math.max(
-                                      1,
-                                      Math.min(item.quantity, regularLimit, Math.trunc(Number(event.target.value || 1))),
-                                    ),
+                                    favoriteCount: Math.max(0, Math.min(
+                                      item.quantity,
+                                      regularLimit,
+                                      Math.trunc(Number(event.target.value || 0)),
+                                    )),
                                   }
                                 : item,
                             ),
                           )
                         }
                         aria-label={`${regularLabel}枚数`}
-                        className="min-w-0 flex-1 border-0 bg-transparent px-1 py-1 text-sm text-white outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                        className="w-full min-w-0 border-0 bg-transparent px-1 py-1 text-sm text-white outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                       />
                     </div>
                   ) : (
