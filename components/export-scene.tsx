@@ -381,7 +381,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
 
     return tiles;
   }, []);
-  const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean).slice(0, 8);
+  const abilities = build.commonSections.abilities.map((entry) => entry.name).filter(Boolean);
   const brothers =
     build.game === "mmsf3"
       ? getMmsf3BrotherRouletteLines(build).slice(0, 6)
@@ -436,9 +436,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
             </div>
 
             <div className="space-y-3">
-              <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Rockman</p>
-                <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+              <div className="rounded-[28px] border border-white/12 bg-white/8 p-3.5">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Rockman</p>
+                <ul className="mt-2 space-y-0.5 text-[11px] leading-4 text-white/80">
                   {build.game === "mmsf3" &&
                     mmsf3SystemSnapshotLines.map((line, index) => (
                       <li key={`${line}-${index}`}>• {line}</li>
@@ -454,9 +454,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 </ul>
               </div>
               {build.game !== "mmsf1" && (
-                <div className="rounded-[28px] border border-white/12 bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-100/70">Abilities</p>
-                  <ul className="mt-2 space-y-1 text-sm leading-5 text-white/80">
+                <div className="rounded-[28px] border border-white/12 bg-white/8 p-3.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-cyan-100/70">Abilities</p>
+                  <ul className="mt-2 space-y-0.5 text-[11px] leading-4 text-white/80">
                     {abilities.length > 0 ? (
                       abilities.map((item) => <li key={item}>• {item}</li>)
                     ) : (

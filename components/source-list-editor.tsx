@@ -191,12 +191,18 @@ export function SourceListEditor({
           .map((name) => groupedOwnedEntries.find((entry) => entry.name === name))
           .filter((entry): entry is (typeof groupedOwnedEntries)[number] => Boolean(entry))
       : [];
+  const missingSummaryLabel =
+    missingNames.length > 0
+      ? actionMode === "owned"
+        ? `${missingNames.length}件未所持`
+        : `${missingNames.length}件未入力`
+      : null;
 
   return (
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
       <div className="flex items-center justify-between gap-3">
         <label className="text-sm font-semibold text-white">{title}</label>
-        {missingNames.length > 0 ? <span className="text-xs font-medium text-red-200/85">{missingNames.length}件未入力</span> : null}
+        {missingSummaryLabel ? <span className="text-xs font-medium text-red-200/85">{missingSummaryLabel}</span> : null}
       </div>
       {missingNames.length > 0 ? (
         <div className="mt-3 flex flex-wrap gap-2">
