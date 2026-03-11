@@ -413,12 +413,12 @@ function versionLabelToTribe(label: string) {
   return label;
 }
 
-function getMmsf2BrotherVersionIconPaths(build: BuildRecord) {
+function getMmsf2BrotherVisualSummary(build: BuildRecord) {
   if (build.game !== "mmsf2") {
-    return [];
+    return { versionIcons: [], favoriteCardGroups: [] as string[][] };
   }
 
-  return build.commonSections.brothers
+  const versionIcons = build.commonSections.brothers
     .map((entry) => entry.rezonCard)
     .filter((value): value is "berserker" | "shinobi" | "dinosaur" => value === "berserker" || value === "shinobi" || value === "dinosaur")
     .map((version) => ({
@@ -426,6 +426,21 @@ function getMmsf2BrotherVersionIconPaths(build: BuildRecord) {
       label: VERSION_LABELS[version],
       path: MMSF2_VERSION_ICON_PATHS[version],
     }));
+
+  const favoriteCardGroups: string[][] = [];
+  for (const entry of build.commonSections.brothers) {
+    const group = entry.favoriteCards.map((cardName) => cardName.trim()).filter(Boolean);
+    if (group.length === 0) {
+      continue;
+    }
+
+    const groupKey = group.join(",");
+    if (!favoriteCardGroups.some((existingGroup) => existingGroup.join(",") === groupKey)) {
+      favoriteCardGroups.push(group);
+    }
+  }
+
+  return { versionIcons, favoriteCardGroups };
 }
 
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
@@ -485,7 +500,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf3BrotherVisualSummary = build.game === "mmsf3" ? getMmsf3BrotherVisualSummary(build) : null;
   const mmsf2VersionIconPath = getMmsf2VersionIconPath(build);
   const mmsf2VersionIconLabel = getMmsf2VersionIconLabel(build);
-  const mmsf2BrotherVersionIcons = getMmsf2BrotherVersionIconPaths(build);
+  const mmsf2BrotherVisualSummary = build.game === "mmsf2" ? getMmsf2BrotherVisualSummary(build) : null;
 
   return (
     <div
@@ -810,18 +825,50 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img src={MMSF2_KOKOUNOKAKERA_ICON_PATH} alt="ここうのカケラ" className="h-full w-full object-cover" />
                       </div>
-                    ) : mmsf2BrotherVersionIcons.length > 0 ? (
-                      <div className="flex flex-wrap gap-0">
-                        {mmsf2BrotherVersionIcons.map((item, index) => (
-                          <div
-                            key={`${item.version}-${index}`}
-                            className="relative aspect-square shrink-0 overflow-hidden"
-                            style={{ width: `${(100 / EXPORT_CARD_GRID_COLUMNS) * 0.75}%` }}
-                          >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img src={item.path} alt={item.label} className="h-full w-full object-cover" />
+                    ) : mmsf2BrotherVisualSummary &&
+                      (mmsf2BrotherVisualSummary.versionIcons.length > 0 || mmsf2BrotherVisualSummary.favoriteCardGroups.length > 0) ? (
+                      <div className="space-y-3">
+                        {mmsf2BrotherVisualSummary.versionIcons.length > 0 ? (
+                          <div className="flex flex-wrap gap-0">
+                            {mmsf2BrotherVisualSummary.versionIcons.map((item, index) => (
+                              <div
+                                key={`${item.version}-${index}`}
+                                className="relative aspect-square shrink-0 overflow-hidden"
+                                style={{ width: `${(100 / EXPORT_CARD_GRID_COLUMNS) * 0.75}%` }}
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={item.path} alt={item.label} className="h-full w-full object-cover" />
+                              </div>
+                            ))}
                           </div>
-                        ))}
+                        ) : null}
+                        {mmsf2BrotherVisualSummary.favoriteCardGroups.length > 0 ? (
+                          <div className="space-y-2">
+                            {mmsf2BrotherVisualSummary.favoriteCardGroups.map((group, groupIndex) => (
+                              <div key={`mmsf2-fav-${groupIndex}`} className="flex">
+                                {group.map((cardName, cardIndex) => {
+                                  const asset = findCardAssetByName(build.game, cardName, build.version);
+                                  return (
+                                    <div
+                                      key={`mmsf2-fav-${groupIndex}-${cardName}-${cardIndex}`}
+                                      className={`${BATTLE_CARD_FRAME_CLASS} shrink-0`}
+                                      style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }}
+                                    >
+                                      {asset ? (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                                      ) : (
+                                        <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                          <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
                       </div>
                     ) : (
                       <p className="text-sm text-white/60">ブラザー未設定</p>

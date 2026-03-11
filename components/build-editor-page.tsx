@@ -283,7 +283,10 @@ function isMmsf2BrotherFavoriteCardValid(cardName: string, brotherVersion: strin
     return true;
   }
 
-  return getCardSuggestions("mmsf2", trimmedVersion).includes(trimmedName);
+  return uniqueStrings([
+    ...getCardSuggestions("mmsf2", trimmedVersion),
+    ...getMmsf2BlankCardSuggestions(trimmedVersion),
+  ]).includes(trimmedName);
 }
 
 function hasIncompleteBrotherRouletteSlot(slot: Mmsf3BrotherRouletteSlot) {
