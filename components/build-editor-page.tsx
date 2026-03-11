@@ -641,7 +641,11 @@ function validateBuild(build: BuildRecord) {
     );
     errors.push(...mmsf2AbilityValidation.errors);
   } else if (build.game === "mmsf1") {
-    const mmsf1FolderValidation = validateMmsf1FolderCards(build.commonSections.cards, build.version);
+    const mmsf1FolderValidation = validateMmsf1FolderCards(
+      build.commonSections.cards,
+      build.version,
+      build.gameSpecificSections.mmsf1.enhancement,
+    );
     errors.push(...mmsf1FolderValidation.errors);
     const mmsf1BrotherValidation = validateMmsf1BrotherFavoriteCards(build.commonSections.brothers, build.version);
     errors.push(...mmsf1BrotherValidation.errors);

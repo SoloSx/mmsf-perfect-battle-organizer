@@ -36,6 +36,39 @@ test("validateMmsf1FolderCards allows at most two mega/giga cards in the folder"
   );
 });
 
+test("validateMmsf1FolderCards allows up to six mega and six giga cards when enhancement is enabled", () => {
+  assert.deepEqual(
+    validateMmsf1FolderCards(
+      [
+        createCard("オックスファイアSP", 3),
+        createCard("ペガサスマジックSP", 3),
+        createCard("アンドロメダ", 6),
+      ],
+      "pegasus",
+      "on",
+    ).errors,
+    [],
+  );
+
+  assert.deepEqual(
+    validateMmsf1FolderCards(
+      [createCard("オックスファイアSP", 7)],
+      "pegasus",
+      "on",
+    ).errors,
+    ["MMSF1 の強化On時、メガカードは6枚までです。"],
+  );
+
+  assert.deepEqual(
+    validateMmsf1FolderCards(
+      [createCard("アンドロメダ", 7)],
+      "pegasus",
+      "on",
+    ).errors,
+    ["MMSF1 の強化On時、ギガカードは6枚までです。"],
+  );
+});
+
 test("validateMmsf1FolderCards allows standard cards only up to three copies", () => {
   assert.deepEqual(
     validateMmsf1FolderCards([createCard("プラズマガン3", 3), createCard("ソード", 2)], "pegasus").errors,

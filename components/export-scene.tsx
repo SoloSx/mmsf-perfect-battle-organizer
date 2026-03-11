@@ -45,6 +45,11 @@ const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
   "0A": "/assets/mmsf3/noises/wolf-noise.png",
   "0B": "/assets/mmsf3/noises/burai-noise.png",
 };
+const MMSF1_VERSION_ICON_PATHS: Record<"leo" | "pegasus" | "dragon", string> = {
+  leo: "/assets/mmsf1/icons/fire-leo-icon.png",
+  pegasus: "/assets/mmsf1/icons/ice-pegasus-icon.png",
+  dragon: "/assets/mmsf1/icons/green-dragon-icon.png",
+};
 const MMSF3_NORMAL_ICON_PATH = "/assets/mmsf3/noises/normal-rockman-icon.svg";
 const MMSF2_VERSION_ICON_PATHS: Record<"berserker" | "shinobi" | "dinosaur", string> = {
   berserker: "/assets/mmsf2/icons/berserker-icon.jpeg",
@@ -405,6 +410,18 @@ function getMmsf2VersionIconPath(build: BuildRecord) {
   return MMSF2_NORMAL_ICON_PATH;
 }
 
+function getMmsf1VersionIconPath(build: BuildRecord) {
+  if (build.game !== "mmsf1") {
+    return "";
+  }
+
+  if (build.version === "leo" || build.version === "pegasus" || build.version === "dragon") {
+    return MMSF1_VERSION_ICON_PATHS[build.version];
+  }
+
+  return "";
+}
+
 function getMmsf2VersionIconLabel(build: BuildRecord) {
   if (build.game !== "mmsf2") {
     return "";
@@ -509,6 +526,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf2StarCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.starCards.map((entry) => entry.name).filter(Boolean) : [];
   const mmsf2BlankCards = build.game === "mmsf2" ? build.gameSpecificSections.mmsf2.blankCards.map((entry) => entry.name).filter(Boolean) : [];
   const mmsf3WhiteCardNames = build.game === "mmsf3" ? getMmsf3WhiteCardNames(build).slice(0, 4) : [];
+  const mmsf1VersionIconPath = getMmsf1VersionIconPath(build);
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
   const mmsf3BrotherVisualSummary = build.game === "mmsf3" ? getMmsf3BrotherVisualSummary(build) : null;
@@ -550,6 +568,14 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 <img
                   src={mmsf3NoisePortraitPath}
                   alt={`${mmsf3NoiseLabel || "ノイズ"}ノイズ`}
+                  className={noisePortraitClassName}
+                />
+              ) : null}
+              {build.game === "mmsf1" && mmsf1VersionIconPath ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={mmsf1VersionIconPath}
+                  alt={versionLabel}
                   className={noisePortraitClassName}
                 />
               ) : null}
