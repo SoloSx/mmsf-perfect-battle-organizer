@@ -1659,7 +1659,18 @@ export function BuildEditorPage() {
       <Mmsf2BrotherSection
         entries={draft.commonSections.brothers}
         onChange={(entries) => updateCommon("brothers", entries)}
-        getCardSuggestionsForVersion={(version) => getCardSuggestions("mmsf2", (version || draft.version) as VersionId)}
+        getCardSuggestionsForVersion={(version) => {
+          const resolvedVersion = (version || draft.version) as VersionId;
+
+          return sortCardSuggestions(
+            "mmsf2",
+            uniqueStrings([
+              ...getCardSuggestions("mmsf2", resolvedVersion),
+              ...getMmsf2BlankCardSuggestions(resolvedVersion),
+            ]),
+            resolvedVersion,
+          );
+        }}
         isDisabled={draft.gameSpecificSections.mmsf2.enhancement === "burai"}
         kokouNoKakera={draft.gameSpecificSections.mmsf2.kokouNoKakera}
         onKokouNoKakeraChange={(value) =>
