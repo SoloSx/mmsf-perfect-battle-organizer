@@ -1,9 +1,11 @@
 import { expect, test, type Locator } from "@playwright/test";
 
 async function fillCardRow(cardEditor: Locator, rowIndex: number, name: string, quantity: string, favoriteCount: string) {
-  await cardEditor.locator("input[placeholder='カード名']").nth(rowIndex).fill(name);
-  await cardEditor.locator("input[type='number']").nth(rowIndex * 2).fill(quantity);
-  await cardEditor.locator("input[type='number']").nth(rowIndex * 2 + 1).fill(favoriteCount);
+  const row = cardEditor.locator("xpath=.//div[contains(@class, 'rounded-2xl') and .//input[@placeholder='カード名']]").nth(rowIndex);
+  await row.locator("input[placeholder='カード名']").fill(name);
+  await row.locator("input[type='number']").first().fill(quantity);
+  await row.getByRole("button", { name: "FAV" }).click();
+  await row.getByLabel("FAV枚数").fill(favoriteCount);
 }
 
 test("mmsf1 editor allows partial FAV counts and marks the same number of tiles in export preview", async ({ page }) => {
