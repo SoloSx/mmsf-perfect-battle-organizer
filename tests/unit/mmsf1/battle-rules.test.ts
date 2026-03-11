@@ -50,7 +50,7 @@ test("validateMmsf1FolderCards allows up to five mega cards and one giga card in
       [createCard("オックスファイアSP", 6)],
       "pegasus",
     ).errors,
-    ["MMSF1 のメガカードは5枚までです。"],
+    ["メガカードは5枚までです。"],
   );
 
   assert.deepEqual(
@@ -58,7 +58,7 @@ test("validateMmsf1FolderCards allows up to five mega cards and one giga card in
       [createCard("アンドロメダ", 2)],
       "pegasus",
     ).errors,
-    ["MMSF1 のギガカードは1枚までです。"],
+    ["ギガカードは1枚までです。"],
   );
 });
 
@@ -83,7 +83,7 @@ test("validateMmsf1FolderCards allows up to nine mega and five giga cards when e
       "pegasus",
       "on",
     ).errors,
-    ["MMSF1 の強化On時、メガカードは9枚までです。"],
+    ["強化On時、メガカードは9枚までです。"],
   );
 
   assert.deepEqual(
@@ -92,7 +92,7 @@ test("validateMmsf1FolderCards allows up to nine mega and five giga cards when e
       "pegasus",
       "on",
     ).errors,
-    ["MMSF1 の強化On時、ギガカードは5枚までです。"],
+    ["強化On時、ギガカードは5枚までです。"],
   );
 });
 
@@ -124,7 +124,7 @@ test("validateMmsf1FolderCards applies brother bonuses for Kizamaro and LM Shin"
       "",
       [createNamedBrother("最小院 キザマロ")],
     ).errors,
-    ["MMSF1 のメガカードは6枚までです。"],
+    ["メガカードは6枚までです。"],
   );
 
   assert.deepEqual(
@@ -134,7 +134,7 @@ test("validateMmsf1FolderCards applies brother bonuses for Kizamaro and LM Shin"
       "",
       [createNamedBrother("LM・シン")],
     ).errors,
-    ["MMSF1 のギガカードは2枚までです。"],
+    ["ギガカードは2枚までです。"],
   );
 });
 
@@ -146,7 +146,7 @@ test("validateMmsf1FolderCards allows standard cards only up to three copies", (
 
   assert.deepEqual(
     validateMmsf1FolderCards([createCard("プラズマガン3", 4)], "pegasus").errors,
-    ["MMSF1 の通常カード「プラズマガン3」は3枚までです。"],
+    ["通常カード「プラズマガン3」は3枚までです。"],
   );
 });
 
@@ -164,6 +164,6 @@ test("validateMmsf1BrotherFavoriteCards allows at most two mega/giga cards in ea
       [createBrother(["オックスファイアSP", "ペガサスマジックSP", "アンドロメダ", "ソード", "キャノン", "インビジブル"])],
       "pegasus",
     ).errors,
-    ["MMSF1 のブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
+    ["ブラザー FAV カードでメガ・ギガカードは合計2枚までです。"],
   );
 });

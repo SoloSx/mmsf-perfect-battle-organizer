@@ -15,7 +15,6 @@ type RawMmsf2AbilityOption = {
 
 export type Mmsf2AbilityOption = RawMmsf2AbilityOption & {
   label: string;
-  legacyLabel: string;
 };
 
 export const MMSF2_ABILITY_SOURCE_URL = "http://wily.xrea.jp/rockman/ryusei/ryusei2/item.htm#ability-wave";
@@ -111,10 +110,6 @@ function buildAbilityDisplayLabel(name: string, cost: number) {
   return `${name}/${cost}`;
 }
 
-function buildAbilityLegacyLabel(name: string, cost: number) {
-  return `${name} (${cost}P)`;
-}
-
 function matchesVersion(option: Pick<RawMmsf2AbilityOption, "version">, version?: VersionId) {
   if (!option.version || !version) {
     return true;
@@ -164,7 +159,6 @@ const rawAbilityOptions: RawMmsf2AbilityOption[] = RAW_MMSF2_ABILITY_OPTIONS.spl
 export const MMSF2_ABILITY_OPTIONS = rawAbilityOptions.map((entry) => ({
   ...entry,
   label: buildAbilityDisplayLabel(entry.name, entry.cost),
-  legacyLabel: buildAbilityLegacyLabel(entry.name, entry.cost),
 }));
 
 export const MMSF2_ABILITY_NAMES = uniqueStrings(MMSF2_ABILITY_OPTIONS.map((option) => option.name));
@@ -176,10 +170,8 @@ const abilityByNameAndCost = new Map<string, Mmsf2AbilityOption>();
 
 for (const option of MMSF2_ABILITY_OPTIONS) {
   abilityByLabel.set(option.label, option);
-  abilityByLabel.set(option.legacyLabel, option);
   abilityByLabel.set(`${option.name}/${option.cost}`, option);
   abilityByNormalizedLabel.set(normalizeToken(option.label), option);
-  abilityByNormalizedLabel.set(normalizeToken(option.legacyLabel), option);
 
   const normalizedName = normalizeToken(option.name);
   const byName = abilityByNormalizedName.get(normalizedName) ?? [];

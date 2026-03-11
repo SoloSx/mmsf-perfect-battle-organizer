@@ -9,13 +9,10 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
-import { normalizeMmsf1EnhancementValue } from "@/lib/mmsf1/enhancement";
 import { normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
-import { getMmsf2BlankCardDefinition } from "@/lib/mmsf2/folder-cards";
 import {
   createDefaultMmsf3Sections,
   normalizeMmsf3BuildRecord,
-  normalizeMmsf3Sections,
 } from "@/lib/mmsf3/build-state";
 import { getDefaultVersionForGame } from "@/lib/rules";
 import type {
@@ -30,8 +27,7 @@ import type {
 } from "@/lib/types";
 import { createId } from "@/lib/utils";
 
-const STORAGE_KEY = "mmsf-perfect-battle-organizer/v2";
-const LEGACY_STORAGE_KEYS = ["mmsf-perfect-battle-organizer/v1"];
+const APP_DATA_STORAGE_KEY = "mmsf-perfect-battle-organizer/v3";
 
 interface AppDataContextValue {
   builds: BuildRecord[];
@@ -54,13 +50,17 @@ function nowIso() {
   return new Date().toISOString();
 }
 
+function createEmptyBuildCardEntry(): BuildCardEntry {
+  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 };
+}
+
 function createDefaultCommonSections(): CommonSections {
   return {
     overview: "",
     tags: [],
-    cards: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
+    cards: [createEmptyBuildCardEntry()],
     cardSources: [],
-    abilities: [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
+    abilities: [createEmptyBuildCardEntry()],
     abilitySources: [],
     brothers: [],
     strategyName: "",
@@ -130,49 +130,33 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
 }
 
 function createEmptyStarCards(): BuildCardEntry[] {
-  return Array.from({ length: 3 }, () => ({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }));
+  return Array.from({ length: 3 }, () => createEmptyBuildCardEntry());
 }
 
 function createEmptyBlankCards(): BuildCardEntry[] {
-  return [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }];
+  return [createEmptyBuildCardEntry()];
 }
 
-function normalizeMmsf2StarCards(raw: unknown): BuildCardEntry[] {
-  if (!Array.isArray(raw) || raw.length === 0) {
+function normalizeMmsf2StarCards(starCardEntries: BuildCardEntry[] | undefined): BuildCardEntry[] {
+  if (!Array.isArray(starCardEntries) || starCardEntries.length === 0) {
     return createEmptyStarCards();
   }
-  // Migrate legacy string[] to BuildCardEntry[]
-  if (typeof raw[0] === "string") {
-    const entries = (raw as string[]).map((name) => ({
-      id: createId(),
-      name: name.trim(),
-      quantity: 1,
-      notes: "",
-      isRegular: false,
-      favoriteCount: 0,
-    }));
-    // Pad to 3 rows
-    while (entries.length < 3) {
-      entries.push({ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 });
-    }
-    return entries;
+
+  const normalizedStarCardEntries = starCardEntries.map((starCardEntry) => normalizeBuildCardEntry(starCardEntry));
+
+  while (normalizedStarCardEntries.length < 3) {
+    normalizedStarCardEntries.push(createEmptyBuildCardEntry());
   }
-  return (raw as BuildCardEntry[]).map((entry) => normalizeBuildCardEntry(entry));
+
+  return normalizedStarCardEntries.slice(0, 3);
 }
 
-function normalizeMmsf2BlankCards(raw: unknown): BuildCardEntry[] {
-  if (!Array.isArray(raw) || raw.length === 0) {
+function normalizeMmsf2BlankCards(blankCardEntries: BuildCardEntry[] | undefined): BuildCardEntry[] {
+  if (!Array.isArray(blankCardEntries) || blankCardEntries.length === 0) {
     return createEmptyBlankCards();
   }
 
-  return (raw as BuildCardEntry[]).map((entry) => {
-    const normalizedEntry = normalizeBuildCardEntry(entry);
-    const blankDefinition = getMmsf2BlankCardDefinition(normalizedEntry.name);
-
-    return blankDefinition
-      ? { ...normalizedEntry, name: blankDefinition.contentKey }
-      : normalizedEntry;
-  });
+  return blankCardEntries.map((blankCardEntry) => normalizeBuildCardEntry(blankCardEntry));
 }
 
 function createDefaultGameSpecificSections(): GameSpecificSections {
@@ -187,11 +171,7 @@ function createDefaultGameSpecificSections(): GameSpecificSections {
       notes: "",
     },
     mmsf2: {
-      starCards: [
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
-        { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 },
-      ],
+      starCards: createEmptyStarCards(),
       blankCards: createEmptyBlankCards(),
       defaultTribeAbilityEnabled: true,
       enhancement: "",
@@ -243,60 +223,67 @@ function normalizeTemplate(template: StrategyTemplate): StrategyTemplate {
 }
 
 function normalizeBuild(build: BuildRecord): BuildRecord {
-  const legacyMmsf3Sections = (build.gameSpecificSections?.mmsf3 ?? {}) as Partial<BuildRecord["gameSpecificSections"]["mmsf3"]> & {
-    whiteCards?: string[];
-    noiseRate?: number;
-  };
-  const normalizedOverview = build.commonSections?.overview || build.commonSections?.strategyNote || "";
-  const normalizedStrategyNote = build.commonSections?.strategyNote || build.commonSections?.overview || "";
-  const rawAbilities = (build.commonSections?.abilities ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry));
-  const normalizedAbilities = rawAbilities.length > 0
+  const defaultBuild = createBuild(build.game);
+  const defaultGameSpecificSections = createDefaultGameSpecificSections();
+  const rawCommonSections = build.commonSections ?? defaultBuild.commonSections;
+  const rawMmsf1Sections = build.gameSpecificSections?.mmsf1 ?? defaultGameSpecificSections.mmsf1;
+  const rawMmsf2Sections = build.gameSpecificSections?.mmsf2 ?? defaultGameSpecificSections.mmsf2;
+  const rawMmsf3Sections = build.gameSpecificSections?.mmsf3 ?? defaultGameSpecificSections.mmsf3;
+  const rawAbilityEntries = (rawCommonSections.abilities ?? []).map((abilityEntry) =>
+    normalizeBuildCardEntry(abilityEntry as BuildCardEntry),
+  );
+  const normalizedAbilityEntries = rawAbilityEntries.length > 0
     ? build.game === "mmsf2"
       ? normalizeMmsf2AbilityEntries(
-          rawAbilities,
+          rawAbilityEntries,
           build.version,
-          Boolean((build.gameSpecificSections?.mmsf2 as Partial<BuildRecord["gameSpecificSections"]["mmsf2"]> | undefined)?.defaultTribeAbilityEnabled ?? true),
+          Boolean(rawMmsf2Sections.defaultTribeAbilityEnabled ?? true),
         )
-      : rawAbilities
-    : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }];
+      : rawAbilityEntries
+    : [createEmptyBuildCardEntry()];
 
   const normalizedBuild = {
-    ...createBuild(build.game),
+    ...defaultBuild,
     ...build,
     commonSections: {
       ...createDefaultCommonSections(),
-      ...build.commonSections,
-      overview: normalizedOverview,
-      strategyNote: normalizedStrategyNote,
-      cards: (build.commonSections?.cards ?? []).length > 0
-        ? (build.commonSections?.cards ?? []).map((entry) => normalizeBuildCardEntry(entry as BuildCardEntry))
-        : [{ id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 }],
-      cardSources: (build.commonSections?.cardSources ?? []).map((entry) => normalizeBuildSourceEntry(entry as CommonSections["cardSources"][number])),
-      abilities: normalizedAbilities,
-      abilitySources: (build.commonSections?.abilitySources ?? []).map((entry) =>
-        normalizeBuildSourceEntry(entry as CommonSections["abilitySources"][number]),
+      ...rawCommonSections,
+      overview: rawCommonSections.overview ?? defaultBuild.commonSections.overview,
+      strategyNote: rawCommonSections.strategyNote ?? defaultBuild.commonSections.strategyNote,
+      cards: (rawCommonSections.cards ?? []).length > 0
+        ? (rawCommonSections.cards ?? []).map((folderEntry) => normalizeBuildCardEntry(folderEntry as BuildCardEntry))
+        : [createEmptyBuildCardEntry()],
+      cardSources: (rawCommonSections.cardSources ?? []).map((sourceEntry) =>
+        normalizeBuildSourceEntry(sourceEntry as CommonSections["cardSources"][number]),
       ),
-      brothers: (build.commonSections?.brothers ?? []).map((entry) => normalizeBrotherProfile(entry as BrotherProfile)),
+      abilities: normalizedAbilityEntries,
+      abilitySources: (rawCommonSections.abilitySources ?? []).map((sourceEntry) =>
+        normalizeBuildSourceEntry(sourceEntry as CommonSections["abilitySources"][number]),
+      ),
+      brothers: (rawCommonSections.brothers ?? []).map((brotherProfile) =>
+        normalizeBrotherProfile(brotherProfile as BrotherProfile),
+      ),
     },
     gameSpecificSections: {
-      ...createDefaultGameSpecificSections(),
+      ...defaultGameSpecificSections,
       ...build.gameSpecificSections,
       mmsf2: {
-        ...createDefaultGameSpecificSections().mmsf2,
-        ...(build.gameSpecificSections?.mmsf2 ?? {}),
-        starCards: normalizeMmsf2StarCards((build.gameSpecificSections?.mmsf2 as { starCards?: unknown })?.starCards),
-        blankCards: normalizeMmsf2BlankCards((build.gameSpecificSections?.mmsf2 as { blankCards?: unknown })?.blankCards),
+        ...defaultGameSpecificSections.mmsf2,
+        ...rawMmsf2Sections,
+        starCards: normalizeMmsf2StarCards(rawMmsf2Sections.starCards),
+        blankCards: normalizeMmsf2BlankCards(rawMmsf2Sections.blankCards),
       },
       mmsf1: {
-        ...createDefaultGameSpecificSections().mmsf1,
-        ...(build.gameSpecificSections?.mmsf1 ?? {}),
-        enhancement: normalizeMmsf1EnhancementValue(
-          (build.gameSpecificSections?.mmsf1 as { enhancement?: string } | undefined)?.enhancement,
-        ),
+        ...defaultGameSpecificSections.mmsf1,
+        ...rawMmsf1Sections,
+        enhancement:
+          typeof rawMmsf1Sections.enhancement === "string"
+            ? rawMmsf1Sections.enhancement
+            : defaultGameSpecificSections.mmsf1.enhancement,
       },
       mmsf3: {
-        ...createDefaultGameSpecificSections().mmsf3,
-        ...normalizeMmsf3Sections(legacyMmsf3Sections, createDefaultGameSpecificSections().mmsf3),
+        ...defaultGameSpecificSections.mmsf3,
+        ...rawMmsf3Sections,
       },
     },
     createdAt: build.createdAt || nowIso(),
@@ -313,15 +300,15 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(STORAGE_KEY) ?? LEGACY_STORAGE_KEYS.map((key) => window.localStorage.getItem(key)).find(Boolean);
-      if (!raw) {
+      const rawPersistedState = window.localStorage.getItem(APP_DATA_STORAGE_KEY);
+      if (!rawPersistedState) {
         setLoaded(true);
         return;
       }
 
-      const parsed = JSON.parse(raw) as PersistedAppState;
-      setBuilds((parsed.builds ?? []).map(normalizeBuild).sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
-      setTemplates((parsed.templates ?? DEFAULT_STRATEGY_TEMPLATES).map(normalizeTemplate));
+      const persistedState = JSON.parse(rawPersistedState) as PersistedAppState;
+      setBuilds((persistedState.builds ?? []).map(normalizeBuild).sort((leftBuild, rightBuild) => rightBuild.updatedAt.localeCompare(leftBuild.updatedAt)));
+      setTemplates((persistedState.templates ?? DEFAULT_STRATEGY_TEMPLATES).map(normalizeTemplate));
     } catch {
       setBuilds([]);
       setTemplates(DEFAULT_STRATEGY_TEMPLATES);
@@ -336,7 +323,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
     }
 
     const payload: PersistedAppState = { builds: builds.map(stripTransientBuildFlags), templates };
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+    window.localStorage.setItem(APP_DATA_STORAGE_KEY, JSON.stringify(payload));
   }, [builds, templates, loaded]);
 
   const value = useMemo<AppDataContextValue>(
@@ -351,11 +338,11 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           updatedAt: nowIso(),
         });
 
-        setBuilds((current) => {
-          const exists = current.some((item) => item.id === next.id);
+        setBuilds((currentBuilds) => {
+          const exists = currentBuilds.some((item) => item.id === next.id);
           const nextItems = exists
-            ? current.map((item) => (item.id === next.id ? next : item))
-            : [next, ...current];
+            ? currentBuilds.map((item) => (item.id === next.id ? next : item))
+            : [next, ...currentBuilds];
 
           return nextItems.sort((a, b) => b.updatedAt.localeCompare(a.updatedAt));
         });
@@ -372,8 +359,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           }),
         );
 
-        setBuilds((current) => {
-          const merged = new Map(current.map((item) => [item.id, item] as const));
+        setBuilds((currentBuilds) => {
+          const merged = new Map(currentBuilds.map((item) => [item.id, item] as const));
           normalizedIncoming.forEach((build) => {
             merged.set(build.id, build);
           });
@@ -383,7 +370,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         return normalizedIncoming.length;
       },
       deleteBuild: (id) => {
-        setBuilds((current) => current.filter((item) => item.id !== id));
+        setBuilds((currentBuilds) => currentBuilds.filter((item) => item.id !== id));
       },
       duplicateBuild: (id) => {
         const target = builds.find((item) => item.id === id);
@@ -399,7 +386,7 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           updatedAt: nowIso(),
         });
 
-        setBuilds((current) => [duplicate, ...current].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
+        setBuilds((currentBuilds) => [duplicate, ...currentBuilds].sort((a, b) => b.updatedAt.localeCompare(a.updatedAt)));
         return duplicate;
       },
       getBuildById: (id) => builds.find((item) => item.id === id),
@@ -411,9 +398,9 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           updatedAt: nowIso(),
         });
 
-        setTemplates((current) => {
-          const exists = current.some((item) => item.id === next.id);
-          return exists ? current.map((item) => (item.id === next.id ? next : item)) : [next, ...current];
+        setTemplates((currentTemplates) => {
+          const exists = currentTemplates.some((item) => item.id === next.id);
+          return exists ? currentTemplates.map((item) => (item.id === next.id ? next : item)) : [next, ...currentTemplates];
         });
 
         return next;
@@ -428,8 +415,8 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
           }),
         );
 
-        setTemplates((current) => {
-          const merged = new Map(current.map((item) => [item.id, item] as const));
+        setTemplates((currentTemplates) => {
+          const merged = new Map(currentTemplates.map((item) => [item.id, item] as const));
           normalizedIncoming.forEach((template) => {
             merged.set(template.id, template);
           });
@@ -439,9 +426,9 @@ export function AppDataProvider({ children }: { children: ReactNode }) {
         return normalizedIncoming.length;
       },
       deleteTemplate: (id) => {
-        setTemplates((current) => current.filter((item) => item.id !== id));
-        setBuilds((current) =>
-          current.map((item) =>
+        setTemplates((currentTemplates) => currentTemplates.filter((item) => item.id !== id));
+        setBuilds((currentBuilds) =>
+          currentBuilds.map((item) =>
             item.strategyTemplateId === id ? { ...item, strategyTemplateId: null, updatedAt: nowIso() } : item,
           ),
         );

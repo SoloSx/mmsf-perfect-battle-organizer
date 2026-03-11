@@ -18,11 +18,12 @@ test("mmsf1 editor allows partial FAV counts and marks the same number of tiles 
   const cardEditor = page
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const cardNameInputs = cardEditor.locator("input[placeholder='カード名']");
 
   await fillCardRow(cardEditor, 0, "キャノン", "4", "2");
+  await expect(cardNameInputs).toHaveCount(2);
   await fillCardRow(cardEditor, 1, "プラスキャノン", "4", "4");
+  await expect(cardNameInputs).toHaveCount(3);
 
   await expect(page.getByText("FAV カードは6枚指定してください。")).toHaveCount(0);
 
@@ -43,11 +44,12 @@ test("mmsf2 editor allows partial FAV counts and marks only the selected copies 
   const cardEditor = page
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  const cardNameInputs = cardEditor.locator("input[placeholder='カード名']");
 
   await fillCardRow(cardEditor, 0, "キャノン", "4", "2");
+  await expect(cardNameInputs).toHaveCount(2);
   await fillCardRow(cardEditor, 1, "プラスキャノン", "2", "2");
+  await expect(cardNameInputs).toHaveCount(3);
 
   await expect(page.getByText("FAV カードは4枚指定してください。")).toHaveCount(0);
 

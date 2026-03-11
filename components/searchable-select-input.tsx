@@ -123,7 +123,7 @@ export function SearchableSelectInput({
   };
 
   return (
-    <div className="relative">
+    <div className="relative z-0 w-full focus-within:z-[70]">
       <input
         ref={inputRef}
         role="combobox"

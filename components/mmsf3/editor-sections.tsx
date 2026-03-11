@@ -40,7 +40,7 @@ export function Mmsf3EditorSections({
   onAbilitySourcesChange: (entries: BuildSourceEntry[]) => void;
 }) {
   return (
-    <div className="mt-4 grid gap-4">
+    <div className="relative z-0 mt-4 grid gap-4 overflow-visible focus-within:z-40">
       <Mmsf3RockmanSection
         state={state}
         onNoiseChange={onNoiseChange}

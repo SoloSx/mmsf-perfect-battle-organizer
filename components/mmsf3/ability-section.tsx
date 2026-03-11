@@ -22,7 +22,7 @@ function Mmsf3AbilityEditor({
   const { totalCost, limit } = getMmsf3AbilitySelectionErrors(entries, noise, sssSlotCount);
 
   return (
-    <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+    <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
       <div className="flex items-center justify-between gap-3">
         <label className="text-sm font-semibold text-white">アビリティ</label>
         <span className="text-xs text-white/45">合計P {totalCost}/{limit}</span>
@@ -38,7 +38,7 @@ function Mmsf3AbilityEditor({
           return (
             <div
               key={entry.id}
-              className="relative z-0 grid gap-3 rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-10 md:grid-cols-[minmax(0,1fr)_112px]"
+              className="relative z-0 grid gap-3 overflow-visible rounded-2xl border border-white/10 bg-white/6 p-4 focus-within:z-30 md:grid-cols-[minmax(0,1fr)_112px]"
             >
               <SearchableSelectInput
                 value={selectedAbility?.label ?? ""}
@@ -92,7 +92,7 @@ export function Mmsf3AbilitySection({
   onAbilitySourcesChange: (entries: BuildSourceEntry[]) => void;
 }) {
   return (
-    <>
+    <div className="relative z-0 overflow-visible focus-within:z-40">
       <Mmsf3AbilityEditor
         entries={state.abilities}
         onChange={onAbilitiesChange}
@@ -114,6 +114,6 @@ export function Mmsf3AbilitySection({
         resolveKnownSources={(name) => getMmsf3AbilitySources(name)}
         emptyOwnedMessage="未所持のアビリティはありません。すべて所持済みです。"
       />
-    </>
+    </div>
   );
 }

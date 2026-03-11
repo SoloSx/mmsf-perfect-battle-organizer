@@ -75,21 +75,30 @@ function createBaseBuild(overrides: Partial<BuildRecord> = {}): BuildRecord {
   };
 }
 
-test("normalizeMmsf3BuildRecord migrates legacy roulette fields into the fixed roulette slots", () => {
-  const legacySections = {
+test("normalizeMmsf3BuildRecord preserves current roulette slot values", () => {
+  const currentSections: BuildRecord["gameSpecificSections"]["mmsf3"] = {
     ...createDefaultMmsf3Sections(),
-    whiteCardSetId: "57",
-    megaCards: ["アシッドエース"],
-    gigaCards: ["Ｇメテオレーザー"],
-    rezonCards: ["ソード"],
-    whiteCards: ["旧セットA"],
-    noiseRate: 70,
+    rouletteNotes: "current-only",
+    brotherRouletteSlots: [
+      {
+        position: "top_left",
+        slotType: "brother",
+        sssLevel: "",
+        version: "red-joker",
+        noise: "08",
+        rezon: "05",
+        whiteCardSetId: "57",
+        gigaCard: "0C2",
+        megaCard: "0A9",
+      },
+      ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
+    ],
   };
   const build = createBaseBuild({
     gameSpecificSections: {
       mmsf1: createBaseBuild().gameSpecificSections.mmsf1,
       mmsf2: createBaseBuild().gameSpecificSections.mmsf2,
-      mmsf3: legacySections as unknown as BuildRecord["gameSpecificSections"]["mmsf3"],
+      mmsf3: currentSections,
     },
   });
 
@@ -98,9 +107,11 @@ test("normalizeMmsf3BuildRecord migrates legacy roulette fields into the fixed r
 
   assert.equal(topLeftSlot.whiteCardSetId, "57");
   assert.equal(topLeftSlot.megaCard, "0A9");
-  assert.equal(topLeftSlot.gigaCard, "0C9");
+  assert.equal(topLeftSlot.gigaCard, "0C2");
   assert.equal(topLeftSlot.rezon, "05");
-  assert.match(normalized.gameSpecificSections.mmsf3.rouletteNotes, /旧ホワイトカード入力: 旧セットA/);
+  assert.equal(topLeftSlot.version, "red-joker");
+  assert.equal(topLeftSlot.noise, "08");
+  assert.equal(normalized.gameSpecificSections.mmsf3.rouletteNotes, "current-only");
 });
 
 test("normalizeMmsf3BuildRecord keeps the version default PGM and excludes it from tracked sources", () => {
@@ -110,6 +121,24 @@ test("normalizeMmsf3BuildRecord keeps the version default PGM and excludes it fr
 
   assert.deepEqual(abilityNames, ["エースＰＧＭ/0"]);
   assert.deepEqual(sourceNames, []);
+});
+
+test("normalizeMmsf3BuildRecord removes ASPGM and 動画PGM entries for ノーマルロックマン", () => {
+  const normalized = normalizeMmsf3BuildRecord(
+    createBaseBuild({
+      gameSpecificSections: {
+        mmsf1: createBaseBuild().gameSpecificSections.mmsf1,
+        mmsf2: createBaseBuild().gameSpecificSections.mmsf2,
+        mmsf3: {
+          ...createDefaultMmsf3Sections(),
+          noise: "ノーマルロックマン",
+          pgms: ["カスタムASPGM", "お気に入り動画PGM", "エースＰＧＭ"],
+        },
+      },
+    }),
+  );
+
+  assert.deepEqual(normalized.gameSpecificSections.mmsf3.pgms, ["エースＰＧＭ"]);
 });
 
 test("updateMmsf3Noise clears brother slots but keeps SSS when switching to ブライノイズ", () => {
@@ -190,10 +219,23 @@ test("updateMmsf3WarRockWeapon excludes initial equipment from tracked source en
   assert.equal(state.warRockWeaponSources.length, 0);
 });
 
-test("normalizeMmsf3BuildRecord migrates legacy SSS levels into brother slots", () => {
-  const build = createBaseBuild();
-  (build.gameSpecificSections.mmsf3 as unknown as { brotherRouletteSlots?: unknown }).brotherRouletteSlots = undefined;
-  build.gameSpecificSections.mmsf3.sssLevels = ["4", "32", "G24"];
+test("normalizeMmsf3BuildRecord derives SSS levels from current roulette slots", () => {
+  const build = createBaseBuild({
+    gameSpecificSections: {
+      mmsf1: createBaseBuild().gameSpecificSections.mmsf1,
+      mmsf2: createBaseBuild().gameSpecificSections.mmsf2,
+      mmsf3: {
+        ...createDefaultMmsf3Sections(),
+        brotherRouletteSlots: [
+          { position: "top_left", slotType: "sss", sssLevel: "4", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+          { position: "top_right", slotType: "sss", sssLevel: "32", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+          { position: "mid_left", slotType: "sss", sssLevel: "G24", version: "", noise: "", rezon: "", whiteCardSetId: "", gigaCard: "", megaCard: "" },
+          ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(3),
+        ],
+        sssLevels: [],
+      },
+    },
+  });
 
   const state = getNormalizedMmsf3State(normalizeMmsf3BuildRecord(build));
 

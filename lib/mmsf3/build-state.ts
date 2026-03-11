@@ -29,11 +29,6 @@ import type {
 } from "@/lib/types";
 import { createId, uniqueStrings } from "@/lib/utils";
 
-type LegacyMmsf3Sections = Partial<Mmsf3Sections> & {
-  whiteCards?: string[];
-  noiseRate?: number;
-};
-
 export interface NormalizedMmsf3State {
   noise: string;
   warRockWeapon: string;
@@ -204,47 +199,32 @@ export function normalizeMmsf3WarRockWeaponSources(
   return syncOwnedSourceEntries([{ id: "mmsf3-war-rock-weapon", name: warRockWeapon, quantity: 1, notes: "", isRegular: false }], warRockWeaponSources, getMmsf3WarRockWeaponSources);
 }
 
-export function getMissingMmsf3AbilitySourceNames(state: Pick<NormalizedMmsf3State, "abilities" | "abilitySources">, version: BuildRecord["version"]) {
-  const trackedAbilities = state.abilities.filter((entry) => isMmsf3AbilitySourceTracked(entry.name, version));
-  return getMissingOwnedSourceNames(trackedAbilities, state.abilitySources, getMmsf3AbilitySources);
+export function getMissingMmsf3AbilitySourceNames(mmsf3State: Pick<NormalizedMmsf3State, "abilities" | "abilitySources">, version: BuildRecord["version"]) {
+  const trackedAbilities = mmsf3State.abilities.filter((entry) => isMmsf3AbilitySourceTracked(entry.name, version));
+  return getMissingOwnedSourceNames(trackedAbilities, mmsf3State.abilitySources, getMmsf3AbilitySources);
 }
 
-export function getMissingMmsf3WarRockWeaponSourceNames(state: Pick<NormalizedMmsf3State, "warRockWeapon" | "warRockWeaponSources">) {
+export function getMissingMmsf3WarRockWeaponSourceNames(mmsf3State: Pick<NormalizedMmsf3State, "warRockWeapon" | "warRockWeaponSources">) {
   if (
-    !state.warRockWeapon.trim() ||
-    !isMmsf3WarRockWeapon(state.warRockWeapon) ||
-    !isMmsf3WarRockWeaponSourceTracked(state.warRockWeapon)
+    !mmsf3State.warRockWeapon.trim() ||
+    !isMmsf3WarRockWeapon(mmsf3State.warRockWeapon) ||
+    !isMmsf3WarRockWeaponSourceTracked(mmsf3State.warRockWeapon)
   ) {
     return [];
   }
 
   return getMissingOwnedSourceNames(
-    [{ id: "mmsf3-war-rock-weapon", name: state.warRockWeapon, quantity: 1, notes: "", isRegular: false }],
-    state.warRockWeaponSources,
+    [{ id: "mmsf3-war-rock-weapon", name: mmsf3State.warRockWeapon, quantity: 1, notes: "", isRegular: false }],
+    mmsf3State.warRockWeaponSources,
     getMmsf3WarRockWeaponSources,
   );
 }
 
-export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefined, defaults?: Mmsf3Sections) {
-  const baseSections = defaults ?? createDefaultMmsf3Sections();
-  const nextSections = { ...(rawSections ?? {}) };
-  const legacyWhiteCards = (nextSections.whiteCards ?? []).map((item) => item.trim()).filter(Boolean);
-
-  delete nextSections.whiteCards;
-  delete nextSections.noiseRate;
-
-  const legacyWhiteCardsNote = legacyWhiteCards.length > 0 ? `旧ホワイトカード入力: ${legacyWhiteCards.join(" / ")}` : "";
-  const rouletteNotes =
-    legacyWhiteCardsNote && !nextSections.rouletteNotes?.includes(legacyWhiteCardsNote)
-      ? [nextSections.rouletteNotes ?? "", legacyWhiteCardsNote].filter(Boolean).join("\n")
-      : (nextSections.rouletteNotes ?? baseSections.rouletteNotes);
-  const brotherRouletteSlots = normalizeMmsf3BrotherRouletteSlots(nextSections.brotherRouletteSlots, {
-    whiteCardSetId: nextSections.whiteCardSetId ?? baseSections.whiteCardSetId,
-    gigaCards: nextSections.gigaCards ?? baseSections.gigaCards,
-    megaCards: nextSections.megaCards ?? baseSections.megaCards,
-    rezonCards: nextSections.rezonCards ?? baseSections.rezonCards,
-    sssLevels: nextSections.sssLevels ?? baseSections.sssLevels,
-  });
+export function normalizeMmsf3Sections(rawSections?: Partial<Mmsf3Sections>, defaults?: Mmsf3Sections) {
+  void defaults;
+  const baseSections = createDefaultMmsf3Sections();
+  const nextSections = rawSections ?? {};
+  const brotherRouletteSlots = normalizeMmsf3BrotherRouletteSlots(nextSections.brotherRouletteSlots);
 
   return {
     ...baseSections,
@@ -267,7 +247,6 @@ export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefi
       normalizeMmsf3PlayerNoise(nextSections.noise ?? baseSections.noise) === "ノーマルロックマン"
         ? (nextSections.pgms ?? baseSections.pgms).filter((item) => !shouldRemovePgmForNormalRockman(item))
         : (nextSections.pgms ?? baseSections.pgms),
-    rouletteNotes,
   };
 }
 
@@ -282,7 +261,7 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
     build.commonSections.abilitySources,
     build.version,
   );
-  const normalizedSections = normalizeMmsf3Sections(build.gameSpecificSections.mmsf3, build.gameSpecificSections.mmsf3);
+  const normalizedSections = normalizeMmsf3Sections(build.gameSpecificSections.mmsf3);
   const normalizedWarRockWeaponSources = normalizeMmsf3WarRockWeaponSources(
     normalizedSections.warRockWeapon,
     normalizedSections.warRockWeaponSources,

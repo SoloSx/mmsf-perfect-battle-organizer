@@ -18,7 +18,7 @@ export function Mmsf1EditorSections({
   onEnhancementChange: (value: string) => void;
 }) {
   return (
-    <div className="mt-4 grid gap-2">
+    <div className="relative z-0 mt-4 grid gap-2 overflow-visible focus-within:z-30">
       <label className="text-xs font-semibold tracking-[0.24em] text-white/42">強化</label>
       <SearchableSelectInput
         value={normalizeMmsf1EnhancementValue(state.enhancement)}

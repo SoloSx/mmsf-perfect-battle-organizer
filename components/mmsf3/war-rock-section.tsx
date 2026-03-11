@@ -23,7 +23,7 @@ export function Mmsf3WarRockSection({
 }) {
   return (
     <>
-      <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
+      <div className="glass-panel-soft relative z-0 overflow-visible p-6 focus-within:z-30">
         <div className="grid gap-2">
           <label className="text-sm font-semibold text-white">ウォーロック装備</label>
           <SearchableSelectInput

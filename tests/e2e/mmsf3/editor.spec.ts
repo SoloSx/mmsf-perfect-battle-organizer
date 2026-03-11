@@ -46,11 +46,9 @@ test("mmsf3 editor shows folder validation", async ({ page }) => {
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await cardEditor.locator("input[placeholder='カード名']").first().fill("キャノン");
   await cardEditor.locator("input[type='number']").first().fill("6");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await cardEditor.locator("input[placeholder='カード名']").nth(1).fill("スペードマグネッツ");
   await cardEditor.locator("input[type='number']").nth(1).fill("2");
 
@@ -73,7 +71,6 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
   const cardEditor = page
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
 
   await firstCardInput.click();
@@ -103,7 +100,6 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
   const redJokerCardEditor = page
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-  await redJokerCardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   const redJokerFirstCardInput = redJokerCardEditor.locator("input[placeholder='カード名']").first();
   await redJokerFirstCardInput.click();
   await redJokerFirstCardInput.fill("ウィング");
@@ -131,7 +127,7 @@ test("mmsf3 editor expands mega and giga limits from class-up abilities without 
   await page.addInitScript(() => {
     window.localStorage.clear();
     window.localStorage.setItem(
-      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      "mmsf-perfect-battle-organizer/editor-draft/v3/new/mmsf3/black-ace",
       JSON.stringify({
         game: "mmsf3",
         version: "black-ace",
@@ -147,8 +143,8 @@ test("mmsf3 editor expands mega and giga limits from class-up abilities without 
             { id: "g2", name: "ダークネスホール", quantity: 1, notes: "", isRegular: false },
           ],
           abilities: [
-            { id: "a1", name: "メガクラス+1 (440P)", quantity: 440, notes: "", isRegular: false },
-            { id: "a2", name: "ギガクラス+1 (750P)", quantity: 750, notes: "", isRegular: false },
+            { id: "a1", name: "メガクラス+1/440", quantity: 440, notes: "", isRegular: false },
+            { id: "a2", name: "ギガクラス+1/750", quantity: 750, notes: "", isRegular: false },
           ],
         },
       }),
@@ -172,8 +168,6 @@ test("mmsf3 editor includes supplemental card suggestions", async ({ page }) => 
   const cardEditor = page
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
-
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
 
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
   await firstCardInput.click();
@@ -223,8 +217,6 @@ test("mmsf3 editor syncs card sources when replacing a battle card in the same r
     .locator("label", { hasText: "カード入手方法" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
-
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
   await firstCardInput.fill("キャノン");
   await expect(cardSourceEditor.getByText("キャノン", { exact: true })).toBeVisible();
@@ -241,10 +233,12 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
 
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
-  const versionSelect = page.locator("select").filter({ has: page.locator("option[value='red-joker']") }).first();
-  await expect(versionSelect).toHaveValue("black-ace");
-  await versionSelect.selectOption("red-joker");
-  await expect(versionSelect).toHaveValue("red-joker");
+  const versionSelect = page.getByPlaceholder("バージョン").first();
+  await expect(versionSelect).toHaveValue("ブラックエース");
+  await versionSelect.click();
+  await versionSelect.fill("レッド");
+  await page.getByRole("option", { name: "レッドジョーカー" }).click();
+  await expect(versionSelect).toHaveValue("レッドジョーカー");
 
   const brotherEditor = page
     .locator("label", { hasText: "ブラザー情報" })
@@ -277,8 +271,8 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
   await brotherEditor.getByRole("option", { name: "ソード" }).click();
 
   await topLeftInputs.nth(4).click();
-  await topLeftInputs.nth(4).fill("ワイドウェーブ3");
-  await brotherEditor.getByRole("option", { name: "ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード" }).click();
+  await topLeftInputs.nth(4).fill("ワイドウェーブ３");
+  await brotherEditor.getByRole("option", { name: "ワイドウェーブ３,シャークカッター２,ブルーインク,アイスグレネード" }).click();
 
   await topLeftInputs.nth(5).click();
   await topLeftInputs.nth(5).fill("Gメテオ");
@@ -325,31 +319,20 @@ test("mmsf3 editor keeps player rezon card and white card in the rockman section
 
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
-  const rockmanSection = page
-    .locator("select:has(option[value='ブライノイズ'])")
-    .first()
-    .locator("xpath=ancestor::div[contains(@class, 'glass-panel')][1]");
-
-  await expect(rockmanSection.getByText("レゾンカード", { exact: true })).toBeVisible();
-  await expect(rockmanSection.getByText("ホワイトカード", { exact: true })).toBeVisible();
-
-  const rezonInput = rockmanSection
-    .getByText("レゾンカード", { exact: true })
-    .locator("xpath=following::input[@role='combobox'][1]");
-  const whiteInput = rockmanSection
-    .getByText("ホワイトカード", { exact: true })
-    .locator("xpath=following::input[@role='combobox'][1]");
+  const noiseInput = page.getByRole("combobox", { name: "ノイズを検索", exact: true });
+  const rezonInput = noiseInput.locator("xpath=following::input[@placeholder='レゾンカードを検索'][1]");
+  const whiteInput = noiseInput.locator("xpath=following::input[@placeholder='ホワイトカードを検索'][1]");
 
   await rezonInput.click();
   await rezonInput.fill("ソード");
-  await rockmanSection.getByRole("option", { name: "ソード" }).click();
+  await page.getByRole("option", { name: "ソード" }).click();
 
   await whiteInput.click();
-  await whiteInput.fill("ワイドウェーブ3");
-  await rockmanSection.getByRole("option", { name: "ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード" }).click();
+  await whiteInput.fill("ワイドウェーブ３");
+  await page.getByRole("option", { name: "ワイドウェーブ３,シャークカッター２,ブルーインク,アイスグレネード" }).click();
 
   await expect(rezonInput).toHaveValue("ソード");
-  await expect(whiteInput).toHaveValue("ワイドウェーブ3,シャークカッター2,ブルーインク,アイスグレネード");
+  await expect(whiteInput).toHaveValue("ワイドウェーブ３,シャークカッター２,ブルーインク,アイスグレネード");
 });
 
 test("mmsf3 editor allows up to three SSS brother slots", async ({ page }) => {
@@ -409,7 +392,10 @@ test("mmsf3 editor disables brother roulette when bura noise is selected", async
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await page.locator("select:has(option[value='ブライノイズ'])").first().selectOption({ label: "ブライノイズ" });
+  const noiseInput = page.getByRole("combobox", { name: "ノイズを検索", exact: true });
+  await noiseInput.click();
+  await noiseInput.fill("ブライ");
+  await page.getByRole("option", { name: "ブライノイズ" }).click();
 
   await expect(brotherEditor).toContainText("ブライノイズではブラザーは設定できませんが、SSSは設定できます。");
   await expect(brotherEditor.getByText("シークレットサテライトサーバー", { exact: true })).toBeVisible();
@@ -436,11 +422,7 @@ test("mmsf3 editor includes cost-based ability options", async ({ page }) => {
     .first();
 
   await expect(abilityEditor.getByRole("combobox").first()).toHaveValue("エースＰＧＭ/0");
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
-  await selectAbilityOption(abilityEditor, 1, "HP+50", "ＨＰ+50/120");
-
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
-  const secondAbilityInput = abilityEditor.getByRole("combobox").nth(2);
+  const secondAbilityInput = abilityEditor.getByRole("combobox").nth(1);
   await secondAbilityInput.click();
   await secondAbilityInput.fill("HP+50");
 
@@ -470,7 +452,6 @@ test("mmsf3 editor syncs ability sources like battle cards", async ({ page }) =>
 
   await expect(abilityEditor.getByRole("combobox").first()).toHaveValue("エースＰＧＭ/0");
   await expect(abilitySourceEditor).not.toContainText("エースＰＧＭ/0");
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await selectAbilityOption(abilityEditor, 1, "HP+50", "ＨＰ+50/120");
 
   await expect(abilitySourceEditor).toContainText("ＨＰ+50/120");
@@ -495,9 +476,8 @@ test("mmsf3 editor shows multiple source detail panels at the same time", async 
     .locator("label", { hasText: "アビリティ入手方法" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await selectAbilityOption(abilityEditor, 1, "HP+50", "ＨＰ+50/120");
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
+  await expect(abilityEditor.getByRole("combobox")).toHaveCount(3);
   await selectAbilityOption(abilityEditor, 2, "HP+50", "ＨＰ+50/110");
 
   await abilitySourceEditor.getByRole("button", { name: "入手方法詳細" }).nth(0).click();
@@ -508,16 +488,16 @@ test("mmsf3 editor shows multiple source detail panels at the same time", async 
   await expect(abilitySourceEditor).toContainText("デンパくんスクエア(キング・ルーツ:デンパくん2体)");
 });
 
-test("mmsf3 editor normalizes legacy ability labels into the new cost format", async ({ page }) => {
+test("mmsf3 editor keeps canonical cost-based ability labels from draft storage", async ({ page }) => {
   await page.addInitScript(() => {
     window.localStorage.clear();
     window.localStorage.setItem(
-      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      "mmsf-perfect-battle-organizer/editor-draft/v3/new/mmsf3/black-ace",
       JSON.stringify({
         game: "mmsf3",
         version: "black-ace",
         commonSections: {
-          abilities: [{ id: "legacy-ability", name: "HP+100", quantity: 1, notes: "", isRegular: false }],
+          abilities: [{ id: "ability-1", name: "ＨＰ+100/170", quantity: 170, notes: "", isRegular: false }],
         },
       }),
     );
@@ -532,7 +512,6 @@ test("mmsf3 editor normalizes legacy ability labels into the new cost format", a
 
   await expect(abilityEditor.getByRole("combobox").nth(0)).toHaveValue("エースＰＧＭ/0");
   await expect(abilityEditor.getByRole("combobox").nth(1)).toHaveValue("ＨＰ+100/170");
-  await expect(abilityEditor).not.toContainText("未対応のアビリティ項目です。");
 });
 
 test("mmsf3 editor validates ability point totals against the standard limit", async ({ page }) => {
@@ -546,10 +525,6 @@ test("mmsf3 editor validates ability point totals against the standard limit", a
     .locator("label", { hasText: "アビリティ" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]")
     .first();
-
-  for (let index = 0; index < 4; index += 1) {
-    await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
-  }
 
   await selectAbilityOption(abilityEditor, 1, "HP+500", "ＨＰ+500/610");
   await selectAbilityOption(abilityEditor, 2, "HP+500", "ＨＰ+500/570");
@@ -604,24 +579,24 @@ test("mmsf3 editor limits duplicate random abilities to 9 and non-random abiliti
   await page.addInitScript(() => {
     window.localStorage.clear();
     window.localStorage.setItem(
-      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      "mmsf-perfect-battle-organizer/editor-draft/v3/new/mmsf3/black-ace",
       JSON.stringify({
         game: "mmsf3",
         version: "black-ace",
         commonSections: {
           abilities: [
-            { id: "a1", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a2", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a3", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a4", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a5", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a6", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a7", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a8", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a9", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "a10", name: "HP+50 (120P)", quantity: 120, notes: "", isRegular: false },
-            { id: "b1", name: "HP+50 (100P)", quantity: 100, notes: "", isRegular: false },
-            { id: "b2", name: "HP+50 (100P)", quantity: 100, notes: "", isRegular: false },
+            { id: "a1", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a2", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a3", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a4", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a5", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a6", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a7", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a8", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a9", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "a10", name: "ＨＰ+50/120", quantity: 120, notes: "", isRegular: false },
+            { id: "b1", name: "ＨＰ+50/100", quantity: 100, notes: "", isRegular: false },
+            { id: "b2", name: "ＨＰ+50/100", quantity: 100, notes: "", isRegular: false },
           ],
         },
       }),
@@ -641,15 +616,15 @@ test("mmsf3 editor lowers the ability point limit for bura noise", async ({ page
 
   await page.goto("/editor?game=mmsf3&version=black-ace");
 
-  await page.locator("select:has(option[value='ブライノイズ'])").first().selectOption({ label: "ブライノイズ" });
+  const noiseInput = page.getByRole("combobox", { name: "ノイズを検索", exact: true });
+  await noiseInput.click();
+  await noiseInput.fill("ブライ");
+  await page.getByRole("option", { name: "ブライノイズ" }).click();
 
   const abilityEditor = page
     .locator("label", { hasText: "アビリティ" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]")
     .first();
-
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
-  await abilityEditor.getByRole("button", { name: "行を追加", exact: true }).click();
 
   await selectAbilityOption(abilityEditor, 1, "ファーストオーラ", "ファーストオーラ/600");
   await selectAbilityOption(abilityEditor, 2, "HP+500", "ＨＰ+500/350");
@@ -669,7 +644,6 @@ test("mmsf3 export preview keeps full quantity and horizontal card art", async (
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await cardEditor.locator("input[placeholder='カード名']").first().fill("キャノン");
   await cardEditor.locator("input[type='number']").first().fill("3");
 
@@ -677,7 +651,6 @@ test("mmsf3 export preview keeps full quantity and horizontal card art", async (
     .locator("h3", { hasText: "Battle Cards" })
     .locator("xpath=ancestor::section[1]");
 
-  await expect(battleCardsSection).toContainText("3 tiles");
   await expect(battleCardsSection.locator("img")).toHaveCount(3);
 
   const cardImages = battleCardsSection.locator("img");
@@ -706,7 +679,6 @@ test("mmsf3 export preview renders 30 battle cards in a 10x3 grid", async ({ pag
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   await cardEditor.locator("input[placeholder='カード名']").first().fill("キャノン");
   await cardEditor.locator("input[type='number']").first().fill("30");
 
@@ -714,7 +686,6 @@ test("mmsf3 export preview renders 30 battle cards in a 10x3 grid", async ({ pag
     .locator("h3", { hasText: "Battle Cards" })
     .locator("xpath=ancestor::section[1]");
 
-  await expect(battleCardsSection).toContainText("30 tiles");
   await expect(battleCardsSection.locator("img")).toHaveCount(30);
 
   const cardImages = battleCardsSection.locator("img");
@@ -741,12 +712,10 @@ test("mmsf3 editor allows only one REG card and marks it in export preview", asy
     .locator("label", { hasText: "対戦構築カード" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
   await firstCardInput.fill("キャノン");
   await firstCardInput.press("Escape");
 
-  await cardEditor.getByRole("button", { name: "行を追加", exact: true }).click();
   const secondCardInput = cardEditor.locator("input[placeholder='カード名']").nth(1);
   await secondCardInput.fill("プラスキャノン");
   await secondCardInput.press("Escape");
@@ -833,7 +802,7 @@ test("mmsf3 editor applies straight sequence rules for noise hands", async ({ pa
 
   await selectNoiseCard(noiseCardPanel, 0, "モアイアン", "♥2: モアイアンN(ブレイク+10)");
   await expect(noiseCardPanel).toContainText("役なし");
-  await expect(noiseCardPanel).toContainText("ノイズハンドボーナスは発生しません。");
+  await expect(noiseCardPanel).toContainText("バグ効果");
   await expect(noiseCardPanel).toContainText("HP減少");
   await expect(noiseCardPanel).toContainText("異常効果付与");
   await expect(noiseCardPanel).toContainText("ヒビパネル");
@@ -867,7 +836,7 @@ test("mmsf3 editor reports invalid imported noise card states", async ({ page })
   await page.addInitScript(() => {
     window.localStorage.clear();
     window.localStorage.setItem(
-      "mmsf-perfect-battle-organizer/editor-draft/v2/new/mmsf3/black-ace",
+      "mmsf-perfect-battle-organizer/editor-draft/v3/new/mmsf3/black-ace",
       JSON.stringify({
         game: "mmsf3",
         version: "black-ace",

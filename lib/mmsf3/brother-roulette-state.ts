@@ -7,11 +7,8 @@ import {
   MMSF3_SSS_SLOT_COUNT,
   getMmsf3BrotherVersionOption,
   getMmsf3GigaCardOption,
-  getMmsf3GigaCardOptionByLabel,
   getMmsf3MegaCardOption,
-  getMmsf3MegaCardOptionByLabel,
   getMmsf3RezonCardOption,
-  getMmsf3RezonCardOptionByLabel,
   getMmsf3WhiteCardSetOption,
 } from "@/lib/mmsf3/roulette-data";
 import { isMmsf3GigaCardAllowedInVersion } from "@/lib/mmsf3/giga-version-rules";
@@ -57,15 +54,15 @@ function hasBrotherSlotDetails(slot: Partial<Mmsf3BrotherRouletteSlot> | undefin
   ].some((value) => normalizeRouletteValue(value).length > 0);
 }
 
-function hasBrotherRouletteSelection(slots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined) {
-  return (slots ?? []).some((slot) =>
+function hasBrotherRouletteSelection(brotherRouletteSlots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined) {
+  return (brotherRouletteSlots ?? []).some((slot) =>
     slot?.slotType === "sss" || normalizeRouletteValue(slot?.sssLevel).length > 0 || hasBrotherSlotDetails(slot),
   );
 }
 
-export function normalizeMmsf3SssLevels(levels: string[] | undefined) {
+export function normalizeMmsf3SssLevels(sssLevelEntries: string[] | undefined) {
   return Array.from({ length: MMSF3_SSS_SLOT_COUNT }, (_, index) => {
-    const value = normalizeRouletteValue(levels?.[index]);
+    const value = normalizeRouletteValue(sssLevelEntries?.[index]);
     return sssLevelOptionValues.has(value) ? value : "";
   });
 }
@@ -87,18 +84,10 @@ export function getMmsf3ConfiguredSssSlotCount(slots: Mmsf3BrotherRouletteSlot[]
 }
 
 export function normalizeMmsf3BrotherRouletteSlots(
-  slots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined,
-  legacy?: {
-    whiteCardSetId?: string;
-    gigaCards?: string[];
-    megaCards?: string[];
-    rezonCards?: string[];
-    sssLevels?: string[];
-  },
+  brotherRouletteSlots: Partial<Mmsf3BrotherRouletteSlot>[] | undefined,
 ) {
-  const hasCurrentSssSchema = (slots ?? []).some((slot) => "slotType" in (slot ?? {}) || "sssLevel" in (slot ?? {}));
   const slotsByPosition = new Map(
-    (slots ?? [])
+    (brotherRouletteSlots ?? [])
       .filter((slot): slot is Partial<Mmsf3BrotherRouletteSlot> & Pick<Mmsf3BrotherRouletteSlot, "position"> => {
         return Boolean(slot?.position && MMSF3_BROTHER_ROULETTE_POSITIONS.some((position) => position.key === slot.position));
       })
@@ -140,64 +129,7 @@ export function normalizeMmsf3BrotherRouletteSlots(
     };
   });
 
-  const hasExplicitSlotSelection = hasBrotherRouletteSelection(slots);
-  const migratedSlots = hasExplicitSlotSelection ? normalizedSlots : buildDefaultMmsf3BrotherRouletteSlots();
-
-  if (!hasExplicitSlotSelection) {
-    const legacyWhiteCardSetId = normalizeRouletteValue(legacy?.whiteCardSetId);
-    const legacyRezonCard = legacy?.rezonCards?.find((value) => normalizeRouletteValue(value)) ?? "";
-    const legacyMegaCards = legacy?.megaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
-    const legacyGigaCards = legacy?.gigaCards?.map((value) => value.trim()).filter(Boolean) ?? [];
-    const topLeftSlot = migratedSlots[0];
-
-    if (legacyWhiteCardSetId && legacyWhiteCardSetId !== DEFAULT_MMSF3_WHITE_CARD_SET_ID && getMmsf3WhiteCardSetOption(legacyWhiteCardSetId)) {
-      topLeftSlot.whiteCardSetId = legacyWhiteCardSetId;
-    }
-
-    const legacyRezonOption = getMmsf3RezonCardOptionByLabel(legacyRezonCard);
-    if (legacyRezonOption) {
-      topLeftSlot.rezon = legacyRezonOption.value;
-    }
-
-    legacyMegaCards.slice(0, migratedSlots.length).forEach((name, index) => {
-      const option = getMmsf3MegaCardOptionByLabel(name);
-      if (option) {
-        migratedSlots[index].megaCard = option.value;
-      }
-    });
-
-    legacyGigaCards.slice(0, migratedSlots.length).forEach((name, index) => {
-      const option = getMmsf3GigaCardOptionByLabel(name);
-      if (option) {
-        migratedSlots[index].gigaCard = option.value;
-      }
-    });
-  }
-
-  if (!hasCurrentSssSchema && getMmsf3ConfiguredSssSlotCount(migratedSlots) === 0) {
-    const legacySssLevels = normalizeMmsf3SssLevels(legacy?.sssLevels);
-    const availableSlots = migratedSlots.filter((slot) => slot.slotType !== "sss" && !hasBrotherSlotDetails(slot));
-
-    legacySssLevels
-      .filter(Boolean)
-      .slice(0, MMSF3_SSS_SLOT_COUNT)
-      .forEach((level, index) => {
-        const targetSlot = availableSlots[index];
-        if (!targetSlot) {
-          return;
-        }
-
-        targetSlot.slotType = "sss";
-        targetSlot.sssLevel = level;
-        targetSlot.noise = "";
-        targetSlot.rezon = "";
-        targetSlot.whiteCardSetId = "";
-        targetSlot.gigaCard = "";
-        targetSlot.megaCard = "";
-      });
-  }
-
-  return migratedSlots;
+  return hasBrotherRouletteSelection(brotherRouletteSlots) ? normalizedSlots : buildDefaultMmsf3BrotherRouletteSlots();
 }
 
 export function clearMmsf3BrotherSelectionsForBuraNoise(slots: Mmsf3BrotherRouletteSlot[]) {
