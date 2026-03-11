@@ -30,6 +30,7 @@ import {
   getMissingMmsf3AbilitySourceNames,
   getMissingMmsf3WarRockWeaponSourceNames,
   getNormalizedMmsf3State,
+  isMmsf3GeminiNoise,
   normalizeMmsf3BuildRecord,
   normalizeMmsf3Sections,
   validateMmsf3BuildState,
@@ -574,6 +575,8 @@ export function validateBuild(buildRecord: BuildRecord): BuildValidationResult {
       sum + (cardEntry.name.trim() && Number.isFinite(cardEntry.quantity) ? cardEntry.quantity : 0),
     0,
   );
+  const geminiTagMode =
+    buildRecord.game === "mmsf3" && isMmsf3GeminiNoise(buildRecord.gameSpecificSections.mmsf3.noise);
   const regularCardCount =
     buildRecord.game === "mmsf1" || buildRecord.game === "mmsf2"
       ? buildRecord.commonSections.cards.reduce(
@@ -582,6 +585,13 @@ export function validateBuild(buildRecord: BuildRecord): BuildValidationResult {
           0,
         )
       : buildRecord.commonSections.cards.filter((cardEntry) => cardEntry.name.trim() && cardEntry.isRegular).length;
+  const geminiTagCardCount = geminiTagMode
+    ? buildRecord.commonSections.cards.reduce(
+        (sum, cardEntry) =>
+          sum + (cardEntry.name.trim() ? Math.max(0, Math.min(cardEntry.quantity, cardEntry.favoriteCount ?? 0)) : 0),
+        0,
+      )
+    : 0;
 
   if (!VERSIONS_BY_GAME[buildRecord.game].includes(buildRecord.version)) {
     errors.push("作品とバージョンの組み合わせが一致していません。");
@@ -598,6 +608,13 @@ export function validateBuild(buildRecord: BuildRecord): BuildValidationResult {
   } else if (buildRecord.game === "mmsf2") {
     if (regularCardCount !== 4 && buildRecord.commonSections.cards.some((cardEntry) => cardEntry.name.trim())) {
       errors.push("FAV カードは4枚指定してください。");
+    }
+  } else if (geminiTagMode) {
+    if (regularCardCount !== 1 && buildRecord.commonSections.cards.some((cardEntry) => cardEntry.name.trim())) {
+      errors.push("REG カードは1枚指定してください。");
+    }
+    if (geminiTagCardCount !== 2 && buildRecord.commonSections.cards.some((cardEntry) => cardEntry.name.trim())) {
+      errors.push("TAG カードは2枚指定してください。");
     }
   } else if (regularCardCount > 1) {
     errors.push("REG カードは1枚だけ指定してください。");

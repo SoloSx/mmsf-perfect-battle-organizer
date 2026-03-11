@@ -43,6 +43,12 @@ export interface NormalizedMmsf3State {
   sssSlotCount: number;
 }
 
+export const MMSF3_GEMINI_NOISE = "ジェミニノイズ";
+
+export function isMmsf3GeminiNoise(noise: string) {
+  return noise.trim() === MMSF3_GEMINI_NOISE;
+}
+
 export function createDefaultMmsf3Sections(): Mmsf3Sections {
   return {
     noise: "ノーマルロックマン",
@@ -73,6 +79,77 @@ function normalizeRouletteValue(value: string | null | undefined) {
 function normalizeMmsf3PlayerNoise(value: string | null | undefined) {
   const normalized = normalizeRouletteValue(value);
   return normalized || "ノーマルロックマン";
+}
+
+function normalizeMmsf3FolderCardMarkers(entries: BuildCardEntry[], noise: string) {
+  const geminiTagMode = isMmsf3GeminiNoise(noise);
+  const normalizedEntries = entries.map((entry) => {
+    const quantity = Number.isFinite(entry.quantity) ? Math.max(1, Math.trunc(entry.quantity)) : 1;
+    const trimmedName = entry.name.trim();
+    const rawFavoriteCount = typeof entry.favoriteCount === "number" && Number.isFinite(entry.favoriteCount)
+      ? Math.max(0, Math.min(quantity, Math.trunc(entry.favoriteCount)))
+      : 0;
+
+    return {
+      ...entry,
+      quantity,
+      trimmedName,
+      rawFavoriteCount,
+    };
+  });
+  const regularEntryId =
+    normalizedEntries.find((entry) => entry.trimmedName && entry.isRegular)?.id ??
+    (!geminiTagMode
+      ? normalizedEntries.find((entry) => entry.trimmedName && entry.rawFavoriteCount > 0)?.id ?? null
+      : null);
+
+  if (geminiTagMode && !regularEntryId) {
+    return normalizedEntries.map((normalizedEntry) => {
+      const { trimmedName, rawFavoriteCount, ...entry } = normalizedEntry;
+      void trimmedName;
+      void rawFavoriteCount;
+
+      return {
+        ...entry,
+        isRegular: false,
+        favoriteCount: 0,
+      };
+    });
+  }
+
+  let remainingTagCardCount = geminiTagMode ? 2 : 0;
+
+  return normalizedEntries.map(({ trimmedName, rawFavoriteCount, ...entry }) => {
+    const isRegularEntry = Boolean(trimmedName) && entry.id === regularEntryId;
+
+    if (geminiTagMode) {
+      const maxTagCount = Math.max(0, entry.quantity - (isRegularEntry ? 1 : 0));
+      const favoriteCount = Math.min(rawFavoriteCount, maxTagCount, remainingTagCardCount);
+      remainingTagCardCount -= favoriteCount;
+
+      return {
+        ...entry,
+        isRegular: isRegularEntry,
+        favoriteCount,
+      };
+    }
+
+    const markedCopies = trimmedName
+      ? Math.max(
+          0,
+          Math.min(
+            entry.quantity,
+            Math.trunc(rawFavoriteCount || (entry.isRegular ? 1 : 0)),
+          ),
+        )
+      : 0;
+
+    return {
+      ...entry,
+      isRegular: Boolean(trimmedName) && entry.id === regularEntryId && markedCopies > 0,
+      favoriteCount: Boolean(trimmedName) && entry.id === regularEntryId && markedCopies > 0 ? 1 : 0,
+    };
+  });
 }
 
 function shouldRemovePgmForNormalRockman(value: string) {
@@ -275,6 +352,7 @@ export function normalizeMmsf3BuildRecord(build: BuildRecord): BuildRecord {
     ...build,
     commonSections: {
       ...build.commonSections,
+      cards: normalizeMmsf3FolderCardMarkers(build.commonSections.cards, normalizedSections.noise),
       abilities: normalizedAbilities,
       abilitySources: normalizedAbilitySources,
     },

@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { validateBuild } from "@/components/editor/build-editor-state";
 import { getMmsf3AbilitySelectionErrors, getMmsf3FolderClassBonuses } from "@/lib/mmsf3/abilities";
 import { validateMmsf3FolderCards } from "@/lib/mmsf3/battle-rules";
 import { getMmsf3BrotherRouletteSelectionErrors } from "@/lib/mmsf3/brother-roulette-state";
 import {
   createDefaultMmsf3Sections,
   getNormalizedMmsf3State,
+  isMmsf3GeminiNoise,
   normalizeMmsf3BuildRecord,
   updateMmsf3AbilityEntries,
   updateMmsf3Noise,
@@ -359,6 +361,60 @@ test("validateMmsf3FolderCards allows extra mega and giga slots from class-up ab
   );
 
   assert.deepEqual(result.errors, []);
+});
+
+test("updateMmsf3Noise keeps Gemini TAG selections on marked cards", () => {
+  const updated = updateMmsf3Noise(
+    createBaseBuild({
+      commonSections: {
+        ...createBaseBuild().commonSections,
+        cards: [{ id: "card-1", name: "キャノン", quantity: 3, notes: "", isRegular: true, favoriteCount: 2 }],
+      },
+    }),
+    "ジェミニノイズ",
+  );
+
+  assert.ok(isMmsf3GeminiNoise(updated.gameSpecificSections.mmsf3.noise));
+  assert.equal(updated.commonSections.cards[0]?.favoriteCount, 2);
+  assert.equal(updated.commonSections.cards[0]?.isRegular, true);
+});
+
+test("validateBuild requires one REG card and two TAG cards for Gemini noise", () => {
+  const build = createBaseBuild({
+    commonSections: {
+      ...createBaseBuild().commonSections,
+      cards: [{ id: "card-1", name: "キャノン", quantity: 3, notes: "", isRegular: true, favoriteCount: 1 }],
+    },
+    gameSpecificSections: {
+      ...createBaseBuild().gameSpecificSections,
+      mmsf3: {
+        ...createDefaultMmsf3Sections(),
+        noise: "ジェミニノイズ",
+      },
+    },
+  });
+
+  assert.ok(validateBuild(build).errors.includes("TAG カードは2枚指定してください。"));
+  assert.ok(!validateBuild(build).errors.includes("REG カードは1枚指定してください。"));
+});
+
+test("validateBuild requires one REG card for Gemini noise", () => {
+  const build = createBaseBuild({
+    commonSections: {
+      ...createBaseBuild().commonSections,
+      cards: [{ id: "card-1", name: "キャノン", quantity: 3, notes: "", isRegular: false, favoriteCount: 2 }],
+    },
+    gameSpecificSections: {
+      ...createBaseBuild().gameSpecificSections,
+      mmsf3: {
+        ...createDefaultMmsf3Sections(),
+        noise: "ジェミニノイズ",
+      },
+    },
+  });
+
+  assert.ok(validateBuild(build).errors.includes("REG カードは1枚指定してください。"));
+  assert.ok(!validateBuild(build).errors.includes("TAG カードは2枚指定してください。"));
 });
 
 test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga cards from the other version", () => {

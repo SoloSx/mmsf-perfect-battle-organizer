@@ -4,7 +4,7 @@ import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
 import { getMmsf1EnhancementLabel, isMmsf1EnhancementEnabled } from "@/lib/mmsf1/enhancement";
 import { normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
-import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
+import { getNormalizedMmsf3State, isMmsf3GeminiNoise } from "@/lib/mmsf3/build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
 import {
   getMmsf3BrotherVersionOption,
@@ -557,7 +557,8 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
     ? "flex-1 rounded-[30px] border border-white/12 bg-black/20 p-5"
     : "flex-1 rounded-[30px] border border-transparent bg-transparent p-0";
   const heroPanelBackground = backgroundEnabled ? getExportHeroPanelBackground(build) : "transparent";
-  const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; isRegular: boolean }>>((tiles, entry) => {
+  const geminiTagMode = build.game === "mmsf3" && isMmsf3GeminiNoise(build.gameSpecificSections.mmsf3.noise);
+  const cardTiles = build.commonSections.cards.reduce<Array<{ name: string; marker: "regular" | "tag" | null }>>((tiles, entry) => {
     if (tiles.length >= EXPORT_CARD_TILE_LIMIT) {
       return tiles;
     }
@@ -570,15 +571,27 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
       return tiles;
     }
 
-    const markedCopies =
-      build.game === "mmsf1" || build.game === "mmsf2"
-        ? Math.max(0, Math.min(copiesToAdd, Math.trunc(entry.favoriteCount ?? (entry.isRegular ? 1 : 0))))
-        : entry.isRegular
-          ? 1
-          : 0;
-
     for (let index = 0; index < copiesToAdd; index += 1) {
-      tiles.push({ name, isRegular: index < markedCopies });
+      let marker: "regular" | "tag" | null = null;
+
+      if (geminiTagMode) {
+        const tagCopies = Math.max(0, Math.min(copiesToAdd - (entry.isRegular ? 1 : 0), Math.trunc(entry.favoriteCount ?? 0)));
+        if (entry.isRegular && index === 0) {
+          marker = "regular";
+        } else if (index < (entry.isRegular ? 1 : 0) + tagCopies) {
+          marker = "tag";
+        }
+      } else if (build.game === "mmsf1" || build.game === "mmsf2") {
+        const markedCopies = Math.max(0, Math.min(copiesToAdd, Math.trunc(entry.favoriteCount ?? (entry.isRegular ? 1 : 0))));
+        marker = index < markedCopies ? "regular" : null;
+      } else if (entry.isRegular && index === 0) {
+        marker = "regular";
+      }
+
+      tiles.push({
+        name,
+        marker,
+      });
     }
 
     return tiles;
@@ -712,7 +725,8 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
                     <div
                       key={`${cardTile.name}-${index}`}
                       className={BATTLE_CARD_FRAME_CLASS}
-                      data-regular-card={cardTile.isRegular ? "true" : undefined}
+                      data-regular-card={cardTile.marker === "regular" ? "true" : undefined}
+                      data-tag-card={cardTile.marker === "tag" ? "true" : undefined}
                     >
                       {asset ? (
                         // eslint-disable-next-line @next/next/no-img-element
@@ -722,11 +736,16 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
                           <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardTile.name}</span>
                         </div>
                       )}
-                      {cardTile.isRegular ? (
+                      {cardTile.marker ? (
                         <div
                           aria-hidden="true"
-                          data-regular-card-overlay="true"
-                          className="pointer-events-none absolute inset-0 box-border border-[5px] border-red-600 shadow-[0_0_18px_rgba(220,38,38,0.95)]"
+                          data-regular-card-overlay={cardTile.marker === "regular" ? "true" : undefined}
+                          data-tag-card-overlay={cardTile.marker === "tag" ? "true" : undefined}
+                          className={`pointer-events-none absolute inset-0 box-border border-[5px] ${
+                            cardTile.marker === "tag"
+                              ? "border-sky-200 shadow-[0_0_18px_rgba(186,230,253,0.95)]"
+                              : "border-red-600 shadow-[0_0_18px_rgba(220,38,38,0.95)]"
+                          }`}
                         />
                       ) : null}
                     </div>

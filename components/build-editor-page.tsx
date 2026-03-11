@@ -48,6 +48,7 @@ import {
 } from "@/lib/mmsf2/abilities";
 import {
   getNormalizedMmsf3State,
+  isMmsf3GeminiNoise,
   normalizeMmsf3BuildRecord,
   updateMmsf3AbilityEntries,
   updateMmsf3AbilitySources,
@@ -525,6 +526,8 @@ export function BuildEditorPage() {
 
   const mmsf2StarCardSuggestions = buildDraft.game === "mmsf2" ? getMmsf2StarCardSuggestions(buildDraft.version) : [];
   const mmsf2BlankCardSuggestions = buildDraft.game === "mmsf2" ? getMmsf2BlankCardSuggestions(buildDraft.version) : [];
+  const mmsf3GeminiTagMode =
+    buildDraft.game === "mmsf3" && isMmsf3GeminiNoise(buildDraft.gameSpecificSections.mmsf3.noise);
 
   return (
     <AppShell>
@@ -817,8 +820,18 @@ export function BuildEditorPage() {
                   : undefined
               }
               allowRegularSelection
-              regularLabel={buildDraft.game === "mmsf1" || buildDraft.game === "mmsf2" ? "FAV" : "REG"}
-              regularLimit={buildDraft.game === "mmsf1" ? 6 : buildDraft.game === "mmsf2" ? 4 : 1}
+              regularLabel={
+                buildDraft.game === "mmsf1" || buildDraft.game === "mmsf2" ? "FAV" : "REG"
+              }
+              regularLimit={
+                buildDraft.game === "mmsf1" ? 6 : buildDraft.game === "mmsf2" ? 4 : 1
+              }
+              regularSelectionMode={
+                buildDraft.game === "mmsf1" || buildDraft.game === "mmsf2" ? "copy-count" : "entry-toggle"
+              }
+              regularActiveTone="red"
+              secondarySelectionLabel={buildDraft.game === "mmsf3" && mmsf3GeminiTagMode ? "TAG" : undefined}
+              secondarySelectionLimit={buildDraft.game === "mmsf3" && mmsf3GeminiTagMode ? 2 : undefined}
             />
 
             {buildDraft.game === "mmsf2" ? (

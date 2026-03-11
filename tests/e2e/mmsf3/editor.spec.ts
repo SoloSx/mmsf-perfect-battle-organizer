@@ -715,19 +715,20 @@ test("mmsf3 editor allows only one REG card and marks it in export preview", asy
   const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
   await firstCardInput.fill("キャノン");
   await firstCardInput.press("Escape");
+  const firstRow = firstCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
 
   const secondCardInput = cardEditor.locator("input[placeholder='カード名']").nth(1);
   await secondCardInput.fill("プラスキャノン");
   await secondCardInput.press("Escape");
+  const secondRow = secondCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
+  const thirdCardInput = cardEditor.locator("input[placeholder='カード名']").nth(2);
+  await thirdCardInput.fill("ヘビーキャノン");
+  await thirdCardInput.press("Escape");
+  const thirdRow = thirdCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
 
-  const regularButtons = cardEditor.getByRole("button", { name: "REG" });
-  await regularButtons.first().click();
-  await expect(regularButtons.first()).toHaveAttribute("aria-pressed", "true");
-  await expect(regularButtons.nth(1)).toHaveAttribute("aria-pressed", "false");
-
-  await regularButtons.nth(1).click();
-  await expect(regularButtons.first()).toHaveAttribute("aria-pressed", "false");
-  await expect(regularButtons.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await firstRow.getByRole("button", { name: "REG" }).click();
+  await expect(firstRow.getByRole("button", { name: "REG" })).toHaveAttribute("aria-pressed", "true");
+  await expect(secondRow.getByRole("button", { name: "REG" })).toBeDisabled();
 
   const battleCardsSection = page
     .locator("h3", { hasText: "Battle Cards" })
@@ -748,6 +749,68 @@ test("mmsf3 editor allows only one REG card and marks it in export preview", asy
   expect(regularCardBorder.borderColor).not.toBe("rgba(0, 0, 0, 0)");
   expect(regularCardBorder.borderWidth).toBe("5px");
   expect(regularCardBorder.boxShadow).not.toBe("none");
+});
+
+test("mmsf3 Gemini noise keeps the selected REG card and switches the others to TAG", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const noiseInput = page.getByRole("combobox", { name: "ノイズを検索", exact: true });
+  await noiseInput.click();
+  await noiseInput.fill("ジェミニ");
+  await page.getByRole("option", { name: "ジェミニノイズ" }).click();
+
+  const cardEditor = page
+    .locator("label", { hasText: "対戦構築カード" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+
+  const firstCardInput = cardEditor.locator("input[placeholder='カード名']").first();
+  await firstCardInput.fill("キャノン");
+  await firstCardInput.press("Escape");
+  const firstRow = firstCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
+
+  const secondCardInput = cardEditor.locator("input[placeholder='カード名']").nth(1);
+  await secondCardInput.fill("プラスキャノン");
+  await secondCardInput.press("Escape");
+  const secondRow = secondCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
+  const thirdCardInput = cardEditor.locator("input[placeholder='カード名']").nth(2);
+  await thirdCardInput.fill("ヘビーキャノン");
+  await thirdCardInput.press("Escape");
+  const thirdRow = thirdCardInput.locator("xpath=ancestor::div[contains(@class, 'rounded-2xl')][1]");
+
+  await firstRow.getByRole("button", { name: "REG" }).click();
+  await expect(firstRow.getByRole("button", { name: "REG" })).toHaveAttribute("aria-pressed", "true");
+  await expect(secondRow.getByRole("button", { name: "TAG" })).toBeVisible();
+  await expect(thirdRow.getByRole("button", { name: "TAG" })).toBeVisible();
+  await secondRow.getByRole("button", { name: "TAG" }).click();
+  await thirdRow.getByRole("button", { name: "TAG" }).click();
+  await expect(cardEditor).toContainText("TAG 2/2");
+  await expect(cardEditor).toContainText("REG 1/1");
+
+  const battleCardsSection = page
+    .locator("h3", { hasText: "Battle Cards" })
+    .locator("xpath=ancestor::section[1]");
+  const regularCardOverlay = battleCardsSection.locator("[data-regular-card-overlay='true']");
+  const tagCardTile = battleCardsSection.locator("[data-tag-card='true']");
+  const tagCardOverlay = battleCardsSection.locator("[data-tag-card-overlay='true']");
+
+  await expect(regularCardOverlay).toHaveCount(1);
+  await expect(tagCardTile).toHaveCount(2);
+  await expect(tagCardOverlay).toHaveCount(2);
+
+  const tagCardBorder = await tagCardOverlay.first().evaluate((node) => ({
+    borderStyle: window.getComputedStyle(node as HTMLElement).borderStyle,
+    borderColor: window.getComputedStyle(node as HTMLElement).borderTopColor,
+    borderWidth: window.getComputedStyle(node as HTMLElement).borderTopWidth,
+    boxShadow: window.getComputedStyle(node as HTMLElement).boxShadow,
+  }));
+  expect(tagCardBorder.borderStyle).toBe("solid");
+  expect(tagCardBorder.borderColor).not.toBe("rgba(0, 0, 0, 0)");
+  expect(tagCardBorder.borderWidth).toBe("5px");
+  expect(tagCardBorder.boxShadow).not.toBe("none");
 });
 
 test("mmsf3 editor evaluates noise hand bonus, filters duplicate cards, and updates export preview", async ({ page }) => {

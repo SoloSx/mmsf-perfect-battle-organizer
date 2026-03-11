@@ -15,6 +15,10 @@ export function CardListEditor({
   allowRegularSelection = false,
   regularLabel = "REG",
   regularLimit = 1,
+  regularSelectionMode = "entry-toggle",
+  regularActiveTone = "red",
+  secondarySelectionLabel,
+  secondarySelectionLimit,
   hideQuantity = false,
   hideDelete = false,
   maxEntries,
@@ -27,6 +31,10 @@ export function CardListEditor({
   allowRegularSelection?: boolean;
   regularLabel?: string;
   regularLimit?: number;
+  regularSelectionMode?: "copy-count" | "entry-toggle";
+  regularActiveTone?: "red" | "ice-blue";
+  secondarySelectionLabel?: string;
+  secondarySelectionLimit?: number;
   hideQuantity?: boolean;
   hideDelete?: boolean;
   maxEntries?: number;
@@ -36,8 +44,13 @@ export function CardListEditor({
     (sum, cardEntry) => sum + (cardEntry.name.trim() ? cardEntry.quantity : 0),
     0,
   );
+  const secondarySelectionEnabled =
+    typeof secondarySelectionLabel === "string" &&
+    secondarySelectionLabel.length > 0 &&
+    typeof secondarySelectionLimit === "number";
+  const hasSelectedRegularCard = cardEntries.some((cardEntry) => cardEntry.name.trim() && cardEntry.isRegular);
   const regularCount =
-    regularLimit > 1
+    regularSelectionMode === "copy-count"
       ? cardEntries.reduce(
           (sum, cardEntry) =>
             sum +
@@ -47,6 +60,22 @@ export function CardListEditor({
           0,
         )
       : cardEntries.filter((cardEntry) => cardEntry.name.trim() && cardEntry.isRegular).length;
+  const secondarySelectionCount = secondarySelectionEnabled
+    ? cardEntries.reduce(
+        (sum, cardEntry) =>
+          sum +
+          (cardEntry.name.trim()
+            ? Math.max(0, Math.min(cardEntry.quantity, cardEntry.favoriteCount ?? 0))
+            : 0),
+        0,
+      )
+    : 0;
+  const activeSelectionButtonClassName =
+    regularActiveTone === "ice-blue"
+      ? "border-sky-200/80 bg-sky-300/16 text-sky-50"
+      : "border-red-300/70 bg-red-500/15 text-red-100";
+  const activeSecondarySelectionFieldClassName =
+    "field-shell border-sky-200/80 bg-sky-300/16 text-sky-50 placeholder:text-sky-50/55";
 
   const updateCardEntries = (nextCardEntries: BuildCardEntry[]) => {
     onChange(ensureTrailingEmptyCardEntry(nextCardEntries, { maxEntries, totalLimit }));
@@ -58,9 +87,20 @@ export function CardListEditor({
         <label className="text-sm font-semibold text-white">{title}</label>
         <div className="flex items-center gap-3 text-xs text-white/45">
           {allowRegularSelection ? (
-            <span>
-              {regularLabel} {regularCount}/{regularLimit}
-            </span>
+            secondarySelectionEnabled ? (
+              <>
+                <span>
+                  {regularLabel} {regularCount}/{regularLimit}
+                </span>
+                <span>
+                  {secondarySelectionLabel} {secondarySelectionCount}/{secondarySelectionLimit}
+                </span>
+              </>
+            ) : (
+              <span>
+                {regularLabel} {regularCount}/{regularLimit}
+              </span>
+            )
           ) : null}
           {!hideQuantity && (
             <span>
@@ -86,6 +126,14 @@ export function CardListEditor({
             typeof totalLimit === "number"
               ? Math.max(1, totalLimit - otherEntriesTotal)
               : 99;
+          const renderSecondarySelection =
+            secondarySelectionEnabled && hasSelectedRegularCard && !cardEntry.isRegular;
+          const remainingSecondarySelections = secondarySelectionEnabled
+            ? Math.max(
+                0,
+                secondarySelectionLimit - secondarySelectionCount + (cardEntry.favoriteCount ?? 0),
+              )
+            : 0;
 
           return (
             <div
@@ -128,7 +176,7 @@ export function CardListEditor({
                                 Math.min(maxQuantity, Number(event.target.value || 1)),
                               ),
                               favoriteCount:
-                                regularLimit > 1
+                                regularSelectionMode === "copy-count"
                                   ? Math.min(
                                       item.favoriteCount ?? 0,
                                       Math.max(
@@ -146,7 +194,70 @@ export function CardListEditor({
                 />
               ) : null}
               {allowRegularSelection ? (
-                regularLimit > 1 ? (
+                renderSecondarySelection ? (
+                  <div className="min-w-0">
+                    {(cardEntry.favoriteCount ?? 0) > 0 ? (
+                      <input
+                        type="number"
+                        min={0}
+                        max={Math.min(cardEntry.quantity, remainingSecondarySelections)}
+                        value={Math.max(
+                          0,
+                          Math.min(
+                            cardEntry.quantity,
+                            remainingSecondarySelections,
+                            cardEntry.favoriteCount ?? 0,
+                          ),
+                        )}
+                        onChange={(event) =>
+                          updateCardEntries(
+                            cardEntries.map((item) =>
+                              item.id === cardEntry.id
+                                ? {
+                                    ...item,
+                                    favoriteCount: Math.max(
+                                      0,
+                                      Math.min(
+                                        item.quantity,
+                                        remainingSecondarySelections,
+                                        Math.trunc(Number(event.target.value || 0)),
+                                      ),
+                                    ),
+                                  }
+                                : item,
+                            ),
+                          )
+                        }
+                        aria-label={`${secondarySelectionLabel}枚数`}
+                        className={activeSecondarySelectionFieldClassName}
+                      />
+                    ) : (
+                      <button
+                        type="button"
+                        aria-pressed={false}
+                        disabled={remainingSecondarySelections <= 0}
+                        className="field-shell w-full justify-center border-white/12 bg-white/5 text-sm font-semibold text-white/80 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:border-white/8 disabled:bg-white/4 disabled:text-white/35"
+                        onClick={() =>
+                          updateCardEntries(
+                            cardEntries.map((item) =>
+                              item.id === cardEntry.id
+                                ? {
+                                    ...item,
+                                    favoriteCount: Math.min(
+                                      Math.max(1, item.quantity),
+                                      remainingSecondarySelections,
+                                    ),
+                                  }
+                                : item,
+                            ),
+                          )
+                        }
+                      >
+                        {secondarySelectionLabel}
+                      </button>
+                    )}
+                  </div>
+                ) : regularSelectionMode === "copy-count" ? (
                   <div className="min-w-0">
                     {(cardEntry.favoriteCount ?? 0) > 0 ? (
                       <input
@@ -212,24 +323,43 @@ export function CardListEditor({
                   <button
                     type="button"
                     aria-pressed={cardEntry.isRegular}
+                    disabled={!cardEntry.isRegular && regularCount >= regularLimit}
                     className={`rounded-2xl border px-3 py-2 text-sm font-semibold transition-colors ${
                       cardEntry.isRegular
-                        ? "border-red-300/70 bg-red-500/15 text-red-100"
-                        : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white"
+                        ? activeSelectionButtonClassName
+                        : "border-white/12 bg-white/5 text-white/80 hover:border-white/20 hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:border-white/8 disabled:bg-white/4 disabled:text-white/35"
                     } w-full justify-center`}
                     onClick={() =>
                       updateCardEntries(
-                        cardEntries.map((item) => ({
-                          ...item,
-                          isRegular:
+                        cardEntries.map((item) => {
+                          const nextIsRegular =
                             regularLimit <= 1
                               ? item.id === cardEntry.id
                                 ? !item.isRegular
                                 : false
                               : item.id === cardEntry.id
                                 ? !item.isRegular
-                                : item.isRegular,
-                        })),
+                                : item.isRegular;
+                          const shouldClearSecondarySelection =
+                            secondarySelectionEnabled && !nextIsRegular && item.id !== cardEntry.id
+                              ? true
+                              : secondarySelectionEnabled && item.id === cardEntry.id && !nextIsRegular;
+
+                          return {
+                            ...item,
+                            isRegular: nextIsRegular,
+                            favoriteCount:
+                              secondarySelectionEnabled
+                                ? nextIsRegular
+                                  ? 0
+                                  : shouldClearSecondarySelection
+                                    ? 0
+                                    : item.favoriteCount ?? 0
+                                : nextIsRegular
+                                  ? 1
+                                  : 0,
+                          };
+                        }),
                       )
                     }
                   >
