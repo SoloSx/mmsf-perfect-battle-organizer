@@ -5,6 +5,7 @@ import { findCardAssetByName } from "@/lib/assets";
 import { getMmsf1EnhancementLabel, isMmsf1EnhancementEnabled } from "@/lib/mmsf1/enhancement";
 import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
+import { isMmsf3VersionDefaultAbility } from "@/lib/mmsf3/abilities";
 import {
   getMmsf3BrotherVersionOption,
   getMmsf3GigaCardOption,
@@ -44,6 +45,7 @@ const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
   "0A": "/assets/mmsf3/noises/wolf-noise.png",
   "0B": "/assets/mmsf3/noises/burai-noise.png",
 };
+const MMSF3_NORMAL_ICON_PATH = "/assets/mmsf3/noises/normal-rockman-icon.svg";
 const MMSF2_VERSION_ICON_PATHS: Record<"berserker" | "shinobi" | "dinosaur", string> = {
   berserker: "/assets/mmsf2/icons/berserker-icon.jpeg",
   shinobi: "/assets/mmsf2/icons/shinobi-icon.jpeg",
@@ -340,6 +342,14 @@ function getMmsf3NoisePortraitPath(build: BuildRecord) {
     return "";
   }
 
+  const hasVersionDefaultAbility = build.commonSections.abilities.some((entry) =>
+    isMmsf3VersionDefaultAbility(entry.name, build.version),
+  );
+
+  if (!hasVersionDefaultAbility) {
+    return MMSF3_NORMAL_ICON_PATH;
+  }
+
   const state = getNormalizedMmsf3State(build);
   const normalizedNoiseValue =
     getMmsf3NoiseOption(state.noise)?.value ??
@@ -353,6 +363,14 @@ function getMmsf3NoisePortraitPath(build: BuildRecord) {
 function getMmsf3NoiseLabel(build: BuildRecord) {
   if (build.game !== "mmsf3") {
     return "";
+  }
+
+  const hasVersionDefaultAbility = build.commonSections.abilities.some((entry) =>
+    isMmsf3VersionDefaultAbility(entry.name, build.version),
+  );
+
+  if (!hasVersionDefaultAbility) {
+    return "ロックマン";
   }
 
   const state = getNormalizedMmsf3State(build);

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="106" viewBox="0 0 88 106" fill="none">
+  <rect width="88" height="106" fill="#6EC8FF"/>
+  <path d="M14 17C14 10.3726 19.3726 5 26 5H64C71.1797 5 77 10.8203 77 18V54H14V17Z" fill="#1556D8"/>
+  <path d="M14 28.5L32 6H53L33.5 28.5H14Z" fill="#8BD6FF"/>
+  <path d="M77 52H63.5L54 65H77V52Z" fill="#2267F0"/>
+  <path d="M28 29C28 21.8203 33.8203 16 41 16H48.5C57.6127 16 65 23.3873 65 32.5V68C65 78.4934 56.4934 87 46 87H39C29.6112 87 22 79.3888 22 70V35C22 31.6863 24.6863 29 28 29Z" fill="#EA5A5A"/>
+  <path d="M56 66L69 58V88H56V66Z" fill="#DDEAF6"/>
+  <path d="M52 73L67 58V87H52V73Z" fill="#C6D6E6"/>
+  <path d="M38 52C40.6667 47.3333 44.8333 45 50.5 45C54.0863 45 57.4864 46.0578 60.7002 48.1734L57.7394 53.3796C55.5776 52.0771 53.2478 51.4258 50.75 51.4258C47.0858 51.4258 44.2044 52.9508 42.1058 56.0008L38 52Z" fill="#1B1B1B"/>
+  <ellipse cx="52.5" cy="53.5" rx="6.5" ry="4.5" fill="#F3D14E"/>
+  <path d="M47 55C49.8333 53.6667 52.6667 52.3333 55.5 51" stroke="#8E4D00" stroke-width="2" stroke-linecap="round"/>
+  <path d="M58 76C54.4003 79.9213 49.4352 82 43.1047 82H37V75H43.7814C48.2618 75 51.7131 73.7601 54.1355 71.2803L58 76Z" fill="#B93A3A"/>
+  <path d="M14 54H77V106H14V54Z" fill="url(#paint0_linear_123_1)" fill-opacity=".16"/>
+  <defs>
+    <linearGradient id="paint0_linear_123_1" x1="14" y1="54" x2="77" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#001A5A" stop-opacity="0"/>
+      <stop offset="1" stop-color="#001A5A"/>
+    </linearGradient>
+  </defs>
+</svg>
