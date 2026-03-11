@@ -51,6 +51,12 @@ const MMSF1_VERSION_ICON_PATHS: Record<"leo" | "pegasus" | "dragon", string> = {
   pegasus: "/assets/mmsf1/icons/ice-pegasus-icon.png",
   dragon: "/assets/mmsf1/icons/green-dragon-icon.png",
 };
+const MMSF1_BOKTAI_BROTHER_ICON_PATH = "/assets/mmsf1/icons/boktai-brother-icon.png";
+const MMSF1_MISORA_BROTHER_ICON_PATH = "/assets/mmsf1/icons/misora-brother-icon.png";
+const MMSF1_LUNA_BROTHER_ICON_PATH = "/assets/mmsf1/icons/luna-brother-icon.png";
+const MMSF1_LM_SHIN_BROTHER_ICON_PATH = "/assets/mmsf1/icons/lm-shin-brother-icon.png";
+const MMSF1_KIZAMARO_BROTHER_ICON_PATH = "/assets/mmsf1/icons/kizamaro-brother-icon.png";
+const MMSF1_GONTA_BROTHER_ICON_PATH = "/assets/mmsf1/icons/gonta-brother-icon.png";
 const MMSF3_NORMAL_ICON_PATH = "/assets/mmsf3/noises/normal-rockman-icon.svg";
 const MMSF2_VERSION_ICON_PATHS: Record<"berserker" | "shinobi" | "dinosaur", string> = {
   berserker: "/assets/mmsf2/icons/berserker-icon.jpeg",
@@ -454,14 +460,41 @@ function getMmsf1BrotherVisualSummary(build: BuildRecord) {
     normalizeMmsf1BrotherProfile(entry, build.version as Extract<VersionId, "pegasus" | "leo" | "dragon">),
   );
 
-  const versionIcons = normalizedBrothers
-    .map((entry) => entry.rezonCard)
-    .filter((value): value is "pegasus" | "leo" | "dragon" => value === "pegasus" || value === "leo" || value === "dragon")
-    .map((version) => ({
-      version,
-      label: VERSION_LABELS[version],
-      path: MMSF1_VERSION_ICON_PATHS[version],
-    }));
+  const versionIcons = normalizedBrothers.flatMap((entry) => {
+    if (entry.name === "響 ミソラ") {
+      return [{ version: "misora", label: "響 ミソラ", path: MMSF1_MISORA_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.name === "白金 ルナ") {
+      return [{ version: "luna", label: "白金 ルナ", path: MMSF1_LUNA_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.name === "LM・シン") {
+      return [{ version: "lm-shin", label: "LM・シン", path: MMSF1_LM_SHIN_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.name === "最小院 キザマロ") {
+      return [{ version: "kizamaro", label: "最小院 キザマロ", path: MMSF1_KIZAMARO_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.name === "牛島ゴン太") {
+      return [{ version: "gonta", label: "牛島ゴン太", path: MMSF1_GONTA_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.rezonCard === "boktai") {
+      return [{ version: "boktai", label: "ボクタイ", path: MMSF1_BOKTAI_BROTHER_ICON_PATH }];
+    }
+
+    if (entry.rezonCard === "pegasus" || entry.rezonCard === "leo" || entry.rezonCard === "dragon") {
+      return [{
+        version: entry.rezonCard,
+        label: VERSION_LABELS[entry.rezonCard],
+        path: MMSF1_VERSION_ICON_PATHS[entry.rezonCard],
+      }];
+    }
+
+    return [];
+  });
 
   const favoriteCardGroups: string[][] = [];
   for (const entry of normalizedBrothers) {
