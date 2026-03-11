@@ -1,6 +1,5 @@
 "use client";
 
-import { EMPTY_SEARCHABLE_SELECT_OPTION } from "@/components/mmsf3/select-options";
 import { SearchableSelectInput } from "@/components/searchable-select-input";
 import { SourceListEditor } from "@/components/source-list-editor";
 import { MMSF3_WAR_ROCK_WEAPON_OPTIONS, getMmsf3WarRockWeaponSources } from "@/lib/mmsf3/war-rock-weapons";
@@ -30,7 +29,7 @@ export function Mmsf3WarRockSection({
           <SearchableSelectInput
             value={state.warRockWeapon}
             onChange={onWarRockWeaponChange}
-            options={[EMPTY_SEARCHABLE_SELECT_OPTION, ...MMSF3_WAR_ROCK_WEAPON_OPTIONS]}
+            options={MMSF3_WAR_ROCK_WEAPON_OPTIONS}
             placeholder="ウォーロック装備を検索"
             displayValue={state.warRockWeapon}
             className="field-shell min-h-[52px] w-full"

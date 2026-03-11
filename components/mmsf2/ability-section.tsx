@@ -1,7 +1,6 @@
 "use client";
 
 import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
-import { EMPTY_SEARCHABLE_SELECT_OPTION } from "@/components/mmsf3/select-options";
 import { SourceListEditor } from "@/components/source-list-editor";
 import {
   getMmsf2AbilityByLabel,
@@ -11,11 +10,6 @@ import {
   isMmsf2VersionDefaultAbility,
 } from "@/lib/mmsf2/abilities";
 import type { BuildCardEntry, BuildSourceEntry, VersionId } from "@/lib/types";
-import { createId } from "@/lib/utils";
-
-function buildEmptyCard(): BuildCardEntry {
-  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
-}
 
 export function Mmsf2AbilitySection({
   entries,
@@ -55,13 +49,10 @@ export function Mmsf2AbilitySection({
           {entries.map((entry, index) => {
             const selectedAbility = getMmsf2AbilityByLabel(entry.name, version);
             const isDefaultAbility = isMmsf2VersionDefaultAbility(entry.name, version);
-            const options: SearchableSelectOption[] = [
-              EMPTY_SEARCHABLE_SELECT_OPTION,
-              ...getMmsf2AbilityOptionsForSlot(entries, index, version).map((option) => ({
-                value: option.label,
-                label: option.label,
-              })),
-            ];
+            const options: SearchableSelectOption[] = getMmsf2AbilityOptionsForSlot(entries, index, version).map((option) => ({
+              value: option.label,
+              label: option.label,
+            }));
 
             return (
               <div
@@ -102,11 +93,8 @@ export function Mmsf2AbilitySection({
                 </button>
               </div>
             );
-          })}
-        </div>
-        <button type="button" className="secondary-button mt-4" onClick={() => onAbilitiesChange([...entries, buildEmptyCard()])}>
-          行を追加
-        </button>
+        })}
+      </div>
       </div>
 
       <SourceListEditor

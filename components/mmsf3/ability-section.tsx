@@ -1,16 +1,10 @@
 "use client";
 
 import { SearchableSelectInput, type SearchableSelectOption } from "@/components/searchable-select-input";
-import { EMPTY_SEARCHABLE_SELECT_OPTION } from "@/components/mmsf3/select-options";
 import { SourceListEditor } from "@/components/source-list-editor";
 import { getMmsf3AbilityByLabel, getMmsf3AbilityOptionsForSlot, getMmsf3AbilitySelectionErrors, getMmsf3AbilitySources } from "@/lib/mmsf3/abilities";
 import type { NormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import type { BuildCardEntry, BuildSourceEntry, VersionId } from "@/lib/types";
-import { createId } from "@/lib/utils";
-
-function buildEmptyCard(): BuildCardEntry {
-  return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false };
-}
 
 function Mmsf3AbilityEditor({
   entries,
@@ -36,13 +30,10 @@ function Mmsf3AbilityEditor({
       <div className="mt-4 space-y-3">
         {entries.map((entry, index) => {
           const selectedAbility = getMmsf3AbilityByLabel(entry.name.trim());
-          const options: SearchableSelectOption[] = [
-            EMPTY_SEARCHABLE_SELECT_OPTION,
-            ...getMmsf3AbilityOptionsForSlot(entries, index, version).map((option) => ({
-              value: option.label,
-              label: option.label,
-            })),
-          ];
+          const options: SearchableSelectOption[] = getMmsf3AbilityOptionsForSlot(entries, index, version).map((option) => ({
+            value: option.label,
+            label: option.label,
+          }));
 
           return (
             <div
@@ -79,9 +70,6 @@ function Mmsf3AbilityEditor({
           );
         })}
       </div>
-      <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyCard()])}>
-        行を追加
-      </button>
     </div>
   );
 }

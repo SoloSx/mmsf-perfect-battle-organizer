@@ -104,6 +104,10 @@ const BROTHER_KIND_OPTIONS: { value: BrotherKind; label: string }[] = [
 const BATTLE_CARD_ROW_GRID_CLASS = "min-[1180px]:grid-cols-[minmax(0,1fr)_110px_88px_112px]";
 const EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v2";
 const LEGACY_EDITOR_DRAFT_STORAGE_KEY_PREFIX = "mmsf-perfect-battle-organizer/editor-draft/v1";
+const PNG_BACKGROUND_OPTIONS = [
+  { value: "solid", label: "背景あり" },
+  { value: "transparent", label: "背景なし" },
+] as const;
 
 function cloneBuild(build: BuildRecord) {
   return JSON.parse(JSON.stringify(build)) as BuildRecord;
@@ -111,6 +115,94 @@ function cloneBuild(build: BuildRecord) {
 
 function buildEmptyCard(): BuildCardEntry {
   return { id: createId(), name: "", quantity: 1, notes: "", isRegular: false, favoriteCount: 0 };
+}
+
+function ensureTrailingEmptyCardEntry(
+  entries: BuildCardEntry[],
+  {
+    maxEntries,
+    totalLimit,
+  }: {
+    maxEntries?: number;
+    totalLimit?: number;
+  } = {},
+) {
+  const normalizedEntries = entries.map((entry) => normalizeBuildCardEntry(entry));
+  const filledEntries = normalizedEntries.filter((entry) => entry.name.trim());
+  const emptyEntry = normalizedEntries.find((entry) => !entry.name.trim()) ?? buildEmptyCard();
+  const canAppendByCount = typeof maxEntries !== "number" || filledEntries.length < maxEntries;
+  const filledTotal = filledEntries.reduce((sum, entry) => sum + entry.quantity, 0);
+  const canAppendByTotal = typeof totalLimit !== "number" || filledTotal < totalLimit;
+
+  if (canAppendByCount && canAppendByTotal) {
+    return [...filledEntries, emptyEntry];
+  }
+
+  return filledEntries;
+}
+
+function hasOnlyTrailingEmptyCardEntry(entries: BuildCardEntry[]) {
+  if (entries.length === 0) {
+    return false;
+  }
+
+  return entries.every((entry, index) => {
+    if (index === entries.length - 1) {
+      return !entry.name.trim();
+    }
+
+    return entry.name.trim().length > 0;
+  });
+}
+
+function withAutoExpandedEditorRows(build: BuildRecord): BuildRecord {
+  const nextCards = ensureTrailingEmptyCardEntry(build.commonSections.cards, {
+    totalLimit:
+      build.game === "mmsf2"
+        ? getMmsf2NormalCardTotalLimit(
+            build.gameSpecificSections.mmsf2.starCards,
+            build.gameSpecificSections.mmsf2.blankCards,
+            getVersionRuleSet(build.version).folderLimit,
+          )
+        : undefined,
+  });
+  const normalizedAbilities =
+    build.game === "mmsf2"
+      ? normalizeMmsf2AbilityEntries(
+          build.commonSections.abilities,
+          build.version,
+          build.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+        )
+      : build.commonSections.abilities;
+  const nextAbilities = ensureTrailingEmptyCardEntry(normalizedAbilities);
+  const nextBlankCards =
+    build.game === "mmsf2"
+      ? createMmsf2BlankCardDraftEntries(
+          build.gameSpecificSections.mmsf2.blankCards,
+          getMmsf2BlankCardTotalLimit(
+            nextCards,
+            build.gameSpecificSections.mmsf2.starCards,
+            getVersionRuleSet(build.version).folderLimit,
+          ),
+          true,
+        )
+      : build.gameSpecificSections.mmsf2.blankCards;
+
+  return {
+    ...build,
+    commonSections: {
+      ...build.commonSections,
+      cards: nextCards,
+      abilities: nextAbilities,
+    },
+    gameSpecificSections: {
+      ...build.gameSpecificSections,
+      mmsf2: {
+        ...build.gameSpecificSections.mmsf2,
+        blankCards: nextBlankCards,
+      },
+    },
+  };
 }
 
 function getMmsf2TrackedCards(build: BuildRecord) {
@@ -341,7 +433,7 @@ function getRequiredFieldErrors(build: BuildRecord) {
     errors.push("対戦構築カードを1件以上入力してください。");
   }
 
-  if (build.commonSections.cards.some((entry) => !entry.name.trim())) {
+  if (build.commonSections.cards.some((entry) => !entry.name.trim()) && !hasOnlyTrailingEmptyCardEntry(build.commonSections.cards)) {
     errors.push("対戦構築カードの未入力行があります。");
   }
 
@@ -350,7 +442,7 @@ function getRequiredFieldErrors(build: BuildRecord) {
   }
 
   if (build.game === "mmsf3") {
-    if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
+    if (build.commonSections.abilities.some((entry) => !entry.name.trim()) && !hasOnlyTrailingEmptyCardEntry(build.commonSections.abilities)) {
       errors.push("アビリティの未入力行があります。");
     }
 
@@ -363,7 +455,7 @@ function getRequiredFieldErrors(build: BuildRecord) {
       errors.push("ブラザー情報の未入力項目があります。");
     }
   } else {
-    if (build.commonSections.abilities.some((entry) => !entry.name.trim())) {
+    if (build.commonSections.abilities.some((entry) => !entry.name.trim()) && !hasOnlyTrailingEmptyCardEntry(build.commonSections.abilities)) {
       if (build.game === "mmsf2") {
         errors.push("アビリティの未入力行があります。");
       }
@@ -687,7 +779,6 @@ function CardListEditor({
   allowRegularSelection = false,
   regularLabel = "REG",
   regularLimit = 1,
-  hideAddButton = false,
   hideQuantity = false,
   hideDelete = false,
   maxEntries,
@@ -700,7 +791,6 @@ function CardListEditor({
   allowRegularSelection?: boolean;
   regularLabel?: string;
   regularLimit?: number;
-  hideAddButton?: boolean;
   hideQuantity?: boolean;
   hideDelete?: boolean;
   maxEntries?: number;
@@ -714,8 +804,9 @@ function CardListEditor({
           0,
         )
       : entries.filter((entry) => entry.name.trim() && entry.isRegular).length;
-  const canAddMoreEntries = typeof maxEntries === "number" ? entries.length < maxEntries : true;
-  const canAddMoreTotal = typeof totalLimit === "number" ? total < totalLimit : true;
+  const updateEntries = (nextEntries: BuildCardEntry[]) => {
+    onChange(ensureTrailingEmptyCardEntry(nextEntries, { maxEntries, totalLimit }));
+  };
 
   return (
     <div className="glass-panel-soft relative z-0 p-6 focus-within:z-20">
@@ -742,7 +833,7 @@ function CardListEditor({
             >
             <SearchableSuggestionInput
               value={entry.name}
-              onChange={(value) => onChange(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
+              onChange={(value) => updateEntries(entries.map((item) => (item.id === entry.id ? { ...item, name: value } : item)))}
               suggestions={suggestions}
               placeholder="カード名"
               className="field-shell"
@@ -754,7 +845,7 @@ function CardListEditor({
                 max={maxQuantity}
                 value={entry.quantity}
                 onChange={(event) =>
-                  onChange(
+                  updateEntries(
                     entries.map((item) =>
                       item.id === entry.id
                         ? {
@@ -785,7 +876,7 @@ function CardListEditor({
                       max={Math.min(entry.quantity, regularLimit)}
                       value={Math.max(0, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 0))}
                       onChange={(event) =>
-                        onChange(
+                        updateEntries(
                           entries.map((item) =>
                             item.id === entry.id
                               ? {
@@ -808,7 +899,7 @@ function CardListEditor({
                       aria-pressed={false}
                       className="field-shell w-full justify-center border-white/12 bg-white/5 text-sm font-semibold text-white/80 transition-colors hover:border-white/20 hover:bg-white/10 hover:text-white"
                       onClick={() =>
-                        onChange(
+                        updateEntries(
                           entries.map((item) =>
                             item.id === entry.id
                               ? {
@@ -835,14 +926,14 @@ function CardListEditor({
                   } w-full justify-center`}
                   onClick={() => {
                     if (regularLimit <= 1) {
-                      onChange(
+                      updateEntries(
                         entries.map((item) => ({
                           ...item,
                           isRegular: item.id === entry.id ? !item.isRegular : false,
                         })),
                       );
                     } else {
-                      onChange(
+                      updateEntries(
                         entries.map((item) =>
                           item.id === entry.id ? { ...item, isRegular: !item.isRegular } : item,
                         ),
@@ -860,7 +951,7 @@ function CardListEditor({
               <button
                 type="button"
                 className="danger-button w-full justify-center"
-                onClick={() => onChange(entries.filter((item) => item.id !== entry.id))}
+                onClick={() => updateEntries(entries.filter((item) => item.id !== entry.id))}
               >
                 削除
               </button>
@@ -869,11 +960,6 @@ function CardListEditor({
           );
         })}
       </div>
-      {!hideAddButton && canAddMoreEntries && canAddMoreTotal && (
-        <button type="button" className="secondary-button mt-4" onClick={() => onChange([...entries, buildEmptyCard()])}>
-          行を追加
-        </button>
-      )}
     </div>
   );
 }
@@ -1012,6 +1098,7 @@ export function BuildEditorPage() {
   const [isExporting, setIsExporting] = useState(false);
   const [isPreviewing, setIsPreviewing] = useState(false);
   const [previewImageUrl, setPreviewImageUrl] = useState<string | null>(null);
+  const [pngBackgroundMode, setPngBackgroundMode] = useState<(typeof PNG_BACKGROUND_OPTIONS)[number]["value"]>("solid");
 
   const persistDraftSnapshot = useEffectEvent(() => {
     if (!draft) {
@@ -1041,7 +1128,7 @@ export function BuildEditorPage() {
       nextBuild,
       window.localStorage.getItem(draftStorageKey) ?? window.localStorage.getItem(legacyDraftStorageKey),
     );
-    setDraft(restoredDraft ?? nextBuild);
+    setDraft(withAutoExpandedEditorRows(restoredDraft ?? nextBuild));
 
     if (restoredDraft) {
       setStatus("未保存の編集内容を復元しました。");
@@ -1150,10 +1237,12 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const normalizedAbilities = normalizeMmsf2AbilityEntries(
-        current.commonSections.abilities,
-        current.version,
-        current.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+      const normalizedAbilities = ensureTrailingEmptyCardEntry(
+        normalizeMmsf2AbilityEntries(
+          current.commonSections.abilities,
+          current.version,
+          current.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+        ),
       );
       const nextAbilitySources = syncSourceEntries(
         normalizedAbilities,
@@ -1301,17 +1390,28 @@ export function BuildEditorPage() {
         return current;
       }
 
+      const nextCards = ensureTrailingEmptyCardEntry(entries, {
+        totalLimit:
+          current.game === "mmsf2"
+            ? getMmsf2NormalCardTotalLimit(
+                current.gameSpecificSections.mmsf2.starCards,
+                current.gameSpecificSections.mmsf2.blankCards,
+                getVersionRuleSet(current.version).folderLimit,
+              )
+            : undefined,
+      });
+
       const normalizedBlankCards =
         current.game === "mmsf2"
           ? createMmsf2BlankCardDraftEntries(
               current.gameSpecificSections.mmsf2.blankCards,
-              getMmsf2BlankCardTotalLimit(entries, current.gameSpecificSections.mmsf2.starCards, getVersionRuleSet(current.version).folderLimit),
+              getMmsf2BlankCardTotalLimit(nextCards, current.gameSpecificSections.mmsf2.starCards, getVersionRuleSet(current.version).folderLimit),
               true,
             )
           : [];
       const allCards = current.game === "mmsf2"
-        ? [...entries, ...current.gameSpecificSections.mmsf2.starCards, ...normalizedBlankCards]
-        : entries;
+        ? [...nextCards, ...current.gameSpecificSections.mmsf2.starCards, ...normalizedBlankCards]
+        : nextCards;
       const nextCardSources = syncSourceEntries(
         allCards,
         current.commonSections.cardSources,
@@ -1322,7 +1422,7 @@ export function BuildEditorPage() {
         ...current,
         commonSections: {
           ...current.commonSections,
-          cards: entries,
+          cards: nextCards,
           cardSources: nextCardSources,
         },
         gameSpecificSections:
@@ -1344,9 +1444,10 @@ export function BuildEditorPage() {
         return current;
       }
 
-      const nextAbilities = current.game === "mmsf2"
+      const normalizedAbilities = current.game === "mmsf2"
         ? normalizeMmsf2AbilityEntries(entries, current.version, current.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled)
         : entries;
+      const nextAbilities = ensureTrailingEmptyCardEntry(normalizedAbilities);
       const nextAbilitySources = syncSourceEntries(
         nextAbilities,
         current.commonSections.abilitySources,
@@ -1627,7 +1728,6 @@ export function BuildEditorPage() {
             })
           }
           suggestions={mmsf2StarCardSuggestions}
-          hideAddButton
           hideQuantity
           hideDelete
         />
@@ -1639,7 +1739,6 @@ export function BuildEditorPage() {
           entries={draft.gameSpecificSections.mmsf2.blankCards}
           onChange={updateMmsf2BlankCards}
           suggestions={mmsf2BlankCardSuggestions}
-          hideAddButton
           hideQuantity
         />
       )}
@@ -1724,7 +1823,7 @@ export function BuildEditorPage() {
     return toPng(exportRef.current, {
       cacheBust: true,
       pixelRatio: 2,
-      backgroundColor: "#05050f",
+      backgroundColor: pngBackgroundMode === "solid" ? "#05050f" : undefined,
     });
   };
 
@@ -1737,10 +1836,19 @@ export function BuildEditorPage() {
             <h2 className="mt-3 text-4xl font-black text-white">{VERSION_LABELS[draft.version]}</h2>
           </div>
 
-          <div className="flex flex-wrap gap-3 self-start 2xl:justify-end">
-            <button
-              type="button"
-              className="secondary-button whitespace-nowrap"
+	          <div className="flex flex-wrap gap-3 self-start 2xl:justify-end">
+	            <div className="min-w-[180px]">
+	              <p className="mb-2 text-[11px] font-semibold tracking-[0.28em] text-white/45">PNG 背景</p>
+	              <SearchableSelectInput
+	                value={pngBackgroundMode}
+	                onChange={(value) => setPngBackgroundMode(value as (typeof PNG_BACKGROUND_OPTIONS)[number]["value"])}
+	                options={[...PNG_BACKGROUND_OPTIONS]}
+	                className="field-shell min-h-[46px] w-full"
+	              />
+	            </div>
+	            <button
+	              type="button"
+	              className="secondary-button whitespace-nowrap"
               onClick={() => {
                 const reset = createEmptyBuild(draft.game);
                 reset.version = draft.version;
@@ -1955,7 +2063,7 @@ export function BuildEditorPage() {
       </section>
 
       <div className="pointer-events-none fixed -left-[9999px] top-0 opacity-0">
-        <ExportScene ref={exportRef} build={draft} />
+        <ExportScene ref={exportRef} build={draft} backgroundEnabled={pngBackgroundMode === "solid"} />
       </div>
 
       {previewImageUrl ? (

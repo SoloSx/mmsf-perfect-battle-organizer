@@ -3,9 +3,8 @@
 import { useMemo } from "react";
 import { NoiseCardEditor } from "@/components/mmsf3/noise-card-editor";
 import {
-  EMPTY_SEARCHABLE_SELECT_OPTION,
+  MMSF3_PLAYER_NOISE_SELECT_OPTIONS,
   MMSF3_BROTHER_ROULETTE_WHITE_CARD_SELECT_OPTIONS,
-  MMSF3_PLAYER_NOISE_OPTIONS,
   MMSF3_PLAYER_REZON_SELECT_OPTIONS,
 } from "@/components/mmsf3/select-options";
 import { SearchableSelectInput } from "@/components/searchable-select-input";
@@ -34,7 +33,6 @@ export function Mmsf3RockmanSection({
   const noiseCardOptionsBySlot = useMemo(
     () =>
       state.noiseCardIds.map((_, slotIndex) => [
-        EMPTY_SEARCHABLE_SELECT_OPTION,
         ...getMmsf3NoiseCardsForSlot(state.noiseCardIds, slotIndex).map((card) => ({
           value: card.id,
           label: card.label,
@@ -45,14 +43,14 @@ export function Mmsf3RockmanSection({
 
   return (
     <>
-      <select value={state.noise} onChange={(event) => onNoiseChange(event.target.value)} className="field-shell">
-        <option value="">ノイズを選択</option>
-        {MMSF3_PLAYER_NOISE_OPTIONS.map((item) => (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        ))}
-      </select>
+      <SearchableSelectInput
+        value={state.noise}
+        onChange={onNoiseChange}
+        options={MMSF3_PLAYER_NOISE_SELECT_OPTIONS}
+        placeholder="ノイズを検索"
+        displayValue={state.noise}
+        className="field-shell min-h-[52px] w-full"
+      />
       <div className="grid gap-4">
         <div className="grid gap-2">
           <label className="text-sm font-semibold text-white">レゾンカード</label>

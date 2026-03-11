@@ -4,8 +4,6 @@ import { SearchableSelectInput, type SearchableSelectOption } from "@/components
 import { getMmsf3NoiseCardById, MMSF3_NOISE_CARD_SLOT_COUNT } from "@/lib/mmsf3/noise-cards";
 import type { NoiseHandEvaluation } from "@/lib/types";
 
-const EMPTY_SEARCHABLE_SELECT_OPTION: SearchableSelectOption = { value: "", label: "未選択" };
-
 function NoiseHandSummary({
   evaluation,
   selectedCount,
@@ -121,7 +119,7 @@ export function NoiseCardEditor({
                 nextValues[index] = nextValue;
                 onChange(nextValues);
               }}
-              options={optionsBySlot[index] ?? [EMPTY_SEARCHABLE_SELECT_OPTION]}
+              options={optionsBySlot[index] ?? ([] as SearchableSelectOption[])}
               placeholder="カードを検索"
               displayValue={
                 value

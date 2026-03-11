@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  EMPTY_SEARCHABLE_SELECT_OPTION,
   MMSF3_BROTHER_ROULETTE_MEGA_SELECT_OPTIONS,
   MMSF3_BROTHER_ROULETTE_NOISE_SELECT_OPTIONS,
   MMSF3_BROTHER_ROULETTE_REZON_SELECT_OPTIONS,
@@ -102,10 +101,7 @@ function BrotherSlotCard({
   positionLabel: string;
   onChange: (patch: Partial<Mmsf3BrotherRouletteSlot>) => void;
 }) {
-  const gigaOptions = [
-    EMPTY_SEARCHABLE_SELECT_OPTION,
-    ...getMmsf3GigaCardOptionsForVersion(slot.version).map((option) => ({ value: option.value, label: option.label })),
-  ];
+  const gigaOptions = getMmsf3GigaCardOptionsForVersion(slot.version).map((option) => ({ value: option.value, label: option.label }));
   const slotTypeOptions =
     slot.slotType === "sss" || sssSlotCount < 3
       ? MMSF3_BROTHER_ROULETTE_SLOT_TYPE_SELECT_OPTIONS

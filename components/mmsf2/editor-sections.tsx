@@ -51,7 +51,6 @@ export function Mmsf2WarRockSection({
   onWarRockWeaponSourcesChange: (entries: BuildSourceEntry[]) => void;
 }) {
   const weaponOptions = [
-    { value: "", label: "未選択" },
     ...warRockWeapons.map((item) => ({ value: item, label: item })),
   ];
 

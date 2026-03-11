@@ -114,6 +114,14 @@ export function SearchableSelectInput({
     });
   };
 
+  const clearSelection = () => {
+    onChange("");
+    setQuery("");
+    setIsFiltering(false);
+    setHighlightedIndex(-1);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative">
       <input
@@ -137,6 +145,11 @@ export function SearchableSelectInput({
           }
         }}
         onBlur={() => {
+          if (!query.trim()) {
+            clearSelection();
+            return;
+          }
+
           setQuery(selectedOption?.label ?? "");
           setIsFiltering(false);
           setHighlightedIndex(-1);
@@ -174,6 +187,12 @@ export function SearchableSelectInput({
               const currentIndex = current < 0 ? activeOptionIndex : current;
               return currentIndex <= 0 ? 0 : currentIndex - 1;
             });
+            return;
+          }
+
+          if (event.key === "Enter" && !query.trim()) {
+            event.preventDefault();
+            clearSelection();
             return;
           }
 

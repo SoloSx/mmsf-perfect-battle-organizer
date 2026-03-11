@@ -6,7 +6,6 @@ import { getMmsf1EnhancementLabel, isMmsf1EnhancementEnabled } from "@/lib/mmsf1
 import { normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
 import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
-import { isMmsf3VersionDefaultAbility } from "@/lib/mmsf3/abilities";
 import {
   getMmsf3BrotherVersionOption,
   getMmsf3GigaCardOption,
@@ -354,15 +353,10 @@ function getMmsf3NoisePortraitPath(build: BuildRecord) {
     return "";
   }
 
-  const hasVersionDefaultAbility = build.commonSections.abilities.some((entry) =>
-    isMmsf3VersionDefaultAbility(entry.name, build.version),
-  );
-
-  if (!hasVersionDefaultAbility) {
+  const state = getNormalizedMmsf3State(build);
+  if (state.noise === "ノーマルロックマン") {
     return MMSF3_NORMAL_ICON_PATH;
   }
-
-  const state = getNormalizedMmsf3State(build);
   const normalizedNoiseValue =
     getMmsf3NoiseOption(state.noise)?.value ??
     getMmsf3NoiseOptionByLabel(state.noise.replace(/ノイズ$/, ""))?.value ??
@@ -377,15 +371,10 @@ function getMmsf3NoiseLabel(build: BuildRecord) {
     return "";
   }
 
-  const hasVersionDefaultAbility = build.commonSections.abilities.some((entry) =>
-    isMmsf3VersionDefaultAbility(entry.name, build.version),
-  );
-
-  if (!hasVersionDefaultAbility) {
-    return "ロックマン";
-  }
-
   const state = getNormalizedMmsf3State(build);
+  if (state.noise === "ノーマルロックマン") {
+    return "ノーマルロックマン";
+  }
   return (
     getMmsf3NoiseOption(state.noise)?.label ??
     getMmsf3NoiseOptionByLabel(state.noise.replace(/ノイズ$/, ""))?.label ??
@@ -542,7 +531,8 @@ function getMmsf2BrotherVisualSummary(build: BuildRecord) {
   return { versionIcons, favoriteCardGroups };
 }
 
-export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
+export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; backgroundEnabled?: boolean }>(
+  ({ build, backgroundEnabled = true }, ref) => {
   const rule = getVersionRuleSet(build.version);
   const versionLabel = VERSION_LABELS[build.version];
   const titleClassName =
@@ -603,16 +593,16 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf2VersionIconLabel = getMmsf2VersionIconLabel(build);
   const mmsf2BrotherVisualSummary = build.game === "mmsf2" ? getMmsf2BrotherVisualSummary(build) : null;
 
-  return (
-    <div
-      ref={ref}
-      className="overflow-hidden rounded-[36px] text-white"
-      style={{
-        width: "1200px",
-        minHeight: "675px",
-        background: getExportBackground(build),
-      }}
-    >
+    return (
+      <div
+        ref={ref}
+        className="overflow-hidden rounded-[36px] text-white"
+        style={{
+          width: "1200px",
+          minHeight: "675px",
+          background: backgroundEnabled ? getExportBackground(build) : "transparent",
+        }}
+      >
       <div className="grid min-h-[675px] grid-cols-[320px_1fr] gap-6 p-10">
         <div
           className={heroPanelClassName}
@@ -1041,8 +1031,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
           </section>
         </div>
       </div>
-    </div>
-  );
-});
+      </div>
+    );
+  },
+);
 
 ExportScene.displayName = "ExportScene";

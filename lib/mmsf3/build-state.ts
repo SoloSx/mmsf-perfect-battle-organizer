@@ -50,7 +50,7 @@ export interface NormalizedMmsf3State {
 
 export function createDefaultMmsf3Sections(): Mmsf3Sections {
   return {
-    noise: "",
+    noise: "ノーマルロックマン",
     warRockWeapon: "",
     warRockWeaponSources: [],
     pgms: [],
@@ -73,6 +73,16 @@ export function createDefaultMmsf3Sections(): Mmsf3Sections {
 
 function normalizeRouletteValue(value: string | null | undefined) {
   return typeof value === "string" ? value.trim() : "";
+}
+
+function normalizeMmsf3PlayerNoise(value: string | null | undefined) {
+  const normalized = normalizeRouletteValue(value);
+  return normalized || "ノーマルロックマン";
+}
+
+function shouldRemovePgmForNormalRockman(value: string) {
+  const normalized = value.trim();
+  return normalized.includes("ASPGM") || normalized.includes("動画PGM");
 }
 
 function normalizeMmsf3RezonCards(values: string[] | undefined) {
@@ -239,7 +249,7 @@ export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefi
   return {
     ...baseSections,
     ...nextSections,
-    noise: normalizeRouletteValue(nextSections.noise ?? baseSections.noise),
+    noise: normalizeMmsf3PlayerNoise(nextSections.noise ?? baseSections.noise),
     warRockWeapon: normalizeRouletteValue(nextSections.warRockWeapon ?? baseSections.warRockWeapon),
     warRockWeaponSources: (nextSections.warRockWeaponSources ?? baseSections.warRockWeaponSources ?? []).map((entry) => ({
       id: entry.id,
@@ -253,6 +263,10 @@ export function normalizeMmsf3Sections(rawSections: LegacyMmsf3Sections | undefi
     sssLevels: normalizeMmsf3SssLevels(getMmsf3SelectedSssLevelsFromBrotherRouletteSlots(brotherRouletteSlots)),
     whiteCardSetId: normalizeRouletteValue(nextSections.whiteCardSetId ?? baseSections.whiteCardSetId) || DEFAULT_MMSF3_WHITE_CARD_SET_ID,
     rezonCards: normalizeMmsf3RezonCards(nextSections.rezonCards ?? baseSections.rezonCards),
+    pgms:
+      normalizeMmsf3PlayerNoise(nextSections.noise ?? baseSections.noise) === "ノーマルロックマン"
+        ? (nextSections.pgms ?? baseSections.pgms).filter((item) => !shouldRemovePgmForNormalRockman(item))
+        : (nextSections.pgms ?? baseSections.pgms),
     rouletteNotes,
   };
 }
@@ -325,13 +339,20 @@ export function updateMmsf3Noise(build: BuildRecord, noise: string) {
     return build;
   }
 
+  const normalizedNoise = normalizeMmsf3PlayerNoise(noise);
+  const nextPgms =
+    normalizedNoise === "ノーマルロックマン"
+      ? build.gameSpecificSections.mmsf3.pgms.filter((item) => !shouldRemovePgmForNormalRockman(item))
+      : build.gameSpecificSections.mmsf3.pgms;
+
   const nextBuild: BuildRecord = {
     ...build,
     gameSpecificSections: {
       ...build.gameSpecificSections,
       mmsf3: {
         ...build.gameSpecificSections.mmsf3,
-        noise,
+        noise: normalizedNoise,
+        pgms: nextPgms,
       },
     },
   };
