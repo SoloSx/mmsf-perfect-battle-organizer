@@ -3,6 +3,7 @@
 import { forwardRef } from "react";
 import { findCardAssetByName } from "@/lib/assets";
 import { getMmsf1EnhancementLabel, isMmsf1EnhancementEnabled } from "@/lib/mmsf1/enhancement";
+import { normalizeMmsf1BrotherProfile } from "@/lib/mmsf1/brothers";
 import { getNormalizedMmsf3State } from "@/lib/mmsf3/build-state";
 import { evaluateNoiseHand } from "@/lib/mmsf3/noise-hand";
 import { isMmsf3VersionDefaultAbility } from "@/lib/mmsf3/abilities";
@@ -25,7 +26,7 @@ import {
 } from "@/lib/mmsf2/enhancements";
 import { isMmsf2VersionDefaultAbility, normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
-import type { BuildRecord } from "@/lib/types";
+import type { BuildRecord, VersionId } from "@/lib/types";
 
 const BATTLE_CARD_FRAME_CLASS =
   "relative aspect-[4/3] overflow-hidden bg-white/8";
@@ -444,6 +445,40 @@ function versionLabelToTribe(label: string) {
   return label;
 }
 
+function getMmsf1BrotherVisualSummary(build: BuildRecord) {
+  if (build.game !== "mmsf1") {
+    return { versionIcons: [], favoriteCardGroups: [] as string[][] };
+  }
+
+  const normalizedBrothers = build.commonSections.brothers.map((entry) =>
+    normalizeMmsf1BrotherProfile(entry, build.version as Extract<VersionId, "pegasus" | "leo" | "dragon">),
+  );
+
+  const versionIcons = normalizedBrothers
+    .map((entry) => entry.rezonCard)
+    .filter((value): value is "pegasus" | "leo" | "dragon" => value === "pegasus" || value === "leo" || value === "dragon")
+    .map((version) => ({
+      version,
+      label: VERSION_LABELS[version],
+      path: MMSF1_VERSION_ICON_PATHS[version],
+    }));
+
+  const favoriteCardGroups: string[][] = [];
+  for (const entry of normalizedBrothers) {
+    const group = entry.favoriteCards.map((cardName) => cardName.trim()).filter(Boolean);
+    if (group.length === 0) {
+      continue;
+    }
+
+    const groupKey = group.join(",");
+    if (!favoriteCardGroups.some((existingGroup) => existingGroup.join(",") === groupKey)) {
+      favoriteCardGroups.push(group);
+    }
+  }
+
+  return { versionIcons, favoriteCardGroups };
+}
+
 function getMmsf2BrotherVisualSummary(build: BuildRecord) {
   if (build.game !== "mmsf2") {
     return { versionIcons: [], favoriteCardGroups: [] as string[][] };
@@ -482,7 +517,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       ? "mt-3 text-[2rem] leading-none font-black tracking-[-0.04em] whitespace-nowrap"
       : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
   const noisePortraitClassName =
-    (build.game === "mmsf3" && build.version === "red-joker") || build.game === "mmsf2"
+    build.game === "mmsf1" || build.game === "mmsf2" || (build.game === "mmsf3" && build.version === "red-joker")
       ? "absolute left-[196px] top-[64px] h-[55px] w-[74px] object-contain"
       : "absolute left-0 top-[96px] h-[55px] w-[74px] object-contain";
   const heroPanelClassName =
@@ -530,6 +565,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
   const mmsf3BrotherVisualSummary = build.game === "mmsf3" ? getMmsf3BrotherVisualSummary(build) : null;
+  const mmsf1BrotherVisualSummary = build.game === "mmsf1" ? getMmsf1BrotherVisualSummary(build) : null;
   const mmsf2VersionIconPath = getMmsf2VersionIconPath(build);
   const mmsf2VersionIconLabel = getMmsf2VersionIconLabel(build);
   const mmsf2BrotherVisualSummary = build.game === "mmsf2" ? getMmsf2BrotherVisualSummary(build) : null;
@@ -913,6 +949,53 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                     ) : (
                       <p className="text-sm text-white/60">ブラザー未設定</p>
                     )
+                  ) : build.game === "mmsf1" ? (
+                    mmsf1BrotherVisualSummary &&
+                    (mmsf1BrotherVisualSummary.versionIcons.length > 0 || mmsf1BrotherVisualSummary.favoriteCardGroups.length > 0) ? (
+                      <div className="space-y-3">
+                        {mmsf1BrotherVisualSummary.versionIcons.length > 0 ? (
+                          <div className="flex flex-wrap gap-0">
+                            {mmsf1BrotherVisualSummary.versionIcons.map((item, index) => (
+                              <div
+                                key={`${item.version}-${index}`}
+                                className="relative aspect-square shrink-0 overflow-hidden"
+                                style={{ width: `${(100 / EXPORT_CARD_GRID_COLUMNS) * 0.75}%` }}
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img src={item.path} alt={item.label} className="h-full w-full object-cover" />
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                        {mmsf1BrotherVisualSummary.favoriteCardGroups.length > 0 ? (
+                          <div className="space-y-2">
+                            {mmsf1BrotherVisualSummary.favoriteCardGroups.map((group, groupIndex) => (
+                              <div key={`mmsf1-fav-${groupIndex}`} className="flex">
+                                {group.map((cardName, cardIndex) => {
+                                  const asset = findCardAssetByName(build.game, cardName, build.version);
+                                  return (
+                                    <div
+                                      key={`mmsf1-fav-${groupIndex}-${cardName}-${cardIndex}`}
+                                      className={`${BATTLE_CARD_FRAME_CLASS} shrink-0`}
+                                      style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }}
+                                    >
+                                      {asset ? (
+                                        // eslint-disable-next-line @next/next/no-img-element
+                                        <img src={asset.localPath} alt={cardName} className="h-full w-full object-cover" />
+                                      ) : (
+                                        <div className="flex h-full items-end bg-[linear-gradient(160deg,rgba(255,255,255,0.18),rgba(15,23,42,0.5))] p-2">
+                                          <span className="line-clamp-3 text-[10px] font-semibold leading-4 text-white/92">{cardName}</span>
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
+                      </div>
+                    ) : <p className="text-sm text-white/60">ブラザー未設定</p>
                   ) : (
                     <ul className="space-y-2 text-sm leading-6 text-white/82">
                       {brothers.length > 0
