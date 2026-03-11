@@ -64,6 +64,10 @@ function matchesVersion(entry: GuideCardCatalogEntry, version?: VersionId) {
     return true;
   }
 
+  if (entry.game === "mmsf1" && entry.section === "mega") {
+    return true;
+  }
+
   return entry.version === version;
 }
 
@@ -219,6 +223,15 @@ export function getCardSection(game: GameId, name: string, version?: VersionId) 
     const versionedSection = sectionLookup.get(`${game}:${version}:${token}`);
     if (versionedSection) {
       return versionedSection;
+    }
+
+    if (game === "mmsf1") {
+      const mmsf1MegaEntry = guideCardCatalogEntries.find(
+        (entry) => entry.game === "mmsf1" && entry.section === "mega" && normalizeToken(entry.name) === token,
+      );
+      if (mmsf1MegaEntry) {
+        return "mega";
+      }
     }
   }
 
