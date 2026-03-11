@@ -760,32 +760,29 @@ function CardListEditor({
               regularLimit > 1 ? (
                 <div className="min-w-0">
                   {(entry.favoriteCount ?? 0) > 0 ? (
-                    <div className="field-shell px-3 py-1.5">
-                      <input
-                        type="number"
-                        min={0}
-                        max={Math.min(entry.quantity, regularLimit)}
-                        value={Math.max(0, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 0))}
-                        onChange={(event) =>
-                          onChange(
-                            entries.map((item) =>
-                              item.id === entry.id
-                                ? {
-                                    ...item,
-                                    favoriteCount: Math.max(0, Math.min(
-                                      item.quantity,
-                                      regularLimit,
-                                      Math.trunc(Number(event.target.value || 0)),
-                                    )),
-                                  }
-                                : item,
-                            ),
-                          )
-                        }
-                        aria-label={`${regularLabel}枚数`}
-                        className="w-full min-w-0 border-0 bg-transparent px-1 py-1 text-sm text-white outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                      />
-                    </div>
+                    <input
+                      type="number"
+                      min={0}
+                      max={Math.min(entry.quantity, regularLimit)}
+                      value={Math.max(0, Math.min(entry.quantity, regularLimit, entry.favoriteCount ?? 0))}
+                      onChange={(event) =>
+                        onChange(
+                          entries.map((item) =>
+                            item.id === entry.id
+                              ? {
+                                  ...item,
+                                  favoriteCount: Math.max(
+                                    0,
+                                    Math.min(item.quantity, regularLimit, Math.trunc(Number(event.target.value || 0))),
+                                  ),
+                                }
+                              : item,
+                          ),
+                        )
+                      }
+                      aria-label={`${regularLabel}枚数`}
+                      className="field-shell"
+                    />
                   ) : (
                     <button
                       type="button"

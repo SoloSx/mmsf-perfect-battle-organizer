@@ -3679,6 +3679,18 @@
       "assetLocalPath": "/assets/cards/SF3/Cards/Giga/g5j_dopplemirror.png"
     },
     {
+      "game": "mmsf2",
+      "version": null,
+      "name": "キンググランジャー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/SP_G01TribeKing.gif"
+    },
+    {
+      "game": "mmsf2",
+      "version": null,
+      "name": "ラ・ムー",
+      "assetLocalPath": "/assets/cards/SF2/Cards/SP_G02RaMu.gif"
+    },
+    {
       "game": "mmsf3",
       "version": null,
       "name": "アトミックブレイザー",
