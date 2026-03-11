@@ -21,6 +21,7 @@ import {
   getMmsf2EnhancementLabel,
   getMmsf2EnhancementStatSummary,
 } from "@/lib/mmsf2/enhancements";
+import { isMmsf2VersionDefaultAbility, normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
 import { GAME_LABELS, getVersionRuleSet, VERSION_LABELS } from "@/lib/rules";
 import type { BuildRecord } from "@/lib/types";
 
@@ -42,6 +43,13 @@ const MMSF3_NOISE_PORTRAIT_PATHS: Record<string, string> = {
   "0A": "/assets/mmsf3/noises/wolf-noise.png",
   "0B": "/assets/mmsf3/noises/burai-noise.png",
 };
+const MMSF2_VERSION_ICON_PATHS: Record<"berserker" | "shinobi" | "dinosaur", string> = {
+  berserker: "/assets/mmsf2/icons/berserker-icon.jpeg",
+  shinobi: "/assets/mmsf2/icons/shinobi-icon.jpeg",
+  dinosaur: "/assets/mmsf2/icons/dinosaur-icon.jpeg",
+};
+const MMSF2_NORMAL_ICON_PATH = "/assets/mmsf2/icons/normal-rockman-icon.jpeg";
+const MMSF2_KOKOUNOKAKERA_ICON_PATH = "/assets/mmsf2/icons/kokounokakera.gif";
 
 function getExportBackground(build: BuildRecord) {
   if (build.game === "mmsf1" && build.version === "pegasus") {
@@ -360,6 +368,66 @@ function getMmsf3NoiseLabel(build: BuildRecord) {
   );
 }
 
+function getMmsf2VersionIconPath(build: BuildRecord) {
+  if (build.game !== "mmsf2") {
+    return "";
+  }
+
+  const normalizedAbilities = normalizeMmsf2AbilityEntries(
+    build.commonSections.abilities,
+    build.version,
+    build.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+  );
+  const hasVersionFixedAbility = normalizedAbilities.some((entry) => isMmsf2VersionDefaultAbility(entry.name, build.version));
+
+  if (!hasVersionFixedAbility) {
+    return MMSF2_NORMAL_ICON_PATH;
+  }
+
+  if (build.version === "berserker" || build.version === "shinobi" || build.version === "dinosaur") {
+    return MMSF2_VERSION_ICON_PATHS[build.version];
+  }
+
+  return MMSF2_NORMAL_ICON_PATH;
+}
+
+function getMmsf2VersionIconLabel(build: BuildRecord) {
+  if (build.game !== "mmsf2") {
+    return "";
+  }
+
+  const normalizedAbilities = normalizeMmsf2AbilityEntries(
+    build.commonSections.abilities,
+    build.version,
+    build.gameSpecificSections.mmsf2.defaultTribeAbilityEnabled,
+  );
+
+  if (normalizedAbilities.some((entry) => isMmsf2VersionDefaultAbility(entry.name, build.version))) {
+    return versionLabelToTribe(VERSION_LABELS[build.version] ?? "");
+  }
+
+  return "ノーマルロックマン";
+}
+
+function versionLabelToTribe(label: string) {
+  return label;
+}
+
+function getMmsf2BrotherVersionIconPaths(build: BuildRecord) {
+  if (build.game !== "mmsf2") {
+    return [];
+  }
+
+  return build.commonSections.brothers
+    .map((entry) => entry.rezonCard)
+    .filter((value): value is "berserker" | "shinobi" | "dinosaur" => value === "berserker" || value === "shinobi" || value === "dinosaur")
+    .map((version) => ({
+      version,
+      label: VERSION_LABELS[version],
+      path: MMSF2_VERSION_ICON_PATHS[version],
+    }));
+}
+
 export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({ build }, ref) => {
   const rule = getVersionRuleSet(build.version);
   const versionLabel = VERSION_LABELS[build.version];
@@ -368,7 +436,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
       ? "mt-3 text-[2rem] leading-none font-black tracking-[-0.04em] whitespace-nowrap"
       : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
   const noisePortraitClassName =
-    build.game === "mmsf3" && build.version === "red-joker"
+    (build.game === "mmsf3" && build.version === "red-joker") || build.game === "mmsf2"
       ? "absolute left-[196px] top-[64px] h-[55px] w-[74px] object-contain"
       : "absolute left-0 top-[96px] h-[55px] w-[74px] object-contain";
   const heroPanelClassName =
@@ -415,6 +483,9 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
   const mmsf3NoisePortraitPath = getMmsf3NoisePortraitPath(build);
   const mmsf3NoiseLabel = getMmsf3NoiseLabel(build);
   const mmsf3BrotherVisualSummary = build.game === "mmsf3" ? getMmsf3BrotherVisualSummary(build) : null;
+  const mmsf2VersionIconPath = getMmsf2VersionIconPath(build);
+  const mmsf2VersionIconLabel = getMmsf2VersionIconLabel(build);
+  const mmsf2BrotherVersionIcons = getMmsf2BrotherVersionIconPaths(build);
 
   return (
     <div
@@ -450,6 +521,14 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 <img
                   src={mmsf3NoisePortraitPath}
                   alt={`${mmsf3NoiseLabel || "ノイズ"}ノイズ`}
+                  className={noisePortraitClassName}
+                />
+              ) : null}
+              {build.game === "mmsf2" && mmsf2VersionIconPath ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={mmsf2VersionIconPath}
+                  alt={mmsf2VersionIconLabel}
                   className={noisePortraitClassName}
                 />
               ) : null}
@@ -722,11 +801,38 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord }>(({
                 </div>
               ) : (
                 <div className="mt-4">
-                  <ul className="space-y-2 text-sm leading-6 text-white/82">
-                    {brothers.length > 0
-                      ? brothers.map((item) => <li key={item}>• {item}</li>)
-                      : <li>• ブラザー未設定</li>}
-                  </ul>
+                  {build.game === "mmsf2" ? (
+                    build.gameSpecificSections.mmsf2.kokouNoKakera ? (
+                      <div
+                        className={`${BATTLE_CARD_FRAME_CLASS} shrink-0`}
+                        style={{ width: `${100 / EXPORT_CARD_GRID_COLUMNS}%` }}
+                      >
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img src={MMSF2_KOKOUNOKAKERA_ICON_PATH} alt="ここうのカケラ" className="h-full w-full object-cover" />
+                      </div>
+                    ) : mmsf2BrotherVersionIcons.length > 0 ? (
+                      <div className="flex flex-wrap gap-0">
+                        {mmsf2BrotherVersionIcons.map((item, index) => (
+                          <div
+                            key={`${item.version}-${index}`}
+                            className="relative aspect-square shrink-0 overflow-hidden"
+                            style={{ width: `${(100 / EXPORT_CARD_GRID_COLUMNS) * 0.75}%` }}
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img src={item.path} alt={item.label} className="h-full w-full object-cover" />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <p className="text-sm text-white/60">ブラザー未設定</p>
+                    )
+                  ) : (
+                    <ul className="space-y-2 text-sm leading-6 text-white/82">
+                      {brothers.length > 0
+                        ? brothers.map((item) => <li key={item}>• {item}</li>)
+                        : <li>• ブラザー未設定</li>}
+                    </ul>
+                  )}
                 </div>
               )}
           </section>
