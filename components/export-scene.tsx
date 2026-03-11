@@ -56,7 +56,7 @@ const MMSF1_LUNA_BROTHER_ICON_PATH = "/assets/mmsf1/icons/luna-brother-icon.png"
 const MMSF1_LM_SHIN_BROTHER_ICON_PATH = "/assets/mmsf1/icons/lm-shin-brother-icon.png";
 const MMSF1_KIZAMARO_BROTHER_ICON_PATH = "/assets/mmsf1/icons/kizamaro-brother-icon.png";
 const MMSF1_GONTA_BROTHER_ICON_PATH = "/assets/mmsf1/icons/gonta-brother-icon.png";
-const MMSF3_NORMAL_ICON_PATH = "/assets/mmsf3/noises/normal-rockman-icon.svg";
+const MMSF3_NORMAL_ICON_PATH = "/assets/mmsf3/noises/normal-rockman-icon.png";
 const MMSF2_VERSION_ICON_PATHS: Record<"berserker" | "shinobi" | "dinosaur", string> = {
   berserker: "/assets/mmsf2/icons/berserker-icon.jpeg",
   shinobi: "/assets/mmsf2/icons/shinobi-icon.jpeg",
