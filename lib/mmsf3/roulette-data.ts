@@ -94,12 +94,12 @@ export const MMSF3_BROTHER_ROULETTE_POSITIONS: Array<{
   key: Mmsf3BrotherRoulettePosition;
   label: string;
 }> = [
-  { key: "top_left", label: "左上" },
-  { key: "top_right", label: "右上" },
-  { key: "mid_left", label: "左中" },
-  { key: "mid_right", label: "右中" },
-  { key: "btm_left", label: "左下" },
-  { key: "btm_right", label: "右下" },
+  { key: "top_left", label: "左上①" },
+  { key: "top_right", label: "右上②" },
+  { key: "mid_left", label: "左中③" },
+  { key: "mid_right", label: "右中④" },
+  { key: "btm_left", label: "左下⑤" },
+  { key: "btm_right", label: "右下⑥" },
 ];
 
 export const MMSF3_NOISE_OPTIONS: Mmsf3RouletteOption[] = [

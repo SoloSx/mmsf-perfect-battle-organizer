@@ -303,7 +303,7 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects ブライ as a brother merg
     ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
   ]);
 
-  assert.ok(result.includes("左上 のマージノイズが不正です。"));
+  assert.ok(result.includes("左上① のマージノイズが不正です。"));
 });
 
 test("getMmsf3BrotherRouletteSelectionErrors rejects an invalid brother version", () => {
@@ -322,7 +322,7 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects an invalid brother version"
     ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
   ]);
 
-  assert.ok(result.includes("左上 のバージョンが不正です。"));
+  assert.ok(result.includes("左上① のバージョンが不正です。"));
 });
 
 test("validateMmsf3FolderCards rejects version-exclusive giga cards from the other version", () => {
@@ -433,7 +433,7 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga card
     ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
   ]);
 
-  assert.ok(result.includes("左上 のギガカード「Ｇメテオレーザー」はブラックエースでは設定できません。"));
+  assert.ok(result.includes("左上① のギガカード「Ｇメテオレーザー」はブラックエースでは設定できません。"));
   assert.ok(
     getMmsf3BrotherRouletteSelectionErrors([
       {
@@ -448,6 +448,6 @@ test("getMmsf3BrotherRouletteSelectionErrors rejects version-exclusive giga card
         megaCard: "",
       },
       ...createDefaultMmsf3Sections().brotherRouletteSlots.slice(1),
-    ]).includes("左上 のギガカード「ウィングブレード」はレッドジョーカーでは設定できません。"),
+    ]).includes("左上① のギガカード「ウィングブレード」はレッドジョーカーでは設定できません。"),
   );
 });

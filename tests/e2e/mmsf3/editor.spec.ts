@@ -86,7 +86,7 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
   const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const topLeftInputs = topLeftCard.getByRole("combobox");
 
@@ -113,7 +113,7 @@ test("mmsf3 editor validates version-exclusive giga cards for player and brother
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
   const redJokerTopLeftCard = redJokerBrotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const redJokerTopLeftInputs = redJokerTopLeftCard.getByRole("combobox");
 
@@ -244,15 +244,15 @@ test("mmsf3 editor uses fixed brother roulette slots with the generator option s
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  for (const label of ["左上", "右上", "左中", "右中", "左下", "右下"]) {
+  for (const label of ["左上①", "右上②", "左中③", "右中④", "左下⑤", "右下⑥"]) {
     await expect(brotherEditor.getByText(label, { exact: true })).toBeVisible();
   }
 
   const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const topRightCard = brotherEditor
-    .getByText("右上", { exact: true })
+    .getByText("右上②", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
 
   const topLeftInputs = topLeftCard.getByRole("combobox");
@@ -302,7 +302,7 @@ test("mmsf3 editor does not offer ブライ as a brother merge noise", async ({ 
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
   const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const topLeftNoiseInput = topLeftCard.getByRole("combobox").nth(2);
 
@@ -346,21 +346,21 @@ test("mmsf3 editor allows up to three SSS brother slots", async ({ page }) => {
     .locator("label", { hasText: "ブラザー情報" })
     .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
 
-  for (const label of ["左上", "右上", "左中"]) {
+  for (const label of ["左上①", "右上②", "左中③"]) {
     await expect(brotherEditor.getByText(label, { exact: true })).toBeVisible();
   }
 
   const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const topRightCard = brotherEditor
-    .getByText("右上", { exact: true })
+    .getByText("右上②", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const midLeftCard = brotherEditor
-    .getByText("左中", { exact: true })
+    .getByText("左中③", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const midRightCard = brotherEditor
-    .getByText("右中", { exact: true })
+    .getByText("右中④", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
 
   await selectBrotherSlotType(topLeftCard, "SSS");
@@ -400,7 +400,7 @@ test("mmsf3 editor disables brother roulette when bura noise is selected", async
   await expect(brotherEditor).toContainText("ブライノイズではブラザーは設定できませんが、SSSは設定できます。");
   await expect(brotherEditor.getByText("シークレットサテライトサーバー", { exact: true })).toBeVisible();
   await expect(brotherEditor.getByText("SSS 01", { exact: true })).toBeVisible();
-  await expect(brotherEditor.getByText("左上", { exact: true })).toHaveCount(0);
+  await expect(brotherEditor.getByText("左上①", { exact: true })).toHaveCount(0);
 
   const firstSssInput = brotherEditor.getByRole("combobox").nth(0);
   await firstSssInput.click();
@@ -551,13 +551,13 @@ test("mmsf3 editor lowers the ability point limit as brother slots become SSS", 
     .first();
 
   const topLeftCard = brotherEditor
-    .getByText("左上", { exact: true })
+    .getByText("左上①", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const topRightCard = brotherEditor
-    .getByText("右上", { exact: true })
+    .getByText("右上②", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
   const midLeftCard = brotherEditor
-    .getByText("左中", { exact: true })
+    .getByText("左中③", { exact: true })
     .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
 
   await expect(abilityEditor).toContainText("合計P 0/1900");
