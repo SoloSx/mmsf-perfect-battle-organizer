@@ -39,7 +39,12 @@ export function SearchableSelectInput({
   );
   const normalizedQuery = useMemo(() => normalizeToken(query), [query]);
   const normalizedOptions = useMemo(
-    () => options.map((option) => ({ ...option, normalized: normalizeToken(option.label) })),
+    () =>
+      options.map((option) => ({
+        ...option,
+        normalizedLabel: normalizeToken(option.label),
+        normalizedValue: normalizeToken(option.value),
+      })),
     [options],
   );
   const selectedOptionIndex = useMemo(
@@ -57,17 +62,17 @@ export function SearchableSelectInput({
     const includes: SearchableSelectOption[] = [];
 
     for (const option of normalizedOptions) {
-      if (option.normalized === normalizedQuery) {
+      if (option.normalizedLabel === normalizedQuery) {
         exact.push(option);
         continue;
       }
 
-      if (option.normalized.startsWith(normalizedQuery)) {
+      if (option.normalizedLabel.startsWith(normalizedQuery)) {
         startsWith.push(option);
         continue;
       }
 
-      if (option.normalized.includes(normalizedQuery)) {
+      if (option.normalizedLabel.includes(normalizedQuery)) {
         includes.push(option);
       }
     }
@@ -97,12 +102,30 @@ export function SearchableSelectInput({
     optionRefs.current[activeOptionIndex]?.scrollIntoView({ block: "nearest" });
   }, [activeOptionIndex, isOpen]);
 
-  const commitOption = (option: SearchableSelectOption) => {
+  const findExactOption = (candidate: string) => {
+    const normalizedCandidate = normalizeToken(candidate);
+    if (!normalizedCandidate) {
+      return null;
+    }
+
+    return (
+      normalizedOptions.find(
+        (option) =>
+          option.normalizedLabel === normalizedCandidate || option.normalizedValue === normalizedCandidate,
+      ) ?? null
+    );
+  };
+
+  const commitOption = (option: SearchableSelectOption, shouldRefocus = true) => {
     onChange(option.value);
     setQuery(option.label);
     setIsFiltering(false);
     setHighlightedIndex(-1);
     setIsOpen(false);
+    if (!shouldRefocus) {
+      return;
+    }
+
     requestAnimationFrame(() => {
       const input = inputRef.current;
       if (!input) {
@@ -150,6 +173,12 @@ export function SearchableSelectInput({
             return;
           }
 
+          const exactOption = findExactOption(query);
+          if (exactOption) {
+            commitOption(exactOption, false);
+            return;
+          }
+
           setQuery(selectedOption?.label ?? "");
           setIsFiltering(false);
           setHighlightedIndex(-1);
@@ -160,6 +189,16 @@ export function SearchableSelectInput({
           setIsOpen(true);
           setIsFiltering(true);
           setHighlightedIndex(0);
+        }}
+        onPaste={(event) => {
+          const pastedText = event.clipboardData.getData("text");
+          const exactOption = findExactOption(pastedText);
+          if (!exactOption) {
+            return;
+          }
+
+          event.preventDefault();
+          commitOption(exactOption, false);
         }}
         onKeyDown={(event) => {
           if (event.key === "ArrowDown") {

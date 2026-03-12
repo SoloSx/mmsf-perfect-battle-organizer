@@ -312,6 +312,28 @@ test("mmsf3 editor does not offer ブライ as a brother merge noise", async ({ 
   await expect(topLeftCard.getByRole("option", { name: "ブライ" })).toHaveCount(0);
 });
 
+test("mmsf3 brother fields commit exact matches on blur without pressing Enter", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.localStorage.clear();
+  });
+
+  await page.goto("/editor?game=mmsf3&version=black-ace");
+
+  const brotherEditor = page
+    .locator("label", { hasText: "ブラザー情報" })
+    .locator("xpath=ancestor::div[contains(@class, 'glass-panel-soft')][1]");
+  const topLeftCard = brotherEditor
+    .getByText("左上①", { exact: true })
+    .locator("xpath=ancestor::div[contains(@class, 'rounded-[24px]')][1]");
+  const topLeftVersionInput = topLeftCard.getByRole("combobox").nth(1);
+
+  await topLeftVersionInput.click();
+  await topLeftVersionInput.fill("レッドジョーカー");
+  await page.getByPlaceholder("構築名").click();
+
+  await expect(topLeftVersionInput).toHaveValue("レッドジョーカー");
+});
+
 test("mmsf3 editor keeps player rezon card and white card in the rockman section", async ({ page }) => {
   await page.addInitScript(() => {
     window.localStorage.clear();
