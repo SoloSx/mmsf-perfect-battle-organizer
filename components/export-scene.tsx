@@ -547,10 +547,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
     build.game === "mmsf3" && build.version === "red-joker"
       ? "mt-3 text-[2rem] leading-none font-black tracking-[-0.04em] whitespace-nowrap"
       : "mt-3 text-4xl leading-none font-black tracking-tight whitespace-nowrap";
-  const noisePortraitClassName =
-    build.game === "mmsf1" || build.game === "mmsf2" || (build.game === "mmsf3" && build.version === "red-joker")
-      ? "absolute left-[196px] top-[64px] h-[55px] w-[74px] object-contain"
-      : "absolute left-0 top-[96px] h-[55px] w-[74px] object-contain";
+  const noisePortraitClassName = "absolute left-[196px] top-[64px] h-[55px] w-[74px] object-contain";
   const heroPanelClassName =
     build.game === "mmsf3" && build.version === "red-joker"
       ? `relative overflow-hidden rounded-[32px] p-8 pr-12 ${backgroundEnabled ? "border border-white/15 shadow-[0_0_40px_rgba(0,0,0,0.3)]" : "border border-transparent shadow-none"}`
