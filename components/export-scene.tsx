@@ -192,7 +192,7 @@ function getExportHeroPanelBackground(build: BuildRecord) {
 function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   const state = getNormalizedMmsf3State(build);
   const evaluation = evaluateNoiseHand(state.noiseCardIds);
-  const lines = [state.noise || "ノイズ情報未設定"];
+  const lines = [state.noise || "ノイズ情報未設定", state.warRockWeapon || "ウォーロック装備未設定"];
 
   if (state.playerRezonCard) {
     lines.push(`レゾンカード: ${state.playerRezonCard}`);
@@ -203,7 +203,7 @@ function getMmsf3SystemSnapshotLines(build: BuildRecord) {
   }
 
   if (!evaluation.bestHand && evaluation.rolelessBugEffects.length > 0) {
-    lines.push(...evaluation.rolelessBugEffects.map((effect) => `バグ: ${effect}`));
+    lines.push(`バグ: ${evaluation.rolelessBugEffects.join(" / ")}`);
   }
 
   for (const card of evaluation.selectedCards) {
@@ -300,6 +300,7 @@ function getMmsf3BrotherRouletteLines(build: BuildRecord) {
 function getMmsf3BrotherVisualSummary(build: BuildRecord) {
   const state = getNormalizedMmsf3State(build);
   const noisePortraits: Array<{ path: string; label: string }> = [];
+  const rezonCounts = new Map<string, number>();
   const sssEntries: Array<{ positionLabel: string; sssLabel: string; isGreek: boolean }> = [];
   const whiteCardGroups: string[][] = [];
   const sideCardNames: string[] = [];
@@ -326,6 +327,11 @@ function getMmsf3BrotherVisualSummary(build: BuildRecord) {
       noisePortraits.push({ path: portraitPath, label: noiseLabel });
     }
 
+    const rezonLabel = getMmsf3RezonCardOption(slot.rezon)?.label;
+    if (rezonLabel) {
+      rezonCounts.set(rezonLabel, (rezonCounts.get(rezonLabel) ?? 0) + 1);
+    }
+
     const slotWhiteCards = getMmsf3WhiteCardSetCards(slot.whiteCardSetId);
     if (slotWhiteCards.length > 0) {
       const setKey = slotWhiteCards.join(",");
@@ -345,7 +351,9 @@ function getMmsf3BrotherVisualSummary(build: BuildRecord) {
     }
   }
 
-  return { noisePortraits, sssEntries, whiteCardGroups, sideCardNames };
+  const rezonEntries = [...rezonCounts.entries()].map(([label, count]) => ({ label, count }));
+
+  return { noisePortraits, rezonEntries, sssEntries, whiteCardGroups, sideCardNames };
 }
 
 function getMmsf3NoisePortraitPath(build: BuildRecord) {
@@ -925,6 +933,19 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
                     </div>
                   )}
                   {/* Row 3: SSS badges */}
+                  {mmsf3BrotherVisualSummary.rezonEntries.length > 0 && (
+                    <div className="flex flex-wrap gap-2">
+                      {mmsf3BrotherVisualSummary.rezonEntries.map((entry, index) => (
+                        <span
+                          key={`${entry.label}-${index}`}
+                          className="rounded-lg bg-cyan-600/60 px-4 py-1.5 text-xs font-semibold text-white"
+                        >
+                          {entry.label} x{entry.count}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  {/* Row 4: SSS badges */}
                   {mmsf3BrotherVisualSummary.sssEntries.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                       {mmsf3BrotherVisualSummary.sssEntries.map((entry, index) => (
@@ -940,6 +961,7 @@ export const ExportScene = forwardRef<HTMLDivElement, { build: BuildRecord; back
                   {mmsf3BrotherVisualSummary.noisePortraits.length === 0 &&
                     mmsf3BrotherVisualSummary.sideCardNames.length === 0 &&
                     mmsf3BrotherVisualSummary.whiteCardGroups.length === 0 &&
+                    mmsf3BrotherVisualSummary.rezonEntries.length === 0 &&
                     mmsf3BrotherVisualSummary.sssEntries.length === 0 && (
                     <p className="text-sm text-white/60">ブラザールーレット未設定</p>
                   )}
