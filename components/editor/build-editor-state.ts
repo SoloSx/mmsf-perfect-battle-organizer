@@ -1,6 +1,7 @@
 "use client";
 
 import { getMissingSourceNames, syncSourceEntries } from "@/components/source-list-editor";
+import { normalizeBrotherFavoriteCardSlots } from "@/lib/brother-profiles";
 import { validateLimitedCardOwnership } from "@/lib/card-ownership-rules";
 import {
   validateMmsf1BrotherFavoriteCards,
@@ -298,11 +299,6 @@ export function haveSameCardEntries(leftEntries: BuildCardEntry[], rightEntries:
   return true;
 }
 
-function clampList(values: string[], max?: number) {
-  const uniqueValues = Array.from(new Set(values.map((value) => value.trim()).filter(Boolean)));
-  return typeof max === "number" ? uniqueValues.slice(0, max) : uniqueValues;
-}
-
 export function buildEmptyBrother(): BrotherProfile {
   return { id: createId(), name: "", kind: "story", favoriteCards: [], rezonCard: "", notes: "" };
 }
@@ -312,7 +308,7 @@ export function normalizeBrotherProfile(brotherProfile: BrotherProfile): Brother
     id: brotherProfile.id,
     name: brotherProfile.name ?? "",
     kind: brotherProfile.kind ?? "story",
-    favoriteCards: clampList(brotherProfile.favoriteCards ?? []),
+    favoriteCards: normalizeBrotherFavoriteCardSlots(brotherProfile.favoriteCards),
     rezonCard: brotherProfile.rezonCard ?? "",
     notes: brotherProfile.notes ?? "",
   };

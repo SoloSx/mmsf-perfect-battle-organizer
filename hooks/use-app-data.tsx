@@ -9,6 +9,7 @@ import {
   type ReactNode,
 } from "react";
 import { DEFAULT_STRATEGY_TEMPLATES } from "@/lib/seed-data";
+import { normalizeBrotherFavoriteCardSlots } from "@/lib/brother-profiles";
 import { normalizeMmsf2AbilityEntries } from "@/lib/mmsf2/abilities";
 import {
   createDefaultMmsf3Sections,
@@ -123,7 +124,7 @@ function normalizeBrotherProfile(entry: BrotherProfile): BrotherProfile {
     id: entry.id,
     name: entry.name ?? "",
     kind: entry.kind ?? "story",
-    favoriteCards: (entry.favoriteCards ?? []).map((item) => item.trim()).filter(Boolean),
+    favoriteCards: normalizeBrotherFavoriteCardSlots(entry.favoriteCards),
     rezonCard: entry.rezonCard ?? "",
     notes: entry.notes ?? "",
   };
@@ -222,7 +223,7 @@ function normalizeTemplate(template: StrategyTemplate): StrategyTemplate {
   };
 }
 
-function normalizeBuild(build: BuildRecord): BuildRecord {
+export function normalizeBuild(build: BuildRecord): BuildRecord {
   const defaultBuild = createBuild(build.game);
   const defaultGameSpecificSections = createDefaultGameSpecificSections();
   const rawCommonSections = build.commonSections ?? defaultBuild.commonSections;
