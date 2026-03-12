@@ -104,7 +104,7 @@ export function BuildLibraryPage() {
 
   return (
     <AppShell>
-      <section className="glass-panel">
+      <section className="glass-panel relative z-0 overflow-visible focus-within:z-40">
         <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-cyan-200/75">Build Library</p>
@@ -156,21 +156,25 @@ export function BuildLibraryPage() {
 
         {status && <p className="mt-4 text-sm text-cyan-200/80">{status}</p>}
 
-        <div className="mt-6 grid gap-4 md:grid-cols-[1fr_220px]">
-          <input
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            placeholder="構築名、タグ、概要メモで検索"
-            className="field-shell"
-          />
-          <SearchableSelectInput
-            value={versionFilter}
-            onChange={(value) => setVersionFilter(value as "all" | VersionId)}
-            options={BUILD_VERSION_FILTER_OPTIONS}
-            placeholder="作品を選択"
-            displayValue={BUILD_VERSION_FILTER_OPTIONS.find((option) => option.value === versionFilter)?.label ?? ""}
-            className="field-shell min-h-[52px] w-full"
-          />
+        <div className="relative z-0 mt-6 grid gap-4 overflow-visible focus-within:z-40 md:grid-cols-[1fr_220px]">
+          <div className="relative z-0 overflow-visible focus-within:z-30">
+            <input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="構築名、タグ、概要メモで検索"
+              className="field-shell"
+            />
+          </div>
+          <div className="relative z-0 overflow-visible focus-within:z-30">
+            <SearchableSelectInput
+              value={versionFilter}
+              onChange={(value) => setVersionFilter(value as "all" | VersionId)}
+              options={BUILD_VERSION_FILTER_OPTIONS}
+              placeholder="作品を選択"
+              displayValue={BUILD_VERSION_FILTER_OPTIONS.find((option) => option.value === versionFilter)?.label ?? ""}
+              className="field-shell min-h-[52px] w-full"
+            />
+          </div>
         </div>
       </section>
 
