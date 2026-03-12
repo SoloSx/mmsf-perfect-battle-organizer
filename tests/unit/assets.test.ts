@@ -106,4 +106,12 @@ test("MMSF2 cards resolve preview assets for normal, star, blank, and giga entri
     findCardAssetByName("mmsf2", "G-4 ジェミニサンダー", "berserker")?.localPath,
     "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif",
   );
+  assert.equal(
+    findCardAssetByName("mmsf2", "キンググランジャー", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/SP_G01TribeKing.gif",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf2", "ラ・ムー", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/SP_G02RaMu.gif",
+  );
 });

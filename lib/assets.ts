@@ -55,6 +55,10 @@ const MMSF2_BLANK_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
   "ブレイクカウントボム": "/assets/cards/SF2/Cards/Gd4BreakCountBomb.gif",
   "ファントムスラッシュ": "/assets/cards/SF2/Cards/Gd5PhantomSlash.gif",
 };
+const MMSF2_SPECIAL_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
+  キンググランジャー: "/assets/cards/SF2/Cards/SP_G01TribeKing.gif",
+  ラムー: "/assets/cards/SF2/Cards/SP_G02RaMu.gif",
+};
 const MMSF1_BOKTAI_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
   タイヨウジュウ: "/assets/cards/SF1/Cards/e01_TaiyouJuu.png",
   タイヨウジュウv2: "/assets/cards/SF1/Cards/e02_TaiyouJuuV2.png",
@@ -191,6 +195,11 @@ export function findCardAssetByName(game: GameId, name: string, version?: Versio
   }
 
   if (game === "mmsf2") {
+    const explicitSpecialAssetPath = MMSF2_SPECIAL_CARD_ASSET_LOCAL_PATHS[normalizeToken(name)];
+    if (explicitSpecialAssetPath) {
+      return assetManifestEntries.find((entry) => entry.localPath === explicitSpecialAssetPath);
+    }
+
     const blankDefinition = getMmsf2BlankCardDefinition(name);
     if (blankDefinition) {
       const explicitBlankAssetPath = MMSF2_BLANK_CARD_ASSET_LOCAL_PATHS[blankDefinition.contentKey];
