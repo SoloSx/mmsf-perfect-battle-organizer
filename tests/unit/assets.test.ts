@@ -88,3 +88,22 @@ test("MMSF1 Andromeda resolves preview asset", () => {
     "/assets/cards/SF1/Cards/Andromeda.png",
   );
 });
+
+test("MMSF2 cards resolve preview assets for normal, star, blank, and giga entries", () => {
+  assert.equal(
+    findCardAssetByName("mmsf2", "キャノン", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/S001Cannon.gif",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf2", "キャノン★3", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/S001Cannon.gif",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf2", "ジェミニサンダー", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif",
+  );
+  assert.equal(
+    findCardAssetByName("mmsf2", "G-4 ジェミニサンダー", "berserker")?.localPath,
+    "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif",
+  );
+});

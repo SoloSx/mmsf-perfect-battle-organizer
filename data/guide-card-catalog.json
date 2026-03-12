@@ -2429,7 +2429,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
     },
     {
       "game": "mmsf2",
@@ -2440,7 +2440,7 @@
       "details": [
         "(初)ミソラフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -2451,7 +2451,7 @@
       "details": [
         "(ラ)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -2462,7 +2462,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
     },
     {
       "game": "mmsf2",
@@ -2473,7 +2473,7 @@
       "details": [
         "(ミ)ドンブラー湖1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
     },
     {
       "game": "mmsf2",
@@ -2484,7 +2484,7 @@
       "details": [
         "(ミ)へいしの間"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
     },
     {
       "game": "mmsf2",
@@ -2495,7 +2495,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
     },
     {
       "game": "mmsf2",
@@ -2506,7 +2506,7 @@
       "details": [
         "(ミ)ゲレンデ1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
     },
     {
       "game": "mmsf2",
@@ -2517,7 +2517,7 @@
       "details": [
         "(ミ)ドッシーのいりえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
     },
     {
       "game": "mmsf2",
@@ -2529,7 +2529,7 @@
         "(ミ)TKタワー1の電波",
         "(ラ)ゲレンデ2の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
     },
     {
       "game": "mmsf2",
@@ -2540,7 +2540,7 @@
       "details": [
         "(ミ)こわれたリフトの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
     },
     {
       "game": "mmsf2",
@@ -2551,7 +2551,7 @@
       "details": [
         "(サ)イケツラ モテツグの依頼"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
     },
     {
       "game": "mmsf2",
@@ -2562,7 +2562,7 @@
       "details": [
         "(ミ)ヤエバリゾートの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
     },
     {
       "game": "mmsf2",
@@ -2573,7 +2573,7 @@
       "details": [
         "(店)BIGWAVEの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
     },
     {
       "game": "mmsf2",
@@ -2584,7 +2584,7 @@
       "details": [
         "(店)ナンスカのスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
     },
     {
       "game": "mmsf2",
@@ -2595,7 +2595,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
     },
     {
       "game": "mmsf2",
@@ -2606,7 +2606,7 @@
       "details": [
         "(ラ)ドンブラーのスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
     },
     {
       "game": "mmsf2",
@@ -2617,7 +2617,7 @@
       "details": [
         "(ラ)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
     },
     {
       "game": "mmsf2",
@@ -2628,7 +2628,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -2639,7 +2639,7 @@
       "details": [
         "(店)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -2650,7 +2650,7 @@
       "details": [
         "(店)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -2661,7 +2661,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
     },
     {
       "game": "mmsf2",
@@ -2672,7 +2672,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
     },
     {
       "game": "mmsf2",
@@ -2683,7 +2683,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
     },
     {
       "game": "mmsf2",
@@ -2694,7 +2694,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -2705,7 +2705,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -2716,7 +2716,7 @@
       "details": [
         "(店)じげんのハザマ1"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
     },
     {
       "game": "mmsf2",
@@ -2727,7 +2727,7 @@
       "details": [
         "(店)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S028DoubleStone.gif"
     },
     {
       "game": "mmsf2",
@@ -2739,7 +2739,7 @@
         "(店)じげんのハザマ1",
         "(ミ):じげんのはざま１"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
     },
     {
       "game": "mmsf2",
@@ -2750,7 +2750,7 @@
       "details": [
         "(鍵)裏TKタワーの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S030Aura.gif"
     },
     {
       "game": "mmsf2",
@@ -2761,7 +2761,7 @@
       "details": [
         "(敵)メットリオ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
     },
     {
       "game": "mmsf2",
@@ -2772,7 +2772,7 @@
       "details": [
         "(敵)メットリオ2"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
     },
     {
       "game": "mmsf2",
@@ -2783,7 +2783,7 @@
       "details": [
         "(敵)メットリオ3"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
     },
     {
       "game": "mmsf2",
@@ -2794,7 +2794,7 @@
       "details": [
         "(敵)バルカナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
     },
     {
       "game": "mmsf2",
@@ -2805,7 +2805,7 @@
       "details": [
         "(敵)バルガンナー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
     },
     {
       "game": "mmsf2",
@@ -2817,7 +2817,7 @@
         "(敵)バルスナイパー",
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
     },
     {
       "game": "mmsf2",
@@ -2828,7 +2828,7 @@
       "details": [
         "(敵)キルミィ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
     },
     {
       "game": "mmsf2",
@@ -2839,7 +2839,7 @@
       "details": [
         "(敵)キルジョーカー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
     },
     {
       "game": "mmsf2",
@@ -2851,7 +2851,7 @@
         "(敵)キルデーモン",
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
     },
     {
       "game": "mmsf2",
@@ -2862,7 +2862,7 @@
       "details": [
         "(敵)オロロン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
     },
     {
       "game": "mmsf2",
@@ -2873,7 +2873,7 @@
       "details": [
         "(敵)オルルン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
     },
     {
       "game": "mmsf2",
@@ -2884,7 +2884,7 @@
       "details": [
         "(敵)オリリン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
     },
     {
       "game": "mmsf2",
@@ -2895,7 +2895,7 @@
       "details": [
         "(敵)ラビジェット"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
     },
     {
       "game": "mmsf2",
@@ -2906,7 +2906,7 @@
       "details": [
         "(敵)ラビロケット"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
     },
     {
       "game": "mmsf2",
@@ -2917,7 +2917,7 @@
       "details": [
         "(敵)ラビニトロ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
     },
     {
       "game": "mmsf2",
@@ -2928,7 +2928,7 @@
       "details": [
         "(敵)モエローダー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
     },
     {
       "game": "mmsf2",
@@ -2939,7 +2939,7 @@
       "details": [
         "(敵)モエモーター"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
     },
     {
       "game": "mmsf2",
@@ -2950,7 +2950,7 @@
       "details": [
         "(敵)モエバイカー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
     },
     {
       "game": "mmsf2",
@@ -2961,7 +2961,7 @@
       "details": [
         "(敵)ダバダンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
     },
     {
       "game": "mmsf2",
@@ -2972,7 +2972,7 @@
       "details": [
         "(敵)ピョコダンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
     },
     {
       "game": "mmsf2",
@@ -2983,7 +2983,7 @@
       "details": [
         "(敵)ジャカダンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
     },
     {
       "game": "mmsf2",
@@ -2994,7 +2994,7 @@
       "details": [
         "(敵)ドッカーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
     },
     {
       "game": "mmsf2",
@@ -3005,7 +3005,7 @@
       "details": [
         "(敵)ドッゴーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
     },
     {
       "game": "mmsf2",
@@ -3016,7 +3016,7 @@
       "details": [
         "(敵)ズッガーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
     },
     {
       "game": "mmsf2",
@@ -3027,7 +3027,7 @@
       "details": [
         "(敵)ボボン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
     },
     {
       "game": "mmsf2",
@@ -3038,7 +3038,7 @@
       "details": [
         "(敵)ボボボン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
     },
     {
       "game": "mmsf2",
@@ -3049,7 +3049,7 @@
       "details": [
         "(敵)ボボボボン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
     },
     {
       "game": "mmsf2",
@@ -3060,7 +3060,7 @@
       "details": [
         "(敵)サワガニー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
     },
     {
       "game": "mmsf2",
@@ -3071,7 +3071,7 @@
       "details": [
         "(敵)カワニガー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
     },
     {
       "game": "mmsf2",
@@ -3082,7 +3082,7 @@
       "details": [
         "(敵)ウミニガー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
     },
     {
       "game": "mmsf2",
@@ -3093,7 +3093,7 @@
       "details": [
         "(敵)ネバーラ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
     },
     {
       "game": "mmsf2",
@@ -3104,7 +3104,7 @@
       "details": [
         "(敵)ベターラ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
     },
     {
       "game": "mmsf2",
@@ -3115,7 +3115,7 @@
       "details": [
         "(敵)ヌチャーラ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
     },
     {
       "game": "mmsf2",
@@ -3126,7 +3126,7 @@
       "details": [
         "(敵)スノーゴロン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
     },
     {
       "game": "mmsf2",
@@ -3137,7 +3137,7 @@
       "details": [
         "(敵)スノーゴロドン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
     },
     {
       "game": "mmsf2",
@@ -3148,7 +3148,7 @@
       "details": [
         "(敵)スノーゴロリンガ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
     },
     {
       "game": "mmsf2",
@@ -3159,7 +3159,7 @@
       "details": [
         "(敵)ピラニッシュ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
     },
     {
       "game": "mmsf2",
@@ -3170,7 +3170,7 @@
       "details": [
         "(敵)ピラニヤン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
     },
     {
       "game": "mmsf2",
@@ -3181,7 +3181,7 @@
       "details": [
         "(敵)ピラニッガ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
     },
     {
       "game": "mmsf2",
@@ -3192,7 +3192,7 @@
       "details": [
         "(敵)アイズ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
     },
     {
       "game": "mmsf2",
@@ -3203,7 +3203,7 @@
       "details": [
         "(敵)ガードアイ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
     },
     {
       "game": "mmsf2",
@@ -3214,7 +3214,7 @@
       "details": [
         "(敵)プロテクトアイ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
     },
     {
       "game": "mmsf2",
@@ -3225,7 +3225,7 @@
       "details": [
         "(敵)ホタロー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
     },
     {
       "game": "mmsf2",
@@ -3236,7 +3236,7 @@
       "details": [
         "(敵)ホタリーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
     },
     {
       "game": "mmsf2",
@@ -3247,7 +3247,7 @@
       "details": [
         "(敵)ホタリッガ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
     },
     {
       "game": "mmsf2",
@@ -3258,7 +3258,7 @@
       "details": [
         "(敵)ステルス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S076StealthLaser1.gif"
     },
     {
       "game": "mmsf2",
@@ -3269,7 +3269,7 @@
       "details": [
         "(敵)メガステルス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
     },
     {
       "game": "mmsf2",
@@ -3280,7 +3280,7 @@
       "details": [
         "(敵)ギガステルス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
     },
     {
       "game": "mmsf2",
@@ -3291,7 +3291,7 @@
       "details": [
         "(敵)エレミーラ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
     },
     {
       "game": "mmsf2",
@@ -3302,7 +3302,7 @@
       "details": [
         "(敵)エレマミー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
     },
     {
       "game": "mmsf2",
@@ -3313,7 +3313,7 @@
       "details": [
         "(敵)エレファラオ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
     },
     {
       "game": "mmsf2",
@@ -3324,7 +3324,7 @@
       "details": [
         "(敵)モジャヘイ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
     },
     {
       "game": "mmsf2",
@@ -3335,7 +3335,7 @@
       "details": [
         "(敵)モジャグンソウ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
     },
     {
       "game": "mmsf2",
@@ -3346,7 +3346,7 @@
       "details": [
         "(敵)モジャゲンスイ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
     },
     {
       "game": "mmsf2",
@@ -3357,7 +3357,7 @@
       "details": [
         "(敵)ヌッキー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
     },
     {
       "game": "mmsf2",
@@ -3368,7 +3368,7 @@
       "details": [
         "(敵)マネヌッキー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
     },
     {
       "game": "mmsf2",
@@ -3379,7 +3379,7 @@
       "details": [
         "(敵)バケヌッキー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
     },
     {
       "game": "mmsf2",
@@ -3390,7 +3390,7 @@
       "details": [
         "(敵)コガラシマル"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
     },
     {
       "game": "mmsf2",
@@ -3401,7 +3401,7 @@
       "details": [
         "(敵)タツマキマル"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
     },
     {
       "game": "mmsf2",
@@ -3412,7 +3412,7 @@
       "details": [
         "(敵)フウジンマル"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
     },
     {
       "game": "mmsf2",
@@ -3423,7 +3423,7 @@
       "details": [
         "(敵)フラッター"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
     },
     {
       "game": "mmsf2",
@@ -3434,7 +3434,7 @@
       "details": [
         "(敵)フラッタリオン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
     },
     {
       "game": "mmsf2",
@@ -3445,7 +3445,7 @@
       "details": [
         "(敵)フラッタライザー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
     },
     {
       "game": "mmsf2",
@@ -3456,7 +3456,7 @@
       "details": [
         "(敵)カカペット"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -3467,7 +3467,7 @@
       "details": [
         "(敵)カカペーニョ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -3478,7 +3478,7 @@
       "details": [
         "(敵)カカペギロ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -3489,7 +3489,7 @@
       "details": [
         "(敵)パサラン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
     },
     {
       "game": "mmsf2",
@@ -3500,7 +3500,7 @@
       "details": [
         "(敵)フワラン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
     },
     {
       "game": "mmsf2",
@@ -3511,7 +3511,7 @@
       "details": [
         "(敵)ポワラン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
     },
     {
       "game": "mmsf2",
@@ -3522,7 +3522,7 @@
       "details": [
         "(敵)ハンマリー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
     },
     {
       "game": "mmsf2",
@@ -3533,7 +3533,7 @@
       "details": [
         "(敵)ハンマリオ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
     },
     {
       "game": "mmsf2",
@@ -3544,7 +3544,7 @@
       "details": [
         "(敵)ハンマリドン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
     },
     {
       "game": "mmsf2",
@@ -3555,7 +3555,7 @@
       "details": [
         "(敵)ニョロフーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -3566,7 +3566,7 @@
       "details": [
         "(敵)ニョロバーン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -3577,7 +3577,7 @@
       "details": [
         "(敵)ニョロフンガー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
     },
     {
       "game": "mmsf2",
@@ -3588,7 +3588,7 @@
       "details": [
         "(敵)モノソード"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -3599,7 +3599,7 @@
       "details": [
         "(敵)モノソーディン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -3610,7 +3610,7 @@
       "details": [
         "(敵)モノソーディル"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -3621,7 +3621,7 @@
       "details": [
         "(敵)モアイアン"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
     },
     {
       "game": "mmsf2",
@@ -3632,7 +3632,7 @@
       "details": [
         "(敵)ストーンフェイス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
     },
     {
       "game": "mmsf2",
@@ -3643,7 +3643,7 @@
       "details": [
         "(敵)ジャイアントフェイス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
     },
     {
       "game": "mmsf2",
@@ -3654,7 +3654,7 @@
       "details": [
         "(敵)ヘルブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S112BlackHole1.gif"
     },
     {
       "game": "mmsf2",
@@ -3665,7 +3665,7 @@
       "details": [
         "(敵)キラーブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S113BlackHole2.gif"
     },
     {
       "game": "mmsf2",
@@ -3676,7 +3676,7 @@
       "details": [
         "(敵)デビルブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S114BlackHole3.gif"
     },
     {
       "game": "mmsf2",
@@ -3687,7 +3687,7 @@
       "details": [
         "(敵)バサリカ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
     },
     {
       "game": "mmsf2",
@@ -3698,7 +3698,7 @@
       "details": [
         "(敵)バサリグル"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
     },
     {
       "game": "mmsf2",
@@ -3709,7 +3709,7 @@
       "details": [
         "(敵)バサリッガー"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
     },
     {
       "game": "mmsf2",
@@ -3720,7 +3720,7 @@
       "details": [
         "(店)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
     },
     {
       "game": "mmsf2",
@@ -3731,7 +3731,7 @@
       "details": [
         "(店)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
     },
     {
       "game": "mmsf2",
@@ -3742,7 +3742,7 @@
       "details": [
         "(店)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
     },
     {
       "game": "mmsf2",
@@ -3753,7 +3753,7 @@
       "details": [
         "(店)じげんのハザマ1"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
     },
     {
       "game": "mmsf2",
@@ -3764,7 +3764,7 @@
       "details": [
         "(ミ)そうがんきょうの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S122ParalyseStage.gif"
     },
     {
       "game": "mmsf2",
@@ -3775,7 +3775,7 @@
       "details": [
         "(ラ)ナンスカいせき2の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S123ZetsuenStage.gif"
     },
     {
       "game": "mmsf2",
@@ -3786,7 +3786,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S124Recovery10.gif"
     },
     {
       "game": "mmsf2",
@@ -3797,7 +3797,7 @@
       "details": [
         "(店)ショッピングプラザの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S125Recovery30.gif"
     },
     {
       "game": "mmsf2",
@@ -3808,7 +3808,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S126Recovery50.gif"
     },
     {
       "game": "mmsf2",
@@ -3819,7 +3819,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S127Recovery80.gif"
     },
     {
       "game": "mmsf2",
@@ -3830,7 +3830,7 @@
       "details": [
         "(ラ)ナンスカのスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S128Recovery120.gif"
     },
     {
       "game": "mmsf2",
@@ -3841,7 +3841,7 @@
       "details": [
         "(店)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S129Recovery150.gif"
     },
     {
       "game": "mmsf2",
@@ -3852,7 +3852,7 @@
       "details": [
         "(ミ)ゆりかごの間"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S130Recovery200.gif"
     },
     {
       "game": "mmsf2",
@@ -3863,7 +3863,7 @@
       "details": [
         "(ミ)裏コダマタウンの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S131Recovery300.gif"
     },
     {
       "game": "mmsf2",
@@ -3874,7 +3874,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S132Barrier.gif"
     },
     {
       "game": "mmsf2",
@@ -3885,7 +3885,7 @@
       "details": [
         "(ラ)ナンスカのスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S133SuperBarrier.gif"
     },
     {
       "game": "mmsf2",
@@ -3897,7 +3897,7 @@
         "(ミ)いいんちょうの部屋の電波",
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S134AttackPanel.gif"
     },
     {
       "game": "mmsf2",
@@ -3908,7 +3908,7 @@
       "details": [
         "(ラ)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S135FukeheiPanel.gif"
     },
     {
       "game": "mmsf2",
@@ -3919,7 +3919,7 @@
       "details": [
         "(ミ)ナンスカいせき1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S136BusterPanel.gif"
     },
     {
       "game": "mmsf2",
@@ -3930,7 +3930,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S137Invisible.gif"
     },
     {
       "game": "mmsf2",
@@ -3941,7 +3941,7 @@
       "details": [
         "(ミ)ギザマロの部屋"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S138Whistle.gif"
     },
     {
       "game": "mmsf2",
@@ -3952,7 +3952,7 @@
       "details": [
         "(店)てんぼうだいの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
     },
     {
       "game": "mmsf2",
@@ -3963,7 +3963,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S140AreaEater.gif"
     },
     {
       "game": "mmsf2",
@@ -3974,7 +3974,7 @@
       "details": [
         "(店)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
     },
     {
       "game": "mmsf2",
@@ -3985,7 +3985,7 @@
       "details": [
         "(店)ナンスカちじょうえの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
     },
     {
       "game": "mmsf2",
@@ -3996,7 +3996,7 @@
       "details": [
         "(店)バミューダラビリンス"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S143DokuRingo.gif"
     },
     {
       "game": "mmsf2",
@@ -4007,7 +4007,7 @@
       "details": [
         "(店)じげんのハザマ1"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S144UragiriNoSusume.gif"
     },
     {
       "game": "mmsf2",
@@ -4018,7 +4018,7 @@
       "details": [
         "(店)じげんのハザマ1"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
     },
     {
       "game": "mmsf2",
@@ -4029,7 +4029,7 @@
       "details": [
         "(ラ)コダマタウンの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S146KusamuraStage.gif"
     },
     {
       "game": "mmsf2",
@@ -4040,7 +4040,7 @@
       "details": [
         "(ミ)ゲレンデ1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S147IceStage.gif"
     },
     {
       "game": "mmsf2",
@@ -4051,7 +4051,7 @@
       "details": [
         "(サ)スバルの母の依頼報酬"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S148HolyStage.gif"
     },
     {
       "game": "mmsf2",
@@ -4062,7 +4062,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S149MahiPlus.gif"
     },
     {
       "game": "mmsf2",
@@ -4073,7 +4073,7 @@
       "details": [
         "(初)スバルフォルダ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S150Attack+10.gif"
     },
     {
       "game": "mmsf2",
@@ -4084,7 +4084,7 @@
       "details": [
         "(敵)ファントム・ブラックEX/(敵)ファントムブラックSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M01PhantomBlack.gif"
     },
     {
       "game": "mmsf2",
@@ -4095,7 +4095,7 @@
       "details": [
         "(敵)ファントム・ブラックEX/(敵)ファントムブラックSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M02PhantomBlackEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4106,7 +4106,7 @@
       "details": [
         "(敵)ファントムブラックSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M03PhantomBlackSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4117,7 +4117,7 @@
       "details": [
         "(敵)イエティ・ブリザードEX/(敵)イエティ・ブリザードSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M04YetiBlizzard.gif"
     },
     {
       "game": "mmsf2",
@@ -4128,7 +4128,7 @@
       "details": [
         "(敵)イエティ・ブリザードEX/(敵)イエティ・ブリザードSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M05YetiBlizzardEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4139,7 +4139,7 @@
       "details": [
         "(敵)イエティ・ブリザードSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M06YetiBlizzardSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4150,7 +4150,7 @@
       "details": [
         "(敵)ブライEX/(敵)ブライSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M07Burai.gif"
     },
     {
       "game": "mmsf2",
@@ -4161,7 +4161,7 @@
       "details": [
         "(敵)ブライEX/(敵)ブライSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M08BuraiEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4172,7 +4172,7 @@
       "details": [
         "(敵)ブライSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M09BuraiSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4183,7 +4183,7 @@
       "details": [
         "(敵)ブラキオ・ウェーブEX/(敵)ブラキオ・ウェーブSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M10BrachioWave.gif"
     },
     {
       "game": "mmsf2",
@@ -4194,7 +4194,7 @@
       "details": [
         "(敵)ブラキオ・ウェーブEX/(敵)ブラキオ・ウェーブSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M11BrachioWaveEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4205,7 +4205,7 @@
       "details": [
         "(敵)ブラキオ・ウェーブSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M12BrachioWaveSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4216,7 +4216,7 @@
       "details": [
         "(敵)コンドル・ジオグラフEX/(敵)コンドル・ジオグラフSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M13CondorGeograph.gif"
     },
     {
       "game": "mmsf2",
@@ -4227,7 +4227,7 @@
       "details": [
         "(敵)コンドル・ジオグラフEX/(敵)コンドル・ジオグラフSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M14CondorGeographEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4238,7 +4238,7 @@
       "details": [
         "(敵)コンドル・ジオグラフSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M15CondorGeographSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4249,7 +4249,7 @@
       "details": [
         "(敵)エンプティーEX/(敵)エンプティーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M16Empty.gif"
     },
     {
       "game": "mmsf2",
@@ -4260,7 +4260,7 @@
       "details": [
         "(敵)エンプティーEX/(敵)エンプティーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M17EmptyEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4271,7 +4271,7 @@
       "details": [
         "(敵)エンプティーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M18EmptySP.gif"
     },
     {
       "game": "mmsf2",
@@ -4282,7 +4282,7 @@
       "details": [
         "(敵)オックス・ファイアEX/(敵)オックス・ファイアSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M19OxFire.gif"
     },
     {
       "game": "mmsf2",
@@ -4293,7 +4293,7 @@
       "details": [
         "(敵)オックス・ファイアEX/(敵)オックス・ファイアSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M20OxFireEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4304,7 +4304,7 @@
       "details": [
         "(敵)オックス・ファイアSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M21OxFireSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4315,7 +4315,7 @@
       "details": [
         "(敵)ハープ・ノートEX/(敵)ハープ・ノートSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M22HarpNote.gif"
     },
     {
       "game": "mmsf2",
@@ -4326,7 +4326,7 @@
       "details": [
         "(敵)ハープ・ノートEX/(敵)ハープ・ノートSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M23HarpNoteEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4337,7 +4337,7 @@
       "details": [
         "(敵)ハープ・ノートSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M24HarpNoteSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4348,7 +4348,7 @@
       "details": [
         "(敵)オヒュカス・クイーンEX/(敵)オヒュカス・クイーンSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M25OphiuchusQueen.gif"
     },
     {
       "game": "mmsf2",
@@ -4359,7 +4359,7 @@
       "details": [
         "(敵)オヒュカス・クイーンEX/(敵)オヒュカス・クイーンSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M26OphiuchusQueenEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4370,7 +4370,7 @@
       "details": [
         "(敵)オヒュカス・クイーンSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M27OphiuchusQueenSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4381,7 +4381,7 @@
       "details": [
         "(敵)ジェミニ・スパークEX/(敵)ジェミニ・スパークSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M28GeminiSpark.gif"
     },
     {
       "game": "mmsf2",
@@ -4392,7 +4392,7 @@
       "details": [
         "(敵)ジェミニ・スパークEX/(敵)ジェミニ・スパークSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M29GeminiSparkEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4403,7 +4403,7 @@
       "details": [
         "(敵)ジェミニ・スパークSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M30GeminiSparkSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4414,7 +4414,7 @@
       "details": [
         "(敵)キャンサー・バブルEX/(敵)キャンサー・バブルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M31CancerBubble.gif"
     },
     {
       "game": "mmsf2",
@@ -4425,7 +4425,7 @@
       "details": [
         "(敵)キャンサー・バブルEX/(敵)キャンサー・バブルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M32CancerBubbleEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4436,7 +4436,7 @@
       "details": [
         "(敵)キャンサー・バブルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M33CancerBubbleSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4447,7 +4447,7 @@
       "details": [
         "(敵)ゴート・カンフーEX/(敵)ゴート・カンフーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M34GoatKungfu.gif"
     },
     {
       "game": "mmsf2",
@@ -4458,7 +4458,7 @@
       "details": [
         "(敵)ゴート・カンフーEX/(敵)ゴート・カンフーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M35GoatKungfuEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4469,7 +4469,7 @@
       "details": [
         "(敵)ゴート・カンフーSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M36GoatKungfuSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4480,7 +4480,7 @@
       "details": [
         "(敵)オリガ・ジェネラルEX/(敵)オリガ・ジェネラルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M37AurigaGeneral.gif"
     },
     {
       "game": "mmsf2",
@@ -4491,7 +4491,7 @@
       "details": [
         "(敵)オリガ・ジェネラルEX/(敵)オリガ・ジェネラルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M38AurigaGeneralEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4502,7 +4502,7 @@
       "details": [
         "(敵)オリガ・ジェネラルSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M39AurigaGeneralSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4513,7 +4513,7 @@
       "details": [
         "(敵)アポロン・フレイムEX/(敵)アポロン・フレイムSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M40ApolloFlame.gif"
     },
     {
       "game": "mmsf2",
@@ -4524,7 +4524,7 @@
       "details": [
         "(敵)アポロン・フレイムEX/(敵)アポロン・フレイムSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M41ApolloFlameEX.gif"
     },
     {
       "game": "mmsf2",
@@ -4535,7 +4535,7 @@
       "details": [
         "(敵)アポロン・フレイムSP"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/M42ApolloFlameSP.gif"
     },
     {
       "game": "mmsf2",
@@ -4557,7 +4557,7 @@
       "details": [
         "(店)じげんのハザマ1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb1GeminiThunder.gif"
     },
     {
       "game": "mmsf2",
@@ -4568,7 +4568,7 @@
       "details": [
         "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb2BuraiBreak.gif"
     },
     {
       "game": "mmsf2",
@@ -4579,7 +4579,7 @@
       "details": [
         "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb3ThousandKick.gif"
     },
     {
       "game": "mmsf2",
@@ -4590,7 +4590,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb4PoisonPharaoh.gif"
     },
     {
       "game": "mmsf2",
@@ -4601,7 +4601,7 @@
       "details": [
         "(メ)最終話･天地さんから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gb5NadareDeiko.gif"
     },
     {
       "game": "mmsf2",
@@ -4612,7 +4612,7 @@
       "details": [
         "(店)じげんのハザマ1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs1GorgonEye.gif"
     },
     {
       "game": "mmsf2",
@@ -4623,7 +4623,7 @@
       "details": [
         "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs2GekiryuuWave.gif"
     },
     {
       "game": "mmsf2",
@@ -4634,7 +4634,7 @@
       "details": [
         "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs3BusterMAX.gif"
     },
     {
       "game": "mmsf2",
@@ -4645,7 +4645,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs4DarknessHole.gif"
     },
     {
       "game": "mmsf2",
@@ -4656,7 +4656,7 @@
       "details": [
         "(メ)最終話･天地さんから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gs5FlyingImpact.gif"
     },
     {
       "game": "mmsf2",
@@ -4667,7 +4667,7 @@
       "details": [
         "(店)じげんのハザマ1の電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd1OxTackle.gif"
     },
     {
       "game": "mmsf2",
@@ -4678,7 +4678,7 @@
       "details": [
         "(ミ)じげんのハザマ2:裏世界の電波体を全て倒すと開く扉"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd2EmptyMagic.gif"
     },
     {
       "game": "mmsf2",
@@ -4689,7 +4689,7 @@
       "details": [
         "(メ)アポロンフレイム撃破後・LM・シンから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd3Normal+50.gif"
     },
     {
       "game": "mmsf2",
@@ -4700,7 +4700,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd4BreakCountBomb.gif"
     },
     {
       "game": "mmsf2",
@@ -4711,7 +4711,7 @@
       "details": [
         "(メ)最終話・天地さんから"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/Gd5PhantomSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -4733,7 +4733,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4742,7 +4742,7 @@
       "version": null,
       "name": "キャノン★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4753,7 +4753,7 @@
       "details": [
         "(店)BIGWAVE"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S001Cannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4762,7 +4762,7 @@
       "version": null,
       "name": "プラスキャノン★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4771,7 +4771,7 @@
       "version": null,
       "name": "プラスキャノン★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4780,7 +4780,7 @@
       "version": null,
       "name": "プラスキャノン★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S002PlusCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4789,7 +4789,7 @@
       "version": null,
       "name": "ヘビーキャノン★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4798,7 +4798,7 @@
       "version": null,
       "name": "ヘビーキャノン★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4809,7 +4809,7 @@
       "details": [
         "(店)裏TKタワー2:ゴールド"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S003HeavyCannon.gif"
     },
     {
       "game": "mmsf2",
@@ -4818,7 +4818,7 @@
       "version": null,
       "name": "プラズマガン1★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
     },
     {
       "game": "mmsf2",
@@ -4827,7 +4827,7 @@
       "version": null,
       "name": "プラズマガン1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
     },
     {
       "game": "mmsf2",
@@ -4838,7 +4838,7 @@
       "details": [
         "(金)コダマタウンの電波"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S004PlasmaGun1.gif"
     },
     {
       "game": "mmsf2",
@@ -4849,7 +4849,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
     },
     {
       "game": "mmsf2",
@@ -4858,7 +4858,7 @@
       "version": null,
       "name": "プラズマガン2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
     },
     {
       "game": "mmsf2",
@@ -4867,7 +4867,7 @@
       "version": null,
       "name": "プラズマガン2★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S005PlasmaGun2.gif"
     },
     {
       "game": "mmsf2",
@@ -4878,7 +4878,7 @@
       "details": [
         "(ミ)じげんのハザマ１:隠し通路"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
     },
     {
       "game": "mmsf2",
@@ -4887,7 +4887,7 @@
       "version": null,
       "name": "プラズマガン3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
     },
     {
       "game": "mmsf2",
@@ -4898,7 +4898,7 @@
       "details": [
         "(店)裏TKタワー2:プラチナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S006PlasmaGun3.gif"
     },
     {
       "game": "mmsf2",
@@ -4909,7 +4909,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
     },
     {
       "game": "mmsf2",
@@ -4918,7 +4918,7 @@
       "version": null,
       "name": "エアスプレッド1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
     },
     {
       "game": "mmsf2",
@@ -4927,7 +4927,7 @@
       "version": null,
       "name": "エアスプレッド1★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S007AirSpreader1.gif"
     },
     {
       "game": "mmsf2",
@@ -4936,7 +4936,7 @@
       "version": null,
       "name": "エアスプレッド2★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
     },
     {
       "game": "mmsf2",
@@ -4945,7 +4945,7 @@
       "version": null,
       "name": "エアスプレッド2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
     },
     {
       "game": "mmsf2",
@@ -4954,7 +4954,7 @@
       "version": null,
       "name": "エアスプレッド2★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S008AirSpreader2.gif"
     },
     {
       "game": "mmsf2",
@@ -4963,7 +4963,7 @@
       "version": null,
       "name": "エアスプレッド3★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
     },
     {
       "game": "mmsf2",
@@ -4972,7 +4972,7 @@
       "version": null,
       "name": "エアスプレッド3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
     },
     {
       "game": "mmsf2",
@@ -4981,7 +4981,7 @@
       "version": null,
       "name": "エアスプレッド3★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S009AirSpreader3.gif"
     },
     {
       "game": "mmsf2",
@@ -4992,7 +4992,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
     },
     {
       "game": "mmsf2",
@@ -5001,7 +5001,7 @@
       "version": null,
       "name": "レーダーミサイル1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
     },
     {
       "game": "mmsf2",
@@ -5010,7 +5010,7 @@
       "version": null,
       "name": "レーダーミサイル1★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S010RadarMissile1.gif"
     },
     {
       "game": "mmsf2",
@@ -5019,7 +5019,7 @@
       "version": null,
       "name": "レーダーミサイル2★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
     },
     {
       "game": "mmsf2",
@@ -5028,7 +5028,7 @@
       "version": null,
       "name": "レーダーミサイル2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
     },
     {
       "game": "mmsf2",
@@ -5037,7 +5037,7 @@
       "version": null,
       "name": "レーダーミサイル2★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S011RadarMissile2.gif"
     },
     {
       "game": "mmsf2",
@@ -5048,7 +5048,7 @@
       "details": [
         "(ミ)じげんのハザマ1:イェティIF、ブラキオIF、キャンサーIFの封印の扉の奥"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
     },
     {
       "game": "mmsf2",
@@ -5057,7 +5057,7 @@
       "version": null,
       "name": "レーダーミサイル3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
     },
     {
       "game": "mmsf2",
@@ -5068,7 +5068,7 @@
       "details": [
         "(店)裏TKタワー2:プラチナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S012RadarMissile3.gif"
     },
     {
       "game": "mmsf2",
@@ -5077,7 +5077,7 @@
       "version": null,
       "name": "シンクロフック1★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
     },
     {
       "game": "mmsf2",
@@ -5086,7 +5086,7 @@
       "version": null,
       "name": "シンクロフック1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
     },
     {
       "game": "mmsf2",
@@ -5095,7 +5095,7 @@
       "version": null,
       "name": "シンクロフック1★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S013SynchroHook1.gif"
     },
     {
       "game": "mmsf2",
@@ -5104,7 +5104,7 @@
       "version": null,
       "name": "シンクロフック2★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
     },
     {
       "game": "mmsf2",
@@ -5113,7 +5113,7 @@
       "version": null,
       "name": "シンクロフック2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
     },
     {
       "game": "mmsf2",
@@ -5122,7 +5122,7 @@
       "version": null,
       "name": "シンクロフック2★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S014SynchroHook2.gif"
     },
     {
       "game": "mmsf2",
@@ -5133,7 +5133,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
     },
     {
       "game": "mmsf2",
@@ -5142,7 +5142,7 @@
       "version": null,
       "name": "シンクロフック3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
     },
     {
       "game": "mmsf2",
@@ -5153,7 +5153,7 @@
       "details": [
         "(店)裏TKタワー2:ゴールド"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S015SynchroHook3.gif"
     },
     {
       "game": "mmsf2",
@@ -5164,7 +5164,7 @@
       "details": [
         "(通)Wi-Fi対戦で10戦"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
     },
     {
       "game": "mmsf2",
@@ -5173,7 +5173,7 @@
       "version": null,
       "name": "ミニグレネード1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
     },
     {
       "game": "mmsf2",
@@ -5182,7 +5182,7 @@
       "version": null,
       "name": "ミニグレネード1★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S016MiniGrenade1.gif"
     },
     {
       "game": "mmsf2",
@@ -5191,7 +5191,7 @@
       "version": null,
       "name": "ミニグレネード2★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
     },
     {
       "game": "mmsf2",
@@ -5200,7 +5200,7 @@
       "version": null,
       "name": "ミニグレネード2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
     },
     {
       "game": "mmsf2",
@@ -5211,7 +5211,7 @@
       "details": [
         "(金)ドンブラー村のスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S017MiniGrenade2.gif"
     },
     {
       "game": "mmsf2",
@@ -5220,7 +5220,7 @@
       "version": null,
       "name": "ミニグレネード3★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
     },
     {
       "game": "mmsf2",
@@ -5229,7 +5229,7 @@
       "version": null,
       "name": "ミニグレネード3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
     },
     {
       "game": "mmsf2",
@@ -5238,7 +5238,7 @@
       "version": null,
       "name": "ミニグレネード3★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S018MiniGrenade3.gif"
     },
     {
       "game": "mmsf2",
@@ -5247,7 +5247,7 @@
       "version": null,
       "name": "ヒートグレネード★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5256,7 +5256,7 @@
       "version": null,
       "name": "ヒートグレネード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5265,7 +5265,7 @@
       "version": null,
       "name": "ヒートグレネード★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S019HeatGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5274,7 +5274,7 @@
       "version": null,
       "name": "グリーングレネード★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5283,7 +5283,7 @@
       "version": null,
       "name": "グリーングレネード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5294,7 +5294,7 @@
       "details": [
         "(ミ)裏ナンスカちじょうえ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S020GreenGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5305,7 +5305,7 @@
       "details": [
         "(ミ)じげんのハザマ1:イェティIF、ブラキオIF、キャンサーIFの封印の扉の奥"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5314,7 +5314,7 @@
       "version": null,
       "name": "アイスグレネード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5323,7 +5323,7 @@
       "version": null,
       "name": "アイスグレネード★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S021IceGrenade.gif"
     },
     {
       "game": "mmsf2",
@@ -5332,7 +5332,7 @@
       "version": null,
       "name": "ソード★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
     },
     {
       "game": "mmsf2",
@@ -5341,7 +5341,7 @@
       "version": null,
       "name": "ソード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
     },
     {
       "game": "mmsf2",
@@ -5350,7 +5350,7 @@
       "version": null,
       "name": "ソード★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S022Sword.gif"
     },
     {
       "game": "mmsf2",
@@ -5359,7 +5359,7 @@
       "version": null,
       "name": "ワイドソード★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5368,7 +5368,7 @@
       "version": null,
       "name": "ワイドソード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5377,7 +5377,7 @@
       "version": null,
       "name": "ワイドソード★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S023WideSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5386,7 +5386,7 @@
       "version": null,
       "name": "ロングソード★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5395,7 +5395,7 @@
       "version": null,
       "name": "ロングソード★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5404,7 +5404,7 @@
       "version": null,
       "name": "ロングソード★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S024LongSword.gif"
     },
     {
       "game": "mmsf2",
@@ -5415,7 +5415,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5424,7 +5424,7 @@
       "version": null,
       "name": "ホワイトメテオ★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5435,7 +5435,7 @@
       "details": [
         "(ミ)じげんのハザマ2:通信対戦50戦以上で開く扉の奥"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S025WhiteMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5446,7 +5446,7 @@
       "details": [
         "(暗)あんごうメール"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5455,7 +5455,7 @@
       "version": null,
       "name": "シルバーメテオ★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5466,7 +5466,7 @@
       "details": [
         "(店)裏TKタワー2:ゴールド"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S026SilverMeteor.gif"
     },
     {
       "game": "mmsf2",
@@ -5475,7 +5475,7 @@
       "version": null,
       "name": "グレートアックス★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
     },
     {
       "game": "mmsf2",
@@ -5484,7 +5484,7 @@
       "version": null,
       "name": "グレートアックス★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
     },
     {
       "game": "mmsf2",
@@ -5495,7 +5495,7 @@
       "details": [
         "(店)裏TKタワー2:ブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S027GreatAxe.gif"
     },
     {
       "game": "mmsf2",
@@ -5504,7 +5504,7 @@
       "version": null,
       "name": "ガーディアン★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
     },
     {
       "game": "mmsf2",
@@ -5513,7 +5513,7 @@
       "version": null,
       "name": "ガーディアン★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
     },
     {
       "game": "mmsf2",
@@ -5524,7 +5524,7 @@
       "details": [
         "(店)裏TKタワー2:ブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S029Guardian.gif"
     },
     {
       "game": "mmsf2",
@@ -5533,7 +5533,7 @@
       "version": null,
       "name": "グランドウェーブ1★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
     },
     {
       "game": "mmsf2",
@@ -5544,7 +5544,7 @@
       "details": [
         "(敵)メットリオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
     },
     {
       "game": "mmsf2",
@@ -5555,7 +5555,7 @@
       "details": [
         "(敵)メットリオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S031GroundWave1.gif"
     },
     {
       "game": "mmsf2",
@@ -5566,7 +5566,7 @@
       "details": [
         "(敵)メットリオ2G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
     },
     {
       "game": "mmsf2",
@@ -5577,7 +5577,7 @@
       "details": [
         "(敵)メットリオ2G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
     },
     {
       "game": "mmsf2",
@@ -5588,7 +5588,7 @@
       "details": [
         "(敵)メットリオ2G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S032GroundWave2.gif"
     },
     {
       "game": "mmsf2",
@@ -5599,7 +5599,7 @@
       "details": [
         "(敵)メットリオ3G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
     },
     {
       "game": "mmsf2",
@@ -5610,7 +5610,7 @@
       "details": [
         "(敵)メットリオ3G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
     },
     {
       "game": "mmsf2",
@@ -5621,7 +5621,7 @@
       "details": [
         "(敵)メットリオ3G"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S033GroundWave3.gif"
     },
     {
       "game": "mmsf2",
@@ -5632,7 +5632,7 @@
       "details": [
         "(敵)バルカナG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
     },
     {
       "game": "mmsf2",
@@ -5643,7 +5643,7 @@
       "details": [
         "(敵)バルカナG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
     },
     {
       "game": "mmsf2",
@@ -5654,7 +5654,7 @@
       "details": [
         "(敵)バルカナG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S034MadVulcan1.gif"
     },
     {
       "game": "mmsf2",
@@ -5665,7 +5665,7 @@
       "details": [
         "(敵)バルガンナーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
     },
     {
       "game": "mmsf2",
@@ -5676,7 +5676,7 @@
       "details": [
         "(敵)バルガンナーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
     },
     {
       "game": "mmsf2",
@@ -5687,7 +5687,7 @@
       "details": [
         "(敵)バルガンナーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S035MadVulcan2.gif"
     },
     {
       "game": "mmsf2",
@@ -5698,7 +5698,7 @@
       "details": [
         "(敵)バルスナイパーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
     },
     {
       "game": "mmsf2",
@@ -5709,7 +5709,7 @@
       "details": [
         "(敵)バルスナイパーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
     },
     {
       "game": "mmsf2",
@@ -5720,7 +5720,7 @@
       "details": [
         "(敵)バルスナイパーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S036MadVulcan3.gif"
     },
     {
       "game": "mmsf2",
@@ -5731,7 +5731,7 @@
       "details": [
         "(敵)キルミィG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
     },
     {
       "game": "mmsf2",
@@ -5742,7 +5742,7 @@
       "details": [
         "(敵)キルミィG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
     },
     {
       "game": "mmsf2",
@@ -5753,7 +5753,7 @@
       "details": [
         "(敵)キルミィG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S037DeathScythe1.gif"
     },
     {
       "game": "mmsf2",
@@ -5764,7 +5764,7 @@
       "details": [
         "(敵)キルジョーカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
     },
     {
       "game": "mmsf2",
@@ -5775,7 +5775,7 @@
       "details": [
         "(敵)キルジョーカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
     },
     {
       "game": "mmsf2",
@@ -5786,7 +5786,7 @@
       "details": [
         "(敵)キルジョーカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S038DeathScythe2.gif"
     },
     {
       "game": "mmsf2",
@@ -5797,7 +5797,7 @@
       "details": [
         "(敵)キルデーモンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
     },
     {
       "game": "mmsf2",
@@ -5808,7 +5808,7 @@
       "details": [
         "(敵)キルデーモンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
     },
     {
       "game": "mmsf2",
@@ -5819,7 +5819,7 @@
       "details": [
         "(敵)キルデーモンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S039DeathScythe3.gif"
     },
     {
       "game": "mmsf2",
@@ -5830,7 +5830,7 @@
       "details": [
         "(敵)オロロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
     },
     {
       "game": "mmsf2",
@@ -5841,7 +5841,7 @@
       "details": [
         "(敵)オロロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
     },
     {
       "game": "mmsf2",
@@ -5852,7 +5852,7 @@
       "details": [
         "(敵)オロロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S040OroronHat1.gif"
     },
     {
       "game": "mmsf2",
@@ -5863,7 +5863,7 @@
       "details": [
         "(敵)オルルンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
     },
     {
       "game": "mmsf2",
@@ -5874,7 +5874,7 @@
       "details": [
         "(敵)オルルンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
     },
     {
       "game": "mmsf2",
@@ -5885,7 +5885,7 @@
       "details": [
         "(敵)オルルンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S041OroronHat2.gif"
     },
     {
       "game": "mmsf2",
@@ -5896,7 +5896,7 @@
       "details": [
         "(敵)オリリンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
     },
     {
       "game": "mmsf2",
@@ -5907,7 +5907,7 @@
       "details": [
         "(敵)オリリンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
     },
     {
       "game": "mmsf2",
@@ -5918,7 +5918,7 @@
       "details": [
         "(敵)オリリンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S042OroronHat3.gif"
     },
     {
       "game": "mmsf2",
@@ -5929,7 +5929,7 @@
       "details": [
         "(敵)ラビジェットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
     },
     {
       "game": "mmsf2",
@@ -5940,7 +5940,7 @@
       "details": [
         "(敵)ラビジェットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
     },
     {
       "game": "mmsf2",
@@ -5951,7 +5951,7 @@
       "details": [
         "(敵)ラビジェットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S043JetSki1.gif"
     },
     {
       "game": "mmsf2",
@@ -5962,7 +5962,7 @@
       "details": [
         "(敵)ラビロケットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
     },
     {
       "game": "mmsf2",
@@ -5973,7 +5973,7 @@
       "details": [
         "(敵)ラビロケットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
     },
     {
       "game": "mmsf2",
@@ -5984,7 +5984,7 @@
       "details": [
         "(敵)ラビロケットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S044JetSki2.gif"
     },
     {
       "game": "mmsf2",
@@ -5995,7 +5995,7 @@
       "details": [
         "(敵)ラビニトロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
     },
     {
       "game": "mmsf2",
@@ -6006,7 +6006,7 @@
       "details": [
         "(敵)ラビニトロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
     },
     {
       "game": "mmsf2",
@@ -6017,7 +6017,7 @@
       "details": [
         "(敵)ラビニトロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S045JetSki3.gif"
     },
     {
       "game": "mmsf2",
@@ -6028,7 +6028,7 @@
       "details": [
         "(敵)モエローダーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
     },
     {
       "game": "mmsf2",
@@ -6039,7 +6039,7 @@
       "details": [
         "(敵)モエローダーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
     },
     {
       "game": "mmsf2",
@@ -6050,7 +6050,7 @@
       "details": [
         "(敵)モエローダーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S046MoeRing1.gif"
     },
     {
       "game": "mmsf2",
@@ -6061,7 +6061,7 @@
       "details": [
         "(敵)モエモーターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
     },
     {
       "game": "mmsf2",
@@ -6072,7 +6072,7 @@
       "details": [
         "(敵)モエモーターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
     },
     {
       "game": "mmsf2",
@@ -6083,7 +6083,7 @@
       "details": [
         "(敵)モエモーターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S047MoeRing2.gif"
     },
     {
       "game": "mmsf2",
@@ -6094,7 +6094,7 @@
       "details": [
         "(敵)モエバイカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
     },
     {
       "game": "mmsf2",
@@ -6105,7 +6105,7 @@
       "details": [
         "(敵)モエバイカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
     },
     {
       "game": "mmsf2",
@@ -6116,7 +6116,7 @@
       "details": [
         "(敵)モエバイカーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S048MoeRing3.gif"
     },
     {
       "game": "mmsf2",
@@ -6127,7 +6127,7 @@
       "details": [
         "(敵)ダバダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
     },
     {
       "game": "mmsf2",
@@ -6138,7 +6138,7 @@
       "details": [
         "(敵)ダバダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
     },
     {
       "game": "mmsf2",
@@ -6149,7 +6149,7 @@
       "details": [
         "(敵)ダバダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S049DabaFlame1.gif"
     },
     {
       "game": "mmsf2",
@@ -6160,7 +6160,7 @@
       "details": [
         "(敵)ピョコダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
     },
     {
       "game": "mmsf2",
@@ -6171,7 +6171,7 @@
       "details": [
         "(敵)ピョコダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
     },
     {
       "game": "mmsf2",
@@ -6182,7 +6182,7 @@
       "details": [
         "(敵)ピョコダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S050DabaFlame2.gif"
     },
     {
       "game": "mmsf2",
@@ -6193,7 +6193,7 @@
       "details": [
         "(敵)ジャカダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
     },
     {
       "game": "mmsf2",
@@ -6204,7 +6204,7 @@
       "details": [
         "(敵)ジャカダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
     },
     {
       "game": "mmsf2",
@@ -6215,7 +6215,7 @@
       "details": [
         "(敵)ジャカダンスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S051DabaFlame3.gif"
     },
     {
       "game": "mmsf2",
@@ -6226,7 +6226,7 @@
       "details": [
         "(敵)ドッカーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
     },
     {
       "game": "mmsf2",
@@ -6237,7 +6237,7 @@
       "details": [
         "(敵)ドッカーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
     },
     {
       "game": "mmsf2",
@@ -6248,7 +6248,7 @@
       "details": [
         "(敵)ドッカーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S052HeatUpper1.gif"
     },
     {
       "game": "mmsf2",
@@ -6259,7 +6259,7 @@
       "details": [
         "(敵)ドッゴーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
     },
     {
       "game": "mmsf2",
@@ -6270,7 +6270,7 @@
       "details": [
         "(敵)ドッゴーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
     },
     {
       "game": "mmsf2",
@@ -6281,7 +6281,7 @@
       "details": [
         "(敵)ドッゴーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S053HeatUpper2.gif"
     },
     {
       "game": "mmsf2",
@@ -6292,7 +6292,7 @@
       "details": [
         "(敵)ズッガーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
     },
     {
       "game": "mmsf2",
@@ -6303,7 +6303,7 @@
       "details": [
         "(敵)ズッガーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
     },
     {
       "game": "mmsf2",
@@ -6314,7 +6314,7 @@
       "details": [
         "(敵)ズッガーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S054HeatUpper3.gif"
     },
     {
       "game": "mmsf2",
@@ -6325,7 +6325,7 @@
       "details": [
         "(敵)ボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
     },
     {
       "game": "mmsf2",
@@ -6336,7 +6336,7 @@
       "details": [
         "(敵)ボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
     },
     {
       "game": "mmsf2",
@@ -6347,7 +6347,7 @@
       "details": [
         "(敵)ボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S055Bobobombomb1.gif"
     },
     {
       "game": "mmsf2",
@@ -6358,7 +6358,7 @@
       "details": [
         "(敵)ボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
     },
     {
       "game": "mmsf2",
@@ -6369,7 +6369,7 @@
       "details": [
         "(敵)ボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
     },
     {
       "game": "mmsf2",
@@ -6380,7 +6380,7 @@
       "details": [
         "(敵)ボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S056Bobobombomb2.gif"
     },
     {
       "game": "mmsf2",
@@ -6391,7 +6391,7 @@
       "details": [
         "(敵)ボボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
     },
     {
       "game": "mmsf2",
@@ -6402,7 +6402,7 @@
       "details": [
         "(敵)ボボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
     },
     {
       "game": "mmsf2",
@@ -6413,7 +6413,7 @@
       "details": [
         "(敵)ボボボボンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S057Bobobombomb3.gif"
     },
     {
       "game": "mmsf2",
@@ -6424,7 +6424,7 @@
       "details": [
         "(敵)サワガニーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
     },
     {
       "game": "mmsf2",
@@ -6435,7 +6435,7 @@
       "details": [
         "(敵)サワガニーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
     },
     {
       "game": "mmsf2",
@@ -6446,7 +6446,7 @@
       "details": [
         "(敵)サワガニーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S058ChainBubble1.gif"
     },
     {
       "game": "mmsf2",
@@ -6457,7 +6457,7 @@
       "details": [
         "(敵)カワニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
     },
     {
       "game": "mmsf2",
@@ -6468,7 +6468,7 @@
       "details": [
         "(敵)カワニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
     },
     {
       "game": "mmsf2",
@@ -6479,7 +6479,7 @@
       "details": [
         "(敵)カワニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S059ChainBubble2.gif"
     },
     {
       "game": "mmsf2",
@@ -6490,7 +6490,7 @@
       "details": [
         "(敵)ウミニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
     },
     {
       "game": "mmsf2",
@@ -6501,7 +6501,7 @@
       "details": [
         "(敵)ウミニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
     },
     {
       "game": "mmsf2",
@@ -6512,7 +6512,7 @@
       "details": [
         "(敵)ウミニガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S060ChainBubble3.gif"
     },
     {
       "game": "mmsf2",
@@ -6523,7 +6523,7 @@
       "details": [
         "(敵)ネバーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
     },
     {
       "game": "mmsf2",
@@ -6534,7 +6534,7 @@
       "details": [
         "(敵)ネバーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
     },
     {
       "game": "mmsf2",
@@ -6545,7 +6545,7 @@
       "details": [
         "(敵)ネバーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S061NeverRain1.gif"
     },
     {
       "game": "mmsf2",
@@ -6556,7 +6556,7 @@
       "details": [
         "(敵)ベターラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
     },
     {
       "game": "mmsf2",
@@ -6567,7 +6567,7 @@
       "details": [
         "(敵)ベターラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
     },
     {
       "game": "mmsf2",
@@ -6578,7 +6578,7 @@
       "details": [
         "(敵)ベターラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S062NeverRain2.gif"
     },
     {
       "game": "mmsf2",
@@ -6589,7 +6589,7 @@
       "details": [
         "(敵)ヌチャーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
     },
     {
       "game": "mmsf2",
@@ -6600,7 +6600,7 @@
       "details": [
         "(敵)ヌチャーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
     },
     {
       "game": "mmsf2",
@@ -6611,7 +6611,7 @@
       "details": [
         "(敵)ヌチャーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S063NeverRain3.gif"
     },
     {
       "game": "mmsf2",
@@ -6622,7 +6622,7 @@
       "details": [
         "(敵)スノーゴロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
     },
     {
       "game": "mmsf2",
@@ -6633,7 +6633,7 @@
       "details": [
         "(敵)スノーゴロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
     },
     {
       "game": "mmsf2",
@@ -6644,7 +6644,7 @@
       "details": [
         "(敵)スノーゴロンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S064SnowBall1.gif"
     },
     {
       "game": "mmsf2",
@@ -6655,7 +6655,7 @@
       "details": [
         "(敵)スノーゴロドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
     },
     {
       "game": "mmsf2",
@@ -6666,7 +6666,7 @@
       "details": [
         "(敵)スノーゴロドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
     },
     {
       "game": "mmsf2",
@@ -6677,7 +6677,7 @@
       "details": [
         "(敵)スノーゴロドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S065SnowBall2.gif"
     },
     {
       "game": "mmsf2",
@@ -6688,7 +6688,7 @@
       "details": [
         "(敵)スノーゴロリンガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
     },
     {
       "game": "mmsf2",
@@ -6699,7 +6699,7 @@
       "details": [
         "(敵)スノーゴロリンガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
     },
     {
       "game": "mmsf2",
@@ -6710,7 +6710,7 @@
       "details": [
         "(敵)スノーゴロリンガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S066SnowBall3.gif"
     },
     {
       "game": "mmsf2",
@@ -6721,7 +6721,7 @@
       "details": [
         "(敵)ピラニッシュG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
     },
     {
       "game": "mmsf2",
@@ -6732,7 +6732,7 @@
       "details": [
         "(敵)ピラニッシュG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
     },
     {
       "game": "mmsf2",
@@ -6743,7 +6743,7 @@
       "details": [
         "(敵)ピラニッシュG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S067PirahnaKiss1.gif"
     },
     {
       "game": "mmsf2",
@@ -6754,7 +6754,7 @@
       "details": [
         "(敵)ピラニヤンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
     },
     {
       "game": "mmsf2",
@@ -6765,7 +6765,7 @@
       "details": [
         "(敵)ピラニヤンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
     },
     {
       "game": "mmsf2",
@@ -6776,7 +6776,7 @@
       "details": [
         "(敵)ピラニヤンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S068PirahnaKiss2.gif"
     },
     {
       "game": "mmsf2",
@@ -6787,7 +6787,7 @@
       "details": [
         "(敵)ピラニッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
     },
     {
       "game": "mmsf2",
@@ -6798,7 +6798,7 @@
       "details": [
         "(敵)ピラニッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
     },
     {
       "game": "mmsf2",
@@ -6809,7 +6809,7 @@
       "details": [
         "(敵)ピラニッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S069PirahnaKiss3.gif"
     },
     {
       "game": "mmsf2",
@@ -6820,7 +6820,7 @@
       "details": [
         "(敵)アイズG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
     },
     {
       "game": "mmsf2",
@@ -6831,7 +6831,7 @@
       "details": [
         "(敵)アイズG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
     },
     {
       "game": "mmsf2",
@@ -6842,7 +6842,7 @@
       "details": [
         "(敵)アイズG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S070VolticEye1.gif"
     },
     {
       "game": "mmsf2",
@@ -6853,7 +6853,7 @@
       "details": [
         "(敵)ガードアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
     },
     {
       "game": "mmsf2",
@@ -6864,7 +6864,7 @@
       "details": [
         "(敵)ガードアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
     },
     {
       "game": "mmsf2",
@@ -6875,7 +6875,7 @@
       "details": [
         "(敵)ガードアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S071VolticEye2.gif"
     },
     {
       "game": "mmsf2",
@@ -6886,7 +6886,7 @@
       "details": [
         "(敵)プロテクトアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
     },
     {
       "game": "mmsf2",
@@ -6897,7 +6897,7 @@
       "details": [
         "(敵)プロテクトアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
     },
     {
       "game": "mmsf2",
@@ -6908,7 +6908,7 @@
       "details": [
         "(敵)プロテクトアイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S072VolticEye3.gif"
     },
     {
       "game": "mmsf2",
@@ -6919,7 +6919,7 @@
       "details": [
         "(敵)ホタローG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
     },
     {
       "game": "mmsf2",
@@ -6930,7 +6930,7 @@
       "details": [
         "(敵)ホタローG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
     },
     {
       "game": "mmsf2",
@@ -6941,7 +6941,7 @@
       "details": [
         "(敵)ホタローG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S073Hotarugeri1.gif"
     },
     {
       "game": "mmsf2",
@@ -6952,7 +6952,7 @@
       "details": [
         "(敵)ホタリーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
     },
     {
       "game": "mmsf2",
@@ -6963,7 +6963,7 @@
       "details": [
         "(敵)ホタリーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
     },
     {
       "game": "mmsf2",
@@ -6974,7 +6974,7 @@
       "details": [
         "(敵)ホタリーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S074Hotarugeri2.gif"
     },
     {
       "game": "mmsf2",
@@ -6985,7 +6985,7 @@
       "details": [
         "(敵)ホタリッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
     },
     {
       "game": "mmsf2",
@@ -6996,7 +6996,7 @@
       "details": [
         "(敵)ホタリッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
     },
     {
       "game": "mmsf2",
@@ -7007,7 +7007,7 @@
       "details": [
         "(敵)ホタリッガG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S075Hotarugeri3.gif"
     },
     {
       "game": "mmsf2",
@@ -7029,7 +7029,7 @@
       "details": [
         "(敵)ステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S076StealthLaser1.gif"
     },
     {
       "game": "mmsf2",
@@ -7040,7 +7040,7 @@
       "details": [
         "(敵)ステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S076StealthLaser1.gif"
     },
     {
       "game": "mmsf2",
@@ -7051,7 +7051,7 @@
       "details": [
         "(敵)メガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
     },
     {
       "game": "mmsf2",
@@ -7062,7 +7062,7 @@
       "details": [
         "(敵)メガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
     },
     {
       "game": "mmsf2",
@@ -7073,7 +7073,7 @@
       "details": [
         "(敵)メガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S077StealthLaser2.gif"
     },
     {
       "game": "mmsf2",
@@ -7084,7 +7084,7 @@
       "details": [
         "(敵)ギガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
     },
     {
       "game": "mmsf2",
@@ -7095,7 +7095,7 @@
       "details": [
         "(敵)ギガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
     },
     {
       "game": "mmsf2",
@@ -7106,7 +7106,7 @@
       "details": [
         "(敵)ギガステルスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S078StealthLaser3.gif"
     },
     {
       "game": "mmsf2",
@@ -7117,7 +7117,7 @@
       "details": [
         "(敵)エレミーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
     },
     {
       "game": "mmsf2",
@@ -7128,7 +7128,7 @@
       "details": [
         "(敵)エレミーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
     },
     {
       "game": "mmsf2",
@@ -7139,7 +7139,7 @@
       "details": [
         "(敵)エレミーラG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S079MummyHand1.gif"
     },
     {
       "game": "mmsf2",
@@ -7150,7 +7150,7 @@
       "details": [
         "(敵)エレマミーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
     },
     {
       "game": "mmsf2",
@@ -7161,7 +7161,7 @@
       "details": [
         "(敵)エレマミーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
     },
     {
       "game": "mmsf2",
@@ -7172,7 +7172,7 @@
       "details": [
         "(敵)エレマミーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S080MummyHand2.gif"
     },
     {
       "game": "mmsf2",
@@ -7183,7 +7183,7 @@
       "details": [
         "(敵)エレファラオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
     },
     {
       "game": "mmsf2",
@@ -7194,7 +7194,7 @@
       "details": [
         "(敵)エレファラオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
     },
     {
       "game": "mmsf2",
@@ -7205,7 +7205,7 @@
       "details": [
         "(敵)エレファラオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S081MummyHand3.gif"
     },
     {
       "game": "mmsf2",
@@ -7216,7 +7216,7 @@
       "details": [
         "(敵)モジャヘイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
     },
     {
       "game": "mmsf2",
@@ -7227,7 +7227,7 @@
       "details": [
         "(敵)モジャヘイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
     },
     {
       "game": "mmsf2",
@@ -7238,7 +7238,7 @@
       "details": [
         "(敵)モジャヘイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S082MojaLance1.gif"
     },
     {
       "game": "mmsf2",
@@ -7249,7 +7249,7 @@
       "details": [
         "(敵)モジャグンソウG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
     },
     {
       "game": "mmsf2",
@@ -7260,7 +7260,7 @@
       "details": [
         "(敵)モジャグンソウG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
     },
     {
       "game": "mmsf2",
@@ -7271,7 +7271,7 @@
       "details": [
         "(敵)モジャグンソウG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S083MojaLance2.gif"
     },
     {
       "game": "mmsf2",
@@ -7282,7 +7282,7 @@
       "details": [
         "(敵)モジャゲンスイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
     },
     {
       "game": "mmsf2",
@@ -7293,7 +7293,7 @@
       "details": [
         "(敵)モジャゲンスイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
     },
     {
       "game": "mmsf2",
@@ -7304,7 +7304,7 @@
       "details": [
         "(敵)モジャゲンスイG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S084MojaLance3.gif"
     },
     {
       "game": "mmsf2",
@@ -7315,7 +7315,7 @@
       "details": [
         "(敵)ヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
     },
     {
       "game": "mmsf2",
@@ -7326,7 +7326,7 @@
       "details": [
         "(敵)ヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
     },
     {
       "game": "mmsf2",
@@ -7337,7 +7337,7 @@
       "details": [
         "(敵)ヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S085HengeNoJutsu1.gif"
     },
     {
       "game": "mmsf2",
@@ -7348,7 +7348,7 @@
       "details": [
         "(敵)マネヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
     },
     {
       "game": "mmsf2",
@@ -7359,7 +7359,7 @@
       "details": [
         "(敵)マネヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
     },
     {
       "game": "mmsf2",
@@ -7370,7 +7370,7 @@
       "details": [
         "(敵)マネヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S086HengeNoJutsu2.gif"
     },
     {
       "game": "mmsf2",
@@ -7381,7 +7381,7 @@
       "details": [
         "(敵)バケヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
     },
     {
       "game": "mmsf2",
@@ -7392,7 +7392,7 @@
       "details": [
         "(敵)バケヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
     },
     {
       "game": "mmsf2",
@@ -7403,7 +7403,7 @@
       "details": [
         "(敵)バケヌッキーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S087HengeNoJutsu3.gif"
     },
     {
       "game": "mmsf2",
@@ -7414,7 +7414,7 @@
       "details": [
         "(敵)コガラシマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
     },
     {
       "game": "mmsf2",
@@ -7425,7 +7425,7 @@
       "details": [
         "(敵)コガラシマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
     },
     {
       "game": "mmsf2",
@@ -7436,7 +7436,7 @@
       "details": [
         "(敵)コガラシマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S088Kogarashi1.gif"
     },
     {
       "game": "mmsf2",
@@ -7447,7 +7447,7 @@
       "details": [
         "(敵)タツマキマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
     },
     {
       "game": "mmsf2",
@@ -7458,7 +7458,7 @@
       "details": [
         "(敵)タツマキマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
     },
     {
       "game": "mmsf2",
@@ -7469,7 +7469,7 @@
       "details": [
         "(敵)タツマキマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S089Kogarashi2.gif"
     },
     {
       "game": "mmsf2",
@@ -7480,7 +7480,7 @@
       "details": [
         "(敵)フウジンマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
     },
     {
       "game": "mmsf2",
@@ -7491,7 +7491,7 @@
       "details": [
         "(敵)フウジンマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
     },
     {
       "game": "mmsf2",
@@ -7502,7 +7502,7 @@
       "details": [
         "(敵)フウジンマルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S090Kogarashi3.gif"
     },
     {
       "game": "mmsf2",
@@ -7513,7 +7513,7 @@
       "details": [
         "(敵)フラッターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
     },
     {
       "game": "mmsf2",
@@ -7524,7 +7524,7 @@
       "details": [
         "(敵)フラッターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
     },
     {
       "game": "mmsf2",
@@ -7535,7 +7535,7 @@
       "details": [
         "(敵)フラッターG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S091NeedleRush1.gif"
     },
     {
       "game": "mmsf2",
@@ -7546,7 +7546,7 @@
       "details": [
         "(敵)フラッタリオンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
     },
     {
       "game": "mmsf2",
@@ -7557,7 +7557,7 @@
       "details": [
         "(敵)フラッタリオンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
     },
     {
       "game": "mmsf2",
@@ -7568,7 +7568,7 @@
       "details": [
         "(敵)フラッタリオンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S092NeedleRush2.gif"
     },
     {
       "game": "mmsf2",
@@ -7579,7 +7579,7 @@
       "details": [
         "(敵)フラッタライザーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
     },
     {
       "game": "mmsf2",
@@ -7590,7 +7590,7 @@
       "details": [
         "(敵)フラッタライザーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
     },
     {
       "game": "mmsf2",
@@ -7601,7 +7601,7 @@
       "details": [
         "(敵)フラッタライザーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S093NeedleRush3.gif"
     },
     {
       "game": "mmsf2",
@@ -7612,7 +7612,7 @@
       "details": [
         "(敵)カカペットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7623,7 +7623,7 @@
       "details": [
         "(敵)カカペットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7634,7 +7634,7 @@
       "details": [
         "(敵)カカペットG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S094GreenCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7645,7 +7645,7 @@
       "details": [
         "(敵)カカペーニョG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7656,7 +7656,7 @@
       "details": [
         "(敵)カカペーニョG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7667,7 +7667,7 @@
       "details": [
         "(敵)カカペーニョG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S095BlueCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7678,7 +7678,7 @@
       "details": [
         "(敵)カカペギロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7689,7 +7689,7 @@
       "details": [
         "(敵)カカペギロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7700,7 +7700,7 @@
       "details": [
         "(敵)カカペギロG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S096PurpleCarpet.gif"
     },
     {
       "game": "mmsf2",
@@ -7711,7 +7711,7 @@
       "details": [
         "(敵)パサランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
     },
     {
       "game": "mmsf2",
@@ -7722,7 +7722,7 @@
       "details": [
         "(敵)パサランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
     },
     {
       "game": "mmsf2",
@@ -7733,7 +7733,7 @@
       "details": [
         "(敵)パサランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S097KesranPosran1.gif"
     },
     {
       "game": "mmsf2",
@@ -7744,7 +7744,7 @@
       "details": [
         "(敵)フワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
     },
     {
       "game": "mmsf2",
@@ -7755,7 +7755,7 @@
       "details": [
         "(敵)フワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
     },
     {
       "game": "mmsf2",
@@ -7766,7 +7766,7 @@
       "details": [
         "(敵)フワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S098KesranPosran2.gif"
     },
     {
       "game": "mmsf2",
@@ -7777,7 +7777,7 @@
       "details": [
         "(敵)ポワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
     },
     {
       "game": "mmsf2",
@@ -7788,7 +7788,7 @@
       "details": [
         "(敵)ポワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
     },
     {
       "game": "mmsf2",
@@ -7799,7 +7799,7 @@
       "details": [
         "(敵)ポワランG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S099KesranPosran3.gif"
     },
     {
       "game": "mmsf2",
@@ -7810,7 +7810,7 @@
       "details": [
         "(敵)ハンマリーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
     },
     {
       "game": "mmsf2",
@@ -7821,7 +7821,7 @@
       "details": [
         "(敵)ハンマリーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
     },
     {
       "game": "mmsf2",
@@ -7832,7 +7832,7 @@
       "details": [
         "(敵)ハンマリーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S100HammerWeapon1.gif"
     },
     {
       "game": "mmsf2",
@@ -7843,7 +7843,7 @@
       "details": [
         "(敵)ハンマリオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
     },
     {
       "game": "mmsf2",
@@ -7854,7 +7854,7 @@
       "details": [
         "(敵)ハンマリオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
     },
     {
       "game": "mmsf2",
@@ -7865,7 +7865,7 @@
       "details": [
         "(敵)ハンマリオG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S101HammerWeapon2.gif"
     },
     {
       "game": "mmsf2",
@@ -7876,7 +7876,7 @@
       "details": [
         "(敵)ハンマリドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
     },
     {
       "game": "mmsf2",
@@ -7887,7 +7887,7 @@
       "details": [
         "(敵)ハンマリドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
     },
     {
       "game": "mmsf2",
@@ -7898,7 +7898,7 @@
       "details": [
         "(敵)ハンマリドンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S102HammerWeapon3.gif"
     },
     {
       "game": "mmsf2",
@@ -7909,7 +7909,7 @@
       "details": [
         "(敵)ニョロフーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7920,7 +7920,7 @@
       "details": [
         "(敵)ニョロフーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7931,7 +7931,7 @@
       "details": [
         "(敵)ニョロフーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S103JungleStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7942,7 +7942,7 @@
       "details": [
         "(敵)ニョロバーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7953,7 +7953,7 @@
       "details": [
         "(敵)ニョロバーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7964,7 +7964,7 @@
       "details": [
         "(敵)ニョロバーンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S104SnowStorm.gif"
     },
     {
       "game": "mmsf2",
@@ -7975,7 +7975,7 @@
       "details": [
         "(敵)ニョロフンガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
     },
     {
       "game": "mmsf2",
@@ -7986,7 +7986,7 @@
       "details": [
         "(敵)ニョロフンガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
     },
     {
       "game": "mmsf2",
@@ -7997,7 +7997,7 @@
       "details": [
         "(敵)ニョロフンガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S105PoisonStom.gif"
     },
     {
       "game": "mmsf2",
@@ -8008,7 +8008,7 @@
       "details": [
         "(敵)モノソードG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8019,7 +8019,7 @@
       "details": [
         "(敵)モノソードG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8030,7 +8030,7 @@
       "details": [
         "(敵)モノソードG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S106ElecSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8041,7 +8041,7 @@
       "details": [
         "(敵)モノソーディンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8052,7 +8052,7 @@
       "details": [
         "(敵)モノソーディンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8063,7 +8063,7 @@
       "details": [
         "(敵)モノソーディンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S107WoodSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8074,7 +8074,7 @@
       "details": [
         "(敵)モノソーディルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8085,7 +8085,7 @@
       "details": [
         "(敵)モノソーディルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8096,7 +8096,7 @@
       "details": [
         "(敵)モノソーディルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S108FireSlash.gif"
     },
     {
       "game": "mmsf2",
@@ -8107,7 +8107,7 @@
       "details": [
         "(敵)モアイアンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
     },
     {
       "game": "mmsf2",
@@ -8118,7 +8118,7 @@
       "details": [
         "(敵)モアイアンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
     },
     {
       "game": "mmsf2",
@@ -8129,7 +8129,7 @@
       "details": [
         "(敵)モアイアンG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S109MoaiFall1.gif"
     },
     {
       "game": "mmsf2",
@@ -8140,7 +8140,7 @@
       "details": [
         "(敵)ストーンフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
     },
     {
       "game": "mmsf2",
@@ -8151,7 +8151,7 @@
       "details": [
         "(敵)ストーンフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
     },
     {
       "game": "mmsf2",
@@ -8162,7 +8162,7 @@
       "details": [
         "(敵)ストーンフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S110MoaiFall2.gif"
     },
     {
       "game": "mmsf2",
@@ -8173,7 +8173,7 @@
       "details": [
         "(敵)ジャイアントフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
     },
     {
       "game": "mmsf2",
@@ -8184,7 +8184,7 @@
       "details": [
         "(敵)ジャイアントフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
     },
     {
       "game": "mmsf2",
@@ -8195,7 +8195,7 @@
       "details": [
         "(敵)ジャイアントフェイスG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S111MoaiFall3.gif"
     },
     {
       "game": "mmsf2",
@@ -8206,7 +8206,7 @@
       "details": [
         "(敵)バサリカG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
     },
     {
       "game": "mmsf2",
@@ -8217,7 +8217,7 @@
       "details": [
         "(敵)バサリカG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
     },
     {
       "game": "mmsf2",
@@ -8228,7 +8228,7 @@
       "details": [
         "(敵)バサリカG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S115BerserkSword1.gif"
     },
     {
       "game": "mmsf2",
@@ -8239,7 +8239,7 @@
       "details": [
         "(敵)バサリグルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
     },
     {
       "game": "mmsf2",
@@ -8250,7 +8250,7 @@
       "details": [
         "(敵)バサリグルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
     },
     {
       "game": "mmsf2",
@@ -8261,7 +8261,7 @@
       "details": [
         "(敵)バサリグルG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S116BerserkSword2.gif"
     },
     {
       "game": "mmsf2",
@@ -8272,7 +8272,7 @@
       "details": [
         "(敵)バサリッガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
     },
     {
       "game": "mmsf2",
@@ -8283,7 +8283,7 @@
       "details": [
         "(敵)バサリッガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
     },
     {
       "game": "mmsf2",
@@ -8294,7 +8294,7 @@
       "details": [
         "(敵)バサリッガーG"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S117BerserkSword3.gif"
     },
     {
       "game": "mmsf2",
@@ -8303,7 +8303,7 @@
       "version": null,
       "name": "タイフーンダンス★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
     },
     {
       "game": "mmsf2",
@@ -8312,7 +8312,7 @@
       "version": null,
       "name": "タイフーンダンス★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
     },
     {
       "game": "mmsf2",
@@ -8323,7 +8323,7 @@
       "details": [
         "(店)裏TKタワー2:プラチナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S118TyphoonDance.gif"
     },
     {
       "game": "mmsf2",
@@ -8332,7 +8332,7 @@
       "version": null,
       "name": "アトミックマイン1★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
     },
     {
       "game": "mmsf2",
@@ -8341,7 +8341,7 @@
       "version": null,
       "name": "アトミックマイン1★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
     },
     {
       "game": "mmsf2",
@@ -8350,7 +8350,7 @@
       "version": null,
       "name": "アトミックマイン1★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S119AtomicMine1.gif"
     },
     {
       "game": "mmsf2",
@@ -8359,7 +8359,7 @@
       "version": null,
       "name": "アトミックマイン2★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
     },
     {
       "game": "mmsf2",
@@ -8368,7 +8368,7 @@
       "version": null,
       "name": "アトミックマイン2★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
     },
     {
       "game": "mmsf2",
@@ -8377,7 +8377,7 @@
       "version": null,
       "name": "アトミックマイン2★3",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S120AtomicMine2.gif"
     },
     {
       "game": "mmsf2",
@@ -8388,7 +8388,7 @@
       "details": [
         "ナンスカ・オサ・アガメの依頼報酬"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
     },
     {
       "game": "mmsf2",
@@ -8397,7 +8397,7 @@
       "version": null,
       "name": "アトミックマイン3★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
     },
     {
       "game": "mmsf2",
@@ -8408,7 +8408,7 @@
       "details": [
         "(店)裏TKタワー2:ブラック"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S121AtomicMine3.gif"
     },
     {
       "game": "mmsf2",
@@ -8417,7 +8417,7 @@
       "version": null,
       "name": "ボムライザー★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
     },
     {
       "game": "mmsf2",
@@ -8426,7 +8426,7 @@
       "version": null,
       "name": "ボムライザー★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
     },
     {
       "game": "mmsf2",
@@ -8437,7 +8437,7 @@
       "details": [
         "(金)ナンスカのスカイウェーブ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S139BombRaiser.gif"
     },
     {
       "game": "mmsf2",
@@ -8446,7 +8446,7 @@
       "version": null,
       "name": "セイレイノイカリ★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
     },
     {
       "game": "mmsf2",
@@ -8457,7 +8457,7 @@
       "details": [
         "(ミ)じげんのハザマ2:ブラザー6人で開く扉の奥"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
     },
     {
       "game": "mmsf2",
@@ -8468,7 +8468,7 @@
       "details": [
         "(店)裏TKタワー2:プラチナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S141SeireiNoIkari.gif"
     },
     {
       "game": "mmsf2",
@@ -8477,7 +8477,7 @@
       "version": null,
       "name": "シラハドリ★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
     },
     {
       "game": "mmsf2",
@@ -8486,7 +8486,7 @@
       "version": null,
       "name": "シラハドリ★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
     },
     {
       "game": "mmsf2",
@@ -8497,7 +8497,7 @@
       "details": [
         "(店)裏TKタワー2:ゴールド"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S142Shirahadori.gif"
     },
     {
       "game": "mmsf2",
@@ -8506,7 +8506,7 @@
       "version": null,
       "name": "ギガマイン★1",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
     },
     {
       "game": "mmsf2",
@@ -8515,7 +8515,7 @@
       "version": null,
       "name": "ギガマイン★2",
       "details": [],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
     },
     {
       "game": "mmsf2",
@@ -8526,7 +8526,7 @@
       "details": [
         "(店)裏TKタワー2:プラチナ"
       ],
-      "assetLocalPath": null
+      "assetLocalPath": "/assets/cards/SF2/Cards/S145GigaMine.gif"
     },
     {
       "game": "mmsf2",

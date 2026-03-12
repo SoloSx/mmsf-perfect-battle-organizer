@@ -4,7 +4,11 @@ import { join } from "node:path";
 
 const projectRoot = new URL("..", import.meta.url).pathname;
 const rawDir = join(projectRoot, "scripts", "raw", "guide-pages");
-const aliasFile = join(projectRoot, "data", "card-asset-aliases.json");
+const aliasFiles = [
+  join(projectRoot, "data", "mmsf1", "card-aliases.json"),
+  join(projectRoot, "data", "mmsf2", "card-aliases.json"),
+  join(projectRoot, "data", "mmsf3", "card-aliases.json"),
+];
 const outFile = join(projectRoot, "data", "guide-card-catalog.json");
 
 const SECTION_ORDER = {
@@ -611,7 +615,7 @@ function normalizeToken(value) {
   return value.normalize("NFKC").toLowerCase().replace(/\s+/g, "").replace(/[・\-_＋+★☆()（）/]/g, "");
 }
 
-const aliases = JSON.parse(readFileSync(aliasFile, "utf8")).entries;
+const aliases = aliasFiles.flatMap((aliasFile) => JSON.parse(readFileSync(aliasFile, "utf8")).entries);
 const catalogEntries = [];
 const sourceDescriptionsByGame = {};
 

@@ -21,9 +21,7 @@
     "review:react-best-practices:report": "node scripts/review-react-best-practices.mjs",
     "manifest:cards": "node scripts/rebuild-asset-manifest.mjs",
     "ingest:cards": "node scripts/ingest-card-assets.mjs",
-    "snapshot:guide-pages": "node scripts/snapshot-guide-pages.mjs",
     "build:guide-page-index": "node scripts/build-guide-page-index.mjs",
-    "build:card-aliases": "node scripts/build-card-asset-aliases.mjs",
     "build:guide-card-catalog": "node scripts/build-guide-card-catalog.mjs"
   },
   "dependencies": {

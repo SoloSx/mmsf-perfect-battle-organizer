@@ -1,12 +1,18 @@
 import manifest from "@/data/asset-manifest.json";
-import aliases from "@/data/card-asset-aliases.json";
+import mmsf1Aliases from "@/data/mmsf1/card-aliases.json";
+import mmsf2Aliases from "@/data/mmsf2/card-aliases.json";
+import mmsf3Aliases from "@/data/mmsf3/card-aliases.json";
 import { getMmsf2BlankCardDefinition } from "@/lib/mmsf2/folder-cards";
 import { getMmsf3CardAssetLocalPath } from "@/lib/mmsf3/card-master";
 import type { AssetManifestEntry, CardAssetAliasEntry, GameId, VersionId } from "@/lib/types";
 import { normalizeToken } from "@/lib/utils";
 
 export const assetManifestEntries = manifest.entries as AssetManifestEntry[];
-export const cardAssetAliases = aliases.entries as CardAssetAliasEntry[];
+export const cardAssetAliases = [
+  ...(mmsf1Aliases.entries as CardAssetAliasEntry[]),
+  ...(mmsf2Aliases.entries as CardAssetAliasEntry[]),
+  ...(mmsf3Aliases.entries as CardAssetAliasEntry[]),
+];
 const MMSF2_BLANK_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
   "ブライソード": "/assets/cards/SF2/Cards/SP_M01BuraiSword.gif",
   "ブライソードEX": "/assets/cards/SF2/Cards/SP_M02BuraiSwordEX.gif",
@@ -72,19 +78,39 @@ const MMSF1_BOKTAI_CARD_ASSET_LOCAL_PATHS: Record<string, string> = {
 };
 
 function buildLookupTokens(name: string) {
-  const base = normalizeToken(name);
-  const tokens = new Set([base]);
+  const rawTokens = new Set<string>([name.trim()]);
+  const starlessName = name.replace(/★[123]$/u, "").trim();
+  const blankIdLessName = name.replace(/^[SMG]-\d+\s+/i, "").trim();
 
-  if (/[123]$/.test(base)) {
-    tokens.add(base.replace(/[123]$/, ""));
+  if (starlessName) {
+    rawTokens.add(starlessName);
   }
 
-  if (base.includes("レイザー")) {
-    tokens.add(base.replace(/レイザー/g, "レーザー"));
+  if (blankIdLessName) {
+    rawTokens.add(blankIdLessName);
   }
 
-  if (base.includes("レーザー")) {
-    tokens.add(base.replace(/レーザー/g, "レイザー"));
+  const tokens = new Set<string>();
+
+  for (const rawToken of rawTokens) {
+    const base = normalizeToken(rawToken);
+    if (!base) {
+      continue;
+    }
+
+    tokens.add(base);
+
+    if (/[123]$/.test(base)) {
+      tokens.add(base.replace(/[123]$/, ""));
+    }
+
+    if (base.includes("レイザー")) {
+      tokens.add(base.replace(/レイザー/g, "レーザー"));
+    }
+
+    if (base.includes("レーザー")) {
+      tokens.add(base.replace(/レーザー/g, "レイザー"));
+    }
   }
 
   return [...tokens];
