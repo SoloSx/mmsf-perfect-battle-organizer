@@ -4,9 +4,10 @@ import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { Copy, Import, PencilLine, Trash2, Upload } from "lucide-react";
 import { AppShell } from "@/components/app-shell";
+import { SearchableSelectInput } from "@/components/searchable-select-input";
 import { useAppData } from "@/hooks/use-app-data";
 import { GAME_LABELS, VERSION_LABELS } from "@/lib/rules";
-import type { BuildRecord } from "@/lib/types";
+import type { BuildRecord, VersionId } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
 function buildExportTimestamp() {
@@ -69,17 +70,25 @@ function parseBuildsFromJson(text: string): BuildRecord[] {
   throw new Error("JSON の形式が不正です。");
 }
 
+const BUILD_VERSION_FILTER_OPTIONS: Array<{ value: "all" | VersionId; label: string }> = [
+  { value: "all", label: "全作品" },
+  ...Object.entries(VERSION_LABELS).map(([value, label]) => ({
+    value: value as VersionId,
+    label,
+  })),
+];
+
 export function BuildLibraryPage() {
   const { builds, loaded, deleteBuild, duplicateBuild, importBuilds } = useAppData();
   const [query, setQuery] = useState("");
-  const [gameFilter, setGameFilter] = useState<"all" | keyof typeof GAME_LABELS>("all");
+  const [versionFilter, setVersionFilter] = useState<"all" | VersionId>("all");
   const [status, setStatus] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const filtered = useMemo(() => {
     const term = query.trim().toLowerCase();
     return builds.filter((build) => {
-      const matchesGame = gameFilter === "all" || build.game === gameFilter;
+      const matchesVersion = versionFilter === "all" || build.version === versionFilter;
       const haystack = [
         build.title,
         build.commonSections.overview,
@@ -89,9 +98,9 @@ export function BuildLibraryPage() {
         .join(" ")
         .toLowerCase();
       const matchesQuery = !term || haystack.includes(term);
-      return matchesGame && matchesQuery;
+      return matchesVersion && matchesQuery;
     });
-  }, [builds, gameFilter, query]);
+  }, [builds, query, versionFilter]);
 
   return (
     <AppShell>
@@ -154,18 +163,14 @@ export function BuildLibraryPage() {
             placeholder="構築名、タグ、概要メモで検索"
             className="field-shell"
           />
-          <select
-            value={gameFilter}
-            onChange={(event) => setGameFilter(event.target.value as "all" | keyof typeof GAME_LABELS)}
-            className="field-shell"
-          >
-            <option value="all">全作品</option>
-            {Object.entries(GAME_LABELS).map(([value, label]) => (
-              <option key={value} value={value}>
-                {label}
-              </option>
-            ))}
-          </select>
+          <SearchableSelectInput
+            value={versionFilter}
+            onChange={(value) => setVersionFilter(value as "all" | VersionId)}
+            options={BUILD_VERSION_FILTER_OPTIONS}
+            placeholder="作品を選択"
+            displayValue={BUILD_VERSION_FILTER_OPTIONS.find((option) => option.value === versionFilter)?.label ?? ""}
+            className="field-shell min-h-[52px] w-full"
+          />
         </div>
       </section>
 
