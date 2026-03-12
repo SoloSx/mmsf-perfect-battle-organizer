@@ -287,6 +287,22 @@ test("getMmsf3AbilitySelectionErrors lowers the point cap by active SSS slots", 
   assert.ok(result.errors.includes("アビリティ消費Pは 1480 以内にしてください。"));
 });
 
+test("getMmsf3AbilitySelectionErrors uses 1020P cap for ブライノイズ", () => {
+  const result = getMmsf3AbilitySelectionErrors(
+    [
+      { id: "a0", name: "エースＰＧＭ/0", quantity: 0, notes: "", isRegular: false },
+      { id: "a1", name: "ＨＰ+500/610", quantity: 610, notes: "", isRegular: false },
+      { id: "a2", name: "ＨＰ+500/570", quantity: 570, notes: "", isRegular: false },
+    ],
+    "ブライノイズ",
+    0,
+  );
+
+  assert.equal(result.limit, 1020);
+  assert.equal(result.totalCost, 1180);
+  assert.ok(result.errors.includes("アビリティ消費Pは 1020 以内にしてください。"));
+});
+
 test("getMmsf3BrotherRouletteSelectionErrors rejects ブライ as a brother merge noise", () => {
   const result = getMmsf3BrotherRouletteSelectionErrors([
     {

@@ -651,8 +651,8 @@ test("mmsf3 editor lowers the ability point limit for bura noise", async ({ page
   await selectAbilityOption(abilityEditor, 1, "ファーストオーラ", "ファーストオーラ/600");
   await selectAbilityOption(abilityEditor, 2, "HP+500", "ＨＰ+500/350");
 
-  await expect(abilityEditor).toContainText("合計P 950/900");
-  await expect(page.getByText("アビリティ消費Pは 900 以内にしてください。")).toBeVisible();
+  await expect(abilityEditor).toContainText("合計P 950/1020");
+  await expect(page.getByText("アビリティ消費Pは 1020 以内にしてください。")).toBeVisible();
 });
 
 test("mmsf3 export preview keeps full quantity and horizontal card art", async ({ page }) => {

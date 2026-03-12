@@ -79,7 +79,7 @@ function getMmsf3AbilityName(entry: Pick<BuildCardEntry, "name">) {
 
 export function getMmsf3AbilityPointLimit(noise: string, sssSlotCount = 0) {
   if (noise === "ブライノイズ") {
-    return 900;
+    return 1020;
   }
 
   return 1900 - Math.min(Math.max(sssSlotCount, 0), 3) * 140;
