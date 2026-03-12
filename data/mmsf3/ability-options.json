@@ -238,6 +238,18 @@
       "effect": "最大HPを400増加"
     },
     {
+      "id": "mmsf3-ability-018a",
+      "name": "HP+400",
+      "cost": 430,
+      "maxCount": 9,
+      "label": "HP+400 (430P)",
+      "sources": [
+        "ノイズウェーブ2(ランダム(金))",
+        "FM星のコスモウェーブ2(ランダム(金))"
+      ],
+      "effect": "最大HPを400増加"
+    },
+    {
       "id": "mmsf3-ability-019",
       "name": "HP+500",
       "cost": 610,
